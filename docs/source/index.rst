@@ -6,14 +6,20 @@
 Welcome to eyetrackprep's documentation!
 ========================================
 
+About
+-----
+
+Contents
+--------
+
 .. toctree::
-   :maxdepth: 2
-   :caption: Contents:
-
-
+   :maxdepth: 1
+   
+   installation.md
+   usage.md
 
 Indices and tables
-==================
+------------------
 
 * :ref:`genindex`
 * :ref:`modindex`
