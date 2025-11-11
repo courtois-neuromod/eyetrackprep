@@ -2,7 +2,7 @@ from pathlib import Path
 
 import click
 
-from eyetrackprep.src import pupil2bids, utils 
+from eyetrackprep.src import pupil2bids
 
 
 @click.command()
@@ -17,6 +17,7 @@ from eyetrackprep.src import pupil2bids, utils
     "out_dir",
     type=click.Path(),
     help="Absolute path to output directory."
+    "e.g., on elm: /data/neuromod/projects/eyetracking_bids/emotionsvideos"
 )
 @click.option(
     "--export_plots",
@@ -64,26 +65,28 @@ def main(
     """
 
     """
-    Step 1.1:
     Compiles an overview of all available files (pupils.pldata, gaze.pldata
     and eye0.mp4 exported by pupil, PsychoPy log file).
 
     Exports a .tsv listing all files to support manual QCing
+    Returns a list of directories with eye-tracking data to process
     """
-    # TODO: does script need to return df_pupfiles Dataframe, or just paths?
-    df_pupfiles, pupil_file_paths = pupil2bids.compile_rawfile_list(
+    pupil_file_paths = pupil2bids.compile_rawfile_list(
         raw_et_dir, out_dir)
 
     """
-    Step 1.2: For each run:
-    - export gaze files from pupil .pldata format to BIDS-like .tsv.gz format
-    ??- plot the raw gaze & pupil data and export chart for QCing
-    # TODO: merge charting into single process w drift-correction script?
+    Processes and exports pupil and gaze metrics in BIDS format
+    Returns raw (uncorrected) gaze coordinates to plot for manual QCing
     """
     for pupil_path in pupil_paths:
-        pupil2bids.export_bids(
-            pupil_path, raw_et_dir, out_dir)
+        raw_gaze_2plot = pupil2bids.export_bids(
+            pupil_path, raw_et_dir, out_dir, export_plots)
 
+    """
+    TODO: implement gaze drift correction for tasks w known fixations
+    TODO: import Pupil library
+    TODO: generate multi-pannel plot for manual QCing
+    """
 
 
 if __name__ == "__main__":
