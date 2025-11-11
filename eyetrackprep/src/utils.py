@@ -1,8 +1,12 @@
 import json
+from typing import Union
+
 import numpy as np
 import pandas as pd
 
 
+# TODO: adapt get_onset_time for tasks without run_num...
+# Get rid of this work-around 
 RUN2TASK_MAPPING = {
     'retino': {
         'task-wedges': 'run-01',
@@ -12,6 +16,12 @@ RUN2TASK_MAPPING = {
     'floc': {
         'task-flocdef': 'run-01',
         'task-flocalt': 'run-02'
+    },
+    'langloc': {   # FIX THIS
+        'task-alice_en': 'run-01',
+        'task-alice_fr': 'run-02',
+        'task-listening': 'run-03',
+        'task-reading': 'run-04'
     }
 }
 """
@@ -24,7 +34,9 @@ https://github.com/courtois-neuromod/task_stimuli/blob/main/src/sessions/ses-flo
 
 def get_onset_time(
     log_path: str,
-    run_num: str,
+    task_root: str,
+    task: str,
+    run_num: Union[str, None],
     ip_path: str,
     gz_ts: float,
 ) -> float:
@@ -76,6 +88,22 @@ def get_onset_time(
     return o_time
 
 
+def parse_task_name(
+    pupfile_path,
+    task_root,
+) -> tuple[str]:
+    """."""
+    pupil_str, task_str = pupfile_path.split('/')[-3:-1]
+    sub, ses, fnum = pupil_str.split('.')[0].split('_')
+
+    if task_root == "friends":
+        task_type = f'task-{task_str.split("-")[-1]}'
+    elif task_root == "ood":
+        task_type = task_str
+    elif task_root == "narrative":
+        task_type = task_str.split("_run-")[0].replace("_", "")
+
+    return sub, ses, fnum, task_type
 
 
 def create_event_path(row, file_path, log=False):

@@ -5,7 +5,7 @@ from typing import Union
 import numpy as np
 import pandas as pd
 
-from utils import get_onset_time
+from utils import get_onset_time, parse_task_name
 
 # TODO: fix this by importing pupil as library 
 sys.path.append(
@@ -20,30 +20,10 @@ sys.path.append(
 from file_methods import load_pldata_file
 
 
-RUN2TASK_MAPPING = {
-    'retino': {
-        'task-wedges': 'run-01',
-        'task-rings': 'run-02',
-        'task-bar': 'run-03'
-    },
-    'floc': {
-        'task-flocdef': 'run-01',
-        'task-flocalt': 'run-02'
-    }
-}
-"""
-Assigns BIDS 'run-XX' numbers to runs labeled only by 'task-subtask' for
-retino and fLoc tasks, based on their order of administration.
-https://github.com/courtois-neuromod/task_stimuli/blob/main/src/sessions/ses-retino.py
-https://github.com/courtois-neuromod/task_stimuli/blob/main/src/sessions/ses-floc.py
-"""
-
 SUB_LIST = ['sub-01', 'sub-02', 'sub-03', 'sub-04', 'sub-05', 'sub-06']
 """
 List of valid CNeuroMod subject IDs used to filter out test files.
 """
-
-
 
 def parse_ev_dset(
     df_files: pd.DataFrame,
@@ -56,7 +36,7 @@ def parse_ev_dset(
 
     This function relies on parsing run-wise events.tsv files, 
     is incompatible with tasks without logged "events" 
-    (e.g., movie  tasks like friends, movie10, ood).
+    (e.g., tasks like friends, movie10, ood and narratives).
 
     Parameters
     ----------
@@ -79,6 +59,7 @@ def parse_ev_dset(
             A list of tuples: (pupil_data_directory_path, metadata_tuple)
             for all runs with a 'pupil.pldata' file.
     """
+    has_run_num = False if task_root in ['retino', 'floc', 'langloc'] else True
 
     pupil_file_paths = []
 
@@ -90,13 +71,13 @@ def parse_ev_dset(
             ev_file = os.path.basename(event)
 
             try:
-                if task_root in ['retino', 'floc']:
-                    skip_run_num = True
-                    sub, ses, fnum, task_type, appendix = ev_file.split('_')
-                    run_num = RUN2TASK_MAPPING[task_root][task_type]
-                else:
-                    skip_run_num = False
+                if has_run_num:
                     sub, ses, fnum, task_type, run_num, appendix = ev_file.split('_')
+                else:
+                    sub, ses, fnum, task_type = ev_file.split('_')[:4]
+                    if task_type == 'task-alice':
+                        task_type = f'{task_type}_{ev_file.split("_")[4]}'
+                    run_num = None 
 
                 if sub in SUB_LIST:
                     assert sub == sub_num
@@ -113,10 +94,10 @@ def parse_ev_dset(
                     else:
                         empty_log = True
 
-                    if skip_run_num:
-                        pupil_path = f'{ses_path}/{sub_num}_{ses_num}_{fnum}.pupil/{task_type}/000'
-                    else:
+                    if has_run_num:
                         pupil_path = f'{ses_path}/{sub_num}_{ses_num}_{fnum}.pupil/{task_type}_{run_num}/000'
+                    else:
+                        pupil_path = f'{ses_path}/{sub_num}_{ses_num}_{fnum}.pupil/{task_type}/000'
 
                     list_pupil = glob.glob(f'{pupil_path}/pupil.pldata')
                     has_pupil = len(list_pupil) == 1
@@ -132,16 +113,8 @@ def parse_ev_dset(
                     has_gaze = len(glob.glob(f'{pupil_path}/gaze.pldata')) == 1
 
                     run_data = [
-                        sub_num,
-                        ses_num,
-                        run_num,
-                        task_type,
-                        fnum,
-                        has_pupil,
-                        has_gaze,
-                        has_eyemv,
-                        has_log,
-                        empty_log,
+                        sub_num, ses_num, run_num, task_type, fnum,
+                        has_pupil, has_gaze, has_eyemv, has_log, empty_log,
                     ]
                     df_files = pd.concat(
                         [
@@ -162,14 +135,17 @@ def parse_ev_dset(
 
 def parse_noev_dset(
     df_files: pd.DataFrame,
+    task_root: str,
     ses_list: list,
 ) -> tuple[pd.DataFrame, list[tuple]]:
-"""
-    Processes the raw 'friends' dataset to compile a DataFrame overview
-    of available eye-tracking files.
+    """
+    Processes a BIDS-like raw dataset structure to compile 
+    a DataFrame overview of available eye-tracking files.
 
-    This task does not rely on events.tsv files and requires parsing 
-    run details from the pupil data directory path.
+    This task does not rely on events.tsv files, it parses 
+    run details directly from the pupil data directory path.
+    Compatible with tasks without logged events (e.g., friends, 
+    ood, movie10, narratives).
 
     Parameters
     ----------
@@ -177,6 +153,8 @@ def parse_noev_dset(
         The cumulative DataFrame to append run data to. Must have columns = [
         'subject', 'session', 'run', 'task', 'file_number', 'has_pupil', 
         'has_gaze', 'has_eyemovie', 'has_log', 'empty_log'].
+    task_root : str
+        The root task name (e.g., 'friends', 'ood', 'narratives'). 
     ses_list : list of str
         A list of paths to session directories (e.g., 'path/to/sub-XX/ses-YY').
 
@@ -197,17 +175,22 @@ def parse_noev_dset(
         [sub_num, ses_num] = ses_path.split('/')[-2:]
 
         epfile_list = sorted(glob.glob(
-                f'{ses_path}/sub-*.pupil/task-friends-*/000'
+                f'{ses_path}/sub-*.pupil/task-*/000'
             )
         )
+        """
+        task-friends-s6e8b, task-wot2, 
 
+        Note: run number is a fluke, does not reflect the repetition... (they're all run-01...)
+        task-TunnelRecency_run-01, task-PrettymouthRecency_run-01, task-PrettymouthRecall_run-01, task-SlumlordRecency_run-01, task-SlumlordRecall_run-01
+        task-Tunnel_part2Story_run-01, task-Tunnel_part2Recall_run-01, task-PrettymouthStory_run-01, task-SlumlordStory_run-01
+
+        """
         for epfile in epfile_list:
-            f1, f2 = epfile.split('/')[-3:-1]
-            t1, t2, run_num = f2.split('-')
-            task_type = f'{t1}-{t2}'
-            sub, ses = f1.split('.')[0].split('_')[:2]
-
-            fnum = f1.split('.')[0].split('_')[-1]
+            sub, ses, fnum, task_type = parse_task_name(
+                epfile, task_root,
+            )
+            run_num = None
 
             if sub not in SUB_LIST:
                 print(f"Subject {sub} data not in subject list")
@@ -240,16 +223,8 @@ def parse_noev_dset(
             has_gaze = len(glob.glob(f'{epfile}/gaze.pldata')) == 1
 
             run_data = [
-                sub_num,
-                ses_num,
-                run_num,
-                task_type,
-                fnum,
-                has_pupil,
-                has_gaze,
-                has_eyemv,
-                has_log,
-                empty_log,
+                sub_num, ses_num, run_num, task_type, fnum,
+                has_pupil, has_gaze, has_eyemv, has_log, empty_log,
             ]
             df_files = pd.concat(
                 [
@@ -271,28 +246,38 @@ def compile_rawfile_list(
 ) -> tuple[pd.DataFrame, list[tuple]]:
 """
     Compiles an overview of all available eye-tracking files
-    for a given CNeuroMod dataset and exports it as a TSV file 
-    for quality control (QC).
+    for a given CNeuroMod dataset and exports it as a .tsv file 
+    to support quality control (QC).
 
-    The availability of key output files (Pupil: pupil.pldata, gaze.pldata, eye0.mp4;
-    PsychoPy: log file) is checked for every identified run.
+    The availability of key output files (from Pupil: pupil.pldata, 
+    gaze.pldata, eye0.mp4; from PsychoPy: log file) is checked 
+    for every run in the dset.
 
     Parameters
     ----------
     in_path : str
-        The root directory of the dataset (e.g., '.../neuromod/retino/sourcedata').
+        The root directory of the raw dataset 
+        (e.g., '/unf/eyetracker/neuromod/retino/sourcedata').
     out_path : str
-        The output directory where the QC file and plots will be saved.
+        The output directory where the .tsv file listing available data will be saved.
 
     Returns
     -------
     tuple
         - df_files : pandas.DataFrame
-            The DataFrame containing file availability info for all processed runs.
+            A DataFrame containing file availability info for all processed runs.
         - pupil_file_paths : list of tuple
             A list of tuples: (pupil_data_directory_path, metadata_tuple)
             for all runs that contain a 'pupil.pldata' file.
     """
+    # Find all the fMRI session directories with numeric session numbers for all subjects
+    # e.g., (on elm, in_path = '/unf/eyetracker/neuromod/triplets/sourcedata')
+    ses_list = [
+        x for x in sorted(glob.glob(
+            f'{in_path}/sub-*/ses-*')
+        ) if x.split('-')[-1].isnumeric()
+    ]
+
     col_names = [
         'subject', 'session', 'run', 'task', 'file_number', 
         'has_pupil', 'has_gaze', 'has_eyemovie',
@@ -302,25 +287,16 @@ def compile_rawfile_list(
 
     task_root = in_path.split('/')[-2]
 
-    # Find all subject/session directories with numeric session numbers
-    # e.g., (on elm, in_path = '/unf/eyetracker/neuromod/triplets/sourcedata')
-    ses_list = [
-        x for x in sorted(glob.glob(
-            f'{in_path}/sub-*/ses-*')
-        ) if x.split('-')[-1].isnumeric()
-    ]
-
-    # Friends has no events files, files are parsed differently 
-    # TODO: expand script to newer tasks w/o events like narratives, multfs... (check structure)
-    if task_root == 'friends':
+    # Parse dataset files (using events.tsv files if available) 
+    if task_root in ['friends', 'movie_10', 'ood', 'narratives']:
         df_files, pupil_file_paths = parse_noev_dset(
-            df_files, ses_list)
+            df_files, task_root, ses_list)
     else:
         df_files, pupil_file_paths = parse_ev_dset(
             df_files, task_root, ses_list,
         )
 
-    # Export file list spreadsheet for QCing
+    # Export file list spreadsheet to support QCing
     Path(f"{out_path}/QC_gaze").mkdir(parents=True, exist_ok=True)
     df_files.to_csv(
         f"{out_path}/QC_gaze/{task_root}_QCflist.tsv",
@@ -359,27 +335,38 @@ def export_bids(
     '''
     sub, ses, run, task, fnum = pupil_path[1]
 
-    task_root = out_path.split('/')[-1]
-    # early mario3 runs accidentally labelled task-mariostars
+    task_root = in_path.split('/')[-2]
+    # early mario3 runs accidentally labelled task-mariostars...
     pseudo_task = 'task-mario3' if task_root == 'mario3' else task
 
-    bids_path = f'{out_path}/bids/{sub}/{ses}/func/{sub}_{ses}_{pseudo_task}_{run}_{fnum}_recording-eye1_physio.tsv.gz'
-    Path(bids_path).mkdir(parents=True, exist_ok=True)
+    # TODO: write a clean-up script that will scrub 'fnum' from the final file name, AFTER Qcing (fnum crucial to tell appart repeated runs...)
+    if run is None:
+        bids_path = f'{out_path}/bids/{sub}/{ses}/func/{sub}_{ses}_{pseudo_task}_{fnum}_recording-eye1_physio.tsv.gz'
+    else:
+        bids_path = f'{out_path}/bids/{sub}/{ses}/func/{sub}_{ses}_{pseudo_task}_{run}_{fnum}_recording-eye1_physio.tsv.gz'
 
     if not os.path.exists(bids_path):
+        Path(bids_path).mkdir(parents=True, exist_ok=True)
+
         # gaze data includes pupil metrics from which each gaze was derived
         seri_gaze = load_pldata_file(pupil_path[0], 'gaze')[0]
         print(sub, ses, run, pseudo_task, len(seri_gaze))
 
-        # Get run's onset time
-        if task in ['task-bar', 'task-rings', 'task-wedges', 'task-flocdef', 'task-flocalt']:
+        # Get run onset time
+        if task_root in ['floc', 'retino', 'langloc', 'ood']:
             infoplayer_path = f'{in_path}/{sub}/{ses}/{sub}_{ses}_{fnum}.pupil/{task}/000/info.player.json'
+        elif task_root == 'friends':
+            tname = task.replace("task-", "task-friends-")
+            infoplayer_path = f'{in_path}/{sub}/{ses}/{sub}_{ses}_{fnum}.pupil/{tname}/000/info.player.json'
+        elif task_root == 'narratives':
+            tname = f'{task.replace("part", "_part")}_run-01'
+            infoplayer_path = f'{in_path}/{sub}/{ses}/{sub}_{ses}_{fnum}.pupil/{tname}/000/info.player.json'
         else:
             infoplayer_path = f'{in_path}/{sub}/{ses}/{sub}_{ses}_{fnum}.pupil/{task}_{run}/000/info.player.json'                
         
         onset_time = get_onset_time(
             f'{in_path}/{sub}/{ses}/{sub}_{ses}_{fnum}.log',
-            run,
+            task_root, task, run,
             infoplayer_path,
             seri_gaze[10]['timestamp'],
         )
@@ -392,17 +379,17 @@ def export_bids(
             # TODO: add metrics to .json sidecar
             #['timestamp', 'x_coordinate', 'y_coordinate', 'confidence',
             #'pupil.xcoordinate', 'pupil.ycoordinate', 'pupil_diameter', 
-            #'pupil.elipse_axes', 'pupil.ellipse_angle', 'pupil.ellipse_center']
+            #'pupil.elipse_axe_a', 'pupil.elipse_axe_b', 
+            # 'pupil.ellipse_angle', 'pupil.ellipse_center_x', 'pupil.ellipse_center_y']
             gaze_timestamp = gaze['timestamp'] - onset_time
             if gaze_timestamp > 0.0:
                 gaze_x, gaze_y = gaze['norm_pos']
                 gaze_conf = gaze['confidence']
-                #gaze_model = gaze['topic']
                 pupil_data = gaze['base_data'][0]
                 pupil_x, pupil_y = pupil_data['norm_pos']
                 pupil_diameter = pupil_data['diameter']
                 ellipse_data = pupil_data['ellipse']
-                ellipse_axe_0, ellipse_axe_1 = ellipse_data['axes']
+                ellipse_axe_a, ellipse_axe_b = ellipse_data['axes']
                 ellipse_angle = ellipse_data['angle']
                 ellipse_center_x, ellipse_center_y = ellipse_data['center']
 
@@ -416,12 +403,13 @@ def export_bids(
                     [gaze_x, gaze_y, gaze_timestamp, gaze_conf])
                 )
 
-        pd.DataFrame(np.array(bids_gaze_list)).to_csv(
+        bids_gaze = np.array(bids_gaze_list)
+        pd.DataFrame(bids_gaze).to_csv(
             bids_path, sep='\t', header=False, index=False,
         )
         if export_plots:
-            return np.stack(gaze_2plot_list, axis=0)
+            return bids_gaze, np.stack(gaze_2plot_list, axis=0)
         else:
-            return None
+            return bids_gaze, None
 
 
