@@ -339,7 +339,10 @@ def export_bids(
     # early mario3 runs accidentally labelled task-mariostars...
     pseudo_task = 'task-mario3' if task_root == 'mario3' else task
 
-    # TODO: write a clean-up script that will scrub 'fnum' from the final file name, AFTER Qcing (fnum crucial to tell appart repeated runs...)
+    """
+    TODO: write a clean-up script that will scrub 'fnum' from the final file names
+    AFTER the entire dset has been Qced (fnum crucial to tell appart repeated runs...)
+    """
     if run is None:
         bids_path = f'{out_path}/bids/{sub}/{ses}/func/{sub}_{ses}_{pseudo_task}_{fnum}_recording-eye1_physio.tsv.gz'
     else:
@@ -354,19 +357,18 @@ def export_bids(
 
         # Get run onset time
         if task_root in ['floc', 'retino', 'langloc', 'ood']:
-            infoplayer_path = f'{in_path}/{sub}/{ses}/{sub}_{ses}_{fnum}.pupil/{task}/000/info.player.json'
+            tname = task
         elif task_root == 'friends':
             tname = task.replace("task-", "task-friends-")
-            infoplayer_path = f'{in_path}/{sub}/{ses}/{sub}_{ses}_{fnum}.pupil/{tname}/000/info.player.json'
         elif task_root == 'narratives':
             tname = f'{task.replace("part", "_part")}_run-01'
-            infoplayer_path = f'{in_path}/{sub}/{ses}/{sub}_{ses}_{fnum}.pupil/{tname}/000/info.player.json'
         else:
-            infoplayer_path = f'{in_path}/{sub}/{ses}/{sub}_{ses}_{fnum}.pupil/{task}_{run}/000/info.player.json'                
+            tname = f'{task}_{run}'
+        infoplayer_path = f'{in_path}/{sub}/{ses}/{sub}_{ses}_{fnum}.pupil/{tname}/000/info.player.json'                
         
         onset_time = get_onset_time(
             f'{in_path}/{sub}/{ses}/{sub}_{ses}_{fnum}.log',
-            task_root, task, run,
+            tname, fnum,
             infoplayer_path,
             seri_gaze[10]['timestamp'],
         )

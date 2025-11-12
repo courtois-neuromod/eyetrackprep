@@ -1,7 +1,5 @@
 from pathlib import Path
-
 import click
-
 from eyetrackprep.src import pupil2bids
 
 
@@ -47,7 +45,7 @@ def main(
 
     raw_et_dir : str or pathlib.Path
 
-        Path to the directory where the raw eyetracking data lives.
+        Path to the directory where the raw eyetracking data live.
 
     out_dir : str or pathlib.Path
 
@@ -75,8 +73,9 @@ def main(
         raw_et_dir, out_dir)
 
     """
-    Processes and exports pupil and gaze metrics in BIDS format
-    Returns raw (uncorrected) gaze coordinates to plot for manual QCing
+    Processes, exports and returns pupil and gaze metrics in BIDS format.
+    If export_plots is True, also returns raw (uncorrected) gaze coordinates 
+    to plot for manual QCing.
     """
     for pupil_path in pupil_paths:
         bids_gaze, raw_gaze_2plot = pupil2bids.export_bids(
