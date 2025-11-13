@@ -134,7 +134,7 @@ def parse_task_name(
         task_type = f'task-{task_str.split("-")[-1]}'
     elif task_root == "ood":
         task_type = task_str
-    elif task_root == "narrative":
+    elif task_root == "narratives":
         task_type = task_str.split("_run-")[0].replace("_", "")
 
     return sub, ses, fnum, task_type
