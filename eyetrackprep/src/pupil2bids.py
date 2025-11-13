@@ -410,8 +410,11 @@ def export_bids(
         pd.DataFrame(bids_gaze).to_csv(
             bids_path, sep='\t', header=False, index=False,
         )
-        gaze_2_plot = np.stack(gaze_2plot_list, axis=0)
 
-        print(bids_gaze.shape, gaze_2_plot.shape)
-        return bids_gaze, gaze_2_plot
+        if export_plots:
+            gaze_2_plot = np.stack(gaze_2plot_list, axis=0)
+            print(bids_gaze.shape, gaze_2_plot.shape)
+            return bids_gaze, gaze_2_plot
+        else:
+            return bids_gaze, np.array([])
 
