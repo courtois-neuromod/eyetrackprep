@@ -401,17 +401,17 @@ def export_bids(
                     ellipse_axe_a, ellipse_axe_b, ellipse_angle, 
                     ellipse_center_x, ellipse_center_y,
                 ]) 
-                gaze_2plot_list.append(np.array(
-                    [gaze_x, gaze_y, gaze_timestamp, gaze_conf])
-                )
+                if export_plots:
+                    gaze_2plot_list.append(np.array(
+                        [gaze_x, gaze_y, gaze_timestamp, gaze_conf])
+                    )
 
         bids_gaze = np.array(bids_gaze_list)
         pd.DataFrame(bids_gaze).to_csv(
             bids_path, sep='\t', header=False, index=False,
         )
-        if export_plots:
-            return bids_gaze, np.stack(gaze_2plot_list, axis=0)
-        else:
-            return bids_gaze, None
+        gaze_2_plot = np.stack(gaze_2plot_list, axis=0)
 
+        print(bids_gaze.shape, gaze_2_plot.shape)
+        return bids_gaze, gaze_2_plot
 
