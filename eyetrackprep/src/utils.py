@@ -110,12 +110,12 @@ def get_onset_time(
                 # convert TTL 0 from system to synced clock                
                 o_time += (sync_ts - syst_ts)
     
-    """
-    If the log file is empty, estimate the trigger time based on the run's
-    10th gaze timestamp (estimated based on observed lags between eye-tracker
-    and task logs)
-    """
     else:
+        """
+        If the log file is empty, estimate the trigger time based on the run's
+        10th gaze timestamp (estimated based on observed lags between eye-tracker
+        and task logs)
+        """        
         print('empty log file, onset time estimated from gaze timestamp')
         o_time = gz_ts
 

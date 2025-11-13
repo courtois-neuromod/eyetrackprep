@@ -1,31 +1,24 @@
 from pathlib import Path
 import click
-from eyetrackprep.src import pupil2bids
+from src import pupil2bids
 
 
 @click.command()
 @click.argument(
     "raw_et_dir",
     type=click.Path(),
-    help="Absolute path to dataset directory with raw output files, including "
-    "pupils.pldata, gaze.pldata, eye0.mp4, and PsychoPy log file. "
-    "e.g., (on elm): /unf/eyetracker/neuromod/triplets/sourcedata"
 )
 @click.argument(
     "out_dir",
     type=click.Path(),
-    help="Absolute path to output directory."
-    "e.g., on elm: /data/neuromod/projects/eyetracking_bids/emotionsvideos"
 )
 @click.option(
     "--export_plots",
     is_flag=True,
-    help="If specified, plots will be generated to QC the dataset runs.",
 )
 @click.option(
     "--drift_corr",
     is_flag=True,
-    help="If specified, outputs a dataset of drift corrected gaze as derivatives.",
 )
 def main(
     raw_et_dir,
@@ -46,19 +39,23 @@ def main(
     raw_et_dir : str or pathlib.Path
 
         Path to the directory where the raw eyetracking data live.
+        Absolute path to dataset directory with the raw eyetracking output files, 
+        including pupils.pldata, gaze.pldata, eye0.mp4, and PsychoPy log file.
+        e.g., (on elm): /unf/eyetracker/neuromod/triplets/sourcedata"
 
     out_dir : str or pathlib.Path
 
-        Path to the output directory where to export BIDS-like dataset, 
+        Absolute path to the output directory where to export BIDS-like dataset, 
         QC figures and reports (option), and drift-corrected gaze derivatives (option).
-
-    drift_corr : bool, optional
-
-        If specified, export a dataset of drift-corrected gaze as derivatives.
+        e.g., on elm: /data/neuromod/projects/eyetracking_bids/emotionsvideos
 
     export_plots : bool, optional
 
-        If specified, export plots to support QCing of dataset runs.
+        If specified, exports plots to support QCing of the dataset's runs.
+
+    drift_corr : bool, optional
+
+        If specified, exports a dataset of drift-corrected gaze as derivatives.
 
     """
 

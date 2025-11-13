@@ -5,7 +5,7 @@ from typing import Union
 import numpy as np
 import pandas as pd
 
-from utils import get_onset_time, parse_task_name
+from src.utils import get_onset_time, parse_task_name
 
 # TODO: fix this by importing pupil as library 
 sys.path.append(
@@ -30,7 +30,7 @@ def parse_ev_dset(
     task_root: str,
     ses_list: list,
 ) -> tuple[pd.DataFrame, list[tuple]]:
-"""
+    """
     Processes a BIDS-like raw dataset structure to compile 
     a DataFrame overview of available eye-tracking files.
 
@@ -244,7 +244,7 @@ def compile_rawfile_list(
     in_path: str,
     out_path: str,
 ) -> tuple[pd.DataFrame, list[tuple]]:
-"""
+    """
     Compiles an overview of all available eye-tracking files
     for a given CNeuroMod dataset and exports it as a .tsv file 
     to support quality control (QC).
