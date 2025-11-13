@@ -412,9 +412,7 @@ def export_bids(
         )
 
         if export_plots:
-            gaze_2_plot = np.stack(gaze_2plot_list, axis=0)
-            print(bids_gaze.shape, gaze_2_plot.shape)
-            return bids_gaze, gaze_2_plot
+            return bids_gaze, np.stack(gaze_2plot_list, axis=0)
         else:
             return bids_gaze, np.array([])
 
