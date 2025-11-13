@@ -1,0 +1,1122 @@
+
+sub-01 ses-001 run-01 task-mario task-mario 23234
+
+sub-01 ses-001 run-01 task-mario task-mario 149801
+
+sub-01 ses-001 run-02 task-mario task-mario 138055
+
+sub-01 ses-001 run-03 task-mario task-mario 145367
+
+sub-01 ses-001 run-04 task-mario task-mario 141687
+
+sub-01 ses-002 run-01 task-mario task-mario 140576
+
+sub-01 ses-002 run-02 task-mario task-mario 138078
+
+sub-01 ses-002 run-03 task-mario task-mario 134354
+
+sub-01 ses-003 run-01 task-mario task-mario 159706
+
+sub-01 ses-003 run-02 task-mario task-mario 160418
+
+sub-01 ses-003 run-03 task-mario task-mario 165617
+
+sub-01 ses-003 run-04 task-mario task-mario 156925
+
+sub-01 ses-003 run-05 task-mario task-mario 163746
+
+sub-01 ses-004 run-01 task-mario task-mario 147183
+
+sub-01 ses-004 run-02 task-mario task-mario 149325
+
+sub-01 ses-004 run-03 task-mario task-mario 163919
+
+sub-01 ses-004 run-04 task-mario task-mario 165168
+
+sub-01 ses-005 run-01 task-mario task-mario 1845
+
+sub-01 ses-005 run-01 task-mario task-mario 169495
+Empty .log file for ('sub-01', 'ses-005', 'run-01', 'task-mario', '20210903-105916')
+
+sub-01 ses-005 run-02 task-mario task-mario 168953
+
+sub-01 ses-005 run-03 task-mario task-mario 152934
+
+sub-01 ses-005 run-04 task-mario task-mario 170060
+
+sub-01 ses-005 run-05 task-mario task-mario 154867
+
+sub-01 ses-007 run-01 task-mario task-mario 162228
+Empty .log file for ('sub-01', 'ses-007', 'run-01', 'task-mario', '20211217-105014')
+
+sub-01 ses-007 run-02 task-mario task-mario 171164
+
+sub-01 ses-007 run-03 task-mario task-mario 170607
+
+sub-01 ses-007 run-04 task-mario task-mario 167220
+
+sub-01 ses-007 run-05 task-mario task-mario 158446
+
+sub-01 ses-008 run-01 task-mario task-mario 165306
+
+sub-01 ses-008 run-02 task-mario task-mario 164283
+
+sub-01 ses-008 run-03 task-mario task-mario 162303
+
+sub-01 ses-008 run-04 task-mario task-mario 167241
+
+sub-01 ses-008 run-05 task-mario task-mario 176168
+
+sub-01 ses-009 run-01 task-mario task-mario 166227
+
+sub-01 ses-009 run-02 task-mario task-mario 162949
+
+sub-01 ses-009 run-03 task-mario task-mario 170829
+
+sub-01 ses-009 run-04 task-mario task-mario 159406
+
+sub-01 ses-009 run-05 task-mario task-mario 163936
+
+sub-01 ses-010 run-01 task-mario task-mario 164485
+
+sub-01 ses-010 run-02 task-mario task-mario 162365
+
+sub-01 ses-010 run-03 task-mario task-mario 158368
+
+sub-01 ses-010 run-04 task-mario task-mario 171791
+
+sub-01 ses-011 run-01 task-mario task-mario 84739
+
+sub-01 ses-011 run-01 task-mario task-mario 165926
+
+sub-01 ses-011 run-02 task-mario task-mario 167260
+
+sub-01 ses-011 run-03 task-mario task-mario 152816
+
+sub-01 ses-011 run-04 task-mario task-mario 159411
+
+sub-01 ses-013 run-01 task-mario task-mario 147674
+
+sub-01 ses-013 run-02 task-mario task-mario 155583
+
+sub-01 ses-013 run-03 task-mario task-mario 152273
+
+sub-01 ses-014 run-01 task-mario task-mario 177620
+Empty .log file for ('sub-01', 'ses-014', 'run-01', 'task-mario', '20220216-171038')
+
+sub-01 ses-014 run-02 task-mario task-mario 158882
+Empty .log file for ('sub-01', 'ses-014', 'run-02', 'task-mario', '20220216-171038')
+
+sub-01 ses-014 run-03 task-mario task-mario 172658
+Empty .log file for ('sub-01', 'ses-014', 'run-03', 'task-mario', '20220216-171038')
+
+sub-01 ses-014 run-04 task-mario task-mario 164942
+Empty .log file for ('sub-01', 'ses-014', 'run-04', 'task-mario', '20220216-171038')
+
+sub-01 ses-014 run-05 task-mario task-mario 161798
+Empty .log file for ('sub-01', 'ses-014', 'run-05', 'task-mario', '20220216-171038')
+
+sub-01 ses-015 run-01 task-mario task-mario 145890
+Empty .log file for ('sub-01', 'ses-015', 'run-01', 'task-mario', '20220222-153538')
+
+sub-01 ses-015 run-02 task-mario task-mario 153644
+Empty .log file for ('sub-01', 'ses-015', 'run-02', 'task-mario', '20220222-153538')
+
+sub-01 ses-015 run-03 task-mario task-mario 154044
+Empty .log file for ('sub-01', 'ses-015', 'run-03', 'task-mario', '20220222-153538')
+
+sub-01 ses-015 run-04 task-mario task-mario 149536
+Empty .log file for ('sub-01', 'ses-015', 'run-04', 'task-mario', '20220222-153538')
+
+sub-01 ses-015 run-01 task-mario task-mario 146174
+
+sub-01 ses-016 run-01 task-mario task-mario 158187
+Empty .log file for ('sub-01', 'ses-016', 'run-01', 'task-mario', '20220223-173128')
+
+sub-01 ses-016 run-02 task-mario task-mario 162516
+Empty .log file for ('sub-01', 'ses-016', 'run-02', 'task-mario', '20220223-173128')
+
+sub-01 ses-016 run-03 task-mario task-mario 165542
+Empty .log file for ('sub-01', 'ses-016', 'run-03', 'task-mario', '20220223-173128')
+
+sub-01 ses-016 run-04 task-mario task-mario 161492
+Empty .log file for ('sub-01', 'ses-016', 'run-04', 'task-mario', '20220223-173128')
+
+sub-01 ses-017 run-01 task-mario task-mario 158163
+Empty .log file for ('sub-01', 'ses-017', 'run-01', 'task-mario', '20220302-171940')
+
+sub-01 ses-017 run-02 task-mario task-mario 172409
+
+sub-01 ses-017 run-03 task-mario task-mario 160084
+
+sub-01 ses-017 run-04 task-mario task-mario 167850
+
+sub-01 ses-018 run-01 task-mario task-mario 152655
+Empty .log file for ('sub-01', 'ses-018', 'run-01', 'task-mario', '20220309-172358')
+
+sub-01 ses-018 run-02 task-mario task-mario 155466
+Empty .log file for ('sub-01', 'ses-018', 'run-02', 'task-mario', '20220309-172358')
+
+sub-01 ses-018 run-03 task-mario task-mario 163698
+Empty .log file for ('sub-01', 'ses-018', 'run-03', 'task-mario', '20220309-172358')
+
+sub-01 ses-019 run-01 task-mario task-mario 164777
+
+sub-01 ses-019 run-02 task-mario task-mario 163555
+
+sub-01 ses-020 run-01 task-mario task-mario 156498
+Empty .log file for ('sub-01', 'ses-020', 'run-01', 'task-mario', '20220323-173358')
+
+sub-01 ses-020 run-02 task-mario task-mario 160656
+Empty .log file for ('sub-01', 'ses-020', 'run-02', 'task-mario', '20220323-173358')
+
+sub-01 ses-020 run-03 task-mario task-mario 159707
+Empty .log file for ('sub-01', 'ses-020', 'run-03', 'task-mario', '20220323-180205')
+
+sub-01 ses-020 run-04 task-mario task-mario 166441
+Empty .log file for ('sub-01', 'ses-020', 'run-04', 'task-mario', '20220323-180205')
+
+sub-01 ses-021 run-01 task-mario task-mario 177006
+
+sub-01 ses-021 run-02 task-mario task-mario 160659
+
+sub-01 ses-021 run-03 task-mario task-mario 167351
+Empty .log file for ('sub-01', 'ses-021', 'run-03', 'task-mario', '20220325-113703')
+
+sub-01 ses-021 run-04 task-mario task-mario 160549
+Empty .log file for ('sub-01', 'ses-021', 'run-04', 'task-mario', '20220325-113703')
+
+sub-01 ses-06 run-01 task-mario task-mario 183827
+Empty .log file for ('sub-01', 'ses-06', 'run-01', 'task-mario', '20211001-110744')
+
+sub-01 ses-06 run-02 task-mario task-mario 160919
+Empty .log file for ('sub-01', 'ses-06', 'run-02', 'task-mario', '20211001-110744')
+
+sub-01 ses-06 run-03 task-mario task-mario 102310
+Empty .log file for ('sub-01', 'ses-06', 'run-03', 'task-mario', '20211001-110744')
+
+sub-01 ses-06 run-04 task-mario task-mario 90509
+Empty .log file for ('sub-01', 'ses-06', 'run-04', 'task-mario', '20211001-115249')
+
+sub-02 ses-001 run-01 task-mario task-mario 165269
+
+sub-02 ses-001 run-02 task-mario task-mario 179535
+
+sub-02 ses-001 run-03 task-mario task-mario 163315
+
+sub-02 ses-001 run-04 task-mario task-mario 173250
+
+sub-02 ses-002 run-01 task-mario task-mario 218
+
+sub-02 ses-002 run-02 task-mario task-mario 24748
+
+sub-02 ses-002 run-03 task-mario task-mario 151982
+
+sub-02 ses-002 run-04 task-mario task-mario 170464
+
+sub-02 ses-002 run-05 task-mario task-mario 151683
+
+sub-02 ses-002 run-06 task-mario task-mario 160734
+
+sub-02 ses-002 run-07 task-mario task-mario 152071
+
+sub-02 ses-003 run-01 task-mario task-mario 23774
+
+sub-02 ses-003 run-01 task-mario task-mario 488
+
+sub-02 ses-003 run-01 task-mario task-mario 150713
+
+sub-02 ses-003 run-02 task-mario task-mario 171705
+
+sub-02 ses-003 run-03 task-mario task-mario 158037
+
+sub-02 ses-003 run-04 task-mario task-mario 160368
+
+sub-02 ses-003 run-05 task-mario task-mario 159065
+
+sub-02 ses-004 run-01 task-mario task-mario 166338
+
+sub-02 ses-004 run-02 task-mario task-mario 163165
+
+sub-02 ses-004 run-03 task-mario task-mario 155699
+
+sub-02 ses-004 run-04 task-mario task-mario 154637
+
+sub-02 ses-004 run-05 task-mario task-mario 162690
+
+sub-02 ses-005 run-01 task-mario task-mario 154123
+
+sub-02 ses-005 run-02 task-mario task-mario 162095
+
+sub-02 ses-005 run-03 task-mario task-mario 167276
+
+sub-02 ses-005 run-04 task-mario task-mario 163091
+
+sub-02 ses-005 run-05 task-mario task-mario 160214
+
+sub-02 ses-005 run-06 task-mario task-mario 160424
+
+sub-02 ses-006 run-01 task-mario task-mario 154816
+
+sub-02 ses-006 run-02 task-mario task-mario 145442
+
+sub-02 ses-006 run-03 task-mario task-mario 147221
+
+sub-02 ses-006 run-04 task-mario task-mario 158489
+
+sub-02 ses-007 run-01 task-mario task-mario 152488
+
+sub-02 ses-007 run-02 task-mario task-mario 183780
+
+sub-02 ses-007 run-03 task-mario task-mario 165649
+
+sub-02 ses-007 run-04 task-mario task-mario 169374
+
+sub-02 ses-008 run-01 task-mario task-mario 166257
+
+sub-02 ses-008 run-02 task-mario task-mario 163457
+
+sub-02 ses-008 run-03 task-mario task-mario 167361
+
+sub-02 ses-008 run-04 task-mario task-mario 161447
+
+sub-02 ses-009 run-01 task-mario task-mario 114900
+
+sub-02 ses-009 run-02 task-mario task-mario 76754
+
+sub-02 ses-009 run-03 task-mario task-mario 0
+Fewer than 11 pupils found for ('sub-02', 'ses-009', 'run-03', 'task-mario', '20210902-135304')
+
+sub-02 ses-009 run-04 task-mario task-mario 0
+Fewer than 11 pupils found for ('sub-02', 'ses-009', 'run-04', 'task-mario', '20210902-135304')
+
+sub-02 ses-009 run-05 task-mario task-mario 0
+Fewer than 11 pupils found for ('sub-02', 'ses-009', 'run-05', 'task-mario', '20210902-135304')
+
+sub-02 ses-010 run-01 task-mario task-mario 155509
+
+sub-02 ses-010 run-02 task-mario task-mario 172983
+
+sub-02 ses-010 run-03 task-mario task-mario 178655
+
+sub-02 ses-010 run-04 task-mario task-mario 183249
+
+sub-02 ses-010 run-05 task-mario task-mario 173249
+
+sub-02 ses-011 run-01 task-mario task-mario 162907
+
+sub-02 ses-011 run-02 task-mario task-mario 153409
+
+sub-02 ses-011 run-03 task-mario task-mario 159110
+
+sub-02 ses-011 run-04 task-mario task-mario 167190
+
+sub-02 ses-013 run-01 task-mario task-mario 167488
+
+sub-02 ses-013 run-02 task-mario task-mario 167650
+
+sub-02 ses-013 run-03 task-mario task-mario 161395
+
+sub-02 ses-013 run-04 task-mario task-mario 4613
+
+sub-02 ses-013 run-01 task-mario task-mario 162742
+
+sub-02 ses-013 run-02 task-mario task-mario 161990
+
+sub-02 ses-014 run-01 task-mario task-mario 155666
+
+sub-02 ses-014 run-02 task-mario task-mario 147801
+
+sub-02 ses-014 run-03 task-mario task-mario 166994
+
+sub-02 ses-014 run-04 task-mario task-mario 141822
+
+sub-02 ses-014 run-05 task-mario task-mario 145279
+
+sub-02 ses-015 run-01 task-mario task-mario 160369
+
+sub-02 ses-015 run-02 task-mario task-mario 172888
+
+sub-02 ses-015 run-03 task-mario task-mario 173191
+
+sub-02 ses-015 run-04 task-mario task-mario 162741
+
+sub-02 ses-016 run-01 task-mario task-mario 77241
+
+sub-02 ses-016 run-01 task-mario task-mario 162681
+
+sub-02 ses-016 run-02 task-mario task-mario 167969
+
+sub-02 ses-016 run-03 task-mario task-mario 164916
+
+sub-02 ses-016 run-04 task-mario task-mario 163044
+
+sub-02 ses-017 run-01 task-mario task-mario 176385
+Empty .log file for ('sub-02', 'ses-017', 'run-01', 'task-mario', '20220113-154040')
+
+sub-02 ses-017 run-02 task-mario task-mario 179873
+Empty .log file for ('sub-02', 'ses-017', 'run-02', 'task-mario', '20220113-154040')
+
+sub-02 ses-017 run-03 task-mario task-mario 174753
+Empty .log file for ('sub-02', 'ses-017', 'run-03', 'task-mario', '20220113-154040')
+
+sub-02 ses-017 run-04 task-mario task-mario 187675
+Empty .log file for ('sub-02', 'ses-017', 'run-04', 'task-mario', '20220113-154040')
+
+sub-02 ses-017 run-01 task-mario task-mario 156162
+
+sub-02 ses-018 run-01 task-mario task-mario 173677
+
+sub-02 ses-018 run-02 task-mario task-mario 161806
+
+sub-02 ses-018 run-03 task-mario task-mario 174270
+
+sub-02 ses-018 run-04 task-mario task-mario 200200
+
+sub-02 ses-019 run-01 task-mario task-mario 169064
+Empty .log file for ('sub-02', 'ses-019', 'run-01', 'task-mario', '20220209-104504')
+
+sub-02 ses-019 run-02 task-mario task-mario 168130
+Empty .log file for ('sub-02', 'ses-019', 'run-02', 'task-mario', '20220209-104504')
+
+sub-02 ses-019 run-03 task-mario task-mario 176560
+Empty .log file for ('sub-02', 'ses-019', 'run-03', 'task-mario', '20220209-104504')
+
+sub-02 ses-019 run-04 task-mario task-mario 180265
+Empty .log file for ('sub-02', 'ses-019', 'run-04', 'task-mario', '20220209-104504')
+
+sub-02 ses-020 run-01 task-mario task-mario 147906
+
+sub-02 ses-020 run-02 task-mario task-mario 138022
+
+sub-02 ses-020 run-03 task-mario task-mario 149736
+
+sub-02 ses-020 run-04 task-mario task-mario 185304
+
+sub-02 ses-020 run-05 task-mario task-mario 142386
+
+sub-02 ses-021 run-01 task-mario task-mario 161742
+Empty .log file for ('sub-02', 'ses-021', 'run-01', 'task-mario', '20220216-105155')
+
+sub-02 ses-021 run-02 task-mario task-mario 160402
+Empty .log file for ('sub-02', 'ses-021', 'run-02', 'task-mario', '20220216-110700')
+
+sub-02 ses-021 run-03 task-mario task-mario 183969
+
+sub-02 ses-022 run-01 task-mario task-mario 158735
+Empty .log file for ('sub-02', 'ses-022', 'run-01', 'task-mario', '20220223-105222')
+
+sub-02 ses-022 run-02 task-mario task-mario 174205
+Empty .log file for ('sub-02', 'ses-022', 'run-02', 'task-mario', '20220223-105222')
+
+sub-02 ses-022 run-03 task-mario task-mario 165311
+
+sub-02 ses-023 run-01 task-mario task-mario 148703
+
+sub-02 ses-023 run-02 task-mario task-mario 144352
+
+sub-02 ses-023 run-03 task-mario task-mario 150097
+
+sub-02 ses-023 run-04 task-mario task-mario 146073
+
+sub-02 ses-12 run-01 task-mario task-mario 147630
+
+sub-02 ses-12 run-02 task-mario task-mario 149438
+
+sub-02 ses-12 run-03 task-mario task-mario 148317
+
+sub-02 ses-12 run-04 task-mario task-mario 182358
+
+sub-02 ses-12 run-05 task-mario task-mario 168077
+
+sub-03 ses-001 run-01 task-mario task-mario 7769
+
+sub-03 ses-001 run-01 task-mario task-mario 174314
+
+sub-03 ses-001 run-02 task-mario task-mario 185179
+
+sub-03 ses-001 run-03 task-mario task-mario 164342
+
+sub-03 ses-002 run-01 task-mario task-mario 179280
+Empty .log file for ('sub-03', 'ses-002', 'run-01', 'task-mario', '20211028-174637')
+
+sub-03 ses-002 run-02 task-mario task-mario 167999
+Empty .log file for ('sub-03', 'ses-002', 'run-02', 'task-mario', '20211028-174637')
+
+sub-03 ses-002 run-01 task-mario task-mario 173564
+
+sub-03 ses-003 run-01 task-mario task-mario 166899
+
+sub-03 ses-003 run-02 task-mario task-mario 173820
+
+sub-03 ses-003 run-03 task-mario task-mario 167890
+
+sub-03 ses-003 run-04 task-mario task-mario 175560
+
+sub-03 ses-003 run-06 task-mario task-mario 158371
+
+sub-03 ses-004 run-01 task-mario task-mario 180770
+
+sub-03 ses-004 run-02 task-mario task-mario 158142
+
+sub-03 ses-004 run-03 task-mario task-mario 183111
+
+sub-03 ses-004 run-01 task-mario task-mario 16802
+
+sub-03 ses-005 run-01 task-mario task-mario 164846
+
+sub-03 ses-005 run-02 task-mario task-mario 174801
+
+sub-03 ses-005 run-03 task-mario task-mario 187057
+
+sub-03 ses-005 run-04 task-mario task-mario 183738
+
+sub-03 ses-006 run-01 task-mario task-mario 163906
+
+sub-03 ses-006 run-02 task-mario task-mario 161875
+
+sub-03 ses-006 run-03 task-mario task-mario 165728
+
+sub-03 ses-006 run-04 task-mario task-mario 64105
+
+sub-03 ses-006 run-01 task-mario task-mario 18492
+
+sub-03 ses-007 run-01 task-mario task-mario 175252
+
+sub-03 ses-007 run-02 task-mario task-mario 209606
+
+sub-03 ses-007 run-03 task-mario task-mario 184662
+
+sub-03 ses-008 run-01 task-mario task-mario 142045
+
+sub-03 ses-008 run-01 task-mario task-mario 10629
+
+sub-03 ses-009 run-01 task-mario task-mario 180632
+
+sub-03 ses-009 run-02 task-mario task-mario 168144
+
+sub-03 ses-010 run-01 task-mario task-mario 168937
+
+sub-03 ses-010 run-02 task-mario task-mario 162075
+
+sub-03 ses-011 run-01 task-mario task-mario 163615
+
+sub-03 ses-011 run-02 task-mario task-mario 177912
+
+sub-03 ses-012 run-01 task-mario task-mario 170971
+
+sub-03 ses-012 run-02 task-mario task-mario 178912
+
+sub-03 ses-013 run-01 task-mario task-mario 192254
+
+sub-03 ses-013 run-02 task-mario task-mario 171027
+
+sub-03 ses-013 run-03 task-mario task-mario 177820
+
+sub-03 ses-013 run-04 task-mario task-mario 165992
+
+sub-03 ses-014 run-01 task-mario task-mario 184140
+
+sub-03 ses-014 run-02 task-mario task-mario 173074
+
+sub-03 ses-014 run-03 task-mario task-mario 163086
+
+sub-03 ses-014 run-04 task-mario task-mario 167371
+
+sub-03 ses-015 run-01 task-mario task-mario 156501
+
+sub-03 ses-015 run-02 task-mario task-mario 143187
+
+sub-03 ses-015 run-03 task-mario task-mario 148209
+
+sub-03 ses-015 run-04 task-mario task-mario 174107
+
+sub-03 ses-016 run-01 task-mario task-mario 170161
+Empty .log file for ('sub-03', 'ses-016', 'run-01', 'task-mario', '20220317-160403')
+
+sub-03 ses-016 run-01 task-mario task-mario 171312
+Empty .log file for ('sub-03', 'ses-016', 'run-01', 'task-mario', '20220317-161910')
+
+sub-03 ses-017 run-01 task-mario task-mario 165546
+
+sub-03 ses-017 run-02 task-mario task-mario 161577
+
+sub-03 ses-017 run-03 task-mario task-mario 50836
+
+sub-03 ses-017 run-03 task-mario task-mario 164699
+
+sub-03 ses-018 run-01 task-mario task-mario 159556
+Empty .log file for ('sub-03', 'ses-018', 'run-01', 'task-mario', '20220325-155139')
+
+sub-03 ses-018 run-01 task-mario task-mario 168273
+
+sub-03 ses-018 run-02 task-mario task-mario 154984
+
+sub-03 ses-019 run-01 task-mario task-mario 156326
+Empty .log file for ('sub-03', 'ses-019', 'run-01', 'task-mario', '20220331-170339')
+
+sub-03 ses-019 run-02 task-mario task-mario 147075
+Empty .log file for ('sub-03', 'ses-019', 'run-02', 'task-mario', '20220331-172738')
+
+sub-03 ses-019 run-03 task-mario task-mario 150880
+
+sub-03 ses-019 run-04 task-mario task-mario 161995
+
+sub-03 ses-020 run-01 task-mario task-mario 184528
+Empty .log file for ('sub-03', 'ses-020', 'run-01', 'task-mario', '20220414-173021')
+
+sub-03 ses-020 run-01 task-mario task-mario 162053
+
+sub-03 ses-020 run-02 task-mario task-mario 161863
+
+sub-03 ses-020 run-03 task-mario task-mario 183050
+
+sub-03 ses-021 run-01 task-mario task-mario 152570
+Empty .log file for ('sub-03', 'ses-021', 'run-01', 'task-mario', '20220421-175946')
+
+sub-03 ses-021 run-02 task-mario task-mario 154106
+Empty .log file for ('sub-03', 'ses-021', 'run-02', 'task-mario', '20220421-175946')
+
+sub-03 ses-021 run-01 task-mario task-mario 162401
+
+sub-03 ses-022 run-01 task-mario task-mario 153926
+Empty .log file for ('sub-03', 'ses-022', 'run-01', 'task-mario', '20220505-153702')
+
+sub-03 ses-022 run-02 task-mario task-mario 160181
+Empty .log file for ('sub-03', 'ses-022', 'run-02', 'task-mario', '20220505-153702')
+
+sub-03 ses-022 run-03 task-mario task-mario 165484
+
+sub-03 ses-022 run-04 task-mario task-mario 157883
+
+sub-03 ses-023 run-01 task-mario task-mario 180589
+Empty .log file for ('sub-03', 'ses-023', 'run-01', 'task-mario', '20220511-132816')
+
+sub-03 ses-023 run-02 task-mario task-mario 173273
+Empty .log file for ('sub-03', 'ses-023', 'run-02', 'task-mario', '20220511-132816')
+
+sub-03 ses-023 run-03 task-mario task-mario 167333
+
+sub-03 ses-024 run-01 task-mario task-mario 169770
+Empty .log file for ('sub-03', 'ses-024', 'run-01', 'task-mario', '20220513-133835')
+
+sub-03 ses-024 run-02 task-mario task-mario 184734
+
+sub-03 ses-025 run-01 task-mario task-mario 162621
+Empty .log file for ('sub-03', 'ses-025', 'run-01', 'task-mario', '20220518-131523')
+
+sub-03 ses-025 run-02 task-mario task-mario 183715
+Empty .log file for ('sub-03', 'ses-025', 'run-02', 'task-mario', '20220518-131523')
+
+sub-03 ses-025 run-03 task-mario task-mario 155589
+Empty .log file for ('sub-03', 'ses-025', 'run-03', 'task-mario', '20220518-131523')
+
+sub-03 ses-025 run-04 task-mario task-mario 178530
+Run name not found during .log text parsing for ('sub-03', 'ses-025', 'run-04', 'task-mario', '20220518-135948')
+
+sub-03 ses-025 run-05 task-mario task-mario 156118
+Run name not found during .log text parsing for ('sub-03', 'ses-025', 'run-05', 'task-mario', '20220518-135948')
+
+sub-03 ses-027 run-01 task-mario task-mario 150459
+Empty .log file for ('sub-03', 'ses-027', 'run-01', 'task-mario', '20220525-131639')
+
+sub-03 ses-027 run-02 task-mario task-mario 134772
+Empty .log file for ('sub-03', 'ses-027', 'run-02', 'task-mario', '20220525-131639')
+
+sub-03 ses-027 run-03 task-mario task-mario 138439
+Empty .log file for ('sub-03', 'ses-027', 'run-03', 'task-mario', '20220525-135004')
+
+sub-03 ses-027 run-04 task-mario task-mario 139339
+
+sub-03 ses-028 run-01 task-mario task-mario 139085
+
+sub-03 ses-028 run-02 task-mario task-mario 141711
+
+sub-03 ses-028 run-03 task-mario task-mario 152384
+
+sub-03 ses-028 run-04 task-mario task-mario 131241
+
+sub-03 ses-029 run-01 task-mario task-mario 175847
+
+sub-03 ses-029 run-02 task-mario task-mario 186944
+
+sub-03 ses-029 run-03 task-mario task-mario 158999
+
+sub-03 ses-029 run-04 task-mario task-mario 153245
+
+sub-03 ses-030 run-01 task-mario task-mario 170230
+
+sub-03 ses-030 run-02 task-mario task-mario 171717
+
+sub-03 ses-030 run-03 task-mario task-mario 159802
+
+sub-05 ses-001 run-01 task-mario task-mario 177680
+
+sub-05 ses-001 run-02 task-mario task-mario 185815
+
+sub-05 ses-001 run-03 task-mario task-mario 168431
+
+sub-05 ses-001 run-04 task-mario task-mario 187595
+
+sub-05 ses-001 run-05 task-mario task-mario 167030
+
+sub-05 ses-002 run-01 task-mario task-mario 184261
+
+sub-05 ses-002 run-02 task-mario task-mario 170076
+
+sub-05 ses-002 run-03 task-mario task-mario 162132
+
+sub-05 ses-003 run-01 task-mario task-mario 154032
+
+sub-05 ses-003 run-02 task-mario task-mario 166414
+
+sub-05 ses-003 run-03 task-mario task-mario 161662
+
+sub-05 ses-003 run-04 task-mario task-mario 146005
+
+sub-05 ses-004 run-01 task-mario task-mario 164413
+
+sub-05 ses-004 run-02 task-mario task-mario 176040
+
+sub-05 ses-004 run-03 task-mario task-mario 167811
+
+sub-05 ses-004 run-04 task-mario task-mario 164922
+
+sub-05 ses-005 run-01 task-mario task-mario 184267
+Empty .log file for ('sub-05', 'ses-005', 'run-01', 'task-mario', '20220509-174229')
+
+sub-05 ses-005 run-02 task-mario task-mario 175879
+Empty .log file for ('sub-05', 'ses-005', 'run-02', 'task-mario', '20220509-174229')
+
+sub-05 ses-005 run-03 task-mario task-mario 170297
+Empty .log file for ('sub-05', 'ses-005', 'run-03', 'task-mario', '20220509-174229')
+
+sub-05 ses-005 run-04 task-mario task-mario 159272
+Empty .log file for ('sub-05', 'ses-005', 'run-04', 'task-mario', '20220509-174229')
+
+sub-05 ses-006 run-01 task-mario task-mario 184586
+Empty .log file for ('sub-05', 'ses-006', 'run-01', 'task-mario', '20220516-174301')
+
+sub-05 ses-006 run-02 task-mario task-mario 217897
+Empty .log file for ('sub-05', 'ses-006', 'run-02', 'task-mario', '20220516-174301')
+
+sub-05 ses-006 run-03 task-mario task-mario 208630
+Empty .log file for ('sub-05', 'ses-006', 'run-03', 'task-mario', '20220516-174301')
+
+sub-05 ses-006 run-04 task-mario task-mario 183398
+Empty .log file for ('sub-05', 'ses-006', 'run-04', 'task-mario', '20220516-174301')
+
+sub-05 ses-007 run-01 task-mario task-mario 207187
+Empty .log file for ('sub-05', 'ses-007', 'run-01', 'task-mario', '20220530-173603')
+
+sub-05 ses-007 run-02 task-mario task-mario 174601
+Empty .log file for ('sub-05', 'ses-007', 'run-02', 'task-mario', '20220530-173603')
+
+sub-05 ses-007 run-03 task-mario task-mario 214088
+Empty .log file for ('sub-05', 'ses-007', 'run-03', 'task-mario', '20220530-173603')
+
+sub-05 ses-007 run-01 task-mario task-mario 169611
+Empty .log file for ('sub-05', 'ses-007', 'run-01', 'task-mario', '20220530-182916')
+
+sub-05 ses-007 run-02 task-mario task-mario 160773
+Empty .log file for ('sub-05', 'ses-007', 'run-02', 'task-mario', '20220530-182916')
+
+sub-05 ses-008 run-01 task-mario task-mario 163012
+Empty .log file for ('sub-05', 'ses-008', 'run-01', 'task-mario', '20220606-172927')
+
+sub-05 ses-009 run-01 task-mario task-mario 159422
+Empty .log file for ('sub-05', 'ses-009', 'run-01', 'task-mario', '20220711-163058')
+
+sub-05 ses-009 run-01 task-mario task-mario 145109
+Empty .log file for ('sub-05', 'ses-009', 'run-01', 'task-mario', '20220711-165014')
+
+sub-05 ses-009 run-02 task-mario task-mario 151596
+Empty .log file for ('sub-05', 'ses-009', 'run-02', 'task-mario', '20220711-165014')
+
+sub-05 ses-009 run-03 task-mario task-mario 143807
+Empty .log file for ('sub-05', 'ses-009', 'run-03', 'task-mario', '20220711-165014')
+
+sub-05 ses-009 run-04 task-mario task-mario 160177
+Empty .log file for ('sub-05', 'ses-009', 'run-04', 'task-mario', '20220711-165014')
+
+sub-05 ses-010 run-01 task-mario task-mario 166869
+
+sub-05 ses-010 run-02 task-mario task-mario 159229
+
+sub-05 ses-010 run-03 task-mario task-mario 161536
+
+sub-05 ses-010 run-04 task-mario task-mario 183438
+
+sub-05 ses-010 run-05 task-mario task-mario 163784
+
+sub-05 ses-011 run-01 task-mario task-mario 186630
+Empty .log file for ('sub-05', 'ses-011', 'run-01', 'task-mario', '20220822-161811')
+
+sub-05 ses-011 run-01 task-mario task-mario 159184
+
+sub-05 ses-011 run-02 task-mario task-mario 167902
+
+sub-05 ses-011 run-03 task-mario task-mario 248853
+
+sub-05 ses-012 run-01 task-mario task-mario 161632
+
+sub-05 ses-012 run-02 task-mario task-mario 181480
+
+sub-05 ses-012 run-03 task-mario task-mario 155650
+
+sub-05 ses-013 run-01 task-mario task-mario 207995
+Empty .log file for ('sub-05', 'ses-013', 'run-01', 'task-mario', '20220912-160928')
+
+sub-05 ses-013 run-02 task-mario task-mario 179571
+Empty .log file for ('sub-05', 'ses-013', 'run-02', 'task-mario', '20220912-160928')
+
+sub-05 ses-013 run-01 task-mario task-mario 179587
+
+sub-05 ses-013 run-02 task-mario task-mario 162454
+
+sub-05 ses-013 run-03 task-mario task-mario 169474
+
+sub-05 ses-014 run-01 task-mario task-mario 167712
+
+sub-05 ses-014 run-02 task-mario task-mario 170183
+
+sub-05 ses-014 run-03 task-mario task-mario 176104
+
+sub-05 ses-014 run-04 task-mario task-mario 161523
+
+sub-05 ses-014 run-05 task-mario task-mario 159085
+
+sub-05 ses-015 run-01 task-mario task-mario 149462
+
+sub-05 ses-015 run-02 task-mario task-mario 162426
+
+sub-05 ses-015 run-03 task-mario task-mario 163757
+
+sub-05 ses-015 run-04 task-mario task-mario 214532
+
+sub-05 ses-015 run-05 task-mario task-mario 153318
+
+sub-05 ses-016 run-01 task-mario task-mario 160341
+
+sub-05 ses-016 run-02 task-mario task-mario 151030
+
+sub-05 ses-016 run-03 task-mario task-mario 153468
+
+sub-05 ses-016 run-04 task-mario task-mario 162520
+
+sub-05 ses-016 run-05 task-mario task-mario 153591
+
+sub-05 ses-017 run-01 task-mario task-mario 147204
+Empty .log file for ('sub-05', 'ses-017', 'run-01', 'task-mario', '20221017-171327')
+
+sub-05 ses-017 run-02 task-mario task-mario 177791
+Empty .log file for ('sub-05', 'ses-017', 'run-02', 'task-mario', '20221017-171327')
+
+sub-05 ses-017 run-03 task-mario task-mario 187958
+
+sub-05 ses-017 run-04 task-mario task-mario 150505
+
+sub-05 ses-017 run-05 task-mario task-mario 148196
+
+sub-05 ses-018 run-01 task-mario task-mario 164971
+
+sub-05 ses-018 run-02 task-mario task-mario 191939
+
+sub-05 ses-018 run-03 task-mario task-mario 164763
+
+sub-05 ses-018 run-04 task-mario task-mario 158152
+
+sub-05 ses-018 run-05 task-mario task-mario 170319
+
+sub-05 ses-019 run-01 task-mario task-mario 164769
+Empty .log file for ('sub-05', 'ses-019', 'run-01', 'task-mario', '20221031-172011')
+
+sub-05 ses-019 run-01 task-mario task-mario 169332
+
+sub-05 ses-019 run-02 task-mario task-mario 167259
+
+sub-05 ses-019 run-03 task-mario task-mario 168618
+
+sub-05 ses-019 run-04 task-mario task-mario 159452
+
+sub-05 ses-020 run-01 task-mario task-mario 214199
+Empty .log file for ('sub-05', 'ses-020', 'run-01', 'task-mario', '20221128-170730')
+
+sub-05 ses-020 run-01 task-mario task-mario 153473
+Empty .log file for ('sub-05', 'ses-020', 'run-01', 'task-mario', '20221128-174031')
+
+sub-05 ses-020 run-02 task-mario task-mario 168492
+Empty .log file for ('sub-05', 'ses-020', 'run-02', 'task-mario', '20221128-174031')
+
+sub-05 ses-020 run-01 task-mario task-mario 146789
+Empty .log file for ('sub-05', 'ses-020', 'run-01', 'task-mario', '20221128-180813')
+
+sub-05 ses-020 run-01 task-mario task-mario 159209
+
+sub-05 ses-021 run-01 task-mario task-mario 171290
+
+sub-05 ses-021 run-02 task-mario task-mario 175150
+
+sub-05 ses-021 run-03 task-mario task-mario 154401
+
+sub-05 ses-021 run-04 task-mario task-mario 164541
+
+sub-05 ses-021 run-05 task-mario task-mario 184459
+
+sub-05 ses-021 run-06 task-mario task-mario 152624
+
+sub-05 ses-021 run-07 task-mario task-mario 157134
+
+sub-05 ses-022 run-01 task-mario task-mario 180903
+Empty .log file for ('sub-05', 'ses-022', 'run-01', 'task-mario', '20221214-171814')
+
+sub-05 ses-022 run-01 task-mario task-mario 174610
+Empty .log file for ('sub-05', 'ses-022', 'run-01', 'task-mario', '20221214-173508')
+
+sub-05 ses-022 run-01 task-mario task-mario 164505
+
+sub-05 ses-022 run-02 task-mario task-mario 143288
+
+sub-05 ses-022 run-03 task-mario task-mario 181090
+
+sub-06 ses-001 run-01 task-mario task-mario 163431
+
+sub-06 ses-001 run-02 task-mario task-mario 148058
+
+sub-06 ses-001 run-03 task-mario task-mario 140019
+
+sub-06 ses-001 run-04 task-mario task-mario 165610
+
+sub-06 ses-001 run-05 task-mario task-mario 139606
+
+sub-06 ses-002 run-01 task-mario task-mario 156614
+Empty .log file for ('sub-06', 'ses-002', 'run-01', 'task-mario', '20210618-151815')
+
+sub-06 ses-002 run-02 task-mario task-mario 170146
+Empty .log file for ('sub-06', 'ses-002', 'run-02', 'task-mario', '20210618-151815')
+
+sub-06 ses-002 run-03 task-mario task-mario 164569
+Empty .log file for ('sub-06', 'ses-002', 'run-03', 'task-mario', '20210618-151815')
+
+sub-06 ses-002 run-04 task-mario task-mario 169542
+
+sub-06 ses-002 run-05 task-mario task-mario 181193
+
+sub-06 ses-003 run-01 task-mario task-mario 2385
+
+sub-06 ses-003 run-02 task-mario task-mario 2503
+
+sub-06 ses-003 run-03 task-mario task-mario 3035
+
+sub-06 ses-003 run-01 task-mario task-mario 4046
+
+sub-06 ses-003 run-01 task-mario task-mario 154875
+
+sub-06 ses-003 run-02 task-mario task-mario 154337
+
+sub-06 ses-003 run-03 task-mario task-mario 49141
+
+sub-06 ses-003 run-04 task-mario task-mario 182923
+
+sub-06 ses-003 run-05 task-mario task-mario 150623
+
+sub-06 ses-004 run-01 task-mario task-mario 138720
+
+sub-06 ses-004 run-02 task-mario task-mario 176355
+
+sub-06 ses-004 run-04 task-mario task-mario 144963
+
+sub-06 ses-004 run-05 task-mario task-mario 177240
+
+sub-06 ses-004 run-06 task-mario task-mario 145602
+
+sub-06 ses-005 run-01 task-mario task-mario 430
+
+sub-06 ses-005 run-02 task-mario task-mario 2510
+
+sub-06 ses-005 run-01 task-mario task-mario 946
+
+sub-06 ses-005 run-02 task-mario task-mario 950
+
+sub-06 ses-005 run-01 task-mario task-mario 1659
+
+sub-06 ses-005 run-01 task-mario task-mario 162292
+
+sub-06 ses-005 run-02 task-mario task-mario 153182
+
+sub-06 ses-005 run-03 task-mario task-mario 169408
+
+sub-06 ses-006 run-01 task-mario task-mario 187123
+
+sub-06 ses-006 run-02 task-mario task-mario 158520
+
+sub-06 ses-006 run-03 task-mario task-mario 168034
+
+sub-06 ses-011 run-01 task-mario task-mario 149544
+
+sub-06 ses-011 run-02 task-mario task-mario 167537
+
+sub-06 ses-011 run-03 task-mario task-mario 153113
+
+sub-06 ses-011 run-04 task-mario task-mario 162124
+
+sub-06 ses-011 run-05 task-mario task-mario 161409
+
+sub-06 ses-012 run-01 task-mario task-mario 187808
+
+sub-06 ses-012 run-02 task-mario task-mario 155679
+
+sub-06 ses-012 run-03 task-mario task-mario 173138
+
+sub-06 ses-012 run-04 task-mario task-mario 161542
+
+sub-06 ses-012 run-05 task-mario task-mario 169450
+
+sub-06 ses-013 run-01 task-mario task-mario 159688
+
+sub-06 ses-013 run-02 task-mario task-mario 177875
+
+sub-06 ses-013 run-03 task-mario task-mario 171091
+
+sub-06 ses-013 run-04 task-mario task-mario 173208
+
+sub-06 ses-013 run-05 task-mario task-mario 155230
+
+sub-06 ses-014 run-01 task-mario task-mario 140363
+
+sub-06 ses-014 run-02 task-mario task-mario 87196
+
+sub-06 ses-014 run-03 task-mario task-mario 148892
+
+sub-06 ses-014 run-04 task-mario task-mario 156047
+
+sub-06 ses-016 run-01 task-mario task-mario 199421
+
+sub-06 ses-016 run-02 task-mario task-mario 154150
+
+sub-06 ses-016 run-03 task-mario task-mario 161017
+
+sub-06 ses-016 run-04 task-mario task-mario 167846
+
+sub-06 ses-017 run-01 task-mario task-mario 173786
+
+sub-06 ses-017 run-02 task-mario task-mario 184937
+
+sub-06 ses-017 run-03 task-mario task-mario 154893
+
+sub-06 ses-017 run-04 task-mario task-mario 161251
+
+sub-06 ses-018 run-01 task-mario task-mario 157348
+Empty .log file for ('sub-06', 'ses-018', 'run-01', 'task-mario', '20220413-154730')
+
+sub-06 ses-018 run-01 task-mario task-mario 18853
+
+sub-06 ses-019 run-01 task-mario task-mario 193184
+Empty .log file for ('sub-06', 'ses-019', 'run-01', 'task-mario', '20220420-153134')
+
+sub-06 ses-019 run-02 task-mario task-mario 166030
+Empty .log file for ('sub-06', 'ses-019', 'run-02', 'task-mario', '20220420-153134')
+
+sub-06 ses-019 run-03 task-mario task-mario 176239
+Empty .log file for ('sub-06', 'ses-019', 'run-03', 'task-mario', '20220420-153134')
+
+sub-06 ses-019 run-04 task-mario task-mario 159751
+Empty .log file for ('sub-06', 'ses-019', 'run-04', 'task-mario', '20220420-153134')
+
+sub-06 ses-020 run-01 task-mario task-mario 174378
+
+sub-06 ses-020 run-02 task-mario task-mario 153313
+
+sub-06 ses-020 run-03 task-mario task-mario 185966
+
+sub-06 ses-020 run-04 task-mario task-mario 184827
+
+sub-06 ses-021 run-01 task-mario task-mario 30409
+Empty .log file for ('sub-06', 'ses-021', 'run-01', 'task-mario', '20220427-150557')
+
+sub-06 ses-021 run-01 task-mario task-mario 24471
+Empty .log file for ('sub-06', 'ses-021', 'run-01', 'task-mario', '20220427-151831')
+
+sub-06 ses-021 run-01 task-mario task-mario 4293
+
+sub-06 ses-021 run-01 task-mario task-mario 177786
+
+sub-06 ses-021 run-01 task-mario task-mario 168013
+Empty .log file for ('sub-06', 'ses-021', 'run-01', 'task-mario', '20220427-155944')
+
+sub-06 ses-021 run-02 task-mario task-mario 164688
+Empty .log file for ('sub-06', 'ses-021', 'run-02', 'task-mario', '20220427-155944')
+
+sub-06 ses-022 run-01 task-mario task-mario 145214
+Empty .log file for ('sub-06', 'ses-022', 'run-01', 'task-mario', '20220429-160252')
+
+sub-06 ses-022 run-02 task-mario task-mario 149070
+Empty .log file for ('sub-06', 'ses-022', 'run-02', 'task-mario', '20220429-162007')
+
+sub-06 ses-022 run-03 task-mario task-mario 153420
+Empty .log file for ('sub-06', 'ses-022', 'run-03', 'task-mario', '20220429-162007')
+
+sub-06 ses-022 run-04 task-mario task-mario 163219
+Empty .log file for ('sub-06', 'ses-022', 'run-04', 'task-mario', '20220429-164647')
+
+sub-06 ses-023 run-01 task-mario task-mario 160686
+
+sub-06 ses-023 run-02 task-mario task-mario 158075
+
+sub-06 ses-023 run-03 task-mario task-mario 174101
+
+sub-06 ses-023 run-04 task-mario task-mario 171807
+
+sub-06 ses-023 run-05 task-mario task-mario 166068
+
+sub-06 ses-024 run-01 task-mario task-mario 180323
+
+sub-06 ses-024 run-02 task-mario task-mario 160283
+
+sub-06 ses-024 run-03 task-mario task-mario 164584
+
+sub-06 ses-024 run-04 task-mario task-mario 156975
+
+sub-06 ses-024 run-05 task-mario task-mario 197577
+
+sub-06 ses-025 run-01 task-mario task-mario 155335
+
+sub-06 ses-025 run-02 task-mario task-mario 160080
+
+sub-06 ses-025 run-03 task-mario task-mario 167604
+
+sub-06 ses-025 run-04 task-mario task-mario 160009
+
+sub-06 ses-025 run-05 task-mario task-mario 156798
+
+sub-06 ses-07 run-01 task-mario task-mario 155555
+
+sub-06 ses-07 run-02 task-mario task-mario 188331
+
+sub-06 ses-07 run-03 task-mario task-mario 163861
+
+sub-06 ses-07 run-04 task-mario task-mario 189881
+
+sub-06 ses-08 run-01 task-mario task-mario 193728
+
+sub-06 ses-08 run-02 task-mario task-mario 170048
+
+sub-06 ses-08 run-03 task-mario task-mario 166125
+
+sub-06 ses-09 run-01 task-mario task-mario 159930
+
+sub-06 ses-09 run-02 task-mario task-mario 187372
+
+sub-06 ses-09 run-03 task-mario task-mario 178328
+
+sub-06 ses-09 run-04 task-mario task-mario 165259
+
+sub-06 ses-10 run-01 task-mario task-mario 53276
+
+sub-06 ses-10 run-01 task-mario task-mario 166180
+
+sub-06 ses-10 run-02 task-mario task-mario 165259
+
+sub-06 ses-10 run-03 task-mario task-mario 164870
+
+sub-06 ses-10 run-04 task-mario task-mario 201559

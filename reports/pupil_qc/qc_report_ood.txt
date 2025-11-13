@@ -1,0 +1,96 @@
+
+sub-01 ses-001 None task-chaplin1 task-chaplin1 160154
+
+sub-01 ses-001 None task-chaplin2 task-chaplin2 150211
+
+sub-01 ses-001 None task-mononoke1 task-mononoke1 157020
+
+sub-01 ses-001 None task-mononoke2 task-mononoke2 158151
+
+sub-01 ses-001 None task-passepartout1 task-passepartout1 156447
+
+sub-01 ses-001 None task-passepartout2 task-passepartout2 161933
+
+sub-01 ses-002 None task-planetearth1 task-planetearth1 160685
+
+sub-01 ses-002 None task-planetearth2 task-planetearth2 155207
+
+sub-01 ses-002 None task-pulpfiction1 task-pulpfiction1 173702
+
+sub-01 ses-002 None task-pulpfiction2 task-pulpfiction2 140335
+
+sub-01 ses-002 None task-wot1 task-wot1 130981
+
+sub-01 ses-002 None task-wot2 task-wot2 120032
+
+sub-02 ses-001 None task-chaplin1 task-chaplin1 160152
+
+sub-02 ses-001 None task-chaplin2 task-chaplin2 150215
+
+sub-02 ses-001 None task-mononoke1 task-mononoke1 157027
+
+sub-02 ses-001 None task-mononoke2 task-mononoke2 158136
+
+sub-02 ses-001 None task-passepartout1 task-passepartout1 156438
+
+sub-02 ses-001 None task-passepartout2 task-passepartout2 161927
+
+sub-02 ses-002 None task-planetearth1 task-planetearth1 160684
+
+sub-02 ses-002 None task-planetearth2 task-planetearth2 155204
+
+sub-02 ses-002 None task-pulpfiction1 task-pulpfiction1 173719
+
+sub-02 ses-002 None task-pulpfiction2 task-pulpfiction2 140348
+
+sub-02 ses-002 None task-wot1 task-wot1 130975
+
+sub-02 ses-002 None task-wot2 task-wot2 120037
+
+sub-03 ses-001 None task-chaplin1 task-chaplin1 160175
+
+sub-03 ses-001 None task-chaplin2 task-chaplin2 150201
+
+sub-03 ses-001 None task-mononoke1 task-mononoke1 157031
+
+sub-03 ses-001 None task-mononoke2 task-mononoke2 158147
+
+sub-03 ses-001 None task-passepartout1 task-passepartout1 156432
+
+sub-03 ses-001 None task-passepartout2 task-passepartout2 161917
+
+sub-03 ses-002 None task-planetearth1 task-planetearth1 160681
+
+sub-03 ses-002 None task-planetearth2 task-planetearth2 155200
+
+sub-03 ses-002 None task-pulpfiction1 task-pulpfiction1 173700
+
+sub-03 ses-002 None task-pulpfiction2 task-pulpfiction2 140347
+
+sub-03 ses-002 None task-wot1 task-wot1 130984
+
+sub-03 ses-002 None task-wot2 task-wot2 120040
+
+sub-05 ses-001 None task-chaplin1 task-chaplin1 160143
+
+sub-05 ses-001 None task-chaplin2 task-chaplin2 150203
+
+sub-05 ses-001 None task-mononoke1 task-mononoke1 157018
+
+sub-05 ses-001 None task-mononoke2 task-mononoke2 158157
+
+sub-05 ses-002 None task-passepartout1 task-passepartout1 156443
+
+sub-05 ses-002 None task-passepartout2 task-passepartout2 161932
+
+sub-05 ses-002 None task-planetearth1 task-planetearth1 160686
+
+sub-05 ses-002 None task-planetearth2 task-planetearth2 155195
+
+sub-05 ses-002 None task-pulpfiction1 task-pulpfiction1 173709
+
+sub-05 ses-002 None task-pulpfiction2 task-pulpfiction2 140351
+
+sub-05 ses-002 None task-wot1 task-wot1 130984
+
+sub-05 ses-002 None task-wot2 task-wot2 120052

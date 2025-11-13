@@ -1,0 +1,366 @@
+
+sub-01 ses-001 run-01 task-emotionvideos task-emotionvideos 125308
+
+sub-01 ses-001 run-02 task-emotionvideos task-emotionvideos 125580
+
+sub-01 ses-001 run-03 task-emotionvideos task-emotionvideos 122748
+
+sub-01 ses-001 run-04 task-emotionvideos task-emotionvideos 107553
+
+sub-01 ses-001 run-05 task-emotionvideos task-emotionvideos 124100
+
+sub-01 ses-001 run-06 task-emotionvideos task-emotionvideos 125755
+
+sub-01 ses-002 run-07 task-emotionvideos task-emotionvideos 124907
+
+sub-01 ses-003 run-08 task-emotionvideos task-emotionvideos 123889
+
+sub-01 ses-003 run-09 task-emotionvideos task-emotionvideos 124402
+
+sub-01 ses-003 run-10 task-emotionvideos task-emotionvideos 122778
+
+sub-01 ses-003 run-11 task-emotionvideos task-emotionvideos 124566
+
+sub-01 ses-003 run-12 task-emotionvideos task-emotionvideos 114387
+
+sub-01 ses-003 run-13 task-emotionvideos task-emotionvideos 118059
+
+sub-01 ses-004 run-14 task-emotionvideos task-emotionvideos 122621
+
+sub-01 ses-004 run-15 task-emotionvideos task-emotionvideos 124825
+
+sub-01 ses-004 run-16 task-emotionvideos task-emotionvideos 123849
+
+sub-01 ses-004 run-17 task-emotionvideos task-emotionvideos 123198
+
+sub-01 ses-004 run-18 task-emotionvideos task-emotionvideos 124512
+
+sub-01 ses-004 run-19 task-emotionvideos task-emotionvideos 125763
+
+sub-01 ses-005 run-20 task-emotionvideos task-emotionvideos 118356
+
+sub-01 ses-005 run-21 task-emotionvideos task-emotionvideos 13188
+
+sub-01 ses-006 run-26 task-emotionvideos task-emotionvideos 123671
+
+sub-01 ses-006 run-27 task-emotionvideos task-emotionvideos 119572
+
+sub-01 ses-006 run-28 task-emotionvideos task-emotionvideos 125657
+
+sub-01 ses-006 run-29 task-emotionvideos task-emotionvideos 125040
+
+sub-01 ses-006 run-30 task-emotionvideos task-emotionvideos 125758
+
+sub-01 ses-006 run-31 task-emotionvideos task-emotionvideos 124785
+
+sub-01 ses-007 run-32 task-emotionvideos task-emotionvideos 122722
+
+sub-01 ses-007 run-33 task-emotionvideos task-emotionvideos 123856
+
+sub-01 ses-007 run-34 task-emotionvideos task-emotionvideos 123574
+
+sub-01 ses-007 run-35 task-emotionvideos task-emotionvideos 121018
+
+sub-01 ses-007 run-36 task-emotionvideos task-emotionvideos 123819
+
+sub-02 ses-001 run-01 task-emotionvideos task-emotionvideos 95458
+Run name not found during .log text parsing for ('sub-02', 'ses-001', 'run-01', 'task-emotionvideos', '20230201-105551')
+
+sub-02 ses-001 run-02 task-emotionvideos task-emotionvideos 81658
+Run name not found during .log text parsing for ('sub-02', 'ses-001', 'run-02', 'task-emotionvideos', '20230201-105551')
+
+sub-02 ses-001 run-03 task-emotionvideos task-emotionvideos 78457
+Run name not found during .log text parsing for ('sub-02', 'ses-001', 'run-03', 'task-emotionvideos', '20230201-105551')
+
+sub-02 ses-001 run-04 task-emotionvideos task-emotionvideos 86466
+Run name not found during .log text parsing for ('sub-02', 'ses-001', 'run-04', 'task-emotionvideos', '20230201-105551')
+
+sub-02 ses-001 run-05 task-emotionvideos task-emotionvideos 85023
+Run name not found during .log text parsing for ('sub-02', 'ses-001', 'run-05', 'task-emotionvideos', '20230201-105551')
+
+sub-02 ses-001 run-06 task-emotionvideos task-emotionvideos 88343
+Run name not found during .log text parsing for ('sub-02', 'ses-001', 'run-06', 'task-emotionvideos', '20230201-105551')
+
+sub-02 ses-002 run-07 task-emotionvideos task-emotionvideos 125759
+
+sub-02 ses-002 run-08 task-emotionvideos task-emotionvideos 125757
+
+sub-02 ses-002 run-09 task-emotionvideos task-emotionvideos 125760
+
+sub-02 ses-002 run-10 task-emotionvideos task-emotionvideos 125757
+
+sub-02 ses-002 run-11 task-emotionvideos task-emotionvideos 125758
+
+sub-02 ses-002 run-12 task-emotionvideos task-emotionvideos 103968
+
+sub-02 ses-003 run-13 task-emotionvideos task-emotionvideos 125591
+
+sub-02 ses-004 run-14 task-emotionvideos task-emotionvideos 124972
+
+sub-02 ses-004 run-15 task-emotionvideos task-emotionvideos 113581
+
+sub-02 ses-004 run-16 task-emotionvideos task-emotionvideos 125756
+
+sub-02 ses-004 run-17 task-emotionvideos task-emotionvideos 122659
+
+sub-02 ses-004 run-18 task-emotionvideos task-emotionvideos 125744
+
+sub-02 ses-004 run-19 task-emotionvideos task-emotionvideos 123458
+
+sub-02 ses-005 run-20 task-emotionvideos task-emotionvideos 90862
+
+sub-02 ses-005 run-21 task-emotionvideos task-emotionvideos 83079
+
+sub-02 ses-005 run-22 task-emotionvideos task-emotionvideos 75273
+
+sub-02 ses-005 run-23 task-emotionvideos task-emotionvideos 36812
+
+sub-02 ses-005 run-24 task-emotionvideos task-emotionvideos 119015
+
+sub-02 ses-005 run-25 task-emotionvideos task-emotionvideos 94846
+
+sub-02 ses-006 run-26 task-emotionvideos task-emotionvideos 119914
+
+sub-02 ses-006 run-27 task-emotionvideos task-emotionvideos 121593
+
+sub-02 ses-006 run-28 task-emotionvideos task-emotionvideos 120995
+
+sub-02 ses-006 run-29 task-emotionvideos task-emotionvideos 123265
+
+sub-02 ses-006 run-30 task-emotionvideos task-emotionvideos 122322
+
+sub-02 ses-006 run-31 task-emotionvideos task-emotionvideos 123235
+
+sub-02 ses-007 run-32 task-emotionvideos task-emotionvideos 124079
+
+sub-02 ses-007 run-33 task-emotionvideos task-emotionvideos 121466
+
+sub-02 ses-007 run-34 task-emotionvideos task-emotionvideos 119912
+
+sub-02 ses-007 run-35 task-emotionvideos task-emotionvideos 119407
+
+sub-02 ses-007 run-36 task-emotionvideos task-emotionvideos 117849
+
+sub-03 ses-001 run-01 task-emotionvideos task-emotionvideos 123826
+
+sub-03 ses-001 run-02 task-emotionvideos task-emotionvideos 125759
+
+sub-03 ses-001 run-03 task-emotionvideos task-emotionvideos 125759
+
+sub-03 ses-001 run-07 task-emotionvideos task-emotionvideos 125741
+
+sub-03 ses-001 run-08 task-emotionvideos task-emotionvideos 125742
+
+sub-03 ses-001 run-09 task-emotionvideos task-emotionvideos 125747
+
+sub-03 ses-001 run-10 task-emotionvideos task-emotionvideos 89581
+
+sub-03 ses-001 run-11 task-emotionvideos task-emotionvideos 125726
+
+sub-03 ses-001 run-12 task-emotionvideos task-emotionvideos 98021
+
+sub-03 ses-002 run-01 task-emotionvideos task-emotionvideos 125763
+
+sub-03 ses-002 run-02 task-emotionvideos task-emotionvideos 117691
+
+sub-03 ses-002 run-03 task-emotionvideos task-emotionvideos 125222
+
+sub-03 ses-002 run-04 task-emotionvideos task-emotionvideos 125760
+
+sub-03 ses-002 run-05 task-emotionvideos task-emotionvideos 124849
+
+sub-03 ses-002 run-06 task-emotionvideos task-emotionvideos 113617
+
+sub-03 ses-003 run-13 task-emotionvideos task-emotionvideos 125758
+
+sub-03 ses-003 run-14 task-emotionvideos task-emotionvideos 125759
+
+sub-03 ses-003 run-15 task-emotionvideos task-emotionvideos 125760
+
+sub-03 ses-003 run-16 task-emotionvideos task-emotionvideos 125751
+
+sub-03 ses-003 run-17 task-emotionvideos task-emotionvideos 125632
+
+sub-03 ses-003 run-18 task-emotionvideos task-emotionvideos 123071
+
+sub-03 ses-004 run-19 task-emotionvideos task-emotionvideos 121282
+
+sub-03 ses-004 run-20 task-emotionvideos task-emotionvideos 125759
+
+sub-03 ses-004 run-21 task-emotionvideos task-emotionvideos 125757
+
+sub-03 ses-004 run-22 task-emotionvideos task-emotionvideos 125758
+
+sub-03 ses-004 run-23 task-emotionvideos task-emotionvideos 125763
+
+sub-03 ses-004 run-24 task-emotionvideos task-emotionvideos 125759
+
+sub-03 ses-005 run-19 task-emotionvideos task-emotionvideos 125464
+
+sub-03 ses-005 run-20 task-emotionvideos task-emotionvideos 125391
+
+sub-03 ses-005 run-21 task-emotionvideos task-emotionvideos 125741
+
+sub-03 ses-005 run-22 task-emotionvideos task-emotionvideos 123149
+
+sub-03 ses-005 run-23 task-emotionvideos task-emotionvideos 124743
+
+sub-03 ses-005 run-24 task-emotionvideos task-emotionvideos 125759
+
+sub-03 ses-006 run-25 task-emotionvideos task-emotionvideos 121633
+
+sub-03 ses-006 run-26 task-emotionvideos task-emotionvideos 117956
+
+sub-03 ses-006 run-27 task-emotionvideos task-emotionvideos 124204
+
+sub-03 ses-006 run-28 task-emotionvideos task-emotionvideos 118904
+
+sub-03 ses-006 run-29 task-emotionvideos task-emotionvideos 122226
+
+sub-03 ses-006 run-30 task-emotionvideos task-emotionvideos 125722
+
+sub-03 ses-007 run-31 task-emotionvideos task-emotionvideos 113548
+
+sub-03 ses-007 run-32 task-emotionvideos task-emotionvideos 115978
+
+sub-03 ses-007 run-33 task-emotionvideos task-emotionvideos 115129
+
+sub-03 ses-007 run-34 task-emotionvideos task-emotionvideos 124663
+
+sub-03 ses-007 run-35 task-emotionvideos task-emotionvideos 125609
+
+sub-03 ses-007 run-36 task-emotionvideos task-emotionvideos 125751
+
+sub-05 ses-001 run-07 task-emotionvideos task-emotionvideos 125741
+
+sub-05 ses-001 run-08 task-emotionvideos task-emotionvideos 125742
+
+sub-05 ses-001 run-09 task-emotionvideos task-emotionvideos 125747
+
+sub-05 ses-001 run-10 task-emotionvideos task-emotionvideos 89581
+
+sub-05 ses-001 run-11 task-emotionvideos task-emotionvideos 125726
+
+sub-05 ses-001 run-12 task-emotionvideos task-emotionvideos 98021
+
+sub-05 ses-002 run-01 task-emotionvideos task-emotionvideos 111036
+Run name not found during .log text parsing for ('sub-05', 'ses-002', 'run-01', 'task-emotionvideos', '20230206-173415')
+
+sub-05 ses-002 run-02 task-emotionvideos task-emotionvideos 125746
+Run name not found during .log text parsing for ('sub-05', 'ses-002', 'run-02', 'task-emotionvideos', '20230206-173415')
+
+sub-05 ses-002 run-03 task-emotionvideos task-emotionvideos 112442
+Run name not found during .log text parsing for ('sub-05', 'ses-002', 'run-03', 'task-emotionvideos', '20230206-173415')
+
+sub-05 ses-002 run-04 task-emotionvideos task-emotionvideos 36650
+Run name not found during .log text parsing for ('sub-05', 'ses-002', 'run-04', 'task-emotionvideos', '20230206-173415')
+
+sub-05 ses-002 run-01 task-emotionvideos task-emotionvideos 2078
+
+sub-05 ses-003 run-11 task-emotionvideos task-emotionvideos 125755
+
+sub-05 ses-003 run-12 task-emotionvideos task-emotionvideos 122621
+
+sub-05 ses-003 run-13 task-emotionvideos task-emotionvideos 6293
+
+sub-05 ses-004 run-17 task-emotionvideos task-emotionvideos 121943
+
+sub-05 ses-004 run-18 task-emotionvideos task-emotionvideos 125755
+
+sub-05 ses-004 run-19 task-emotionvideos task-emotionvideos 125532
+
+sub-05 ses-004 run-20 task-emotionvideos task-emotionvideos 125111
+
+sub-05 ses-004 run-21 task-emotionvideos task-emotionvideos 124382
+
+sub-05 ses-004 run-22 task-emotionvideos task-emotionvideos 124206
+
+sub-05 ses-005 run-23 task-emotionvideos task-emotionvideos 114820
+
+sub-05 ses-005 run-24 task-emotionvideos task-emotionvideos 48031
+
+sub-05 ses-006 run-31 task-emotionvideos task-emotionvideos 125758
+
+sub-05 ses-006 run-32 task-emotionvideos task-emotionvideos 125758
+
+sub-05 ses-006 run-33 task-emotionvideos task-emotionvideos 125764
+
+sub-05 ses-006 run-34 task-emotionvideos task-emotionvideos 91538
+
+sub-05 ses-006 run-36 task-emotionvideos task-emotionvideos 22079
+
+sub-05 ses-006 run-37 task-emotionvideos task-emotionvideos 120532
+
+sub-05 ses-006 run-38 task-emotionvideos task-emotionvideos 125763
+
+sub-06 ses-001 run-01 task-emotionvideos task-emotionvideos 125760
+
+sub-06 ses-001 run-02 task-emotionvideos task-emotionvideos 125758
+
+sub-06 ses-001 run-03 task-emotionvideos task-emotionvideos 121055
+
+sub-06 ses-001 run-04 task-emotionvideos task-emotionvideos 125761
+
+sub-06 ses-001 run-05 task-emotionvideos task-emotionvideos 125757
+
+sub-06 ses-001 run-06 task-emotionvideos task-emotionvideos 125760
+
+sub-06 ses-002 run-07 task-emotionvideos task-emotionvideos 125758
+
+sub-06 ses-002 run-08 task-emotionvideos task-emotionvideos 125759
+
+sub-06 ses-002 run-09 task-emotionvideos task-emotionvideos 125756
+
+sub-06 ses-002 run-10 task-emotionvideos task-emotionvideos 125761
+
+sub-06 ses-002 run-11 task-emotionvideos task-emotionvideos 125757
+
+sub-06 ses-002 run-12 task-emotionvideos task-emotionvideos 123486
+
+sub-06 ses-003 run-13 task-emotionvideos task-emotionvideos 125760
+
+sub-06 ses-003 run-14 task-emotionvideos task-emotionvideos 125761
+
+sub-06 ses-003 run-15 task-emotionvideos task-emotionvideos 125757
+
+sub-06 ses-003 run-16 task-emotionvideos task-emotionvideos 125760
+
+sub-06 ses-003 run-17 task-emotionvideos task-emotionvideos 124565
+
+sub-06 ses-003 run-18 task-emotionvideos task-emotionvideos 125756
+
+sub-06 ses-004 run-19 task-emotionvideos task-emotionvideos 125753
+
+sub-06 ses-004 run-20 task-emotionvideos task-emotionvideos 125634
+
+sub-06 ses-004 run-21 task-emotionvideos task-emotionvideos 126464
+
+sub-06 ses-004 run-22 task-emotionvideos task-emotionvideos 124877
+
+sub-06 ses-004 run-23 task-emotionvideos task-emotionvideos 125752
+
+sub-06 ses-004 run-24 task-emotionvideos task-emotionvideos 125761
+
+sub-06 ses-005 run-25 task-emotionvideos task-emotionvideos 115916
+
+sub-06 ses-005 run-26 task-emotionvideos task-emotionvideos 125740
+
+sub-06 ses-005 run-27 task-emotionvideos task-emotionvideos 125753
+
+sub-06 ses-005 run-28 task-emotionvideos task-emotionvideos 125762
+
+sub-06 ses-005 run-29 task-emotionvideos task-emotionvideos 125760
+
+sub-06 ses-005 run-30 task-emotionvideos task-emotionvideos 125748
+
+sub-06 ses-006 run-31 task-emotionvideos task-emotionvideos 124778
+
+sub-06 ses-006 run-32 task-emotionvideos task-emotionvideos 125245
+
+sub-06 ses-006 run-33 task-emotionvideos task-emotionvideos 125742
+
+sub-06 ses-006 run-34 task-emotionvideos task-emotionvideos 122929
+
+sub-06 ses-006 run-35 task-emotionvideos task-emotionvideos 125082
+
+sub-06 ses-006 run-36 task-emotionvideos task-emotionvideos 123756

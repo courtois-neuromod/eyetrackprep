@@ -1,0 +1,97 @@
+
+sub-01 ses-001 None task-flocalt task-flocalt 57146
+
+sub-01 ses-001 None task-flocdef task-flocdef 55237
+
+sub-01 ses-002 None task-flocalt task-flocalt 56834
+
+sub-01 ses-002 None task-flocdef task-flocdef 57146
+
+sub-01 ses-003 None task-flocdef task-flocdef 57063
+
+sub-01 ses-003 None task-flocalt task-flocalt 45250
+
+sub-01 ses-004 None task-flocalt task-flocalt 57145
+
+sub-01 ses-004 None task-flocdef task-flocdef 54629
+
+sub-01 ses-005 None task-flocdef task-flocdef 57125
+
+sub-01 ses-005 None task-flocalt task-flocalt 57070
+
+sub-01 ses-006 None task-flocalt task-flocalt 57041
+
+sub-01 ses-006 None task-flocdef task-flocdef 57145
+
+sub-02 ses-001 None task-flocalt task-flocalt 56118
+
+sub-02 ses-001 None task-flocdef task-flocdef 56727
+
+sub-02 ses-002 None task-flocalt task-flocalt 53646
+
+sub-02 ses-003 None task-flocalt task-flocalt 57145
+
+sub-02 ses-003 None task-flocdef task-flocdef 57151
+
+sub-02 ses-004 None task-flocalt task-flocalt 57118
+
+sub-02 ses-004 None task-flocdef task-flocdef 57046
+
+sub-02 ses-005 None task-flocalt task-flocalt 57144
+
+sub-02 ses-005 None task-flocdef task-flocdef 57121
+
+sub-02 ses-006 None task-flocalt task-flocalt 54059
+
+sub-02 ses-006 None task-flocdef task-flocdef 52994
+
+sub-02 ses-007 None task-flocdef task-flocdef 53261
+
+sub-02 ses-007 None task-flocalt task-flocalt 55900
+
+sub-03 ses-001 None task-flocdef task-flocdef 0
+Fewer than 11 pupils found for ('sub-03', 'ses-001', None, 'task-flocdef', '20211103-125058')
+
+sub-03 ses-001 None task-flocalt task-flocalt 52530
+
+sub-03 ses-001 None task-flocdef task-flocdef 53013
+
+sub-03 ses-002 None task-flocalt task-flocalt 57151
+
+sub-03 ses-002 None task-flocdef task-flocdef 57144
+
+sub-03 ses-003 None task-flocalt task-flocalt 57143
+
+sub-03 ses-003 None task-flocdef task-flocdef 54385
+
+sub-03 ses-004 None task-flocalt task-flocalt 48723
+
+sub-03 ses-004 None task-flocdef task-flocdef 57150
+
+sub-03 ses-005 None task-flocalt task-flocalt 1867
+
+sub-03 ses-005 None task-flocdef task-flocdef 57102
+
+sub-03 ses-006 None task-flocdef task-flocdef 53606
+
+sub-03 ses-006 None task-flocalt task-flocalt 53153
+
+sub-05 ses-001 None task-flocalt task-flocalt 57142
+
+sub-05 ses-001 None task-flocdef task-flocdef 57140
+
+sub-05 ses-002 None task-flocalt task-flocalt 57140
+
+sub-05 ses-002 None task-flocdef task-flocdef 57145
+
+sub-05 ses-003 None task-flocalt task-flocalt 57146
+
+sub-05 ses-003 None task-flocdef task-flocdef 57149
+
+sub-05 ses-004 None task-flocdef task-flocdef 57147
+
+sub-05 ses-004 None task-flocalt task-flocalt 57143
+
+sub-05 ses-005 None task-flocdef task-flocdef 57139
+
+sub-06 ses-001 None task-flocdef task-flocdef 1275

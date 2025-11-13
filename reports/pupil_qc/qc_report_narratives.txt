@@ -1,0 +1,684 @@
+
+sub-01 ses-001 None task-LucyStory task-LucyStory 126699
+
+sub-01 ses-001 None task-ForgotRecall task-ForgotRecall 158744
+
+sub-01 ses-001 None task-ForgotRecency task-ForgotRecency 73713
+
+sub-01 ses-001 None task-ForgotStory task-ForgotStory 129111
+
+sub-01 ses-001 None task-LucyRecall task-LucyRecall 132770
+
+sub-01 ses-001 None task-LucyRecency task-LucyRecency 87068
+
+sub-01 ses-002 None task-BlackRecall task-BlackRecall 128991
+
+sub-01 ses-002 None task-BlackRecency task-BlackRecency 84304
+
+sub-01 ses-002 None task-BlackStory task-BlackStory 197581
+
+sub-01 ses-002 None task-NotthefallRecall task-NotthefallRecall 92057
+
+sub-01 ses-002 None task-NotthefallRecency task-NotthefallRecency 70716
+
+sub-01 ses-002 None task-NotthefallStory task-NotthefallStory 65223
+
+sub-01 ses-003 None task-ForgotRecall task-ForgotRecall 113621
+
+sub-01 ses-003 None task-ForgotRecency task-ForgotRecency 66495
+
+sub-01 ses-003 None task-ForgotStory task-ForgotStory 211675
+
+sub-01 ses-003 None task-LucyRecall task-LucyRecall 96043
+
+sub-01 ses-003 None task-LucyRecency task-LucyRecency 73853
+
+sub-01 ses-003 None task-LucyStory task-LucyStory 138238
+
+sub-01 ses-004 None task-BlackStory task-BlackStory 40591
+
+sub-01 ses-004 None task-BlackRecall task-BlackRecall 133680
+
+sub-01 ses-004 None task-BlackRecency task-BlackRecency 75072
+
+sub-01 ses-004 None task-NotthefallRecall task-NotthefallRecall 124846
+
+sub-01 ses-004 None task-NotthefallRecency task-NotthefallRecency 61592
+
+sub-01 ses-004 None task-NotthefallStory task-NotthefallStory 148127
+
+sub-01 ses-005 None task-ForgotRecall task-ForgotRecall 116874
+
+sub-01 ses-005 None task-ForgotRecency task-ForgotRecency 68842
+
+sub-01 ses-005 None task-ForgotStory task-ForgotStory 211680
+
+sub-01 ses-005 None task-LucyRecall task-LucyRecall 86912
+
+sub-01 ses-005 None task-LucyRecency task-LucyRecency 67537
+
+sub-01 ses-005 None task-LucyStory task-LucyStory 138242
+
+sub-01 ses-006 None task-BlackStory task-BlackStory 197955
+
+sub-01 ses-006 None task-BlackRecall task-BlackRecall 164328
+
+sub-01 ses-006 None task-BlackRecency task-BlackRecency 62052
+
+sub-01 ses-006 None task-NotthefallRecall task-NotthefallRecall 136787
+
+sub-01 ses-006 None task-NotthefallRecency task-NotthefallRecency 68793
+
+sub-01 ses-006 None task-NotthefallStory task-NotthefallStory 140071
+
+sub-01 ses-007 None task-PiemanRecall task-PiemanRecall 112062
+
+sub-01 ses-007 None task-PiemanRecency task-PiemanRecency 62010
+
+sub-01 ses-007 None task-PiemanStory task-PiemanStory 115294
+
+sub-01 ses-007 None task-SlumlordRecall task-SlumlordRecall 180928
+
+sub-01 ses-007 None task-SlumlordRecency task-SlumlordRecency 86967
+
+sub-01 ses-007 None task-SlumlordStory task-SlumlordStory 234698
+
+sub-01 ses-007 None task-SlumlordStory task-SlumlordStory 8533
+
+sub-01 ses-008 None task-PrettymouthRecall task-PrettymouthRecall 63130
+
+sub-01 ses-008 None task-PrettymouthRecency task-PrettymouthRecency 87632
+
+sub-01 ses-008 None task-PrettymouthStory task-PrettymouthStory 31746
+
+sub-01 ses-008 None task-Tunnelpart1Recall task-Tunnelpart1Recall 71194
+
+sub-01 ses-008 None task-Tunnelpart1Story task-Tunnelpart1Story 168805
+
+sub-01 ses-008 None task-Tunnelpart2Story task-Tunnelpart2Story 136274
+
+sub-01 ses-009 None task-PiemanRecall task-PiemanRecall 84552
+
+sub-01 ses-009 None task-PiemanRecency task-PiemanRecency 63980
+
+sub-01 ses-009 None task-PiemanStory task-PiemanStory 115299
+
+sub-01 ses-009 None task-SlumlordRecall task-SlumlordRecall 109993
+
+sub-01 ses-009 None task-SlumlordRecency task-SlumlordRecency 77872
+
+sub-01 ses-009 None task-SlumlordStory task-SlumlordStory 234705
+
+sub-01 ses-010 None task-PrettymouthRecall task-PrettymouthRecall 79715
+
+sub-01 ses-010 None task-PrettymouthRecency task-PrettymouthRecency 82079
+
+sub-01 ses-010 None task-PrettymouthStory task-PrettymouthStory 180540
+
+sub-01 ses-010 None task-TunnelRecency task-TunnelRecency 80909
+
+sub-01 ses-010 None task-Tunnelpart1Recall task-Tunnelpart1Recall 78345
+
+sub-01 ses-010 None task-Tunnelpart1Story task-Tunnelpart1Story 189452
+
+sub-01 ses-010 None task-Tunnelpart2Recall task-Tunnelpart2Recall 78506
+
+sub-01 ses-010 None task-Tunnelpart2Story task-Tunnelpart2Story 198965
+
+sub-01 ses-011 None task-PiemanRecall task-PiemanRecall 110593
+
+sub-01 ses-011 None task-PiemanRecency task-PiemanRecency 60142
+
+sub-01 ses-011 None task-PiemanStory task-PiemanStory 115299
+
+sub-01 ses-011 None task-SlumlordRecall task-SlumlordRecall 170995
+
+sub-01 ses-011 None task-SlumlordRecency task-SlumlordRecency 79932
+
+sub-01 ses-011 None task-SlumlordStory task-SlumlordStory 234699
+
+sub-01 ses-012 None task-PrettymouthRecall task-PrettymouthRecall 125905
+
+sub-01 ses-012 None task-PrettymouthRecency task-PrettymouthRecency 81013
+
+sub-01 ses-012 None task-PrettymouthStory task-PrettymouthStory 180541
+
+sub-01 ses-012 None task-Tunnelpart1Recall task-Tunnelpart1Recall 96369
+
+sub-01 ses-012 None task-Tunnelpart1Story task-Tunnelpart1Story 189450
+
+sub-01 ses-012 None task-Tunnelpart2Story task-Tunnelpart2Story 28785
+Run name not found during .log text parsing for ('sub-01', 'ses-012', None, 'task-Tunnelpart2Story', '20231103-092359')
+
+sub-01 ses-012 None task-TunnelRecency task-TunnelRecency 73616
+
+sub-01 ses-012 None task-Tunnelpart2Recall task-Tunnelpart2Recall 85650
+
+sub-01 ses-012 None task-Tunnelpart2Story task-Tunnelpart2Story 198971
+
+sub-02 ses-001 None task-ForgotRecall task-ForgotRecall 29121
+
+sub-02 ses-001 None task-ForgotRecency task-ForgotRecency 47825
+
+sub-02 ses-001 None task-ForgotStory task-ForgotStory 210497
+
+sub-02 ses-001 None task-LucyRecall task-LucyRecall 20319
+
+sub-02 ses-001 None task-LucyRecency task-LucyRecency 44694
+
+sub-02 ses-001 None task-LucyStory task-LucyStory 130095
+
+sub-02 ses-003 None task-LucyRecall task-LucyRecall 34632
+
+sub-02 ses-003 None task-LucyStory task-LucyStory 61984
+
+sub-02 ses-003 None task-ForgotStory task-ForgotStory 80340
+
+sub-02 ses-004 None task-BlackRecall task-BlackRecall 39186
+
+sub-02 ses-004 None task-BlackRecency task-BlackRecency 53252
+
+sub-02 ses-004 None task-BlackStory task-BlackStory 192242
+
+sub-02 ses-004 None task-NotthefallRecall task-NotthefallRecall 67730
+
+sub-02 ses-004 None task-NotthefallRecency task-NotthefallRecency 42751
+
+sub-02 ses-004 None task-NotthefallStory task-NotthefallStory 146307
+
+sub-02 ses-005 None task-ForgotRecall task-ForgotRecall 28738
+
+sub-02 ses-005 None task-ForgotRecency task-ForgotRecency 53953
+
+sub-02 ses-005 None task-ForgotStory task-ForgotStory 207147
+
+sub-02 ses-005 None task-LucyRecall task-LucyRecall 57319
+
+sub-02 ses-005 None task-LucyRecency task-LucyRecency 50295
+
+sub-02 ses-005 None task-LucyStory task-LucyStory 138240
+
+sub-02 ses-006 None task-BlackRecall task-BlackRecall 41739
+
+sub-02 ses-006 None task-BlackRecency task-BlackRecency 48449
+
+sub-02 ses-006 None task-BlackStory task-BlackStory 202364
+
+sub-02 ses-006 None task-NotthefallRecall task-NotthefallRecall 42901
+
+sub-02 ses-006 None task-NotthefallRecency task-NotthefallRecency 49882
+
+sub-02 ses-006 None task-NotthefallStory task-NotthefallStory 147937
+
+sub-02 ses-008 None task-PrettymouthRecall task-PrettymouthRecall 19260
+
+sub-02 ses-008 None task-PrettymouthRecency task-PrettymouthRecency 51440
+
+sub-02 ses-008 None task-PrettymouthStory task-PrettymouthStory 179456
+
+sub-02 ses-008 None task-TunnelRecency task-TunnelRecency 61341
+
+sub-02 ses-008 None task-Tunnelpart1Recall task-Tunnelpart1Recall 31713
+
+sub-02 ses-008 None task-Tunnelpart1Story task-Tunnelpart1Story 188137
+
+sub-02 ses-008 None task-Tunnelpart2Recall task-Tunnelpart2Recall 53262
+
+sub-02 ses-008 None task-Tunnelpart2Story task-Tunnelpart2Story 196894
+
+sub-02 ses-009 None task-PiemanRecall task-PiemanRecall 28803
+
+sub-02 ses-009 None task-PiemanRecency task-PiemanRecency 55008
+
+sub-02 ses-009 None task-PiemanStory task-PiemanStory 110406
+
+sub-02 ses-009 None task-SlumlordRecall task-SlumlordRecall 55446
+
+sub-02 ses-009 None task-SlumlordRecency task-SlumlordRecency 41808
+
+sub-02 ses-009 None task-SlumlordStory task-SlumlordStory 220455
+
+sub-02 ses-010 None task-PrettymouthStory task-PrettymouthStory 17670
+
+sub-02 ses-010 None task-PrettymouthRecall task-PrettymouthRecall 39530
+
+sub-02 ses-010 None task-PrettymouthRecency task-PrettymouthRecency 56975
+
+sub-02 ses-010 None task-PrettymouthStory task-PrettymouthStory 168680
+
+sub-02 ses-010 None task-TunnelRecency task-TunnelRecency 55832
+
+sub-02 ses-010 None task-Tunnelpart1Recall task-Tunnelpart1Recall 33298
+
+sub-02 ses-010 None task-Tunnelpart1Story task-Tunnelpart1Story 183866
+
+sub-02 ses-010 None task-Tunnelpart2Recall task-Tunnelpart2Recall 62481
+
+sub-02 ses-010 None task-Tunnelpart2Story task-Tunnelpart2Story 189383
+
+sub-02 ses-011 None task-PiemanRecall task-PiemanRecall 7227
+
+sub-02 ses-011 None task-PiemanRecency task-PiemanRecency 41389
+
+sub-02 ses-011 None task-PiemanStory task-PiemanStory 9239
+
+sub-02 ses-011 None task-SlumlordRecall task-SlumlordRecall 43195
+
+sub-02 ses-011 None task-SlumlordRecency task-SlumlordRecency 56668
+
+sub-02 ses-011 None task-SlumlordStory task-SlumlordStory 160804
+
+sub-02 ses-012 None task-PrettymouthRecall task-PrettymouthRecall 46211
+
+sub-02 ses-012 None task-PrettymouthRecency task-PrettymouthRecency 61483
+
+sub-02 ses-012 None task-PrettymouthStory task-PrettymouthStory 180538
+
+sub-02 ses-012 None task-TunnelRecency task-TunnelRecency 66036
+
+sub-02 ses-012 None task-Tunnelpart1Recall task-Tunnelpart1Recall 49218
+
+sub-02 ses-012 None task-Tunnelpart1Story task-Tunnelpart1Story 189010
+
+sub-02 ses-012 None task-Tunnelpart2Recall task-Tunnelpart2Recall 68133
+
+sub-02 ses-012 None task-Tunnelpart2Story task-Tunnelpart2Story 198967
+
+sub-03 ses-001 None task-ForgotRecall task-ForgotRecall 48893
+
+sub-03 ses-001 None task-ForgotRecency task-ForgotRecency 63318
+
+sub-03 ses-001 None task-ForgotStory task-ForgotStory 211427
+
+sub-03 ses-001 None task-LucyRecall task-LucyRecall 54005
+
+sub-03 ses-001 None task-LucyRecency task-LucyRecency 60102
+
+sub-03 ses-001 None task-LucyStory task-LucyStory 138241
+
+sub-03 ses-002 None task-BlackRecall task-BlackRecall 74273
+
+sub-03 ses-002 None task-BlackRecency task-BlackRecency 60573
+
+sub-03 ses-002 None task-BlackStory task-BlackStory 202232
+
+sub-03 ses-002 None task-NotthefallRecall task-NotthefallRecall 2906
+
+sub-03 ses-002 None task-NotthefallStory task-NotthefallStory 148100
+
+sub-03 ses-002 None task-BlackRecall task-BlackRecall 82155
+
+sub-03 ses-002 None task-NotthefallRecency task-NotthefallRecency 55761
+
+sub-03 ses-003 None task-ForgotRecall task-ForgotRecall 3236
+
+sub-03 ses-003 None task-ForgotStory task-ForgotStory 211643
+
+sub-03 ses-003 None task-LucyRecall task-LucyRecall 58595
+
+sub-03 ses-003 None task-LucyRecency task-LucyRecency 67398
+
+sub-03 ses-003 None task-LucyStory task-LucyStory 138234
+
+sub-03 ses-003 None task-ForgotRecall task-ForgotRecall 75460
+
+sub-03 ses-003 None task-ForgotRecency task-ForgotRecency 65140
+
+sub-03 ses-004 None task-BlackRecall task-BlackRecall 39661
+
+sub-03 ses-004 None task-BlackStory task-BlackStory 57977
+
+sub-03 ses-005 None task-ForgotStory task-ForgotStory 152484
+
+sub-03 ses-005 None task-LucyRecall task-LucyRecall 65209
+
+sub-03 ses-005 None task-LucyRecency task-LucyRecency 59278
+
+sub-03 ses-005 None task-LucyStory task-LucyStory 79008
+
+sub-03 ses-009 None task-PiemanRecall task-PiemanRecall 96608
+
+sub-03 ses-009 None task-PiemanRecency task-PiemanRecency 55630
+
+sub-03 ses-009 None task-PiemanStory task-PiemanStory 109274
+
+sub-03 ses-009 None task-SlumlordRecall task-SlumlordRecall 159109
+
+sub-03 ses-009 None task-SlumlordRecency task-SlumlordRecency 65633
+
+sub-03 ses-009 None task-SlumlordStory task-SlumlordStory 232294
+
+sub-03 ses-010 None task-PrettymouthRecall task-PrettymouthRecall 88745
+
+sub-03 ses-010 None task-PrettymouthRecency task-PrettymouthRecency 56101
+
+sub-03 ses-010 None task-PrettymouthStory task-PrettymouthStory 180542
+
+sub-03 ses-010 None task-Tunnelpart1Story task-Tunnelpart1Story 179413
+
+sub-03 ses-011 None task-SlumlordRecall task-SlumlordRecall 124729
+
+sub-03 ses-011 None task-SlumlordStory task-SlumlordStory 234699
+
+sub-03 ses-012 None task-PrettymouthRecall task-PrettymouthRecall 101484
+
+sub-03 ses-012 None task-PrettymouthRecency task-PrettymouthRecency 59391
+
+sub-03 ses-012 None task-PrettymouthStory task-PrettymouthStory 178442
+
+sub-03 ses-012 None task-Tunnelpart1Story task-Tunnelpart1Story 146842
+
+sub-05 ses-001 None task-LucyStory task-LucyStory 16804
+
+sub-05 ses-001 None task-ForgotRecall task-ForgotRecall 26390
+
+sub-05 ses-001 None task-ForgotRecency task-ForgotRecency 49648
+
+sub-05 ses-001 None task-ForgotStory task-ForgotStory 211670
+
+sub-05 ses-001 None task-LucyRecency task-LucyRecency 64567
+
+sub-05 ses-002 None task-BlackRecall task-BlackRecall 21190
+
+sub-05 ses-002 None task-BlackStory task-BlackStory 163019
+
+sub-05 ses-002 None task-BlackRecall task-BlackRecall 10647
+
+sub-05 ses-002 None task-BlackRecency task-BlackRecency 38030
+
+sub-05 ses-002 None task-NotthefallRecall task-NotthefallRecall 6347
+
+sub-05 ses-002 None task-NotthefallRecency task-NotthefallRecency 47120
+
+sub-05 ses-002 None task-NotthefallStory task-NotthefallStory 137413
+
+sub-05 ses-003 None task-ForgotRecall task-ForgotRecall 50259
+
+sub-05 ses-003 None task-ForgotRecency task-ForgotRecency 46904
+
+sub-05 ses-003 None task-ForgotStory task-ForgotStory 197017
+
+sub-05 ses-003 None task-LucyRecall task-LucyRecall 27503
+
+sub-05 ses-003 None task-LucyRecency task-LucyRecency 51527
+
+sub-05 ses-003 None task-LucyStory task-LucyStory 124408
+
+sub-05 ses-004 None task-BlackRecall task-BlackRecall 58735
+
+sub-05 ses-004 None task-BlackRecency task-BlackRecency 50377
+
+sub-05 ses-004 None task-BlackStory task-BlackStory 202459
+
+sub-05 ses-004 None task-NotthefallRecall task-NotthefallRecall 61585
+
+sub-05 ses-004 None task-NotthefallRecency task-NotthefallRecency 51402
+
+sub-05 ses-004 None task-NotthefallStory task-NotthefallStory 148123
+
+sub-05 ses-005 None task-ForgotRecall task-ForgotRecall 0
+Fewer than 11 pupils found for ('sub-05', 'ses-005', None, 'task-ForgotRecall', '20230928-173444')
+
+sub-05 ses-005 None task-ForgotRecency task-ForgotRecency 0
+Fewer than 11 pupils found for ('sub-05', 'ses-005', None, 'task-ForgotRecency', '20230928-173444')
+
+sub-05 ses-005 None task-ForgotStory task-ForgotStory 0
+Fewer than 11 pupils found for ('sub-05', 'ses-005', None, 'task-ForgotStory', '20230928-173444')
+
+sub-05 ses-005 None task-LucyRecall task-LucyRecall 0
+Fewer than 11 pupils found for ('sub-05', 'ses-005', None, 'task-LucyRecall', '20230928-173444')
+
+sub-05 ses-005 None task-LucyRecency task-LucyRecency 0
+Fewer than 11 pupils found for ('sub-05', 'ses-005', None, 'task-LucyRecency', '20230928-173444')
+
+sub-05 ses-005 None task-LucyStory task-LucyStory 0
+Fewer than 11 pupils found for ('sub-05', 'ses-005', None, 'task-LucyStory', '20230928-173444')
+
+sub-05 ses-006 None task-BlackRecall task-BlackRecall 0
+Fewer than 11 pupils found for ('sub-05', 'ses-006', None, 'task-BlackRecall', '20231005-172327')
+
+sub-05 ses-006 None task-BlackStory task-BlackStory 0
+Fewer than 11 pupils found for ('sub-05', 'ses-006', None, 'task-BlackStory', '20231005-172327')
+
+sub-05 ses-006 None task-BlackRecency task-BlackRecency 0
+Fewer than 11 pupils found for ('sub-05', 'ses-006', None, 'task-BlackRecency', '20231005-174818')
+
+sub-05 ses-006 None task-NotthefallRecall task-NotthefallRecall 0
+Fewer than 11 pupils found for ('sub-05', 'ses-006', None, 'task-NotthefallRecall', '20231005-174818')
+
+sub-05 ses-006 None task-NotthefallRecency task-NotthefallRecency 0
+Fewer than 11 pupils found for ('sub-05', 'ses-006', None, 'task-NotthefallRecency', '20231005-174818')
+
+sub-05 ses-006 None task-NotthefallStory task-NotthefallStory 0
+Fewer than 11 pupils found for ('sub-05', 'ses-006', None, 'task-NotthefallStory', '20231005-174818')
+
+sub-05 ses-007 None task-SlumlordRecall task-SlumlordRecall 0
+Fewer than 11 pupils found for ('sub-05', 'ses-007', None, 'task-SlumlordRecall', '20231012-172907')
+
+sub-05 ses-007 None task-SlumlordRecency task-SlumlordRecency 0
+Fewer than 11 pupils found for ('sub-05', 'ses-007', None, 'task-SlumlordRecency', '20231012-172907')
+
+sub-05 ses-007 None task-SlumlordStory task-SlumlordStory 85598
+
+sub-05 ses-007 None task-PiemanRecall task-PiemanRecall 0
+Fewer than 11 pupils found for ('sub-05', 'ses-007', None, 'task-PiemanRecall', '20231012-181130')
+
+sub-05 ses-007 None task-PiemanStory task-PiemanStory 0
+Fewer than 11 pupils found for ('sub-05', 'ses-007', None, 'task-PiemanStory', '20231012-181130')
+
+sub-05 ses-008 None task-PrettymouthRecall task-PrettymouthRecall 26987
+
+sub-05 ses-008 None task-PrettymouthRecency task-PrettymouthRecency 47950
+
+sub-05 ses-008 None task-PrettymouthStory task-PrettymouthStory 180542
+
+sub-05 ses-008 None task-TunnelRecency task-TunnelRecency 49043
+
+sub-05 ses-008 None task-Tunnelpart1Recall task-Tunnelpart1Recall 78627
+
+sub-05 ses-008 None task-Tunnelpart1Story task-Tunnelpart1Story 189445
+
+sub-05 ses-008 None task-Tunnelpart2Recall task-Tunnelpart2Recall 59263
+
+sub-05 ses-008 None task-Tunnelpart2Story task-Tunnelpart2Story 198971
+
+sub-05 ses-009 None task-PiemanStory task-PiemanStory 66632
+
+sub-05 ses-009 None task-SlumlordRecall task-SlumlordRecall 127744
+
+sub-05 ses-009 None task-SlumlordRecency task-SlumlordRecency 48246
+
+sub-05 ses-009 None task-SlumlordStory task-SlumlordStory 234700
+
+sub-05 ses-009 None task-PiemanRecall task-PiemanRecall 0
+Fewer than 11 pupils found for ('sub-05', 'ses-009', None, 'task-PiemanRecall', '20231109-183012')
+
+sub-05 ses-009 None task-PiemanRecency task-PiemanRecency 784
+
+sub-05 ses-010 None task-PrettymouthRecall task-PrettymouthRecall 24164
+
+sub-05 ses-010 None task-PrettymouthRecency task-PrettymouthRecency 47717
+
+sub-05 ses-010 None task-PrettymouthStory task-PrettymouthStory 180538
+
+sub-05 ses-010 None task-TunnelRecency task-TunnelRecency 47044
+
+sub-05 ses-010 None task-Tunnelpart1Recall task-Tunnelpart1Recall 59953
+
+sub-05 ses-010 None task-Tunnelpart1Story task-Tunnelpart1Story 189445
+
+sub-05 ses-010 None task-Tunnelpart2Recall task-Tunnelpart2Recall 74334
+
+sub-05 ses-010 None task-Tunnelpart2Story task-Tunnelpart2Story 198967
+
+sub-05 ses-011 None task-SlumlordStory task-SlumlordStory 19039
+Run name not found during .log text parsing for ('sub-05', 'ses-011', None, 'task-SlumlordStory', '20231123-171225')
+
+sub-05 ses-011 None task-PiemanRecall task-PiemanRecall 85130
+
+sub-05 ses-011 None task-PiemanRecency task-PiemanRecency 48566
+
+sub-05 ses-011 None task-PiemanStory task-PiemanStory 115297
+
+sub-05 ses-011 None task-SlumlordRecall task-SlumlordRecall 143050
+
+sub-05 ses-011 None task-SlumlordRecency task-SlumlordRecency 48497
+
+sub-05 ses-011 None task-SlumlordStory task-SlumlordStory 234697
+
+sub-05 ses-012 None task-PrettymouthRecall task-PrettymouthRecall 57773
+
+sub-05 ses-012 None task-PrettymouthRecency task-PrettymouthRecency 49779
+
+sub-05 ses-012 None task-PrettymouthStory task-PrettymouthStory 180540
+
+sub-05 ses-012 None task-TunnelRecency task-TunnelRecency 48769
+
+sub-05 ses-012 None task-Tunnelpart1Recall task-Tunnelpart1Recall 71856
+
+sub-05 ses-012 None task-Tunnelpart1Story task-Tunnelpart1Story 189445
+
+sub-05 ses-012 None task-Tunnelpart2Recall task-Tunnelpart2Recall 101105
+
+sub-05 ses-012 None task-Tunnelpart2Story task-Tunnelpart2Story 198968
+
+sub-06 ses-001 None task-LucyStory task-LucyStory 4526
+
+sub-06 ses-001 None task-LucyRecall task-LucyRecall 3367
+
+sub-06 ses-001 None task-LucyStory task-LucyStory 138237
+
+sub-06 ses-001 None task-LucyRecall task-LucyRecall 70980
+
+sub-06 ses-001 None task-LucyRecency task-LucyRecency 918
+
+sub-06 ses-001 None task-ForgotRecall task-ForgotRecall 82777
+
+sub-06 ses-001 None task-ForgotRecency task-ForgotRecency 68745
+
+sub-06 ses-001 None task-ForgotStory task-ForgotStory 211666
+
+sub-06 ses-002 None task-BlackRecall task-BlackRecall 17645
+
+sub-06 ses-002 None task-BlackStory task-BlackStory 195465
+
+sub-06 ses-002 None task-NotthefallStory task-NotthefallStory 3959
+
+sub-06 ses-002 None task-NotthefallRecency task-NotthefallRecency 66161
+
+sub-06 ses-003 None task-LucyRecall task-LucyRecall 77213
+
+sub-06 ses-003 None task-LucyRecency task-LucyRecency 15422
+
+sub-06 ses-003 None task-LucyStory task-LucyStory 80301
+
+sub-06 ses-003 None task-LucyRecency task-LucyRecency 120801
+Run name not found during .log text parsing for ('sub-06', 'ses-003', None, 'task-LucyRecency', '20230602-154609')
+
+sub-06 ses-003 None task-ForgotStory task-ForgotStory 9251
+Run name not found during .log text parsing for ('sub-06', 'ses-003', None, 'task-ForgotStory', '20230602-155655')
+
+sub-06 ses-003 None task-LucyRecency task-LucyRecency 59740
+
+sub-06 ses-003 None task-ForgotRecall task-ForgotRecall 96298
+
+sub-06 ses-003 None task-ForgotRecency task-ForgotRecency 63300
+
+sub-06 ses-003 None task-ForgotStory task-ForgotStory 211672
+
+sub-06 ses-004 None task-BlackStory task-BlackStory 176822
+
+sub-06 ses-005 None task-LucyStory task-LucyStory 102247
+
+sub-06 ses-006 None task-BlackStory task-BlackStory 12731
+Run name not found during .log text parsing for ('sub-06', 'ses-006', None, 'task-BlackStory', '20230731-092313')
+
+sub-06 ses-006 None task-BlackRecall task-BlackRecall 110295
+
+sub-06 ses-006 None task-BlackRecency task-BlackRecency 58572
+
+sub-06 ses-006 None task-BlackStory task-BlackStory 42271
+
+sub-06 ses-006 None task-NotthefallRecall task-NotthefallRecall 106493
+
+sub-06 ses-006 None task-NotthefallRecency task-NotthefallRecency 58604
+
+sub-06 ses-006 None task-NotthefallStory task-NotthefallStory 148106
+
+sub-06 ses-007 None task-SlumlordStory task-SlumlordStory 169367
+
+sub-06 ses-007 None task-PiemanRecall task-PiemanRecall 65635
+
+sub-06 ses-007 None task-PiemanRecency task-PiemanRecency 63341
+
+sub-06 ses-007 None task-PiemanStory task-PiemanStory 115265
+
+sub-06 ses-008 None task-PrettymouthRecall task-PrettymouthRecall 40098
+
+sub-06 ses-008 None task-PrettymouthRecency task-PrettymouthRecency 98278
+
+sub-06 ses-008 None task-PrettymouthStory task-PrettymouthStory 179725
+
+sub-06 ses-008 None task-TunnelRecency task-TunnelRecency 75790
+
+sub-06 ses-008 None task-Tunnelpart1Recall task-Tunnelpart1Recall 141308
+
+sub-06 ses-008 None task-Tunnelpart1Story task-Tunnelpart1Story 179827
+
+sub-06 ses-008 None task-Tunnelpart2Recall task-Tunnelpart2Recall 66232
+
+sub-06 ses-008 None task-Tunnelpart2Story task-Tunnelpart2Story 198966
+
+sub-06 ses-009 None task-PiemanRecall task-PiemanRecall 73167
+
+sub-06 ses-009 None task-PiemanRecency task-PiemanRecency 55676
+
+sub-06 ses-009 None task-PiemanStory task-PiemanStory 104322
+
+sub-06 ses-009 None task-SlumlordRecall task-SlumlordRecall 183935
+
+sub-06 ses-009 None task-SlumlordRecency task-SlumlordRecency 64889
+
+sub-06 ses-009 None task-SlumlordStory task-SlumlordStory 220141
+
+sub-06 ses-010 None task-PrettymouthStory task-PrettymouthStory 8797
+
+sub-06 ses-010 None task-PrettymouthRecall task-PrettymouthRecall 72920
+
+sub-06 ses-010 None task-PrettymouthRecency task-PrettymouthRecency 67258
+
+sub-06 ses-010 None task-PrettymouthStory task-PrettymouthStory 108687
+
+sub-06 ses-010 None task-TunnelRecency task-TunnelRecency 67644
+
+sub-06 ses-010 None task-Tunnelpart1Recall task-Tunnelpart1Recall 91244
+
+sub-06 ses-010 None task-Tunnelpart1Story task-Tunnelpart1Story 189445
+
+sub-06 ses-010 None task-Tunnelpart2Recall task-Tunnelpart2Recall 63407
+
+sub-06 ses-010 None task-Tunnelpart2Story task-Tunnelpart2Story 198967
+
+sub-06 ses-011 None task-PiemanStory task-PiemanStory 48290
+
+sub-06 ses-011 None task-SlumlordRecall task-SlumlordRecall 71003
+
+sub-06 ses-011 None task-SlumlordRecency task-SlumlordRecency 65651
+
+sub-06 ses-011 None task-SlumlordStory task-SlumlordStory 230268
+
+sub-06 ses-012 None task-PrettymouthRecall task-PrettymouthRecall 54615
+
+sub-06 ses-012 None task-PrettymouthRecency task-PrettymouthRecency 58580
+
+sub-06 ses-012 None task-PrettymouthStory task-PrettymouthStory 98380
+
+sub-06 ses-012 None task-TunnelRecency task-TunnelRecency 70807
+
+sub-06 ses-012 None task-Tunnelpart1Recall task-Tunnelpart1Recall 102238
+
+sub-06 ses-012 None task-Tunnelpart1Story task-Tunnelpart1Story 165746
+
+sub-06 ses-012 None task-Tunnelpart2Recall task-Tunnelpart2Recall 76663
+
+sub-06 ses-012 None task-Tunnelpart2Story task-Tunnelpart2Story 169970

@@ -1,0 +1,1275 @@
+
+sub-01 ses-001 None task-s7e1a task-s7e1a 170555
+
+sub-01 ses-001 None task-s7e1b task-s7e1b 183204
+
+sub-01 ses-039 None task-s2e4a task-s2e4a 167565
+
+sub-01 ses-040 None task-s2e4b task-s2e4b 107969
+
+sub-01 ses-041 None task-s5e5a task-s5e5a 180602
+Empty .log file for ('sub-01', 'ses-041', None, 'task-s5e5a', '20220330-170945')
+
+sub-01 ses-041 None task-s5e5b task-s5e5b 193249
+Empty .log file for ('sub-01', 'ses-041', None, 'task-s5e5b', '20220330-170945')
+
+sub-01 ses-041 None task-s5e6a task-s5e6a 170254
+Empty .log file for ('sub-01', 'ses-041', None, 'task-s5e6a', '20220330-170945')
+
+sub-01 ses-041 None task-s5e6b task-s5e6b 175412
+Empty .log file for ('sub-01', 'ses-041', None, 'task-s5e6b', '20220330-170945')
+
+sub-01 ses-042 None task-s5e6b task-s5e6b 7229
+Empty .log file for ('sub-01', 'ses-042', None, 'task-s5e6b', '20220401-105505')
+
+sub-01 ses-042 None task-s5e7a task-s5e7a 142612
+
+sub-01 ses-042 None task-s5e7b task-s5e7b 110617
+
+sub-01 ses-043 None task-s5e1a task-s5e1a 162881
+Empty .log file for ('sub-01', 'ses-043', None, 'task-s5e1a', '20220413-171859')
+
+sub-01 ses-043 None task-s5e8a task-s5e8a 165554
+Empty .log file for ('sub-01', 'ses-043', None, 'task-s5e8a', '20220413-174818')
+
+sub-01 ses-043 None task-s5e8b task-s5e8b 178218
+Empty .log file for ('sub-01', 'ses-043', None, 'task-s5e8b', '20220413-174818')
+
+sub-01 ses-044 None task-s5e9a task-s5e9a 137825
+
+sub-01 ses-044 None task-s5e9b task-s5e9b 128613
+
+sub-01 ses-044 None task-s5e10a task-s5e10a 139335
+Empty .log file for ('sub-01', 'ses-044', None, 'task-s5e10a', '20220422-114022')
+
+sub-01 ses-044 None task-s5e10b task-s5e10b 142784
+Empty .log file for ('sub-01', 'ses-044', None, 'task-s5e10b', '20220422-114022')
+
+sub-01 ses-045 None task-s5e11a task-s5e11a 176786
+
+sub-01 ses-045 None task-s5e11b task-s5e11b 189447
+
+sub-01 ses-045 None task-s5e12a task-s5e12a 165393
+
+sub-01 ses-045 None task-s5e12b task-s5e12b 178046
+
+sub-01 ses-046 None task-s5e13a task-s5e13a 170549
+
+sub-01 ses-046 None task-s5e13b task-s5e13b 133463
+
+sub-01 ses-046 None task-s5e14a task-s5e14a 180245
+
+sub-01 ses-046 None task-s5e14b task-s5e14b 192905
+
+sub-01 ses-047 None task-s5e15a task-s5e15a 148010
+
+sub-01 ses-047 None task-s5e15b task-s5e15b 156646
+
+sub-01 ses-047 None task-s5e16a task-s5e16a 153689
+
+sub-01 ses-047 None task-s5e16b task-s5e16b 166700
+
+sub-01 ses-048 None task-s5e17a task-s5e17a 74713
+
+sub-01 ses-048 None task-s5e17b task-s5e17b 147893
+
+sub-01 ses-048 None task-s5e18a task-s5e18a 92266
+
+sub-01 ses-048 None task-s5e18b task-s5e18b 144039
+
+sub-01 ses-049 None task-s5e19a task-s5e19a 154912
+
+sub-01 ses-049 None task-s5e19b task-s5e19b 170953
+
+sub-01 ses-049 None task-s5e20a task-s5e20a 15485
+
+sub-01 ses-049 None task-s5e20b task-s5e20b 151357
+
+sub-01 ses-050 None task-s5e21a task-s5e21a 138476
+Empty .log file for ('sub-01', 'ses-050', None, 'task-s5e21a', '20220518-171236')
+
+sub-01 ses-050 None task-s5e21b task-s5e21b 177507
+Empty .log file for ('sub-01', 'ses-050', None, 'task-s5e21b', '20220518-171236')
+
+sub-01 ses-050 None task-s5e22a task-s5e22a 166578
+Empty .log file for ('sub-01', 'ses-050', None, 'task-s5e22a', '20220518-171236')
+
+sub-01 ses-050 None task-s5e22b task-s5e22b 179663
+Empty .log file for ('sub-01', 'ses-050', None, 'task-s5e22b', '20220518-171236')
+
+sub-01 ses-051 None task-s6e1b task-s6e1b 2514
+
+sub-01 ses-051 None task-s6e23a task-s6e23a 180426
+
+sub-01 ses-051 None task-s5e23a task-s5e23a 86457
+
+sub-01 ses-051 None task-s5e23b task-s5e23b 118070
+
+sub-01 ses-052 None task-s5e23c task-s5e23c 138425
+
+sub-01 ses-052 None task-s5e23d task-s5e23d 176653
+
+sub-01 ses-052 None task-s6e1a task-s6e1a 172636
+
+sub-01 ses-052 None task-s6e1b task-s6e1b 166420
+
+sub-01 ses-053 None task-s6e2a task-s6e2a 167343
+
+sub-01 ses-053 None task-s6e2b task-s6e2b 152624
+
+sub-01 ses-053 None task-s6e3a task-s6e3a 161608
+
+sub-01 ses-053 None task-s6e3b task-s6e3b 82073
+
+sub-01 ses-053 None task-s6e4a task-s6e4a 162666
+
+sub-01 ses-054 None task-s6e4b task-s6e4b 88100
+
+sub-01 ses-054 None task-s6e5a task-s6e5a 37483
+
+sub-01 ses-054 None task-s6e5b task-s6e5b 180182
+
+sub-01 ses-055 None task-s6e6a task-s6e6a 164599
+
+sub-01 ses-055 None task-s6e6b task-s6e6b 177326
+
+sub-01 ses-055 None task-s6e7a task-s6e7a 165186
+
+sub-01 ses-055 None task-s6e7b task-s6e7b 177819
+
+sub-01 ses-056 None task-s6e10a task-s6e10a 156948
+
+sub-01 ses-056 None task-s6e8a task-s6e8a 156072
+
+sub-01 ses-056 None task-s6e8b task-s6e8b 175221
+
+sub-01 ses-056 None task-s6e9a task-s6e9a 186294
+
+sub-01 ses-056 None task-s6e9b task-s6e9b 195118
+
+sub-01 ses-057 None task-s6e10b task-s6e10b 181540
+
+sub-01 ses-057 None task-s6e11a task-s6e11a 167089
+
+sub-01 ses-057 None task-s6e11b task-s6e11b 147900
+
+sub-01 ses-057 None task-s6e12a task-s6e12a 161622
+
+sub-01 ses-057 None task-s6e12b task-s6e12b 34214
+
+sub-01 ses-058 None task-s6e13a task-s6e13a 174134
+
+sub-01 ses-058 None task-s6e13b task-s6e13b 186565
+
+sub-01 ses-058 None task-s6e14a task-s6e14a 117137
+
+sub-01 ses-058 None task-s6e14b task-s6e14b 183037
+
+sub-01 ses-059 None task-s6e15a task-s6e15a 169159
+
+sub-01 ses-060 None task-s6e15b task-s6e15b 151547
+
+sub-01 ses-060 None task-s6e15c task-s6e15c 153860
+
+sub-01 ses-061 None task-s6e15d task-s6e15d 145739
+
+sub-01 ses-061 None task-s6e17a task-s6e17a 158840
+
+sub-01 ses-061 None task-s6e17b task-s6e17b 171463
+
+sub-01 ses-062 None task-s6e18a task-s6e18a 161611
+
+sub-01 ses-062 None task-s6e18b task-s6e18b 174256
+
+sub-01 ses-062 None task-s6e19a task-s6e19a 161038
+
+sub-01 ses-062 None task-s6e19b task-s6e19b 173326
+
+sub-01 ses-064 None task-s6e21b task-s6e21b 176818
+
+sub-01 ses-064 None task-s6e22a task-s6e22a 167561
+
+sub-01 ses-064 None task-s6e22b task-s6e22b 169386
+
+sub-01 ses-065 None task-s6e23a task-s6e23a 180432
+
+sub-01 ses-065 None task-s6e23b task-s6e23b 193068
+
+sub-01 ses-065 None task-s6e24a task-s6e24a 169467
+
+sub-01 ses-066 None task-s6e24b task-s6e24b 140388
+
+sub-01 ses-066 None task-s6e24c task-s6e24c 118030
+
+sub-01 ses-066 None task-s6e24d task-s6e24d 166862
+
+sub-01 ses-068 None task-s7e2a task-s7e2a 182470
+
+sub-01 ses-072 None task-s7e4b task-s7e4b 178728
+
+sub-01 ses-073 None task-s7e5a task-s7e5a 168175
+
+sub-01 ses-079 None task-s7e9a task-s7e9a 167066
+
+sub-01 ses-079 None task-s7e9b task-s7e9b 179711
+
+sub-01 ses-080 None task-s7e10a task-s7e10a 170308
+
+sub-01 ses-080 None task-s7e10b task-s7e10b 182965
+
+sub-01 ses-080 None task-s7e11a task-s7e11a 172308
+
+sub-01 ses-080 None task-s7e11b task-s7e11b 184951
+
+sub-01 ses-080 None task-s7e12a task-s7e12a 167685
+
+sub-01 ses-081 None task-s7e12b task-s7e12b 180344
+
+sub-01 ses-081 None task-s7e13a task-s7e13a 200038
+
+sub-01 ses-082 None task-s7e13b task-s7e13b 212684
+
+sub-01 ses-082 None task-s7e14a task-s7e14a 173032
+
+sub-01 ses-083 None task-s7e14b task-s7e14b 185687
+
+sub-01 ses-083 None task-s7e15a task-s7e15a 210055
+
+sub-01 ses-084 None task-s7e15b task-s7e15b 222717
+
+sub-01 ses-084 None task-s7e16a task-s7e16a 147502
+
+sub-01 ses-085 None task-s7e16b task-s7e16b 148979
+
+sub-01 ses-085 None task-s7e16c task-s7e16c 160144
+
+sub-01 ses-086 None task-s7e17a task-s7e17a 160637
+
+sub-01 ses-087 None task-s7e17b task-s7e17b 173294
+
+sub-01 ses-087 None task-s7e18a task-s7e18a 176972
+
+sub-01 ses-088 None task-s7e18b task-s7e18b 3127
+Run name not found during .log text parsing for ('sub-01', 'ses-088', None, 'task-s7e18b', '20240423-112031')
+
+sub-01 ses-088 None task-s7e18b task-s7e18b 189635
+
+sub-01 ses-088 None task-s7e19a task-s7e19a 162070
+
+sub-01 ses-088 None task-s7e19b task-s7e19b 174737
+
+sub-01 ses-089 None task-s7e20a task-s7e20a 168416
+
+sub-01 ses-089 None task-s7e20b task-s7e20b 181059
+
+sub-01 ses-089 None task-s7e20a task-s7e20a 0
+Fewer than 11 pupils found for ('sub-01', 'ses-089', None, 'task-s7e20a', '20240523-180526')
+
+sub-01 ses-090 None task-s7e21a task-s7e21a 159201
+
+sub-01 ses-090 None task-s7e21b task-s7e21b 171865
+
+sub-01 ses-090 None task-s7e22a task-s7e22a 174787
+
+sub-01 ses-090 None task-s7e22b task-s7e22b 187451
+
+sub-01 ses-091 None task-s7e23a task-s7e23a 178279
+
+sub-01 ses-091 None task-s7e23b task-s7e23b 179788
+
+sub-01 ses-091 None task-s7e23c task-s7e23c 179791
+
+sub-01 ses-091 None task-s7e23d task-s7e23d 190944
+
+sub-01 ses-69 None task-s7e2b task-s7e2b 195125
+
+sub-01 ses-70 None task-s7e3a task-s7e3a 154767
+
+sub-01 ses-71 None task-s7e3b task-s7e3b 167421
+
+sub-01 ses-71 None task-s7e4a task-s7e4a 166079
+
+sub-01 ses-75 None task-s7e5b task-s7e5b 180842
+
+sub-01 ses-75 None task-s7e6a task-s7e6a 177346
+
+sub-01 ses-75 None task-s7e6b task-s7e6b 190026
+
+sub-01 ses-76 None task-s7e7a task-s7e7a 175337
+
+sub-01 ses-76 None task-s7e7b task-s7e7b 187986
+
+sub-01 ses-77 None task-s7e8a task-s7e8a 175905
+
+sub-01 ses-78 None task-s7e8b task-s7e8b 188571
+
+sub-02 ses-039 None task-s5e14a task-s5e14a 10531
+
+sub-02 ses-039 None task-s5e14b task-s5e14b 31007
+
+sub-02 ses-043 None task-s2e4a task-s2e4a 168358
+
+sub-02 ses-044 None task-s2e4b task-s2e4b 10286
+
+sub-02 ses-044 None task-s2e4b task-s2e4b 165544
+
+sub-02 ses-047 None task-s6e3a task-s6e3a 162813
+
+sub-02 ses-047 None task-s6e3b task-s6e3b 144461
+
+sub-02 ses-047 None task-s6e4a task-s6e4a 115919
+
+sub-02 ses-047 None task-s6e4b task-s6e4b 113978
+
+sub-02 ses-048 None task-s6e4b task-s6e4b 14625
+
+sub-02 ses-048 None task-s6e5a task-s6e5a 84479
+
+sub-02 ses-048 None task-s6e5b task-s6e5b 180194
+
+sub-02 ses-048 None task-s6e6a task-s6e6a 164689
+
+sub-02 ses-048 None task-s6e6b task-s6e6b 137098
+
+sub-02 ses-049 None task-s6e7a task-s6e7a 164581
+
+sub-02 ses-049 None task-s6e7b task-s6e7b 177314
+
+sub-02 ses-049 None task-s6e8a task-s6e8a 146780
+
+sub-02 ses-049 None task-s6e8b task-s6e8b 175335
+
+sub-02 ses-050 None task-s6e10a task-s6e10a 172785
+
+sub-02 ses-050 None task-s6e10b task-s6e10b 185432
+
+sub-02 ses-050 None task-s6e9a task-s6e9a 186903
+
+sub-02 ses-050 None task-s6e9b task-s6e9b 97883
+
+sub-02 ses-051 None task-s6e11a task-s6e11a 167046
+
+sub-02 ses-051 None task-s6e11b task-s6e11b 179738
+
+sub-02 ses-051 None task-s6e12a task-s6e12a 157213
+
+sub-02 ses-051 None task-s6e12b task-s6e12b 62157
+
+sub-02 ses-052 None task-s6e13a task-s6e13a 174237
+Empty .log file for ('sub-02', 'ses-052', None, 'task-s6e13a', '20220330-105035')
+
+sub-02 ses-052 None task-s6e13b task-s6e13b 186873
+Empty .log file for ('sub-02', 'ses-052', None, 'task-s6e13b', '20220330-105035')
+
+sub-02 ses-052 None task-s6e14a task-s6e14a 170992
+Empty .log file for ('sub-02', 'ses-052', None, 'task-s6e14a', '20220330-105035')
+
+sub-02 ses-053 None task-s6e14a task-s6e14a 170966
+
+sub-02 ses-053 None task-s6e14b task-s6e14b 183525
+
+sub-02 ses-054 None task-s6e15a task-s6e15a 142696
+
+sub-02 ses-054 None task-s6e15b task-s6e15b 127115
+
+sub-02 ses-054 None task-s6e15c task-s6e15c 127114
+
+sub-02 ses-054 None task-s6e15d task-s6e15d 135404
+
+sub-02 ses-055 None task-s6e17a task-s6e17a 158513
+
+sub-02 ses-055 None task-s6e17b task-s6e17b 171461
+
+sub-02 ses-055 None task-s6e18a task-s6e18a 161491
+
+sub-02 ses-055 None task-s6e18b task-s6e18b 159830
+
+sub-02 ses-056 None task-s6e19a task-s6e19a 109144
+
+sub-02 ses-056 None task-s6e19b task-s6e19b 159667
+
+sub-02 ses-056 None task-s6e20a task-s6e20a 124745
+
+sub-02 ses-056 None task-s6e20b task-s6e20b 139618
+
+sub-02 ses-057 None task-s6e21a task-s6e21a 21838
+
+sub-02 ses-057 None task-s6e21b task-s6e21b 70853
+
+sub-02 ses-057 None task-s6e22a task-s6e22a 86576
+
+sub-02 ses-057 None task-s6e22b task-s6e22b 15006
+
+sub-02 ses-058 None task-s6e23a task-s6e23a 178489
+
+sub-02 ses-058 None task-s6e23b task-s6e23b 179318
+
+sub-02 ses-058 None task-s6e24a task-s6e24a 18253
+
+sub-02 ses-058 None task-s6e24b task-s6e24b 166102
+
+sub-02 ses-058 None task-s6e24c task-s6e24c 165057
+
+sub-02 ses-058 None task-s6e24d task-s6e24d 80713
+
+sub-02 ses-058 None task-s6e24d task-s6e24d 180308
+
+sub-02 ses-059 None task-s7e1a task-s7e1a 170553
+
+sub-02 ses-059 None task-s7e1b task-s7e1b 172050
+
+sub-02 ses-059 None task-s7e2a task-s7e2a 182470
+
+sub-02 ses-059 None task-s7e2b task-s7e2b 183975
+
+sub-02 ses-059 None task-s7e3a task-s7e3a 154763
+
+sub-02 ses-060 None task-s7e3b task-s7e3b 167417
+
+sub-02 ses-060 None task-s7e4a task-s7e4a 166066
+
+sub-02 ses-060 None task-s7e4b task-s7e4b 178724
+
+sub-02 ses-060 None task-s7e5a task-s7e5a 168179
+
+sub-02 ses-060 None task-s7e5b task-s7e5b 180840
+
+sub-02 ses-061 None task-s7e6a task-s7e6a 177346
+
+sub-02 ses-061 None task-s7e6b task-s7e6b 190009
+
+sub-02 ses-062 None task-s7e7a task-s7e7a 175341
+
+sub-02 ses-062 None task-s7e7b task-s7e7b 187979
+
+sub-02 ses-062 None task-s7e8a task-s7e8a 175919
+
+sub-02 ses-064 None task-s7e8b task-s7e8b 188572
+
+sub-02 ses-065 None task-s7e9a task-s7e9a 167063
+
+sub-02 ses-065 None task-s7e9b task-s7e9b 179726
+
+sub-02 ses-075 None task-s7e19b task-s7e19b 174732
+
+sub-02 ses-075 None task-s7e20a task-s7e20a 168406
+
+sub-02 ses-076 None task-s7e20b task-s7e20b 181064
+
+sub-02 ses-076 None task-s7e21a task-s7e21a 159203
+
+sub-02 ses-076 None task-s7e21b task-s7e21b 171877
+
+sub-02 ses-078 None task-s7e21a task-s7e21a 9713
+
+sub-02 ses-078 None task-s7e22a task-s7e22a 174783
+
+sub-02 ses-078 None task-s7e22b task-s7e22b 187447
+
+sub-02 ses-078 None task-s7e23a task-s7e23a 178282
+
+sub-02 ses-079 None task-s7e23b task-s7e23b 179796
+
+sub-02 ses-079 None task-s7e23c task-s7e23c 179787
+
+sub-02 ses-079 None task-s7e23d task-s7e23d 190944
+
+sub-02 ses-66 None task-s7e10a task-s7e10a 170307
+
+sub-02 ses-66 None task-s7e10b task-s7e10b 182961
+
+sub-02 ses-67 None task-s7e11a task-s7e11a 172300
+
+sub-02 ses-67 None task-s7e11b task-s7e11b 184947
+
+sub-02 ses-68 None task-s7e12a task-s7e12a 163462
+
+sub-02 ses-68 None task-s7e12b task-s7e12b 176409
+
+sub-02 ses-69 None task-s7e13a task-s7e13a 3109
+
+sub-02 ses-69 None task-s7e13a task-s7e13a 200037
+
+sub-02 ses-69 None task-s7e13b task-s7e13b 212682
+
+sub-02 ses-70 None task-s7e14a task-s7e14a 173031
+
+sub-02 ses-70 None task-s7e14b task-s7e14b 185683
+
+sub-02 ses-71 None task-s7e15a task-s7e15a 210053
+
+sub-02 ses-71 None task-s7e15b task-s7e15b 222731
+
+sub-02 ses-72 None task-s7e16a task-s7e16a 147497
+
+sub-02 ses-72 None task-s7e16b task-s7e16b 148991
+
+sub-02 ses-72 None task-s7e16c task-s7e16c 160152
+
+sub-02 ses-73 None task-s7e17a task-s7e17a 160647
+
+sub-02 ses-73 None task-s7e17b task-s7e17b 173290
+
+sub-02 ses-73 None task-s7e18a task-s7e18a 176980
+
+sub-02 ses-74 None task-s7e18b task-s7e18b 189634
+
+sub-02 ses-74 None task-s7e19a task-s7e19a 162080
+
+sub-03 ses-068 None task-s2e4a task-s2e4a 47753
+
+sub-03 ses-069 None task-s2e4b task-s2e4b 539
+
+sub-03 ses-069 None task-s2e4b task-s2e4b 168429
+
+sub-03 ses-070 None task-s6e1a task-s6e1a 137877
+
+sub-03 ses-070 None task-s6e1b task-s6e1b 180909
+
+sub-03 ses-070 None task-s6e2a task-s6e2a 166163
+
+sub-03 ses-070 None task-s6e2b task-s6e2b 179112
+
+sub-03 ses-071 None task-s6e3a task-s6e3a 590
+
+sub-03 ses-071 None task-s6e3b task-s6e3b 175460
+
+sub-03 ses-071 None task-s6e4a task-s6e4a 163187
+
+sub-03 ses-071 None task-s6e4b task-s6e4b 175828
+
+sub-03 ses-072 None task-s6e5a task-s6e5a 167555
+
+sub-03 ses-072 None task-s6e5b task-s6e5b 180189
+
+sub-03 ses-072 None task-s6e6a task-s6e6a 158172
+
+sub-03 ses-072 None task-s6e6b task-s6e6b 169382
+
+sub-03 ses-073 None task-s6e5a task-s6e5a 12404
+Empty .log file for ('sub-03', 'ses-073', None, 'task-s6e5a', '20220330-131623')
+
+sub-03 ses-073 None task-s6e7a task-s6e7a 154284
+
+sub-03 ses-073 None task-s6e7b task-s6e7b 177817
+
+sub-03 ses-074 None task-s6e7a task-s6e7a 6587
+
+sub-03 ses-074 None task-s6e7a task-s6e7a 165189
+
+sub-03 ses-074 None task-s6e7b task-s6e7b 177810
+
+sub-03 ses-074 None task-s6e8a task-s6e8a 130395
+
+sub-03 ses-074 None task-s6e8b task-s6e8b 175336
+
+sub-03 ses-075 None task-s6e10a task-s6e10a 27327
+
+sub-03 ses-075 None task-s6e10b task-s6e10b 39934
+
+sub-03 ses-075 None task-s6e9a task-s6e9a 42666
+
+sub-03 ses-075 None task-s6e9b task-s6e9b 25410
+
+sub-03 ses-076 None task-s6e11a task-s6e11a 162516
+
+sub-03 ses-076 None task-s6e11b task-s6e11b 97390
+
+sub-03 ses-076 None task-s6e12a task-s6e12a 159013
+
+sub-03 ses-076 None task-s6e12b task-s6e12b 168977
+
+sub-03 ses-077 None task-s6e13a task-s6e13a 159924
+
+sub-03 ses-077 None task-s6e13b task-s6e13b 186774
+
+sub-03 ses-077 None task-s6e14a task-s6e14a 170872
+
+sub-03 ses-077 None task-s6e14b task-s6e14b 182911
+
+sub-03 ses-078 None task-s6e15a task-s6e15a 168941
+
+sub-03 ses-078 None task-s6e15b task-s6e15b 170664
+
+sub-03 ses-078 None task-s6e15c task-s6e15c 170653
+
+sub-03 ses-078 None task-s6e15d task-s6e15d 171230
+
+sub-03 ses-078 None task-s6e17a task-s6e17a 144577
+
+sub-03 ses-079 None task-s6e17b task-s6e17b 112977
+
+sub-03 ses-079 None task-s6e18a task-s6e18a 99198
+
+sub-03 ses-079 None task-s6e18b task-s6e18b 168263
+
+sub-03 ses-079 None task-s6e19a task-s6e19a 159405
+
+sub-03 ses-080 None task-s6e19b task-s6e19b 173556
+
+sub-03 ses-080 None task-s6e20a task-s6e20a 159763
+
+sub-03 ses-080 None task-s6e20b task-s6e20b 151382
+
+sub-03 ses-080 None task-s6e21a task-s6e21a 169617
+
+sub-03 ses-080 None task-s6e21b task-s6e21b 181808
+
+sub-03 ses-081 None task-s6e22a task-s6e22a 154083
+
+sub-03 ses-081 None task-s6e22b task-s6e22b 171524
+
+sub-03 ses-081 None task-s6e23a task-s6e23a 155958
+
+sub-03 ses-082 None task-s6e23b task-s6e23b 182067
+
+sub-03 ses-082 None task-s6e24a task-s6e24a 162645
+
+sub-03 ses-083 None task-s6e24b task-s6e24b 144864
+
+sub-03 ses-083 None task-s6e24c task-s6e24c 150340
+
+sub-03 ses-083 None task-s6e24d task-s6e24d 171483
+
+sub-03 ses-084 None task-s7e1a task-s7e1a 170561
+
+sub-03 ses-084 None task-s7e1b task-s7e1b 172048
+
+sub-03 ses-084 None task-s7e2a task-s7e2a 182480
+
+sub-03 ses-084 None task-s7e2b task-s7e2b 183968
+
+sub-03 ses-084 None task-s7e3a task-s7e3a 154759
+
+sub-03 ses-085 None task-s7e1a task-s7e1a 8106
+Run name not found during .log text parsing for ('sub-03', 'ses-085', None, 'task-s7e1a', '20230929-152921')
+
+sub-03 ses-085 None task-s7e1a task-s7e1a 9001
+Run name not found during .log text parsing for ('sub-03', 'ses-085', None, 'task-s7e1a', '20230929-153906')
+
+sub-03 ses-085 None task-s7e3b task-s7e3b 156260
+
+sub-03 ses-085 None task-s7e4a task-s7e4a 166067
+
+sub-03 ses-085 None task-s7e4b task-s7e4b 178712
+
+sub-03 ses-085 None task-s7e5a task-s7e5a 168183
+
+sub-03 ses-086 None task-s7e5b task-s7e5b 180847
+
+sub-03 ses-086 None task-s7e6a task-s7e6a 177349
+
+sub-03 ses-086 None task-s7e6b task-s7e6b 190003
+
+sub-03 ses-086 None task-s7e7a task-s7e7a 175330
+
+sub-03 ses-086 None task-s7e7b task-s7e7b 187987
+
+sub-03 ses-087 None task-s7e8a task-s7e8a 175912
+
+sub-03 ses-087 None task-s7e8b task-s7e8b 188571
+
+sub-03 ses-087 None task-s7e9a task-s7e9a 167061
+
+sub-03 ses-087 None task-s7e9b task-s7e9b 179717
+
+sub-03 ses-088 None task-s7e10a task-s7e10a 170299
+
+sub-03 ses-089 None task-s7e10b task-s7e10b 182962
+
+sub-03 ses-089 None task-s7e11a task-s7e11a 172306
+
+sub-03 ses-090 None task-s7e11b task-s7e11b 184957
+
+sub-03 ses-091 None task-s7e12a task-s7e12a 167678
+
+sub-03 ses-092 None task-s7e12b task-s7e12b 180338
+
+sub-03 ses-093 None task-s7e13a task-s7e13a 200033
+
+sub-03 ses-095 None task-s7e13b task-s7e13b 212695
+
+sub-03 ses-095 None task-s7e14a task-s7e14a 173028
+
+sub-03 ses-096 None task-s7e14b task-s7e14b 185681
+
+sub-03 ses-097 None task-s7e15a task-s7e15a 210063
+
+sub-03 ses-098 None task-s7e15b task-s7e15b 222733
+
+sub-03 ses-098 None task-s7e16a task-s7e16a 147496
+
+sub-03 ses-099 None task-s7e16b task-s7e16b 148988
+
+sub-03 ses-099 None task-s7e16c task-s7e16c 160149
+
+sub-03 ses-099 None task-s7e17a task-s7e17a 160633
+
+sub-03 ses-099 None task-s7e17b task-s7e17b 173290
+
+sub-03 ses-100 None task-s7e18a task-s7e18a 176972
+
+sub-03 ses-100 None task-s7e18b task-s7e18b 189629
+
+sub-03 ses-101 None task-s7e19a task-s7e19a 162081
+
+sub-03 ses-101 None task-s7e19b task-s7e19b 174732
+
+sub-03 ses-102 None task-s7e20a task-s7e20a 168397
+
+sub-03 ses-102 None task-s7e20b task-s7e20b 181058
+
+sub-03 ses-102 None task-s7e21a task-s7e21a 159199
+
+sub-03 ses-102 None task-s7e21b task-s7e21b 171875
+
+sub-03 ses-102 None task-s7e22a task-s7e22a 174782
+
+sub-03 ses-103 None task-s7e22b task-s7e22b 187440
+
+sub-03 ses-103 None task-s7e23a task-s7e23a 178279
+
+sub-03 ses-104 None task-s7e23b task-s7e23b 179785
+
+sub-03 ses-104 None task-s7e23c task-s7e23c 179789
+
+sub-03 ses-104 None task-s7e23d task-s7e23d 190943
+
+sub-05 ses-031 None task-s5e10a task-s5e10a 167026
+
+sub-05 ses-031 None task-s5e10b task-s5e10b 179677
+
+sub-05 ses-031 None task-s5e11a task-s5e11a 173334
+
+sub-05 ses-031 None task-s5e11b task-s5e11b 189451
+
+sub-05 ses-031 None task-s5e9a task-s5e9a 169145
+
+sub-05 ses-031 None task-s5e9b task-s5e9b 181533
+
+sub-05 ses-032 None task-s5e12a task-s5e12a 165256
+
+sub-05 ses-032 None task-s5e12b task-s5e12b 176442
+
+sub-05 ses-032 None task-s5e13a task-s5e13a 148799
+
+sub-05 ses-032 None task-s5e13b task-s5e13b 180485
+
+sub-05 ses-032 None task-s5e14a task-s5e14a 178685
+
+sub-05 ses-032 None task-s5e14b task-s5e14b 188593
+
+sub-05 ses-033 None task-s5e15a task-s5e15a 2273
+Empty .log file for ('sub-05', 'ses-033', None, 'task-s5e15a', '20220606-180620')
+
+sub-05 ses-033 None task-s5e15a task-s5e15a 164420
+Empty .log file for ('sub-05', 'ses-033', None, 'task-s5e15a', '20220606-180939')
+
+sub-05 ses-033 None task-s5e15b task-s5e15b 177077
+Empty .log file for ('sub-05', 'ses-033', None, 'task-s5e15b', '20220606-180939')
+
+sub-05 ses-033 None task-s5e16a task-s5e16a 171077
+Empty .log file for ('sub-05', 'ses-033', None, 'task-s5e16a', '20220606-180939')
+
+sub-05 ses-033 None task-s5e16b task-s5e16b 149667
+Empty .log file for ('sub-05', 'ses-033', None, 'task-s5e16b', '20220606-180939')
+
+sub-05 ses-034 None task-s5e17a task-s5e17a 162924
+Empty .log file for ('sub-05', 'ses-034', None, 'task-s5e17a', '20220711-174553')
+
+sub-05 ses-034 None task-s5e17b task-s5e17b 176443
+Empty .log file for ('sub-05', 'ses-034', None, 'task-s5e17b', '20220711-174553')
+
+sub-05 ses-034 None task-s5e18a task-s5e18a 124302
+Empty .log file for ('sub-05', 'ses-034', None, 'task-s5e18a', '20220711-174553')
+
+sub-05 ses-034 None task-s5e18b task-s5e18b 192904
+Empty .log file for ('sub-05', 'ses-034', None, 'task-s5e18b', '20220711-174553')
+
+sub-05 ses-034 None task-s5e19a task-s5e19a 138347
+Empty .log file for ('sub-05', 'ses-034', None, 'task-s5e19a', '20220711-174553')
+
+sub-05 ses-034 None task-s5e19b task-s5e19b 144965
+Empty .log file for ('sub-05', 'ses-034', None, 'task-s5e19b', '20220711-174553')
+
+sub-05 ses-035 None task-s5e20a task-s5e20a 10685
+
+sub-05 ses-035 None task-s5e20b task-s5e20b 109925
+
+sub-05 ses-035 None task-s5e21a task-s5e21a 153271
+
+sub-05 ses-035 None task-s5e21b task-s5e21b 155178
+
+sub-05 ses-035 None task-s5e22a task-s5e22a 157580
+
+sub-05 ses-035 None task-s5e22b task-s5e22b 143048
+
+sub-05 ses-036 None task-s5e23a task-s5e23a 168506
+
+sub-05 ses-036 None task-s5e23b task-s5e23b 170010
+
+sub-05 ses-036 None task-s5e23c task-s5e23c 170002
+
+sub-05 ses-036 None task-s5e23d task-s5e23d 181161
+
+sub-05 ses-037 None task-s6e1a task-s6e1a 172666
+
+sub-05 ses-037 None task-s6e1b task-s6e1b 184552
+
+sub-05 ses-038 None task-s6e2a task-s6e2a 152890
+Empty .log file for ('sub-05', 'ses-038', None, 'task-s6e2a', '20220829-175019')
+
+sub-05 ses-038 None task-s6e2b task-s6e2b 179444
+Empty .log file for ('sub-05', 'ses-038', None, 'task-s6e2b', '20220829-175019')
+
+sub-05 ses-038 None task-s6e3a task-s6e3a 147613
+Empty .log file for ('sub-05', 'ses-038', None, 'task-s6e3a', '20220829-175019')
+
+sub-05 ses-038 None task-s6e3b task-s6e3b 168272
+Empty .log file for ('sub-05', 'ses-038', None, 'task-s6e3b', '20220829-175019')
+
+sub-05 ses-039 None task-s6e4a task-s6e4a 153821
+
+sub-05 ses-039 None task-s6e4b task-s6e4b 175834
+
+sub-05 ses-039 None task-s6e5a task-s6e5a 167547
+
+sub-05 ses-039 None task-s6e5b task-s6e5b 179196
+
+sub-05 ses-039 None task-s6e6a task-s6e6a 164686
+
+sub-05 ses-039 None task-s6e6b task-s6e6b 176921
+
+sub-05 ses-040 None task-s6e7a task-s6e7a 162135
+
+sub-05 ses-040 None task-s6e7b task-s6e7b 172803
+
+sub-05 ses-040 None task-s6e8a task-s6e8a 158883
+
+sub-05 ses-040 None task-s6e8b task-s6e8b 173391
+
+sub-05 ses-040 None task-s6e9a task-s6e9a 177195
+
+sub-05 ses-040 None task-s6e9b task-s6e9b 195321
+
+sub-05 ses-041 None task-s6e10a task-s6e10a 171251
+
+sub-05 ses-041 None task-s6e10b task-s6e10b 184553
+
+sub-05 ses-041 None task-s6e11a task-s6e11a 166061
+
+sub-05 ses-041 None task-s6e11b task-s6e11b 178734
+
+sub-05 ses-042 None task-s6e12a task-s6e12a 49735
+
+sub-05 ses-042 None task-s6e12b task-s6e12b 153475
+
+sub-05 ses-042 None task-s6e13a task-s6e13a 77057
+
+sub-05 ses-042 None task-s6e13b task-s6e13b 87917
+
+sub-05 ses-042 None task-s6e14a task-s6e14a 102606
+
+sub-05 ses-042 None task-s6e14b task-s6e14b 106002
+
+sub-05 ses-043 None task-s6e15a task-s6e15a 169239
+Empty .log file for ('sub-05', 'ses-043', None, 'task-s6e15a', '20221024-183637')
+
+sub-05 ses-043 None task-s6e15b task-s6e15b 170700
+Empty .log file for ('sub-05', 'ses-043', None, 'task-s6e15b', '20221024-183637')
+
+sub-05 ses-043 None task-s6e15c task-s6e15c 155260
+Empty .log file for ('sub-05', 'ses-043', None, 'task-s6e15c', '20221024-183637')
+
+sub-05 ses-043 None task-s6e15d task-s6e15d 181861
+Empty .log file for ('sub-05', 'ses-043', None, 'task-s6e15d', '20221024-183637')
+
+sub-05 ses-043 None task-s6e17a task-s6e17a 41797
+Empty .log file for ('sub-05', 'ses-043', None, 'task-s6e17a', '20221024-183637')
+
+sub-05 ses-043 None task-s6e17b task-s6e17b 171415
+Empty .log file for ('sub-05', 'ses-043', None, 'task-s6e17b', '20221024-183637')
+
+sub-05 ses-044 None task-s6e18a task-s6e18a 94313
+
+sub-05 ses-044 None task-s6e18b task-s6e18b 131065
+
+sub-05 ses-044 None task-s6e19a task-s6e19a 94681
+
+sub-05 ses-044 None task-s6e19b task-s6e19b 4277
+
+sub-05 ses-044 None task-s6e20a task-s6e20a 11837
+
+sub-05 ses-044 None task-s6e20b task-s6e20b 129031
+
+sub-05 ses-045 None task-s6e21a task-s6e21a 168173
+
+sub-05 ses-045 None task-s6e21b task-s6e21b 179234
+
+sub-05 ses-045 None task-s6e22a task-s6e22a 162420
+
+sub-05 ses-045 None task-s6e22b task-s6e22b 178670
+
+sub-05 ses-045 None task-s6e23a task-s6e23a 178951
+
+sub-05 ses-045 None task-s6e23b task-s6e23b 190270
+
+sub-05 ses-046 None task-s6e24a task-s6e24a 161252
+
+sub-05 ses-046 None task-s6e24b task-s6e24b 160781
+
+sub-05 ses-046 None task-s6e24c task-s6e24c 166943
+
+sub-05 ses-046 None task-s6e24d task-s6e24d 175247
+
+sub-05 ses-047 None task-s7e1a task-s7e1a 170551
+
+sub-05 ses-047 None task-s7e1b task-s7e1b 183211
+
+sub-05 ses-047 None task-s7e2a task-s7e2a 182477
+
+sub-05 ses-047 None task-s7e2b task-s7e2b 195122
+
+sub-05 ses-047 None task-s7e3a task-s7e3a 154754
+
+sub-05 ses-050 None task-s7e6b task-s7e6b 190007
+
+sub-05 ses-050 None task-s7e7a task-s7e7a 175330
+
+sub-05 ses-050 None task-s7e7b task-s7e7b 187989
+
+sub-05 ses-050 None task-s7e8a task-s7e8a 175926
+
+sub-05 ses-050 None task-s7e8b task-s7e8b 188564
+
+sub-05 ses-050 None task-s7e9a task-s7e9a 167075
+
+sub-05 ses-051 None task-s7e10a task-s7e10a 170318
+
+sub-05 ses-051 None task-s7e10b task-s7e10b 182968
+
+sub-05 ses-051 None task-s7e11a task-s7e11a 172303
+
+sub-05 ses-051 None task-s7e11b task-s7e11b 184951
+
+sub-05 ses-051 None task-s7e9b task-s7e9b 179715
+
+sub-05 ses-052 None task-s7e12a task-s7e12a 167680
+
+sub-05 ses-052 None task-s7e12b task-s7e12b 180349
+
+sub-05 ses-053 None task-s7e13a task-s7e13a 200042
+
+sub-05 ses-053 None task-s7e13b task-s7e13b 212690
+
+sub-05 ses-053 None task-s7e14a task-s7e14a 173045
+
+sub-05 ses-053 None task-s7e14b task-s7e14b 185682
+
+sub-05 ses-054 None task-s7e14b task-s7e14b 21904
+Run name not found during .log text parsing for ('sub-05', 'ses-054', None, 'task-s7e14b', '20240502-185950')
+
+sub-05 ses-054 None task-s7e15a task-s7e15a 210061
+
+sub-05 ses-054 None task-s7e15b task-s7e15b 222718
+
+sub-05 ses-054 None task-s7e16a task-s7e16a 147485
+
+sub-05 ses-055 None task-s7e16b task-s7e16b 148984
+
+sub-05 ses-055 None task-s7e16c task-s7e16c 160141
+
+sub-05 ses-055 None task-s7e17a task-s7e17a 160640
+
+sub-05 ses-056 None task-s7e17b task-s7e17b 173286
+
+sub-05 ses-056 None task-s7e18a task-s7e18a 176970
+
+sub-05 ses-056 None task-s7e18b task-s7e18b 189627
+
+sub-05 ses-056 None task-s7e19a task-s7e19a 162083
+
+sub-05 ses-056 None task-s7e19b task-s7e19b 174728
+
+sub-05 ses-057 None task-s7e20a task-s7e20a 168414
+
+sub-05 ses-057 None task-s7e20b task-s7e20b 181062
+
+sub-05 ses-057 None task-s7e21a task-s7e21a 159213
+
+sub-05 ses-057 None task-s7e21b task-s7e21b 171873
+
+sub-05 ses-057 None task-s7e22a task-s7e22a 174792
+
+sub-05 ses-057 None task-s7e22b task-s7e22b 187444
+
+sub-05 ses-057 None task-s7e23a task-s7e23a 178280
+
+sub-05 ses-057 None task-s7e23b task-s7e23b 179794
+
+sub-05 ses-057 None task-s7e23c task-s7e23c 179780
+
+sub-05 ses-057 None task-s7e23d task-s7e23d 190954
+
+sub-05 ses-48 None task-s7e1a task-s7e1a 170553
+
+sub-05 ses-48 None task-s7e1b task-s7e1b 183206
+
+sub-05 ses-48 None task-s7e2a task-s7e2a 182466
+
+sub-05 ses-48 None task-s7e2b task-s7e2b 195141
+
+sub-05 ses-48 None task-s7e3a task-s7e3a 154759
+
+sub-05 ses-49 None task-s7e3b task-s7e3b 167420
+
+sub-05 ses-49 None task-s7e4a task-s7e4a 166066
+
+sub-05 ses-49 None task-s7e4b task-s7e4b 178724
+
+sub-05 ses-49 None task-s7e5a task-s7e5a 168184
+
+sub-05 ses-49 None task-s7e5b task-s7e5b 180857
+
+sub-05 ses-49 None task-s7e6a task-s7e6a 177344
+
+sub-06 ses-040 None task-s2e4a task-s2e4a 15914
+
+sub-06 ses-041 None task-s2e4b task-s2e4b 81785
+
+sub-06 ses-042 None task-s6e1a task-s6e1a 172666
+
+sub-06 ses-042 None task-s6e1b task-s6e1b 185302
+
+sub-06 ses-042 None task-s6e2a task-s6e2a 168053
+
+sub-06 ses-042 None task-s6e2b task-s6e2b 180682
+
+sub-06 ses-043 None task-s6e3a task-s6e3a 151726
+
+sub-06 ses-043 None task-s6e3b task-s6e3b 175344
+
+sub-06 ses-043 None task-s6e4a task-s6e4a 129519
+
+sub-06 ses-043 None task-s6e4b task-s6e4b 175804
+
+sub-0 ses-044 None task-s6e5a task-s6e5a 167525
+No .log file found for ('sub-0', 'ses-044', None, 'task-s6e5a', '20220525-151301') 
+No info.player.json file found for ('sub-0', 'ses-044', None, 'task-s6e5a', '20220525-151301')
+
+sub-0 ses-044 None task-s6e5b task-s6e5b 180142
+No .log file found for ('sub-0', 'ses-044', None, 'task-s6e5b', '20220525-151301') 
+No info.player.json file found for ('sub-0', 'ses-044', None, 'task-s6e5b', '20220525-151301')
+
+sub-0 ses-044 None task-s6e6a task-s6e6a 164645
+No .log file found for ('sub-0', 'ses-044', None, 'task-s6e6a', '20220525-151301') 
+No info.player.json file found for ('sub-0', 'ses-044', None, 'task-s6e6a', '20220525-151301')
+
+sub-0 ses-044 None task-s6e6b task-s6e6b 177198
+No .log file found for ('sub-0', 'ses-044', None, 'task-s6e6b', '20220525-151301') 
+No info.player.json file found for ('sub-0', 'ses-044', None, 'task-s6e6b', '20220525-151301')
+
+sub-06 ses-045 None task-s6e7a task-s6e7a 143321
+
+sub-06 ses-045 None task-s6e7b task-s6e7b 18856
+
+sub-06 ses-045 None task-s6e7b task-s6e7b 161233
+
+sub-06 ses-045 None task-s6e8a task-s6e8a 14567
+
+sub-06 ses-045 None task-s6e8a task-s6e8a 16471
+
+sub-06 ses-045 None task-s6e8a task-s6e8a 2849
+Run name not found during .log text parsing for ('sub-06', 'ses-045', None, 'task-s6e8a', '20220527-162945')
+
+sub-06 ses-045 None task-s6e8a task-s6e8a 72662
+
+sub-06 ses-045 None task-s6e8b task-s6e8b 112071
+
+sub-06 ses-046 None task-s6e10a task-s6e10a 137403
+
+sub-06 ses-046 None task-s6e10b task-s6e10b 142047
+
+sub-06 ses-046 None task-s6e9a task-s6e9a 145316
+
+sub-06 ses-046 None task-s6e9b task-s6e9b 179476
+
+sub-06 ses-047 None task-s6e11a task-s6e11a 87292
+
+sub-06 ses-047 None task-s6e11b task-s6e11b 43760
+
+sub-06 ses-047 None task-s6e12a task-s6e12a 161552
+
+sub-06 ses-047 None task-s6e12b task-s6e12b 174197
+
+sub-06 ses-048 None task-s6e13a task-s6e13a 174228
+
+sub-06 ses-048 None task-s6e13b task-s6e13b 186877
+
+sub-06 ses-048 None task-s6e14a task-s6e14a 170993
+
+sub-06 ses-048 None task-s6e14b task-s6e14b 105579
+
+sub-06 ses-049 None task-s6e15a task-s6e15a 168961
+Empty .log file for ('sub-06', 'ses-049', None, 'task-s6e15a', '20220727-150835')
+
+sub-06 ses-049 None task-s6e15b task-s6e15b 170537
+Empty .log file for ('sub-06', 'ses-049', None, 'task-s6e15b', '20220727-150835')
+
+sub-06 ses-049 None task-s6e15c task-s6e15c 170556
+Empty .log file for ('sub-06', 'ses-049', None, 'task-s6e15c', '20220727-150835')
+
+sub-06 ses-049 None task-s6e15d task-s6e15d 181548
+Empty .log file for ('sub-06', 'ses-049', None, 'task-s6e15d', '20220727-150835')
+
+sub-06 ses-049 None task-s6e17a task-s6e17a 158488
+Empty .log file for ('sub-06', 'ses-049', None, 'task-s6e17a', '20220727-150835')
+
+sub-06 ses-049 None task-s6e17b task-s6e17b 171361
+Empty .log file for ('sub-06', 'ses-049', None, 'task-s6e17b', '20220727-150835')
+
+sub-06 ses-050 None task-s6e18a task-s6e18a 160760
+
+sub-06 ses-050 None task-s6e18b task-s6e18b 173963
+
+sub-06 ses-051 None task-s6e19a task-s6e19a 159142
+
+sub-06 ses-051 None task-s6e19b task-s6e19b 170347
+
+sub-06 ses-051 None task-s6e20a task-s6e20a 158217
+
+sub-06 ses-051 None task-s6e20b task-s6e20b 167266
+
+sub-06 ses-051 None task-s6e21a task-s6e21a 160442
+
+sub-06 ses-052 None task-s6e21b task-s6e21b 5205
+
+sub-06 ses-052 None task-s6e22a task-s6e22a 2566
+
+sub-06 ses-052 None task-s6e22b task-s6e22b 6619
+
+sub-06 ses-053 None task-s6e23a task-s6e23a 65287
+
+sub-06 ses-053 None task-s6e23b task-s6e23b 192773
+
+sub-06 ses-054 None task-s6e24a task-s6e24a 5049
+
+sub-06 ses-054 None task-s6e24b task-s6e24b 61266
+
+sub-06 ses-054 None task-s6e24c task-s6e24c 32483
+
+sub-06 ses-055 None task-s6e24d task-s6e24d 158944
+
+sub-06 ses-056 None task-s7e1a task-s7e1a 170561
+
+sub-06 ses-056 None task-s7e1b task-s7e1b 172051
+
+sub-06 ses-056 None task-s7e2a task-s7e2a 182464
+
+sub-06 ses-056 None task-s7e2b task-s7e2b 183969
+
+sub-06 ses-057 None task-s7e3a task-s7e3a 154761
+
+sub-06 ses-057 None task-s7e3b task-s7e3b 156267
+
+sub-06 ses-057 None task-s7e4a task-s7e4a 166059
+
+sub-06 ses-057 None task-s7e4b task-s7e4b 167561
+
+sub-06 ses-058 None task-s7e5a task-s7e5a 168182
+
+sub-06 ses-058 None task-s7e5b task-s7e5b 180841
+
+sub-06 ses-058 None task-s7e6a task-s7e6a 177358
+
+sub-06 ses-058 None task-s7e6b task-s7e6b 189996
+
+sub-06 ses-059 None task-s7e5a task-s7e5a 9454
+Run name not found during .log text parsing for ('sub-06', 'ses-059', None, 'task-s7e5a', '20231003-141913')
+
+sub-06 ses-059 None task-s7e7a task-s7e7a 175338
+
+sub-06 ses-059 None task-s7e7b task-s7e7b 187993
+
+sub-06 ses-059 None task-s7e8a task-s7e8a 175913
+
+sub-06 ses-059 None task-s7e8b task-s7e8b 188569
+
+sub-06 ses-060 None task-s7e10a task-s7e10a 170302
+
+sub-06 ses-060 None task-s7e10b task-s7e10b 182960
+
+sub-06 ses-060 None task-s7e11a task-s7e11a 172300
+
+sub-06 ses-060 None task-s7e11b task-s7e11b 184958
+
+sub-06 ses-060 None task-s7e12a task-s7e12a 167675
+
+sub-06 ses-060 None task-s7e9a task-s7e9a 167073
+
+sub-06 ses-060 None task-s7e9b task-s7e9b 179718
+
+sub-06 ses-061 None task-s7e12b task-s7e12b 180346
+
+sub-06 ses-061 None task-s7e13a task-s7e13a 200026
+
+sub-06 ses-061 None task-s7e13b task-s7e13b 212692
+
+sub-06 ses-062 None task-s7e14a task-s7e14a 173043
+
+sub-06 ses-063 None task-s7e14b task-s7e14b 185688
+
+sub-06 ses-063 None task-s7e15a task-s7e15a 210059
+
+sub-06 ses-063 None task-s7e15b task-s7e15b 222715
+
+sub-06 ses-063 None task-s7e16a task-s7e16a 147485
+
+sub-06 ses-063 None task-s7e16b task-s7e16b 148986
+
+sub-06 ses-063 None task-s7e16c task-s7e16c 160143
+
+sub-06 ses-064 None task-s7e17a task-s7e17a 160640
+
+sub-06 ses-065 None task-s7e17b task-s7e17b 173290
+
+sub-06 ses-065 None task-s7e18a task-s7e18a 13859
+Run name not found during .log text parsing for ('sub-06', 'ses-065', None, 'task-s7e18a', '20231027-153037')
+
+sub-06 ses-065 None task-s7e18a task-s7e18a 176968
+
+sub-06 ses-065 None task-s7e18b task-s7e18b 189639
+
+sub-06 ses-065 None task-s7e19a task-s7e19a 162086
+
+sub-06 ses-065 None task-s7e19b task-s7e19b 174737
+
+sub-06 ses-066 None task-s7e20a task-s7e20a 168412
+
+sub-06 ses-066 None task-s7e20b task-s7e20b 181053
+
+sub-06 ses-067 None task-s7e21a task-s7e21a 159205
+
+sub-06 ses-067 None task-s7e21b task-s7e21b 171866
+
+sub-06 ses-068 None task-s7e22a task-s7e22a 174783
+
+sub-06 ses-068 None task-s7e22b task-s7e22b 187450
+
+sub-06 ses-069 None task-s7e23a task-s7e23a 178289
+
+sub-06 ses-070 None task-s7e23b task-s7e23b 179797
+
+sub-06 ses-070 None task-s7e23c task-s7e23c 179785
+
+sub-06 ses-070 None task-s7e23d task-s7e23d 190935
+
+sub-074 ses-074 None task-s6e7a task-s6e7a 6587
+
+sub-074 ses-074 None task-s6e7a task-s6e7a 165189
+
+sub-074 ses-074 None task-s6e7b task-s6e7b 177810
+
+sub-074 ses-074 None task-s6e8a task-s6e8a 130395
+
+sub-074 ses-074 None task-s6e8b task-s6e8b 175336

@@ -1,0 +1,1640 @@
+
+sub-01 ses-001 run-1 task-thingsmemory task-thingsmemory 33978
+
+sub-01 ses-001 run-2 task-thingsmemory task-thingsmemory 33979
+
+sub-01 ses-001 run-3 task-thingsmemory task-thingsmemory 33981
+
+sub-01 ses-002 run-1 task-thingsmemory task-thingsmemory 69545
+
+sub-01 ses-002 run-2 task-thingsmemory task-thingsmemory 69553
+
+sub-01 ses-002 run-3 task-thingsmemory task-thingsmemory 69657
+
+sub-01 ses-002 run-4 task-thingsmemory task-thingsmemory 69559
+
+sub-01 ses-002 run-5 task-thingsmemory task-thingsmemory 69624
+
+sub-01 ses-002 run-6 task-thingsmemory task-thingsmemory 69632
+
+sub-01 ses-003 run-1 task-thingsmemory task-thingsmemory 43963
+
+sub-01 ses-003 run-2 task-thingsmemory task-thingsmemory 38422
+
+sub-01 ses-003 run-3 task-thingsmemory task-thingsmemory 69637
+
+sub-01 ses-003 run-4 task-thingsmemory task-thingsmemory 84346
+
+sub-01 ses-003 run-5 task-thingsmemory task-thingsmemory 69652
+
+sub-01 ses-003 run-6 task-thingsmemory task-thingsmemory 69656
+
+sub-01 ses-004 run-1 task-thingsmemory task-thingsmemory 69651
+
+sub-01 ses-004 run-2 task-thingsmemory task-thingsmemory 69651
+
+sub-01 ses-004 run-3 task-thingsmemory task-thingsmemory 69583
+
+sub-01 ses-004 run-4 task-thingsmemory task-thingsmemory 69461
+
+sub-01 ses-004 run-5 task-thingsmemory task-thingsmemory 69650
+
+sub-01 ses-004 run-6 task-thingsmemory task-thingsmemory 69521
+
+sub-01 ses-005 run-1 task-thingsmemory task-thingsmemory 69627
+
+sub-01 ses-005 run-2 task-thingsmemory task-thingsmemory 69505
+
+sub-01 ses-005 run-3 task-thingsmemory task-thingsmemory 69527
+
+sub-01 ses-005 run-4 task-thingsmemory task-thingsmemory 69662
+
+sub-01 ses-005 run-5 task-thingsmemory task-thingsmemory 69644
+
+sub-01 ses-005 run-6 task-thingsmemory task-thingsmemory 69655
+
+sub-01 ses-006 run-1 task-thingsmemory task-thingsmemory 69648
+
+sub-01 ses-006 run-2 task-thingsmemory task-thingsmemory 69648
+
+sub-01 ses-006 run-3 task-thingsmemory task-thingsmemory 69651
+
+sub-01 ses-006 run-4 task-thingsmemory task-thingsmemory 69651
+
+sub-01 ses-006 run-5 task-thingsmemory task-thingsmemory 69655
+
+sub-01 ses-006 run-6 task-thingsmemory task-thingsmemory 69649
+
+sub-01 ses-008 run-1 task-thingsmemory task-thingsmemory 69655
+
+sub-01 ses-008 run-2 task-thingsmemory task-thingsmemory 69650
+
+sub-01 ses-008 run-3 task-thingsmemory task-thingsmemory 69652
+
+sub-01 ses-008 run-4 task-thingsmemory task-thingsmemory 69652
+
+sub-01 ses-008 run-5 task-thingsmemory task-thingsmemory 69653
+
+sub-01 ses-008 run-6 task-thingsmemory task-thingsmemory 69652
+
+sub-01 ses-009 run-1 task-thingsmemory task-thingsmemory 67499
+Empty .log file for ('sub-01', 'ses-009', 'run-1', 'task-thingsmemory', '20210609-174032')
+
+sub-01 ses-009 run-2 task-thingsmemory task-thingsmemory 67340
+Empty .log file for ('sub-01', 'ses-009', 'run-2', 'task-thingsmemory', '20210609-174032')
+
+sub-01 ses-009 run-3 task-thingsmemory task-thingsmemory 65276
+Empty .log file for ('sub-01', 'ses-009', 'run-3', 'task-thingsmemory', '20210609-174032')
+
+sub-01 ses-009 run-4 task-thingsmemory task-thingsmemory 66546
+Empty .log file for ('sub-01', 'ses-009', 'run-4', 'task-thingsmemory', '20210609-174032')
+
+sub-01 ses-009 run-5 task-thingsmemory task-thingsmemory 67346
+Empty .log file for ('sub-01', 'ses-009', 'run-5', 'task-thingsmemory', '20210609-174032')
+
+sub-01 ses-009 run-6 task-thingsmemory task-thingsmemory 69652
+Empty .log file for ('sub-01', 'ses-009', 'run-6', 'task-thingsmemory', '20210609-181410')
+
+sub-01 ses-010 run-1 task-thingsmemory task-thingsmemory 69098
+
+sub-01 ses-010 run-2 task-thingsmemory task-thingsmemory 69542
+
+sub-01 ses-010 run-3 task-thingsmemory task-thingsmemory 69649
+
+sub-01 ses-010 run-4 task-thingsmemory task-thingsmemory 69654
+
+sub-01 ses-010 run-5 task-thingsmemory task-thingsmemory 68368
+
+sub-01 ses-010 run-6 task-thingsmemory task-thingsmemory 69390
+
+sub-01 ses-012 run-1 task-thingsmemory task-thingsmemory 69644
+
+sub-01 ses-012 run-2 task-thingsmemory task-thingsmemory 69651
+
+sub-01 ses-012 run-3 task-thingsmemory task-thingsmemory 69656
+
+sub-01 ses-012 run-4 task-thingsmemory task-thingsmemory 69653
+
+sub-01 ses-012 run-5 task-thingsmemory task-thingsmemory 69651
+
+sub-01 ses-012 run-6 task-thingsmemory task-thingsmemory 69646
+
+sub-01 ses-014 run-1 task-thingsmemory task-thingsmemory 20411
+
+sub-01 ses-014 run-1 task-thingsmemory task-thingsmemory 69663
+
+sub-01 ses-014 run-2 task-thingsmemory task-thingsmemory 69657
+
+sub-01 ses-014 run-3 task-thingsmemory task-thingsmemory 69658
+
+sub-01 ses-014 run-4 task-thingsmemory task-thingsmemory 69659
+
+sub-01 ses-014 run-5 task-thingsmemory task-thingsmemory 69663
+
+sub-01 ses-014 run-6 task-thingsmemory task-thingsmemory 69661
+
+sub-01 ses-015 run-1 task-thingsmemory task-thingsmemory 69657
+
+sub-01 ses-015 run-2 task-thingsmemory task-thingsmemory 68931
+
+sub-01 ses-015 run-3 task-thingsmemory task-thingsmemory 69662
+
+sub-01 ses-015 run-4 task-thingsmemory task-thingsmemory 68778
+
+sub-01 ses-015 run-5 task-thingsmemory task-thingsmemory 69374
+
+sub-01 ses-015 run-6 task-thingsmemory task-thingsmemory 69662
+
+sub-01 ses-016 run-1 task-thingsmemory task-thingsmemory 69654
+
+sub-01 ses-016 run-2 task-thingsmemory task-thingsmemory 69663
+
+sub-01 ses-016 run-3 task-thingsmemory task-thingsmemory 69655
+
+sub-01 ses-016 run-4 task-thingsmemory task-thingsmemory 69289
+
+sub-01 ses-016 run-5 task-thingsmemory task-thingsmemory 69658
+
+sub-01 ses-016 run-6 task-thingsmemory task-thingsmemory 69666
+
+sub-01 ses-017 run-1 task-thingsmemory task-thingsmemory 7360
+
+sub-01 ses-017 run-2 task-thingsmemory task-thingsmemory 0
+Fewer than 11 pupils found for ('sub-01', 'ses-017', 'run-2', 'task-thingsmemory', '20210901-173119')
+
+sub-01 ses-017 run-3 task-thingsmemory task-thingsmemory 0
+Fewer than 11 pupils found for ('sub-01', 'ses-017', 'run-3', 'task-thingsmemory', '20210901-173119')
+
+sub-01 ses-017 run-5 task-thingsmemory task-thingsmemory 0
+Fewer than 11 pupils found for ('sub-01', 'ses-017', 'run-5', 'task-thingsmemory', '20210901-173119')
+
+sub-01 ses-017 run-6 task-thingsmemory task-thingsmemory 0
+Fewer than 11 pupils found for ('sub-01', 'ses-017', 'run-6', 'task-thingsmemory', '20210901-173119')
+
+sub-01 ses-017 run-4 task-thingsmemory task-thingsmemory 0
+Fewer than 11 pupils found for ('sub-01', 'ses-017', 'run-4', 'task-thingsmemory', '20210901-180244')
+
+sub-01 ses-018 run-1 task-thingsmemory task-thingsmemory 69661
+
+sub-01 ses-018 run-2 task-thingsmemory task-thingsmemory 69665
+
+sub-01 ses-018 run-3 task-thingsmemory task-thingsmemory 69663
+
+sub-01 ses-018 run-4 task-thingsmemory task-thingsmemory 69659
+
+sub-01 ses-018 run-5 task-thingsmemory task-thingsmemory 69660
+
+sub-01 ses-018 run-6 task-thingsmemory task-thingsmemory 69664
+
+sub-01 ses-019 run-1 task-thingsmemory task-thingsmemory 69659
+
+sub-01 ses-019 run-2 task-thingsmemory task-thingsmemory 69656
+
+sub-01 ses-019 run-3 task-thingsmemory task-thingsmemory 69659
+
+sub-01 ses-019 run-4 task-thingsmemory task-thingsmemory 69658
+
+sub-01 ses-019 run-5 task-thingsmemory task-thingsmemory 69662
+
+sub-01 ses-019 run-6 task-thingsmemory task-thingsmemory 69657
+
+sub-01 ses-020 run-1 task-thingsmemory task-thingsmemory 69665
+Empty .log file for ('sub-01', 'ses-020', 'run-1', 'task-thingsmemory', '20210915-151647')
+
+sub-01 ses-020 run-2 task-thingsmemory task-thingsmemory 69660
+Empty .log file for ('sub-01', 'ses-020', 'run-2', 'task-thingsmemory', '20210915-151647')
+
+sub-01 ses-020 run-3 task-thingsmemory task-thingsmemory 69660
+Empty .log file for ('sub-01', 'ses-020', 'run-3', 'task-thingsmemory', '20210915-151647')
+
+sub-01 ses-020 run-4 task-thingsmemory task-thingsmemory 69656
+Empty .log file for ('sub-01', 'ses-020', 'run-4', 'task-thingsmemory', '20210915-151647')
+
+sub-01 ses-020 run-5 task-thingsmemory task-thingsmemory 29454
+Empty .log file for ('sub-01', 'ses-020', 'run-5', 'task-thingsmemory', '20210915-155242')
+
+sub-01 ses-020 run-6 task-thingsmemory task-thingsmemory 69657
+
+sub-01 ses-020 run-1 task-thingsmemory task-thingsmemory 69658
+
+sub-01 ses-020 run-2 task-thingsmemory task-thingsmemory 69729
+
+sub-01 ses-020 run-3 task-thingsmemory task-thingsmemory 69041
+
+sub-01 ses-020 run-4 task-thingsmemory task-thingsmemory 69662
+
+sub-01 ses-020 run-5 task-thingsmemory task-thingsmemory 68014
+
+sub-01 ses-020 run-6 task-thingsmemory task-thingsmemory 69602
+
+sub-01 ses-021 run-1 task-thingsmemory task-thingsmemory 69661
+
+sub-01 ses-021 run-2 task-thingsmemory task-thingsmemory 69662
+
+sub-01 ses-021 run-3 task-thingsmemory task-thingsmemory 69667
+
+sub-01 ses-021 run-4 task-thingsmemory task-thingsmemory 69665
+Empty .log file for ('sub-01', 'ses-021', 'run-4', 'task-thingsmemory', '20210929-181828')
+
+sub-01 ses-021 run-5 task-thingsmemory task-thingsmemory 69664
+Empty .log file for ('sub-01', 'ses-021', 'run-5', 'task-thingsmemory', '20210929-181828')
+
+sub-01 ses-021 run-6 task-thingsmemory task-thingsmemory 66740
+Empty .log file for ('sub-01', 'ses-021', 'run-6', 'task-thingsmemory', '20210929-181828')
+
+sub-01 ses-022 run-1 task-thingsmemory task-thingsmemory 68906
+
+sub-01 ses-022 run-2 task-thingsmemory task-thingsmemory 69520
+
+sub-01 ses-022 run-3 task-thingsmemory task-thingsmemory 69054
+
+sub-01 ses-022 run-4 task-thingsmemory task-thingsmemory 69661
+
+sub-01 ses-022 run-5 task-thingsmemory task-thingsmemory 69277
+
+sub-01 ses-022 run-6 task-thingsmemory task-thingsmemory 69611
+
+sub-01 ses-023 run-1 task-thingsmemory task-thingsmemory 69662
+
+sub-01 ses-023 run-2 task-thingsmemory task-thingsmemory 69662
+
+sub-01 ses-023 run-3 task-thingsmemory task-thingsmemory 69665
+
+sub-01 ses-023 run-4 task-thingsmemory task-thingsmemory 68999
+
+sub-01 ses-023 run-5 task-thingsmemory task-thingsmemory 69661
+
+sub-01 ses-023 run-6 task-thingsmemory task-thingsmemory 69670
+
+sub-01 ses-024 run-1 task-thingsmemory task-thingsmemory 69668
+
+sub-01 ses-024 run-2 task-thingsmemory task-thingsmemory 69662
+
+sub-01 ses-024 run-3 task-thingsmemory task-thingsmemory 69656
+
+sub-01 ses-024 run-4 task-thingsmemory task-thingsmemory 69211
+
+sub-01 ses-024 run-5 task-thingsmemory task-thingsmemory 69662
+
+sub-01 ses-024 run-6 task-thingsmemory task-thingsmemory 69664
+
+sub-01 ses-026 run-1 task-thingsmemory task-thingsmemory 69543
+
+sub-01 ses-026 run-2 task-thingsmemory task-thingsmemory 66913
+
+sub-01 ses-026 run-3 task-thingsmemory task-thingsmemory 68153
+
+sub-01 ses-026 run-4 task-thingsmemory task-thingsmemory 69280
+
+sub-01 ses-026 run-5 task-thingsmemory task-thingsmemory 69871
+
+sub-01 ses-026 run-6 task-thingsmemory task-thingsmemory 69670
+
+sub-01 ses-027 run-1 task-thingsmemory task-thingsmemory 69191
+
+sub-01 ses-027 run-2 task-thingsmemory task-thingsmemory 69655
+
+sub-01 ses-027 run-3 task-thingsmemory task-thingsmemory 69645
+
+sub-01 ses-027 run-4 task-thingsmemory task-thingsmemory 69659
+
+sub-01 ses-027 run-5 task-thingsmemory task-thingsmemory 69662
+
+sub-01 ses-027 run-6 task-thingsmemory task-thingsmemory 69658
+
+sub-01 ses-028 run-1 task-thingsmemory task-thingsmemory 69657
+
+sub-01 ses-028 run-2 task-thingsmemory task-thingsmemory 69667
+
+sub-01 ses-028 run-3 task-thingsmemory task-thingsmemory 69658
+
+sub-01 ses-028 run-4 task-thingsmemory task-thingsmemory 69660
+
+sub-01 ses-028 run-5 task-thingsmemory task-thingsmemory 69656
+
+sub-01 ses-028 run-6 task-thingsmemory task-thingsmemory 69655
+
+sub-01 ses-029 run-1 task-thingsmemory task-thingsmemory 69662
+
+sub-01 ses-029 run-2 task-thingsmemory task-thingsmemory 70645
+
+sub-01 ses-029 run-3 task-thingsmemory task-thingsmemory 70646
+
+sub-01 ses-029 run-4 task-thingsmemory task-thingsmemory 69858
+
+sub-01 ses-029 run-5 task-thingsmemory task-thingsmemory 69282
+
+sub-01 ses-029 run-6 task-thingsmemory task-thingsmemory 64185
+
+sub-01 ses-030 run-1 task-thingsmemory task-thingsmemory 69663
+
+sub-01 ses-030 run-2 task-thingsmemory task-thingsmemory 69662
+
+sub-01 ses-030 run-3 task-thingsmemory task-thingsmemory 69658
+
+sub-01 ses-030 run-4 task-thingsmemory task-thingsmemory 69652
+
+sub-01 ses-030 run-5 task-thingsmemory task-thingsmemory 69654
+
+sub-01 ses-030 run-6 task-thingsmemory task-thingsmemory 69662
+
+sub-01 ses-031 run-1 task-thingsmemory task-thingsmemory 69653
+
+sub-01 ses-031 run-2 task-thingsmemory task-thingsmemory 69657
+
+sub-01 ses-031 run-3 task-thingsmemory task-thingsmemory 69651
+
+sub-01 ses-031 run-4 task-thingsmemory task-thingsmemory 69638
+
+sub-01 ses-031 run-5 task-thingsmemory task-thingsmemory 69663
+
+sub-01 ses-031 run-6 task-thingsmemory task-thingsmemory 69657
+
+sub-01 ses-032 run-1 task-thingsmemory task-thingsmemory 69660
+Empty .log file for ('sub-01', 'ses-032', 'run-1', 'task-thingsmemory', '20211215-165530')
+
+sub-01 ses-032 run-2 task-thingsmemory task-thingsmemory 69661
+Empty .log file for ('sub-01', 'ses-032', 'run-2', 'task-thingsmemory', '20211215-165530')
+
+sub-01 ses-032 run-3 task-thingsmemory task-thingsmemory 69662
+Empty .log file for ('sub-01', 'ses-032', 'run-3', 'task-thingsmemory', '20211215-165530')
+
+sub-01 ses-032 run-4 task-thingsmemory task-thingsmemory 69668
+Empty .log file for ('sub-01', 'ses-032', 'run-4', 'task-thingsmemory', '20211215-165530')
+
+sub-01 ses-033 run-1 task-thingsmemory task-thingsmemory 69663
+
+sub-01 ses-033 run-2 task-thingsmemory task-thingsmemory 69663
+
+sub-01 ses-033 run-3 task-thingsmemory task-thingsmemory 69659
+
+sub-01 ses-033 run-4 task-thingsmemory task-thingsmemory 69662
+
+sub-01 ses-033 run-5 task-thingsmemory task-thingsmemory 69657
+
+sub-01 ses-033 run-6 task-thingsmemory task-thingsmemory 69661
+
+sub-01 ses-034 run-1 task-thingsmemory task-thingsmemory 68931
+Empty .log file for ('sub-01', 'ses-034', 'run-1', 'task-thingsmemory', '20220112-173839')
+
+sub-01 ses-034 run-2 task-thingsmemory task-thingsmemory 69667
+
+sub-01 ses-034 run-3 task-thingsmemory task-thingsmemory 69002
+
+sub-01 ses-034 run-4 task-thingsmemory task-thingsmemory 70632
+
+sub-01 ses-034 run-5 task-thingsmemory task-thingsmemory 69659
+
+sub-01 ses-034 run-6 task-thingsmemory task-thingsmemory 69514
+
+sub-01 ses-035 run-1 task-thingsmemory task-thingsmemory 69661
+Empty .log file for ('sub-01', 'ses-035', 'run-1', 'task-thingsmemory', '20220119-172302')
+
+sub-01 ses-035 run-2 task-thingsmemory task-thingsmemory 69664
+Empty .log file for ('sub-01', 'ses-035', 'run-2', 'task-thingsmemory', '20220119-172302')
+
+sub-01 ses-035 run-3 task-thingsmemory task-thingsmemory 69661
+Empty .log file for ('sub-01', 'ses-035', 'run-3', 'task-thingsmemory', '20220119-172302')
+
+sub-01 ses-035 run-4 task-thingsmemory task-thingsmemory 69662
+
+sub-01 ses-035 run-5 task-thingsmemory task-thingsmemory 69663
+
+sub-01 ses-035 run-6 task-thingsmemory task-thingsmemory 69662
+
+sub-01 ses-036 run-1 task-thingsmemory task-thingsmemory 69666
+
+sub-01 ses-036 run-2 task-thingsmemory task-thingsmemory 68884
+
+sub-01 ses-036 run-3 task-thingsmemory task-thingsmemory 68864
+
+sub-01 ses-036 run-4 task-thingsmemory task-thingsmemory 69663
+
+sub-01 ses-036 run-5 task-thingsmemory task-thingsmemory 69659
+
+sub-01 ses-036 run-6 task-thingsmemory task-thingsmemory 69666
+
+sub-02 ses-001 run-1 task-thingsmemory task-thingsmemory 69442
+
+sub-02 ses-001 run-2 task-thingsmemory task-thingsmemory 68169
+
+sub-02 ses-001 run-3 task-thingsmemory task-thingsmemory 70556
+
+sub-02 ses-002 run-1 task-thingsmemory task-thingsmemory 67743
+
+sub-02 ses-002 run-2 task-thingsmemory task-thingsmemory 68880
+
+sub-02 ses-002 run-3 task-thingsmemory task-thingsmemory 65861
+
+sub-02 ses-002 run-4 task-thingsmemory task-thingsmemory 66694
+
+sub-02 ses-002 run-5 task-thingsmemory task-thingsmemory 66063
+
+sub-02 ses-002 run-6 task-thingsmemory task-thingsmemory 63576
+
+sub-02 ses-003 run-1 task-thingsmemory task-thingsmemory 68735
+
+sub-02 ses-003 run-2 task-thingsmemory task-thingsmemory 60706
+
+sub-02 ses-003 run-3 task-thingsmemory task-thingsmemory 60879
+
+sub-02 ses-003 run-4 task-thingsmemory task-thingsmemory 58657
+
+sub-02 ses-003 run-5 task-thingsmemory task-thingsmemory 59999
+
+sub-02 ses-003 run-6 task-thingsmemory task-thingsmemory 62844
+
+sub-02 ses-004 run-1 task-thingsmemory task-thingsmemory 69611
+
+sub-02 ses-004 run-2 task-thingsmemory task-thingsmemory 68484
+
+sub-02 ses-004 run-3 task-thingsmemory task-thingsmemory 68701
+
+sub-02 ses-004 run-4 task-thingsmemory task-thingsmemory 69398
+
+sub-02 ses-004 run-5 task-thingsmemory task-thingsmemory 79415
+
+sub-02 ses-004 run-6 task-thingsmemory task-thingsmemory 68417
+
+sub-02 ses-005 run-1 task-thingsmemory task-thingsmemory 64386
+
+sub-02 ses-005 run-2 task-thingsmemory task-thingsmemory 64821
+
+sub-02 ses-005 run-3 task-thingsmemory task-thingsmemory 65337
+
+sub-02 ses-005 run-4 task-thingsmemory task-thingsmemory 63967
+
+sub-02 ses-005 run-5 task-thingsmemory task-thingsmemory 65247
+
+sub-02 ses-005 run-6 task-thingsmemory task-thingsmemory 63522
+
+sub-02 ses-006 run-1 task-thingsmemory task-thingsmemory 67464
+
+sub-02 ses-006 run-2 task-thingsmemory task-thingsmemory 69650
+
+sub-02 ses-006 run-3 task-thingsmemory task-thingsmemory 70642
+
+sub-02 ses-006 run-4 task-thingsmemory task-thingsmemory 69645
+
+sub-02 ses-006 run-5 task-thingsmemory task-thingsmemory 69646
+
+sub-02 ses-006 run-6 task-thingsmemory task-thingsmemory 69653
+
+sub-02 ses-009 run-1 task-thingsmemory task-thingsmemory 69619
+
+sub-02 ses-009 run-2 task-thingsmemory task-thingsmemory 73217
+
+sub-02 ses-009 run-3 task-thingsmemory task-thingsmemory 69655
+
+sub-02 ses-009 run-4 task-thingsmemory task-thingsmemory 68890
+
+sub-02 ses-009 run-5 task-thingsmemory task-thingsmemory 69652
+
+sub-02 ses-009 run-6 task-thingsmemory task-thingsmemory 69645
+
+sub-02 ses-010 run-1 task-thingsmemory task-thingsmemory 69629
+
+sub-02 ses-010 run-2 task-thingsmemory task-thingsmemory 69657
+
+sub-02 ses-010 run-3 task-thingsmemory task-thingsmemory 69644
+
+sub-02 ses-010 run-4 task-thingsmemory task-thingsmemory 69653
+
+sub-02 ses-010 run-5 task-thingsmemory task-thingsmemory 69586
+
+sub-02 ses-010 run-6 task-thingsmemory task-thingsmemory 69648
+
+sub-02 ses-011 run-1 task-thingsmemory task-thingsmemory 69654
+
+sub-02 ses-011 run-2 task-thingsmemory task-thingsmemory 69462
+
+sub-02 ses-011 run-3 task-thingsmemory task-thingsmemory 69652
+
+sub-02 ses-011 run-4 task-thingsmemory task-thingsmemory 56712
+
+sub-02 ses-011 run-5 task-thingsmemory task-thingsmemory 68050
+
+sub-02 ses-011 run-6 task-thingsmemory task-thingsmemory 69650
+
+sub-02 ses-012 run-1 task-thingsmemory task-thingsmemory 69663
+
+sub-02 ses-012 run-2 task-thingsmemory task-thingsmemory 70652
+
+sub-02 ses-012 run-3 task-thingsmemory task-thingsmemory 69742
+
+sub-02 ses-012 run-4 task-thingsmemory task-thingsmemory 69662
+
+sub-02 ses-012 run-5 task-thingsmemory task-thingsmemory 69139
+
+sub-02 ses-012 run-6 task-thingsmemory task-thingsmemory 68492
+
+sub-02 ses-013 run-1 task-thingsmemory task-thingsmemory 69664
+
+sub-02 ses-013 run-2 task-thingsmemory task-thingsmemory 69664
+
+sub-02 ses-013 run-3 task-thingsmemory task-thingsmemory 69660
+
+sub-02 ses-013 run-4 task-thingsmemory task-thingsmemory 69657
+
+sub-02 ses-013 run-5 task-thingsmemory task-thingsmemory 69655
+
+sub-02 ses-013 run-6 task-thingsmemory task-thingsmemory 69665
+
+sub-02 ses-014 run-1 task-thingsmemory task-thingsmemory 69661
+
+sub-02 ses-014 run-2 task-thingsmemory task-thingsmemory 69662
+
+sub-02 ses-014 run-3 task-thingsmemory task-thingsmemory 69661
+
+sub-02 ses-014 run-4 task-thingsmemory task-thingsmemory 69661
+
+sub-02 ses-014 run-5 task-thingsmemory task-thingsmemory 69565
+
+sub-02 ses-014 run-6 task-thingsmemory task-thingsmemory 69660
+
+sub-02 ses-015 run-1 task-thingsmemory task-thingsmemory 69665
+
+sub-02 ses-015 run-2 task-thingsmemory task-thingsmemory 69665
+
+sub-02 ses-015 run-3 task-thingsmemory task-thingsmemory 69662
+
+sub-02 ses-015 run-4 task-thingsmemory task-thingsmemory 69665
+
+sub-02 ses-015 run-5 task-thingsmemory task-thingsmemory 69660
+
+sub-02 ses-015 run-6 task-thingsmemory task-thingsmemory 69660
+
+sub-02 ses-016 run-1 task-thingsmemory task-thingsmemory 68990
+
+sub-02 ses-016 run-2 task-thingsmemory task-thingsmemory 69581
+
+sub-02 ses-016 run-3 task-thingsmemory task-thingsmemory 69475
+
+sub-02 ses-016 run-4 task-thingsmemory task-thingsmemory 69662
+
+sub-02 ses-016 run-5 task-thingsmemory task-thingsmemory 69665
+
+sub-02 ses-016 run-6 task-thingsmemory task-thingsmemory 69201
+
+sub-02 ses-017 run-1 task-thingsmemory task-thingsmemory 67327
+
+sub-02 ses-017 run-2 task-thingsmemory task-thingsmemory 69443
+
+sub-02 ses-017 run-3 task-thingsmemory task-thingsmemory 69660
+
+sub-02 ses-017 run-4 task-thingsmemory task-thingsmemory 69662
+
+sub-02 ses-017 run-5 task-thingsmemory task-thingsmemory 68462
+
+sub-02 ses-017 run-6 task-thingsmemory task-thingsmemory 69662
+
+sub-02 ses-018 run-1 task-thingsmemory task-thingsmemory 68950
+Empty .log file for ('sub-02', 'ses-018', 'run-1', 'task-thingsmemory', '20210901-105136')
+
+sub-02 ses-018 run-2 task-thingsmemory task-thingsmemory 70564
+Empty .log file for ('sub-02', 'ses-018', 'run-2', 'task-thingsmemory', '20210901-105136')
+
+sub-02 ses-018 run-3 task-thingsmemory task-thingsmemory 46127
+Empty .log file for ('sub-02', 'ses-018', 'run-3', 'task-thingsmemory', '20210901-105136')
+
+sub-02 ses-018 run-4 task-thingsmemory task-thingsmemory 28456
+Empty .log file for ('sub-02', 'ses-018', 'run-4', 'task-thingsmemory', '20210901-113903')
+
+sub-02 ses-018 run-5 task-thingsmemory task-thingsmemory 0
+Fewer than 11 pupils found for ('sub-02', 'ses-018', 'run-5', 'task-thingsmemory', '20210901-115329')
+
+sub-02 ses-018 run-6 task-thingsmemory task-thingsmemory 0
+Fewer than 11 pupils found for ('sub-02', 'ses-018', 'run-6', 'task-thingsmemory', '20210901-115329')
+
+sub-02 ses-019 run-1 task-thingsmemory task-thingsmemory 69661
+
+sub-02 ses-019 run-2 task-thingsmemory task-thingsmemory 70252
+
+sub-02 ses-019 run-3 task-thingsmemory task-thingsmemory 69662
+
+sub-02 ses-019 run-4 task-thingsmemory task-thingsmemory 69659
+
+sub-02 ses-019 run-5 task-thingsmemory task-thingsmemory 69350
+
+sub-02 ses-019 run-6 task-thingsmemory task-thingsmemory 70629
+
+sub-02 ses-020 run-1 task-thingsmemory task-thingsmemory 69662
+
+sub-02 ses-020 run-2 task-thingsmemory task-thingsmemory 69658
+
+sub-02 ses-020 run-3 task-thingsmemory task-thingsmemory 69663
+
+sub-02 ses-020 run-4 task-thingsmemory task-thingsmemory 69660
+
+sub-02 ses-020 run-5 task-thingsmemory task-thingsmemory 69666
+
+sub-02 ses-020 run-6 task-thingsmemory task-thingsmemory 69665
+
+sub-02 ses-021 run-1 task-thingsmemory task-thingsmemory 69282
+
+sub-02 ses-021 run-2 task-thingsmemory task-thingsmemory 70352
+
+sub-02 ses-021 run-3 task-thingsmemory task-thingsmemory 69668
+
+sub-02 ses-021 run-4 task-thingsmemory task-thingsmemory 69660
+
+sub-02 ses-021 run-5 task-thingsmemory task-thingsmemory 69668
+
+sub-02 ses-021 run-6 task-thingsmemory task-thingsmemory 69667
+
+sub-02 ses-022 run-1 task-thingsmemory task-thingsmemory 67138
+
+sub-02 ses-022 run-2 task-thingsmemory task-thingsmemory 69192
+
+sub-02 ses-022 run-3 task-thingsmemory task-thingsmemory 1494
+
+sub-02 ses-022 run-4 task-thingsmemory task-thingsmemory 399
+
+sub-02 ses-022 run-5 task-thingsmemory task-thingsmemory 0
+Fewer than 11 pupils found for ('sub-02', 'ses-022', 'run-5', 'task-thingsmemory', '20210929-110640')
+
+sub-02 ses-022 run-6 task-thingsmemory task-thingsmemory 0
+Fewer than 11 pupils found for ('sub-02', 'ses-022', 'run-6', 'task-thingsmemory', '20210929-110640')
+
+sub-02 ses-023 run-1 task-thingsmemory task-thingsmemory 66825
+
+sub-02 ses-023 run-2 task-thingsmemory task-thingsmemory 67917
+
+sub-02 ses-023 run-3 task-thingsmemory task-thingsmemory 69661
+
+sub-02 ses-023 run-4 task-thingsmemory task-thingsmemory 69657
+
+sub-02 ses-023 run-5 task-thingsmemory task-thingsmemory 69662
+
+sub-02 ses-023 run-6 task-thingsmemory task-thingsmemory 69662
+
+sub-02 ses-024 run-1 task-thingsmemory task-thingsmemory 69659
+
+sub-02 ses-024 run-2 task-thingsmemory task-thingsmemory 69368
+
+sub-02 ses-024 run-3 task-thingsmemory task-thingsmemory 69659
+
+sub-02 ses-024 run-4 task-thingsmemory task-thingsmemory 69663
+
+sub-02 ses-024 run-5 task-thingsmemory task-thingsmemory 69658
+
+sub-02 ses-024 run-6 task-thingsmemory task-thingsmemory 69661
+
+sub-02 ses-025 run-1 task-thingsmemory task-thingsmemory 69638
+
+sub-02 ses-025 run-2 task-thingsmemory task-thingsmemory 69656
+
+sub-02 ses-025 run-3 task-thingsmemory task-thingsmemory 69650
+
+sub-02 ses-025 run-4 task-thingsmemory task-thingsmemory 69665
+
+sub-02 ses-025 run-5 task-thingsmemory task-thingsmemory 69665
+
+sub-02 ses-025 run-6 task-thingsmemory task-thingsmemory 69665
+
+sub-02 ses-026 run-1 task-thingsmemory task-thingsmemory 69665
+
+sub-02 ses-026 run-2 task-thingsmemory task-thingsmemory 69656
+
+sub-02 ses-026 run-3 task-thingsmemory task-thingsmemory 70247
+
+sub-02 ses-026 run-4 task-thingsmemory task-thingsmemory 68802
+
+sub-02 ses-026 run-5 task-thingsmemory task-thingsmemory 69662
+
+sub-02 ses-026 run-6 task-thingsmemory task-thingsmemory 69473
+
+sub-02 ses-027 run-1 task-thingsmemory task-thingsmemory 69669
+
+sub-02 ses-027 run-2 task-thingsmemory task-thingsmemory 69661
+
+sub-02 ses-027 run-3 task-thingsmemory task-thingsmemory 69663
+
+sub-02 ses-027 run-4 task-thingsmemory task-thingsmemory 69659
+
+sub-02 ses-027 run-5 task-thingsmemory task-thingsmemory 69204
+
+sub-02 ses-027 run-6 task-thingsmemory task-thingsmemory 69668
+
+sub-02 ses-028 run-1 task-thingsmemory task-thingsmemory 69658
+
+sub-02 ses-028 run-2 task-thingsmemory task-thingsmemory 69498
+
+sub-02 ses-028 run-3 task-thingsmemory task-thingsmemory 69658
+
+sub-02 ses-028 run-4 task-thingsmemory task-thingsmemory 69669
+
+sub-02 ses-028 run-5 task-thingsmemory task-thingsmemory 69657
+
+sub-02 ses-028 run-6 task-thingsmemory task-thingsmemory 69661
+
+sub-02 ses-029 run-1 task-thingsmemory task-thingsmemory 69668
+
+sub-02 ses-029 run-2 task-thingsmemory task-thingsmemory 69661
+
+sub-02 ses-029 run-3 task-thingsmemory task-thingsmemory 66674
+
+sub-02 ses-029 run-4 task-thingsmemory task-thingsmemory 69663
+
+sub-02 ses-029 run-5 task-thingsmemory task-thingsmemory 69659
+
+sub-02 ses-029 run-6 task-thingsmemory task-thingsmemory 69668
+
+sub-02 ses-030 run-1 task-thingsmemory task-thingsmemory 69662
+
+sub-02 ses-030 run-2 task-thingsmemory task-thingsmemory 69663
+
+sub-02 ses-030 run-3 task-thingsmemory task-thingsmemory 69670
+
+sub-02 ses-030 run-4 task-thingsmemory task-thingsmemory 69662
+
+sub-02 ses-030 run-5 task-thingsmemory task-thingsmemory 69663
+
+sub-02 ses-030 run-6 task-thingsmemory task-thingsmemory 69665
+
+sub-02 ses-031 run-1 task-thingsmemory task-thingsmemory 69662
+
+sub-02 ses-031 run-2 task-thingsmemory task-thingsmemory 69645
+
+sub-02 ses-031 run-3 task-thingsmemory task-thingsmemory 69653
+
+sub-02 ses-031 run-4 task-thingsmemory task-thingsmemory 69653
+
+sub-02 ses-031 run-5 task-thingsmemory task-thingsmemory 69665
+
+sub-02 ses-031 run-6 task-thingsmemory task-thingsmemory 69659
+
+sub-02 ses-032 run-1 task-thingsmemory task-thingsmemory 69661
+
+sub-02 ses-032 run-2 task-thingsmemory task-thingsmemory 69661
+
+sub-02 ses-032 run-3 task-thingsmemory task-thingsmemory 69667
+
+sub-02 ses-032 run-4 task-thingsmemory task-thingsmemory 69667
+
+sub-02 ses-032 run-5 task-thingsmemory task-thingsmemory 69666
+
+sub-02 ses-032 run-6 task-thingsmemory task-thingsmemory 69644
+
+sub-02 ses-033 run-1 task-thingsmemory task-thingsmemory 69660
+
+sub-02 ses-033 run-2 task-thingsmemory task-thingsmemory 69659
+
+sub-02 ses-033 run-3 task-thingsmemory task-thingsmemory 69000
+
+sub-02 ses-033 run-4 task-thingsmemory task-thingsmemory 69558
+
+sub-02 ses-033 run-5 task-thingsmemory task-thingsmemory 69663
+
+sub-02 ses-033 run-6 task-thingsmemory task-thingsmemory 69301
+
+sub-02 ses-034 run-1 task-thingsmemory task-thingsmemory 69665
+
+sub-02 ses-034 run-2 task-thingsmemory task-thingsmemory 69666
+
+sub-02 ses-034 run-3 task-thingsmemory task-thingsmemory 69076
+
+sub-02 ses-034 run-4 task-thingsmemory task-thingsmemory 69657
+
+sub-02 ses-034 run-5 task-thingsmemory task-thingsmemory 69665
+
+sub-02 ses-034 run-6 task-thingsmemory task-thingsmemory 69663
+
+sub-02 ses-035 run-1 task-thingsmemory task-thingsmemory 70652
+
+sub-02 ses-035 run-2 task-thingsmemory task-thingsmemory 69664
+
+sub-02 ses-035 run-3 task-thingsmemory task-thingsmemory 70646
+
+sub-02 ses-035 run-4 task-thingsmemory task-thingsmemory 68941
+
+sub-02 ses-035 run-5 task-thingsmemory task-thingsmemory 69668
+
+sub-02 ses-035 run-6 task-thingsmemory task-thingsmemory 69658
+
+sub-02 ses-036 run-1 task-thingsmemory task-thingsmemory 69663
+
+sub-02 ses-036 run-2 task-thingsmemory task-thingsmemory 69663
+
+sub-02 ses-036 run-3 task-thingsmemory task-thingsmemory 69665
+
+sub-02 ses-036 run-4 task-thingsmemory task-thingsmemory 69663
+
+sub-02 ses-036 run-5 task-thingsmemory task-thingsmemory 69668
+
+sub-02 ses-036 run-6 task-thingsmemory task-thingsmemory 69672
+
+sub-03 ses-001 run-1 task-thingsmemory task-thingsmemory 69643
+
+sub-03 ses-001 run-2 task-thingsmemory task-thingsmemory 68947
+
+sub-03 ses-001 run-3 task-thingsmemory task-thingsmemory 69644
+
+sub-03 ses-002 run-1 task-thingsmemory task-thingsmemory 68673
+
+sub-03 ses-002 run-2 task-thingsmemory task-thingsmemory 69427
+
+sub-03 ses-002 run-3 task-thingsmemory task-thingsmemory 69593
+
+sub-03 ses-002 run-4 task-thingsmemory task-thingsmemory 69654
+
+sub-03 ses-002 run-5 task-thingsmemory task-thingsmemory 69649
+
+sub-03 ses-002 run-6 task-thingsmemory task-thingsmemory 69651
+
+sub-03 ses-003 run-1 task-thingsmemory task-thingsmemory 69656
+
+sub-03 ses-003 run-2 task-thingsmemory task-thingsmemory 69656
+
+sub-03 ses-003 run-3 task-thingsmemory task-thingsmemory 69649
+
+sub-03 ses-003 run-4 task-thingsmemory task-thingsmemory 69654
+
+sub-03 ses-003 run-5 task-thingsmemory task-thingsmemory 69645
+
+sub-03 ses-003 run-6 task-thingsmemory task-thingsmemory 69650
+
+sub-03 ses-004 run-1 task-thingsmemory task-thingsmemory 68493
+
+sub-03 ses-004 run-2 task-thingsmemory task-thingsmemory 69570
+
+sub-03 ses-004 run-3 task-thingsmemory task-thingsmemory 68157
+
+sub-03 ses-004 run-4 task-thingsmemory task-thingsmemory 68327
+
+sub-03 ses-004 run-5 task-thingsmemory task-thingsmemory 69573
+
+sub-03 ses-004 run-6 task-thingsmemory task-thingsmemory 67083
+
+sub-03 ses-005 run-1 task-thingsmemory task-thingsmemory 69271
+
+sub-03 ses-005 run-2 task-thingsmemory task-thingsmemory 69247
+
+sub-03 ses-005 run-3 task-thingsmemory task-thingsmemory 69644
+
+sub-03 ses-005 run-4 task-thingsmemory task-thingsmemory 69654
+
+sub-03 ses-005 run-5 task-thingsmemory task-thingsmemory 69653
+
+sub-03 ses-005 run-6 task-thingsmemory task-thingsmemory 69639
+
+sub-03 ses-008 run-1 task-thingsmemory task-thingsmemory 69649
+
+sub-03 ses-008 run-2 task-thingsmemory task-thingsmemory 69655
+
+sub-03 ses-008 run-3 task-thingsmemory task-thingsmemory 69663
+
+sub-03 ses-008 run-4 task-thingsmemory task-thingsmemory 69658
+
+sub-03 ses-008 run-5 task-thingsmemory task-thingsmemory 69651
+
+sub-03 ses-008 run-6 task-thingsmemory task-thingsmemory 69656
+
+sub-03 ses-009 run-1 task-thingsmemory task-thingsmemory 69652
+
+sub-03 ses-009 run-2 task-thingsmemory task-thingsmemory 70643
+
+sub-03 ses-009 run-3 task-thingsmemory task-thingsmemory 70638
+
+sub-03 ses-009 run-4 task-thingsmemory task-thingsmemory 69643
+
+sub-03 ses-009 run-5 task-thingsmemory task-thingsmemory 69651
+
+sub-03 ses-009 run-6 task-thingsmemory task-thingsmemory 69650
+
+sub-03 ses-010 run-1 task-thingsmemory task-thingsmemory 69655
+
+sub-03 ses-010 run-2 task-thingsmemory task-thingsmemory 69483
+
+sub-03 ses-010 run-3 task-thingsmemory task-thingsmemory 69119
+
+sub-03 ses-010 run-4 task-thingsmemory task-thingsmemory 69658
+
+sub-03 ses-010 run-5 task-thingsmemory task-thingsmemory 69598
+
+sub-03 ses-010 run-6 task-thingsmemory task-thingsmemory 69648
+
+sub-03 ses-011 run-1 task-thingsmemory task-thingsmemory 69655
+
+sub-03 ses-011 run-2 task-thingsmemory task-thingsmemory 69659
+
+sub-03 ses-011 run-3 task-thingsmemory task-thingsmemory 69650
+
+sub-03 ses-011 run-4 task-thingsmemory task-thingsmemory 69643
+
+sub-03 ses-011 run-5 task-thingsmemory task-thingsmemory 68825
+
+sub-03 ses-011 run-6 task-thingsmemory task-thingsmemory 69652
+
+sub-03 ses-012 run-1 task-thingsmemory task-thingsmemory 74577
+
+sub-03 ses-012 run-2 task-thingsmemory task-thingsmemory 69437
+
+sub-03 ses-012 run-3 task-thingsmemory task-thingsmemory 69697
+
+sub-03 ses-012 run-4 task-thingsmemory task-thingsmemory 69643
+
+sub-03 ses-012 run-5 task-thingsmemory task-thingsmemory 69643
+
+sub-03 ses-012 run-6 task-thingsmemory task-thingsmemory 69653
+
+sub-03 ses-013 run-1 task-thingsmemory task-thingsmemory 69647
+
+sub-03 ses-013 run-2 task-thingsmemory task-thingsmemory 69652
+
+sub-03 ses-013 run-3 task-thingsmemory task-thingsmemory 69652
+
+sub-03 ses-013 run-4 task-thingsmemory task-thingsmemory 69658
+
+sub-03 ses-013 run-5 task-thingsmemory task-thingsmemory 69639
+
+sub-03 ses-013 run-6 task-thingsmemory task-thingsmemory 69646
+
+sub-03 ses-014 run-1 task-thingsmemory task-thingsmemory 69655
+
+sub-03 ses-014 run-2 task-thingsmemory task-thingsmemory 69671
+
+sub-03 ses-014 run-3 task-thingsmemory task-thingsmemory 69666
+
+sub-03 ses-014 run-4 task-thingsmemory task-thingsmemory 69660
+
+sub-03 ses-014 run-5 task-thingsmemory task-thingsmemory 69660
+
+sub-03 ses-014 run-6 task-thingsmemory task-thingsmemory 69666
+
+sub-03 ses-015 run-1 task-thingsmemory task-thingsmemory 69661
+
+sub-03 ses-015 run-2 task-thingsmemory task-thingsmemory 70639
+
+sub-03 ses-015 run-3 task-thingsmemory task-thingsmemory 68029
+
+sub-03 ses-015 run-4 task-thingsmemory task-thingsmemory 69660
+
+sub-03 ses-015 run-5 task-thingsmemory task-thingsmemory 69666
+
+sub-03 ses-015 run-6 task-thingsmemory task-thingsmemory 70629
+
+sub-03 ses-016 run-1 task-thingsmemory task-thingsmemory 69523
+
+sub-03 ses-016 run-2 task-thingsmemory task-thingsmemory 69659
+
+sub-03 ses-016 run-3 task-thingsmemory task-thingsmemory 69618
+
+sub-03 ses-016 run-4 task-thingsmemory task-thingsmemory 69122
+
+sub-03 ses-016 run-5 task-thingsmemory task-thingsmemory 69416
+
+sub-03 ses-016 run-6 task-thingsmemory task-thingsmemory 69521
+
+sub-03 ses-017 run-1 task-thingsmemory task-thingsmemory 69662
+
+sub-03 ses-017 run-2 task-thingsmemory task-thingsmemory 69659
+
+sub-03 ses-017 run-3 task-thingsmemory task-thingsmemory 70197
+
+sub-03 ses-017 run-4 task-thingsmemory task-thingsmemory 69662
+
+sub-03 ses-017 run-5 task-thingsmemory task-thingsmemory 69658
+
+sub-03 ses-017 run-6 task-thingsmemory task-thingsmemory 69662
+
+sub-03 ses-018 run-1 task-thingsmemory task-thingsmemory 69665
+
+sub-03 ses-018 run-2 task-thingsmemory task-thingsmemory 70032
+
+sub-03 ses-018 run-3 task-thingsmemory task-thingsmemory 69343
+
+sub-03 ses-018 run-4 task-thingsmemory task-thingsmemory 70197
+
+sub-03 ses-018 run-5 task-thingsmemory task-thingsmemory 69665
+
+sub-03 ses-018 run-6 task-thingsmemory task-thingsmemory 69307
+
+sub-03 ses-019 run-1 task-thingsmemory task-thingsmemory 70630
+
+sub-03 ses-019 run-2 task-thingsmemory task-thingsmemory 69664
+
+sub-03 ses-019 run-3 task-thingsmemory task-thingsmemory 69457
+
+sub-03 ses-019 run-4 task-thingsmemory task-thingsmemory 67218
+
+sub-03 ses-019 run-5 task-thingsmemory task-thingsmemory 67705
+
+sub-03 ses-019 run-6 task-thingsmemory task-thingsmemory 69661
+
+sub-03 ses-020 run-1 task-thingsmemory task-thingsmemory 68512
+
+sub-03 ses-020 run-2 task-thingsmemory task-thingsmemory 69665
+
+sub-03 ses-020 run-3 task-thingsmemory task-thingsmemory 69901
+
+sub-03 ses-020 run-4 task-thingsmemory task-thingsmemory 69661
+
+sub-03 ses-020 run-5 task-thingsmemory task-thingsmemory 69533
+
+sub-03 ses-020 run-6 task-thingsmemory task-thingsmemory 69656
+
+sub-03 ses-021 run-1 task-thingsmemory task-thingsmemory 69663
+
+sub-03 ses-021 run-2 task-thingsmemory task-thingsmemory 69669
+
+sub-03 ses-021 run-3 task-thingsmemory task-thingsmemory 69665
+
+sub-03 ses-021 run-4 task-thingsmemory task-thingsmemory 69664
+
+sub-03 ses-021 run-5 task-thingsmemory task-thingsmemory 69667
+
+sub-03 ses-021 run-6 task-thingsmemory task-thingsmemory 69663
+
+sub-03 ses-022 run-1 task-thingsmemory task-thingsmemory 69663
+
+sub-03 ses-022 run-2 task-thingsmemory task-thingsmemory 69666
+
+sub-03 ses-022 run-3 task-thingsmemory task-thingsmemory 69660
+
+sub-03 ses-022 run-4 task-thingsmemory task-thingsmemory 69662
+
+sub-03 ses-022 run-5 task-thingsmemory task-thingsmemory 69663
+
+sub-03 ses-022 run-6 task-thingsmemory task-thingsmemory 69659
+
+sub-03 ses-023 run-1 task-thingsmemory task-thingsmemory 69666
+
+sub-03 ses-023 run-2 task-thingsmemory task-thingsmemory 67996
+
+sub-03 ses-023 run-3 task-thingsmemory task-thingsmemory 67458
+
+sub-03 ses-023 run-4 task-thingsmemory task-thingsmemory 68389
+
+sub-03 ses-023 run-5 task-thingsmemory task-thingsmemory 69425
+
+sub-03 ses-023 run-6 task-thingsmemory task-thingsmemory 69283
+
+sub-03 ses-024 run-1 task-thingsmemory task-thingsmemory 69658
+
+sub-03 ses-024 run-2 task-thingsmemory task-thingsmemory 69660
+
+sub-03 ses-024 run-3 task-thingsmemory task-thingsmemory 69662
+
+sub-03 ses-024 run-4 task-thingsmemory task-thingsmemory 69658
+
+sub-03 ses-024 run-5 task-thingsmemory task-thingsmemory 69666
+
+sub-03 ses-024 run-6 task-thingsmemory task-thingsmemory 69662
+
+sub-03 ses-025 run-1 task-thingsmemory task-thingsmemory 69659
+
+sub-03 ses-025 run-2 task-thingsmemory task-thingsmemory 69665
+
+sub-03 ses-025 run-3 task-thingsmemory task-thingsmemory 68164
+
+sub-03 ses-025 run-4 task-thingsmemory task-thingsmemory 69660
+
+sub-03 ses-025 run-5 task-thingsmemory task-thingsmemory 69663
+
+sub-03 ses-025 run-6 task-thingsmemory task-thingsmemory 67529
+
+sub-03 ses-025 run-1 task-thingsmemory task-thingsmemory 70649
+
+sub-03 ses-025 run-2 task-thingsmemory task-thingsmemory 70643
+
+sub-03 ses-025 run-3 task-thingsmemory task-thingsmemory 68367
+
+sub-03 ses-025 run-4 task-thingsmemory task-thingsmemory 68387
+
+sub-03 ses-025 run-5 task-thingsmemory task-thingsmemory 68380
+
+sub-03 ses-025 run-6 task-thingsmemory task-thingsmemory 69662
+
+sub-03 ses-026 run-1 task-thingsmemory task-thingsmemory 69661
+
+sub-03 ses-026 run-2 task-thingsmemory task-thingsmemory 69660
+
+sub-03 ses-026 run-3 task-thingsmemory task-thingsmemory 69335
+
+sub-03 ses-026 run-4 task-thingsmemory task-thingsmemory 69664
+
+sub-03 ses-026 run-5 task-thingsmemory task-thingsmemory 69665
+
+sub-03 ses-026 run-6 task-thingsmemory task-thingsmemory 69668
+
+sub-03 ses-027 run-1 task-thingsmemory task-thingsmemory 69638
+
+sub-03 ses-027 run-2 task-thingsmemory task-thingsmemory 46280
+
+sub-03 ses-027 run-3 task-thingsmemory task-thingsmemory 69656
+
+sub-03 ses-027 run-4 task-thingsmemory task-thingsmemory 69651
+
+sub-03 ses-027 run-5 task-thingsmemory task-thingsmemory 10069
+
+sub-03 ses-027 run-6 task-thingsmemory task-thingsmemory 69592
+
+sub-03 ses-028 run-1 task-thingsmemory task-thingsmemory 64365
+
+sub-03 ses-028 run-2 task-thingsmemory task-thingsmemory 69659
+
+sub-03 ses-028 run-3 task-thingsmemory task-thingsmemory 69661
+
+sub-03 ses-028 run-4 task-thingsmemory task-thingsmemory 69669
+
+sub-03 ses-028 run-5 task-thingsmemory task-thingsmemory 69666
+
+sub-03 ses-028 run-6 task-thingsmemory task-thingsmemory 69633
+
+sub-03 ses-029 run-1 task-thingsmemory task-thingsmemory 69661
+
+sub-03 ses-029 run-2 task-thingsmemory task-thingsmemory 69670
+
+sub-03 ses-029 run-3 task-thingsmemory task-thingsmemory 69662
+
+sub-03 ses-029 run-4 task-thingsmemory task-thingsmemory 69669
+
+sub-03 ses-029 run-5 task-thingsmemory task-thingsmemory 69661
+
+sub-03 ses-029 run-6 task-thingsmemory task-thingsmemory 69672
+
+sub-03 ses-030 run-1 task-thingsmemory task-thingsmemory 69664
+
+sub-03 ses-030 run-2 task-thingsmemory task-thingsmemory 67164
+
+sub-03 ses-030 run-3 task-thingsmemory task-thingsmemory 69634
+
+sub-03 ses-030 run-4 task-thingsmemory task-thingsmemory 69664
+
+sub-03 ses-030 run-5 task-thingsmemory task-thingsmemory 69661
+
+sub-03 ses-030 run-6 task-thingsmemory task-thingsmemory 69664
+
+sub-03 ses-031 run-1 task-thingsmemory task-thingsmemory 69663
+
+sub-03 ses-031 run-2 task-thingsmemory task-thingsmemory 69665
+
+sub-03 ses-031 run-3 task-thingsmemory task-thingsmemory 69665
+
+sub-03 ses-031 run-4 task-thingsmemory task-thingsmemory 69660
+
+sub-03 ses-031 run-5 task-thingsmemory task-thingsmemory 69660
+
+sub-03 ses-031 run-6 task-thingsmemory task-thingsmemory 69661
+
+sub-03 ses-032 run-1 task-thingsmemory task-thingsmemory 69658
+
+sub-03 ses-032 run-2 task-thingsmemory task-thingsmemory 69667
+
+sub-03 ses-032 run-3 task-thingsmemory task-thingsmemory 69580
+
+sub-03 ses-032 run-4 task-thingsmemory task-thingsmemory 69663
+
+sub-03 ses-032 run-5 task-thingsmemory task-thingsmemory 69663
+
+sub-03 ses-032 run-6 task-thingsmemory task-thingsmemory 67964
+
+sub-03 ses-033 run-1 task-thingsmemory task-thingsmemory 69663
+
+sub-03 ses-033 run-2 task-thingsmemory task-thingsmemory 69664
+
+sub-03 ses-033 run-3 task-thingsmemory task-thingsmemory 69659
+
+sub-03 ses-033 run-4 task-thingsmemory task-thingsmemory 69661
+
+sub-03 ses-033 run-5 task-thingsmemory task-thingsmemory 69660
+
+sub-03 ses-033 run-6 task-thingsmemory task-thingsmemory 69663
+
+sub-03 ses-034 run-1 task-thingsmemory task-thingsmemory 69660
+
+sub-03 ses-034 run-2 task-thingsmemory task-thingsmemory 69662
+
+sub-03 ses-034 run-3 task-thingsmemory task-thingsmemory 69664
+
+sub-03 ses-034 run-4 task-thingsmemory task-thingsmemory 69663
+
+sub-03 ses-034 run-5 task-thingsmemory task-thingsmemory 69660
+
+sub-03 ses-034 run-6 task-thingsmemory task-thingsmemory 69667
+
+sub-03 ses-035 run-1 task-thingsmemory task-thingsmemory 69660
+Empty .log file for ('sub-03', 'ses-035', 'run-1', 'task-thingsmemory', '20220216-130240')
+
+sub-03 ses-035 run-2 task-thingsmemory task-thingsmemory 69668
+Empty .log file for ('sub-03', 'ses-035', 'run-2', 'task-thingsmemory', '20220216-130240')
+
+sub-03 ses-035 run-3 task-thingsmemory task-thingsmemory 69659
+Empty .log file for ('sub-03', 'ses-035', 'run-3', 'task-thingsmemory', '20220216-130240')
+
+sub-03 ses-035 run-4 task-thingsmemory task-thingsmemory 69659
+Empty .log file for ('sub-03', 'ses-035', 'run-4', 'task-thingsmemory', '20220216-130240')
+
+sub-03 ses-035 run-5 task-thingsmemory task-thingsmemory 69658
+Empty .log file for ('sub-03', 'ses-035', 'run-5', 'task-thingsmemory', '20220216-130240')
+
+sub-03 ses-035 run-6 task-thingsmemory task-thingsmemory 66960
+Empty .log file for ('sub-03', 'ses-035', 'run-6', 'task-thingsmemory', '20220216-130240')
+
+sub-03 ses-036 run-1 task-thingsmemory task-thingsmemory 69206
+
+sub-03 ses-036 run-2 task-thingsmemory task-thingsmemory 69532
+
+sub-03 ses-036 run-3 task-thingsmemory task-thingsmemory 69663
+
+sub-03 ses-036 run-4 task-thingsmemory task-thingsmemory 69582
+
+sub-03 ses-036 run-5 task-thingsmemory task-thingsmemory 68521
+
+sub-03 ses-036 run-6 task-thingsmemory task-thingsmemory 70489
+
+sub-06 ses-001 run-1 task-thingsmemory task-thingsmemory 69644
+
+sub-06 ses-001 run-2 task-thingsmemory task-thingsmemory 69642
+
+sub-06 ses-001 run-3 task-thingsmemory task-thingsmemory 69655
+
+sub-06 ses-002 run-1 task-thingsmemory task-thingsmemory 69769
+
+sub-06 ses-002 run-2 task-thingsmemory task-thingsmemory 68160
+
+sub-06 ses-002 run-3 task-thingsmemory task-thingsmemory 69651
+
+sub-06 ses-002 run-4 task-thingsmemory task-thingsmemory 67637
+
+sub-06 ses-002 run-5 task-thingsmemory task-thingsmemory 68773
+
+sub-06 ses-002 run-6 task-thingsmemory task-thingsmemory 69640
+
+sub-06 ses-003 run-1 task-thingsmemory task-thingsmemory 69650
+
+sub-06 ses-003 run-2 task-thingsmemory task-thingsmemory 69645
+
+sub-06 ses-003 run-3 task-thingsmemory task-thingsmemory 69631
+
+sub-06 ses-003 run-4 task-thingsmemory task-thingsmemory 69646
+
+sub-06 ses-003 run-5 task-thingsmemory task-thingsmemory 69654
+
+sub-06 ses-003 run-6 task-thingsmemory task-thingsmemory 69651
+
+sub-06 ses-004 run-1 task-thingsmemory task-thingsmemory 69652
+Empty .log file for ('sub-06', 'ses-004', 'run-1', 'task-thingsmemory', '20210505-151837')
+
+sub-06 ses-004 run-2 task-thingsmemory task-thingsmemory 69658
+Empty .log file for ('sub-06', 'ses-004', 'run-2', 'task-thingsmemory', '20210505-151837')
+
+sub-06 ses-004 run-3 task-thingsmemory task-thingsmemory 69644
+Empty .log file for ('sub-06', 'ses-004', 'run-3', 'task-thingsmemory', '20210505-151837')
+
+sub-06 ses-004 run-4 task-thingsmemory task-thingsmemory 69647
+Empty .log file for ('sub-06', 'ses-004', 'run-4', 'task-thingsmemory', '20210505-151837')
+
+sub-06 ses-004 run-5 task-thingsmemory task-thingsmemory 69651
+Empty .log file for ('sub-06', 'ses-004', 'run-5', 'task-thingsmemory', '20210505-151837')
+
+sub-06 ses-004 run-6 task-thingsmemory task-thingsmemory 69650
+Empty .log file for ('sub-06', 'ses-004', 'run-6', 'task-thingsmemory', '20210505-151837')
+
+sub-06 ses-005 run-1 task-thingsmemory task-thingsmemory 68414
+Empty .log file for ('sub-06', 'ses-005', 'run-1', 'task-thingsmemory', '20210512-150822')
+
+sub-06 ses-005 run-2 task-thingsmemory task-thingsmemory 69649
+Empty .log file for ('sub-06', 'ses-005', 'run-2', 'task-thingsmemory', '20210512-150822')
+
+sub-06 ses-005 run-3 task-thingsmemory task-thingsmemory 69551
+Empty .log file for ('sub-06', 'ses-005', 'run-3', 'task-thingsmemory', '20210512-150822')
+
+sub-06 ses-005 run-4 task-thingsmemory task-thingsmemory 68385
+Empty .log file for ('sub-06', 'ses-005', 'run-4', 'task-thingsmemory', '20210512-150822')
+
+sub-06 ses-005 run-5 task-thingsmemory task-thingsmemory 69318
+Empty .log file for ('sub-06', 'ses-005', 'run-5', 'task-thingsmemory', '20210512-150822')
+
+sub-06 ses-005 run-6 task-thingsmemory task-thingsmemory 69650
+Empty .log file for ('sub-06', 'ses-005', 'run-6', 'task-thingsmemory', '20210512-150822')
+
+sub-06 ses-006 run-1 task-thingsmemory task-thingsmemory 70566
+Empty .log file for ('sub-06', 'ses-006', 'run-1', 'task-thingsmemory', '20210519-151154')
+
+sub-06 ses-006 run-2 task-thingsmemory task-thingsmemory 69646
+Empty .log file for ('sub-06', 'ses-006', 'run-2', 'task-thingsmemory', '20210519-151154')
+
+sub-06 ses-006 run-3 task-thingsmemory task-thingsmemory 69648
+Empty .log file for ('sub-06', 'ses-006', 'run-3', 'task-thingsmemory', '20210519-151154')
+
+sub-06 ses-006 run-4 task-thingsmemory task-thingsmemory 69642
+Empty .log file for ('sub-06', 'ses-006', 'run-4', 'task-thingsmemory', '20210519-151154')
+
+sub-06 ses-006 run-5 task-thingsmemory task-thingsmemory 69637
+Empty .log file for ('sub-06', 'ses-006', 'run-5', 'task-thingsmemory', '20210519-151154')
+
+sub-06 ses-006 run-6 task-thingsmemory task-thingsmemory 69657
+Empty .log file for ('sub-06', 'ses-006', 'run-6', 'task-thingsmemory', '20210519-151154')
+
+sub-06 ses-008 run-1 task-thingsmemory task-thingsmemory 15953
+
+sub-06 ses-008 run-2 task-thingsmemory task-thingsmemory 69651
+
+sub-06 ses-008 run-3 task-thingsmemory task-thingsmemory 69651
+
+sub-06 ses-008 run-4 task-thingsmemory task-thingsmemory 69642
+
+sub-06 ses-008 run-5 task-thingsmemory task-thingsmemory 69642
+
+sub-06 ses-008 run-6 task-thingsmemory task-thingsmemory 69644
+
+sub-06 ses-009 run-1 task-thingsmemory task-thingsmemory 69648
+Empty .log file for ('sub-06', 'ses-009', 'run-1', 'task-thingsmemory', '20210609-152450')
+
+sub-06 ses-009 run-2 task-thingsmemory task-thingsmemory 69638
+Empty .log file for ('sub-06', 'ses-009', 'run-2', 'task-thingsmemory', '20210609-152450')
+
+sub-06 ses-009 run-3 task-thingsmemory task-thingsmemory 69657
+Empty .log file for ('sub-06', 'ses-009', 'run-3', 'task-thingsmemory', '20210609-152450')
+
+sub-06 ses-009 run-4 task-thingsmemory task-thingsmemory 69654
+Empty .log file for ('sub-06', 'ses-009', 'run-4', 'task-thingsmemory', '20210609-152450')
+
+sub-06 ses-009 run-5 task-thingsmemory task-thingsmemory 69657
+Empty .log file for ('sub-06', 'ses-009', 'run-5', 'task-thingsmemory', '20210609-152450')
+
+sub-06 ses-009 run-6 task-thingsmemory task-thingsmemory 69653
+Empty .log file for ('sub-06', 'ses-009', 'run-6', 'task-thingsmemory', '20210609-152450')
+
+sub-06 ses-010 run-1 task-thingsmemory task-thingsmemory 69634
+Empty .log file for ('sub-06', 'ses-010', 'run-1', 'task-thingsmemory', '20210616-152228')
+
+sub-06 ses-010 run-2 task-thingsmemory task-thingsmemory 69514
+Empty .log file for ('sub-06', 'ses-010', 'run-2', 'task-thingsmemory', '20210616-152228')
+
+sub-06 ses-010 run-3 task-thingsmemory task-thingsmemory 69313
+Empty .log file for ('sub-06', 'ses-010', 'run-3', 'task-thingsmemory', '20210616-152228')
+
+sub-06 ses-010 run-4 task-thingsmemory task-thingsmemory 70435
+Empty .log file for ('sub-06', 'ses-010', 'run-4', 'task-thingsmemory', '20210616-152228')
+
+sub-06 ses-010 run-5 task-thingsmemory task-thingsmemory 69283
+Empty .log file for ('sub-06', 'ses-010', 'run-5', 'task-thingsmemory', '20210616-152228')
+
+sub-06 ses-010 run-6 task-thingsmemory task-thingsmemory 69555
+Empty .log file for ('sub-06', 'ses-010', 'run-6', 'task-thingsmemory', '20210616-152228')
+
+sub-06 ses-012 run-1 task-thingsmemory task-thingsmemory 69685
+
+sub-06 ses-012 run-2 task-thingsmemory task-thingsmemory 69647
+
+sub-06 ses-012 run-3 task-thingsmemory task-thingsmemory 69648
+
+sub-06 ses-012 run-4 task-thingsmemory task-thingsmemory 68234
+
+sub-06 ses-012 run-5 task-thingsmemory task-thingsmemory 69656
+
+sub-06 ses-012 run-6 task-thingsmemory task-thingsmemory 69646
+
+sub-06 ses-013 run-1 task-thingsmemory task-thingsmemory 69641
+
+sub-06 ses-013 run-2 task-thingsmemory task-thingsmemory 69649
+
+sub-06 ses-013 run-3 task-thingsmemory task-thingsmemory 69639
+
+sub-06 ses-013 run-4 task-thingsmemory task-thingsmemory 69658
+
+sub-06 ses-013 run-5 task-thingsmemory task-thingsmemory 69628
+
+sub-06 ses-013 run-6 task-thingsmemory task-thingsmemory 69650
+
+sub-06 ses-014 run-1 task-thingsmemory task-thingsmemory 68833
+
+sub-06 ses-014 run-2 task-thingsmemory task-thingsmemory 69252
+
+sub-06 ses-014 run-3 task-thingsmemory task-thingsmemory 69661
+
+sub-06 ses-014 run-4 task-thingsmemory task-thingsmemory 69659
+
+sub-06 ses-014 run-5 task-thingsmemory task-thingsmemory 69661
+
+sub-06 ses-014 run-6 task-thingsmemory task-thingsmemory 69662
+
+sub-06 ses-015 run-1 task-thingsmemory task-thingsmemory 70079
+
+sub-06 ses-015 run-2 task-thingsmemory task-thingsmemory 69661
+
+sub-06 ses-015 run-3 task-thingsmemory task-thingsmemory 69659
+
+sub-06 ses-015 run-4 task-thingsmemory task-thingsmemory 69658
+
+sub-06 ses-015 run-5 task-thingsmemory task-thingsmemory 69656
+
+sub-06 ses-015 run-6 task-thingsmemory task-thingsmemory 69656
+
+sub-06 ses-016 run-1 task-thingsmemory task-thingsmemory 69661
+
+sub-06 ses-016 run-2 task-thingsmemory task-thingsmemory 69661
+
+sub-06 ses-016 run-3 task-thingsmemory task-thingsmemory 69664
+
+sub-06 ses-016 run-4 task-thingsmemory task-thingsmemory 69662
+
+sub-06 ses-016 run-5 task-thingsmemory task-thingsmemory 69662
+
+sub-06 ses-016 run-6 task-thingsmemory task-thingsmemory 69658
+
+sub-06 ses-017 run-1 task-thingsmemory task-thingsmemory 69581
+
+sub-06 ses-017 run-2 task-thingsmemory task-thingsmemory 69511
+
+sub-06 ses-017 run-3 task-thingsmemory task-thingsmemory 69498
+
+sub-06 ses-017 run-4 task-thingsmemory task-thingsmemory 68542
+
+sub-06 ses-017 run-5 task-thingsmemory task-thingsmemory 69189
+
+sub-06 ses-017 run-6 task-thingsmemory task-thingsmemory 68650
+
+sub-06 ses-018 run-1 task-thingsmemory task-thingsmemory 69654
+
+sub-06 ses-018 run-2 task-thingsmemory task-thingsmemory 69663
+
+sub-06 ses-018 run-3 task-thingsmemory task-thingsmemory 69660
+
+sub-06 ses-018 run-4 task-thingsmemory task-thingsmemory 69659
+
+sub-06 ses-018 run-5 task-thingsmemory task-thingsmemory 69580
+
+sub-06 ses-018 run-6 task-thingsmemory task-thingsmemory 69666
+
+sub-06 ses-019 run-1 task-thingsmemory task-thingsmemory 69656
+
+sub-06 ses-019 run-2 task-thingsmemory task-thingsmemory 69661
+
+sub-06 ses-019 run-3 task-thingsmemory task-thingsmemory 69657
+
+sub-06 ses-019 run-4 task-thingsmemory task-thingsmemory 4084
+
+sub-06 ses-019 run-4 task-thingsmemory task-thingsmemory 69663
+
+sub-06 ses-019 run-5 task-thingsmemory task-thingsmemory 7045
+
+sub-06 ses-019 run-5 task-thingsmemory task-thingsmemory 70622
+
+sub-06 ses-019 run-6 task-thingsmemory task-thingsmemory 69667
+
+sub-06 ses-021 run-1 task-thingsmemory task-thingsmemory 69665
+
+sub-06 ses-021 run-2 task-thingsmemory task-thingsmemory 69660
+
+sub-06 ses-021 run-3 task-thingsmemory task-thingsmemory 69662
+
+sub-06 ses-021 run-4 task-thingsmemory task-thingsmemory 69661
+
+sub-06 ses-021 run-5 task-thingsmemory task-thingsmemory 69654
+
+sub-06 ses-021 run-6 task-thingsmemory task-thingsmemory 69064
+
+sub-06 ses-022 run-1 task-thingsmemory task-thingsmemory 69655
+
+sub-06 ses-022 run-2 task-thingsmemory task-thingsmemory 69665
+
+sub-06 ses-022 run-3 task-thingsmemory task-thingsmemory 69667
+
+sub-06 ses-022 run-4 task-thingsmemory task-thingsmemory 69665
+
+sub-06 ses-022 run-5 task-thingsmemory task-thingsmemory 69664
+
+sub-06 ses-022 run-6 task-thingsmemory task-thingsmemory 69661
+
+sub-06 ses-023 run-1 task-thingsmemory task-thingsmemory 69656
+
+sub-06 ses-023 run-2 task-thingsmemory task-thingsmemory 69667
+
+sub-06 ses-023 run-3 task-thingsmemory task-thingsmemory 67756
+
+sub-06 ses-023 run-4 task-thingsmemory task-thingsmemory 68604
+
+sub-06 ses-023 run-5 task-thingsmemory task-thingsmemory 69661
+
+sub-06 ses-023 run-6 task-thingsmemory task-thingsmemory 69386
+
+sub-06 ses-024 run-1 task-thingsmemory task-thingsmemory 69655
+
+sub-06 ses-024 run-2 task-thingsmemory task-thingsmemory 69660
+
+sub-06 ses-024 run-3 task-thingsmemory task-thingsmemory 69666
+
+sub-06 ses-024 run-4 task-thingsmemory task-thingsmemory 69665
+
+sub-06 ses-024 run-5 task-thingsmemory task-thingsmemory 69661
+
+sub-06 ses-024 run-6 task-thingsmemory task-thingsmemory 69665
+
+sub-06 ses-025 run-1 task-thingsmemory task-thingsmemory 69523
+
+sub-06 ses-025 run-2 task-thingsmemory task-thingsmemory 69172
+
+sub-06 ses-025 run-3 task-thingsmemory task-thingsmemory 69666
+
+sub-06 ses-025 run-4 task-thingsmemory task-thingsmemory 69663
+
+sub-06 ses-025 run-5 task-thingsmemory task-thingsmemory 70641
+
+sub-06 ses-025 run-6 task-thingsmemory task-thingsmemory 69662
+
+sub-06 ses-026 run-1 task-thingsmemory task-thingsmemory 69663
+
+sub-06 ses-026 run-2 task-thingsmemory task-thingsmemory 69660
+
+sub-06 ses-026 run-3 task-thingsmemory task-thingsmemory 69664
+
+sub-06 ses-026 run-4 task-thingsmemory task-thingsmemory 69662
+
+sub-06 ses-026 run-5 task-thingsmemory task-thingsmemory 69665
+
+sub-06 ses-026 run-6 task-thingsmemory task-thingsmemory 69661
+
+sub-06 ses-027 run-1 task-thingsmemory task-thingsmemory 69125
+
+sub-06 ses-027 run-2 task-thingsmemory task-thingsmemory 69449
+
+sub-06 ses-027 run-3 task-thingsmemory task-thingsmemory 69830
+
+sub-06 ses-027 run-4 task-thingsmemory task-thingsmemory 69661
+
+sub-06 ses-027 run-5 task-thingsmemory task-thingsmemory 68940
+
+sub-06 ses-027 run-6 task-thingsmemory task-thingsmemory 69660
+
+sub-06 ses-028 run-1 task-thingsmemory task-thingsmemory 69658
+
+sub-06 ses-028 run-2 task-thingsmemory task-thingsmemory 69662
+
+sub-06 ses-028 run-3 task-thingsmemory task-thingsmemory 69657
+
+sub-06 ses-028 run-4 task-thingsmemory task-thingsmemory 69656
+
+sub-06 ses-028 run-5 task-thingsmemory task-thingsmemory 69666
+
+sub-06 ses-028 run-6 task-thingsmemory task-thingsmemory 69669
+
+sub-06 ses-029 run-1 task-thingsmemory task-thingsmemory 69661
+
+sub-06 ses-029 run-2 task-thingsmemory task-thingsmemory 69647
+
+sub-06 ses-029 run-3 task-thingsmemory task-thingsmemory 69661
+
+sub-06 ses-029 run-4 task-thingsmemory task-thingsmemory 69669
+
+sub-06 ses-029 run-5 task-thingsmemory task-thingsmemory 69618
+
+sub-06 ses-029 run-6 task-thingsmemory task-thingsmemory 69659
+
+sub-06 ses-030 run-1 task-thingsmemory task-thingsmemory 69661
+
+sub-06 ses-030 run-2 task-thingsmemory task-thingsmemory 70349
+
+sub-06 ses-030 run-3 task-thingsmemory task-thingsmemory 70649
+
+sub-06 ses-030 run-4 task-thingsmemory task-thingsmemory 69664
+
+sub-06 ses-030 run-5 task-thingsmemory task-thingsmemory 70648
+
+sub-06 ses-030 run-6 task-thingsmemory task-thingsmemory 69663
+
+sub-06 ses-031 run-1 task-thingsmemory task-thingsmemory 5930
+Empty .log file for ('sub-06', 'ses-031', 'run-1', 'task-thingsmemory', '20211201-145944')
+
+sub-06 ses-031 run-2 task-thingsmemory task-thingsmemory 69655
+
+sub-06 ses-031 run-3 task-thingsmemory task-thingsmemory 69646
+
+sub-06 ses-031 run-4 task-thingsmemory task-thingsmemory 69660
+
+sub-06 ses-031 run-5 task-thingsmemory task-thingsmemory 69660
+
+sub-06 ses-031 run-6 task-thingsmemory task-thingsmemory 69660
+
+sub-06 ses-032 run-1 task-thingsmemory task-thingsmemory 44828
+Empty .log file for ('sub-06', 'ses-032', 'run-1', 'task-thingsmemory', '20211208-152146')
+
+sub-06 ses-032 run-2 task-thingsmemory task-thingsmemory 39794
+Empty .log file for ('sub-06', 'ses-032', 'run-2', 'task-thingsmemory', '20211208-153532')
+
+sub-06 ses-032 run-3 task-thingsmemory task-thingsmemory 69639
+Empty .log file for ('sub-06', 'ses-032', 'run-3', 'task-thingsmemory', '20211208-154355')
+
+sub-06 ses-032 run-4 task-thingsmemory task-thingsmemory 69657
+Empty .log file for ('sub-06', 'ses-032', 'run-4', 'task-thingsmemory', '20211208-154355')
+
+sub-06 ses-032 run-5 task-thingsmemory task-thingsmemory 69640
+Empty .log file for ('sub-06', 'ses-032', 'run-5', 'task-thingsmemory', '20211208-154355')
+
+sub-06 ses-032 run-6 task-thingsmemory task-thingsmemory 6688
+Empty .log file for ('sub-06', 'ses-032', 'run-6', 'task-thingsmemory', '20211208-154355')
+
+sub-06 ses-033 run-1 task-thingsmemory task-thingsmemory 69660
+
+sub-06 ses-033 run-2 task-thingsmemory task-thingsmemory 69663
+
+sub-06 ses-033 run-3 task-thingsmemory task-thingsmemory 69661
+
+sub-06 ses-033 run-4 task-thingsmemory task-thingsmemory 69662
+
+sub-06 ses-033 run-5 task-thingsmemory task-thingsmemory 69662
+
+sub-06 ses-033 run-6 task-thingsmemory task-thingsmemory 69664
