@@ -398,7 +398,7 @@ def export_bids(
                 bids_gaze_list.append([
                     gaze_timestamp, gaze_x, gaze_y, gaze_conf, 
                     pupil_x, pupil_y, pupil_diameter, 
-                    ellipse_axe_0, ellipse_axe_1, ellipse_angle, 
+                    ellipse_axe_a, ellipse_axe_b, ellipse_angle, 
                     ellipse_center_x, ellipse_center_y,
                 ]) 
                 gaze_2plot_list.append(np.array(
