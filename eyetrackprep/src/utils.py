@@ -1,9 +1,13 @@
-import json
+import os, json
 from pathlib import Path
 from typing import Union
 
 import numpy as np
 import pandas as pd
+
+import types
+import msgpack
+import collections
 
 
 def get_onset_time(
@@ -153,3 +157,53 @@ def create_event_path(row, file_path, log=False):
             return f'{file_path}/{s}/{ses}/{s}_{ses}_{row["file_number"]}_{row["task"]}_events.tsv'
         else:
             return f'{file_path}/{s}/{ses}/{s}_{ses}_{row["file_number"]}_{row["task"]}_{row["run"]}_events.tsv'
+
+
+
+def unpacking_object_hook(obj):
+    if isinstance(obj, dict):
+        return types.MappingProxyType(obj)
+    return obj
+
+def unpacking_ext_hook(code, data):
+    if code == MSGPACK_EXT_CODE:
+        return msgpack.unpackb(
+            data,
+            use_list=False,
+            object_hook=unpacking_object_hook,
+            ext_hook=unpacking_ext_hook,
+            strict_map_key=False,
+        )
+    return msgpack.ExtType(code, data)
+
+def load_pldata_file(directory, topic):
+    """
+    Deserialize pldata
+    """
+    msgpack_file = os.path.join(directory, topic + ".pldata")
+
+    try:
+        data = collections.deque()
+
+        with open(msgpack_file, "rb") as stream:
+            unpacker = msgpack.Unpacker(
+                stream,
+                use_list=False,
+                strict_map_key=False
+            )
+
+            for _, to_unpack in unpacker:
+                unpacked = msgpack.unpackb(
+                    to_unpack, 
+                    use_list=False, 
+                    object_hook=unpacking_object_hook, 
+                    ext_hook=unpacking_ext_hook, 
+                    strict_map_key=False
+                )
+                data.append(unpacked)
+
+    except FileNotFoundError as err:
+        print(f"Couldn't read or unpack: {err}")
+        data = []
+
+    return data

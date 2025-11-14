@@ -1,6 +1,7 @@
 from pathlib import Path
 import click
 from src import pupil2bids
+from bids import BIDSLayout
 
 
 @click.command()
@@ -66,9 +67,11 @@ def main(
     Exports a .tsv listing all files to support manual QCing
     Returns a list of directories with eye-tracking data to process
     """
-    pupil_file_paths = pupil2bids.compile_rawfile_list(
-        raw_et_dir, out_dir)
+    out_dir_layout = BIDSLayout(out_dir)
 
+    pupil_file_paths = pupil2bids.compile_rawfile_list(
+        raw_et_dir, out_dir_layout)
+    
     """
     Processes, exports and returns pupil and gaze metrics in BIDS format.
     If export_plots is True, also returns raw (uncorrected) gaze coordinates 
