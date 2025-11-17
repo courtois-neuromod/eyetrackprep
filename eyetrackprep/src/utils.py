@@ -16,7 +16,7 @@ def log_qc(
 ) -> None:
     """."""
     print(log_message)    
-    with open(qc_path, 'w+') as qc_report:
+    with open(qc_path, 'a') as qc_report:
         qc_report.write(f"{log_message}\n")    
         
 
