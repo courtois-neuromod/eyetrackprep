@@ -13,6 +13,10 @@ from bids import BIDSLayout
     "out_dir",
     type=click.Path(),
 )
+@click.argument(
+    "deriv_dir",
+    type=click.Path(),
+)
 @click.option(
     "--export_plots",
     is_flag=True,
@@ -39,16 +43,21 @@ def main(
 
     raw_et_dir : str or pathlib.Path
 
-        Path to the directory where the raw eyetracking data live.
         Absolute path to dataset directory with the raw eyetracking output files, 
         including pupils.pldata, gaze.pldata, eye0.mp4, and PsychoPy log file.
         e.g., (on elm): /unf/eyetracker/neuromod/triplets/sourcedata"
 
     out_dir : str or pathlib.Path
 
-        Absolute path to the output directory where to export BIDS-like dataset, 
-        QC figures and reports (option), and drift-corrected gaze derivatives (option).
-        e.g., on elm: /data/neuromod/projects/eyetracking_bids/emotionsvideos
+        Absolute path to the cloned BIDS repository where to save BIDS-like eyetracking data, 
+        and QC figures and reports (optional).
+        e.g., on elm: /data/neuromod/projects/eyetracking_bids/bids_repos/emotion-videos
+
+    deriv_dir : str or pathlib.Path
+
+        Absolute path to the derivative repository where to export drift-corrected
+        gaze data, events data (e.g., fixation metrics per trial), etc.
+        e.g., on elm: /data/neuromod/projects/eyetracking_bids/deriv_repos/emotion-videos
 
     export_plots : bool, optional
 

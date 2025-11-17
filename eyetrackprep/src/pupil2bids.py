@@ -4,6 +4,7 @@ from typing import Union
 
 import numpy as np
 import pandas as pd
+from bids import BIDSLayout
 
 from src.utils import get_onset_time, parse_task_name, load_pldata_file
 
@@ -43,7 +44,7 @@ def parse_ev_dset(
             A list of tuples: (pupil_data_directory_path, metadata_tuple)
             for all runs with a 'pupil.pldata' file.
     """
-    has_run_num = False if task_root in ['retino', 'floc', 'langloc'] else True
+    has_run_num = False if task_root in ['retino', 'floc', 'langloc', 'friends_fix', 'movie10fix'] else True
 
     pupil_file_paths = []
 
@@ -163,14 +164,7 @@ def parse_noev_dset(
                 f'{ses_path}/sub-*.pupil/task-*/000'
             )
         )
-        """
-        task-friends-s6e8b, task-wot2, 
 
-        Note: run number is a fluke, does not reflect the repetition... (they're all run-01...)
-        task-TunnelRecency_run-01, task-PrettymouthRecency_run-01, task-PrettymouthRecall_run-01, task-SlumlordRecency_run-01, task-SlumlordRecall_run-01
-        task-Tunnel_part2Story_run-01, task-Tunnel_part2Recall_run-01, task-PrettymouthStory_run-01, task-SlumlordStory_run-01
-
-        """
         for epfile in epfile_list:
             sub, ses, fnum, task_type = parse_task_name(
                 epfile, task_root,
@@ -227,7 +221,7 @@ def parse_noev_dset(
 
 def compile_rawfile_list(
     in_path: str,
-    out_path: str,
+    out_path: BIDSLayout,
 ) -> tuple[pd.DataFrame, list[tuple]]:
     """
     Compiles an overview of all available eye-tracking files
@@ -326,7 +320,7 @@ def export_bids(
 
     task_root = in_path.split('/')[-2]
     # early mario3 runs accidentally labelled task-mariostars...
-    pseudo_task = 'task-mario3' if task_root == 'mario3' else task
+    pseudo_task = 'task-mario3' if task_root == 'mario3' else task.replace("-fixations", "").replace("-friends", "")
 
     """
     TODO: write a clean-up script that will scrub 'fnum' from the final file names
@@ -345,7 +339,7 @@ def export_bids(
         print(sub, ses, run, pseudo_task, len(seri_gaze))
 
         # Get run onset time
-        if task_root in ['floc', 'retino', 'langloc', 'ood']:
+        if task_root in ['floc', 'retino', 'langloc', 'ood', 'friends_fix', 'movie10fix']:
             tname = task
         elif task_root == 'friends':
             tname = task.replace("task-", "task-friends-")
@@ -359,7 +353,7 @@ def export_bids(
             f'{in_path}/{sub}/{ses}/{sub}_{ses}_{fnum}.log',
             tname, fnum,
             infoplayer_path,
-            seri_gaze[10]['timestamp'],
+            seri_gaze[12]['timestamp'],  # updated from 10th to 12th gaze, most precise estimation in dset
         )
 
         # Convert serialized file to lists of arrays (one for BIDS, one for plotting)
@@ -367,11 +361,6 @@ def export_bids(
         gaze_2plot_list = []
 
         for gaze in seri_gaze:
-            # TODO: add metrics to .json sidecar
-            #['timestamp', 'x_coordinate', 'y_coordinate', 'confidence',
-            #'pupil.xcoordinate', 'pupil.ycoordinate', 'pupil_diameter', 
-            #'pupil.elipse_axe_a', 'pupil.elipse_axe_b', 
-            # 'pupil.ellipse_angle', 'pupil.ellipse_center_x', 'pupil.ellipse_center_y']
             gaze_timestamp = gaze['timestamp'] - onset_time
             if gaze_timestamp > 0.0:
                 gaze_x, gaze_y = gaze['norm_pos']
