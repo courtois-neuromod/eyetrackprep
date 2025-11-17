@@ -10,6 +10,7 @@ from src.utils import (
     get_onset_time, 
     parse_task_name, 
     load_pldata_file, 
+    extract_gaze,
     get_metadata, 
     log_qc,
 )
