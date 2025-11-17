@@ -1,33 +1,17 @@
-import os, glob, sys
+import os, glob, sys, json
 from pathlib import Path
 from typing import Union
 
 import numpy as np
 import pandas as pd
 
-from src.utils import get_onset_time, parse_task_name
+from src.utils import get_onset_time, parse_task_name, load_pldata_file
 
-# TODO: fix this by importing pupil as library 
-sys.path.append(
-    os.path.join(
-        "/home/mariestl/cneuromod/ds_prep/eyetracking",
-        "pupil",
-        "pupil_src",
-        "shared_modules",
-    )
-)
-
-from file_methods import load_pldata_file
-
-
-SUB_LIST = ['sub-01', 'sub-02', 'sub-03', 'sub-04', 'sub-05', 'sub-06']
-"""
-List of valid CNeuroMod subject IDs used to filter out test files.
-"""
 
 def parse_ev_dset(
     df_files: pd.DataFrame,
     task_root: str,
+    sub_list: list,
     ses_list: list,
 ) -> tuple[pd.DataFrame, list[tuple]]:
     """
@@ -79,7 +63,7 @@ def parse_ev_dset(
                         task_type = f'{task_type}_{ev_file.split("_")[4]}'
                     run_num = None 
 
-                if sub in SUB_LIST:
+                if sub in sub_list:
                     assert sub == sub_num
                     assert ses_num == ses
 
@@ -128,7 +112,7 @@ def parse_ev_dset(
                     )
 
             except:
-                print(f'cannot process {ev_file}')
+                print(f'[parse_ev_dset] cannot process {ev_file}')
 
     return df_files, pupil_file_paths
 
@@ -136,6 +120,7 @@ def parse_ev_dset(
 def parse_noev_dset(
     df_files: pd.DataFrame,
     task_root: str,
+    sub_list: list,
     ses_list: list,
 ) -> tuple[pd.DataFrame, list[tuple]]:
     """
@@ -192,7 +177,7 @@ def parse_noev_dset(
             )
             run_num = None
 
-            if sub not in SUB_LIST:
+            if sub not in sub_list:
                 print(f"Subject {sub} data not in subject list")
             if sub != sub_num:
                 print(f"Subject {sub} data under {sub_num} directory")
@@ -272,6 +257,8 @@ def compile_rawfile_list(
     """
     # Find all the fMRI session directories with numeric session numbers for all subjects
     # e.g., (on elm, in_path = '/unf/eyetracker/neuromod/triplets/sourcedata')
+    sub_list = [f'sub-{sub_id}' for sub_id in out_path.get_subjects()]
+    
     ses_list = [
         x for x in sorted(glob.glob(
             f'{in_path}/sub-*/ses-*')
@@ -290,16 +277,18 @@ def compile_rawfile_list(
     # Parse dataset files (using events.tsv files if available) 
     if task_root in ['friends', 'movie_10', 'ood', 'narratives']:
         df_files, pupil_file_paths = parse_noev_dset(
-            df_files, task_root, ses_list)
+            df_files, task_root, sub_list, ses_list
+        )
     else:
         df_files, pupil_file_paths = parse_ev_dset(
-            df_files, task_root, ses_list,
+            df_files, task_root, sub_list, ses_list
         )
 
     # Export file list spreadsheet to support QCing
-    Path(f"{out_path}/QC_gaze").mkdir(parents=True, exist_ok=True)
+    Path(f"{out_path.root}/code/QC_gaze").mkdir(parents=True, exist_ok=True)
+
     df_files.to_csv(
-        f"{out_path}/QC_gaze/{task_root}_QCflist.tsv",
+        f"{out_path.root}/code/QC_gaze/{task_root}_QCflist.tsv",
         sep='\t', header=True, index=False,
     )
 
@@ -344,15 +333,15 @@ def export_bids(
     AFTER the entire dset has been Qced (fnum crucial to tell appart repeated runs...)
     """
     if run is None:
-        bids_path = f'{out_path}/bids/{sub}/{ses}/func/{sub}_{ses}_{pseudo_task}_{fnum}_recording-eye1_physio.tsv.gz'
+        bids_path = f'{out_path}/{sub}/{ses}/func/{sub}_{ses}_{pseudo_task}_{fnum}_recording-eye_physio'
     else:
-        bids_path = f'{out_path}/bids/{sub}/{ses}/func/{sub}_{ses}_{pseudo_task}_{run}_{fnum}_recording-eye1_physio.tsv.gz'
+        bids_path = f'{out_path}/{sub}/{ses}/func/{sub}_{ses}_{pseudo_task}_{run}_{fnum}_recording-eye_physio'
 
     if not os.path.exists(bids_path):
         Path(os.path.dirname(bids_path)).mkdir(parents=True, exist_ok=True)
 
         # gaze data includes pupil metrics from which each gaze was derived
-        seri_gaze = load_pldata_file(pupil_path[0], 'gaze')[0]
+        seri_gaze = load_pldata_file(pupil_path[0], 'gaze')
         print(sub, ses, run, pseudo_task, len(seri_gaze))
 
         # Get run onset time
@@ -407,9 +396,28 @@ def export_bids(
                     )
 
         bids_gaze = np.array(bids_gaze_list)
+
+        # Save timeseries
         pd.DataFrame(bids_gaze).to_csv(
-            bids_path, sep='\t', header=False, index=False,
+            f'{bids_path}.tsv.gz', sep='\t', header=False, index=False,
         )
+
+        # Save metadata
+        col_names = [
+                    'timestamp', 'x_coordinate', 'y_coordinate', 'confidence', 
+                    'pupil_x_coordinate', 'pupil_y_coordinate', 'pupil_diameter',
+                    'pupil_ellipse_axe_a', 'pupil_ellipse_axe_b', 'pupil_ellipse_angle',
+                    'pupil_ellipse_center_x', 'pupil_ellipse_center_y'
+                ]
+
+        metadata = {
+            "StartTime": bids_gaze_list[0][0],
+            "Columns": col_names,
+            "SamplingFrequency": 250.0
+        }
+
+        with open(f'{bids_path}.json', 'w') as metadata_file:
+            json.dump(metadata, metadata_file, indent=4)
 
         if export_plots:
             return bids_gaze, np.stack(gaze_2plot_list, axis=0)
