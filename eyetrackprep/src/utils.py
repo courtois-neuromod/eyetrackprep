@@ -57,7 +57,8 @@ def get_onset_time(
             for line in lines:
                 if "fMRI TTL 0" in line:
                     TTL_0 = line.split('\t')[0]
-                elif "saved wide-format data to /scratch/neuromod/data" in line:
+                #elif "saved wide-format data to /scratch/neuromod/data" in line:
+                elif "saved wide-format data to /scratch/neur" in line:  # catches typos at console
                     run_id = line.split('\t')[-1].split(f'{fnum}_')[-1].split('_events.tsv')[0]
                     onset_time_dict[run_id] = float(TTL_0)
                 elif "class 'src.tasks.localizers.FLoc'" in line:

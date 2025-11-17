@@ -4,6 +4,7 @@ from typing import Union
 
 import numpy as np
 import pandas as pd
+from bids import BIDSLayout
 
 from src.utils import get_onset_time, parse_task_name
 
@@ -178,14 +179,7 @@ def parse_noev_dset(
                 f'{ses_path}/sub-*.pupil/task-*/000'
             )
         )
-        """
-        task-friends-s6e8b, task-wot2, 
 
-        Note: run number is a fluke, does not reflect the repetition... (they're all run-01...)
-        task-TunnelRecency_run-01, task-PrettymouthRecency_run-01, task-PrettymouthRecall_run-01, task-SlumlordRecency_run-01, task-SlumlordRecall_run-01
-        task-Tunnel_part2Story_run-01, task-Tunnel_part2Recall_run-01, task-PrettymouthStory_run-01, task-SlumlordStory_run-01
-
-        """
         for epfile in epfile_list:
             sub, ses, fnum, task_type = parse_task_name(
                 epfile, task_root,
@@ -242,7 +236,7 @@ def parse_noev_dset(
 
 def compile_rawfile_list(
     in_path: str,
-    out_path: str,
+    out_path: BIDSLayout,
 ) -> tuple[pd.DataFrame, list[tuple]]:
     """
     Compiles an overview of all available eye-tracking files
@@ -370,7 +364,7 @@ def export_bids(
             f'{in_path}/{sub}/{ses}/{sub}_{ses}_{fnum}.log',
             tname, fnum,
             infoplayer_path,
-            seri_gaze[10]['timestamp'],
+            seri_gaze[12]['timestamp'],  # updated from 10th to 12th gaze, most precise estimation in dset
         )
 
         # Convert serialized file to lists of arrays (one for BIDS, one for plotting)
