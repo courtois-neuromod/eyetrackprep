@@ -6,7 +6,13 @@ import numpy as np
 import pandas as pd
 from bids import BIDSLayout
 
-from src.utils import get_onset_time, parse_task_name, load_pldata_file
+from src.utils import (
+    get_onset_time, 
+    parse_task_name, 
+    load_pldata_file, 
+    get_metadata, 
+    log_qc,
+)
 
 
 def parse_ev_dset(
@@ -285,6 +291,7 @@ def compile_rawfile_list(
         f"{out_path.root}/code/QC_gaze/{task_root}_QCflist.tsv",
         sep='\t', header=True, index=False,
     )
+    Path(f"{out_path.root}/code/QC_gaze/qc_report_{task_root}.txt").touch()
 
     return pupil_file_paths
 
@@ -321,7 +328,8 @@ def export_bids(
     task_root = in_path.split('/')[-2]
     # early mario3 runs accidentally labelled task-mariostars...
     pseudo_task = 'task-mario3' if task_root == 'mario3' else task.replace("-fixations", "").replace("-friends", "")
-
+    qc_path = f"{out_path}/code/QC_gaze/qc_report_{task_root}.txt"
+    
     """
     TODO: write a clean-up script that will scrub 'fnum' from the final file names
     AFTER the entire dset has been Qced (fnum crucial to tell appart repeated runs...)
@@ -336,80 +344,49 @@ def export_bids(
 
         # gaze data includes pupil metrics from which each gaze was derived
         seri_gaze = load_pldata_file(pupil_path[0], 'gaze')
-        print(sub, ses, run, pseudo_task, len(seri_gaze))
+        log_qc(f"\n{sub} {ses} {run} {pseudo_task} {task} {len(seri_gaze)}", qc_path)
 
-        # Get run onset time
-        if task_root in ['floc', 'retino', 'langloc', 'ood', 'friends_fix', 'movie10fix']:
-            tname = task
-        elif task_root == 'friends':
-            tname = task.replace("task-", "task-friends-")
-        elif task_root == 'narratives':
-            tname = f'{task.replace("part", "_part")}_run-01'
+        if len(seri_gaze) < 13:
+            log_qc(f"Run fail: {len(seri_gaze)} pupils found for {fnum}", qc_path)
+
+            return np.array([]), np.array([])        
         else:
-            tname = f'{task}_{run}'
-        infoplayer_path = f'{in_path}/{sub}/{ses}/{sub}_{ses}_{fnum}.pupil/{tname}/000/info.player.json'                
-        
-        onset_time = get_onset_time(
-            f'{in_path}/{sub}/{ses}/{sub}_{ses}_{fnum}.log',
-            tname, fnum,
-            infoplayer_path,
-            seri_gaze[12]['timestamp'],  # updated from 10th to 12th gaze, most precise estimation in dset
-        )
+            # Get run onset time
+            if task_root in ['floc', 'retino', 'langloc', 'ood', 'friends_fix', 'movie10fix']:
+                tname = task
+            elif task_root == 'friends':
+                tname = task.replace("task-", "task-friends-")
+            elif task_root == 'narratives':
+                tname = f'{task.replace("part", "_part")}_run-01'
+            else:
+                tname = f'{task}_{run}'     
+            
+            onset_time = get_onset_time(
+                f'{in_path}/{sub}/{ses}/{sub}_{ses}_{fnum}.log',
+                tname, fnum,
+                f'{in_path}/{sub}/{ses}/{sub}_{ses}_{fnum}.pupil/{tname}/000/info.player.json',
+                seri_gaze[12]['timestamp'],  # updated from 10th to 12th gaze, most precise estimation in dset
+                qc_path,
+            )
 
-        # Convert serialized file to lists of arrays (one for BIDS, one for plotting)
-        bids_gaze_list = []
-        gaze_2plot_list = []
+            # Extract gaze from dict to arrays 
+            bids_gaze_list, gaze_2plot_list = extract_gaze(
+                seri_gaze, onset_time, export_plots)
 
-        for gaze in seri_gaze:
-            gaze_timestamp = gaze['timestamp'] - onset_time
-            if gaze_timestamp > 0.0:
-                gaze_x, gaze_y = gaze['norm_pos']
-                gaze_conf = gaze['confidence']
-                pupil_data = gaze['base_data'][0]
-                pupil_x, pupil_y = pupil_data['norm_pos']
-                pupil_diameter = pupil_data['diameter']
-                ellipse_data = pupil_data['ellipse']
-                ellipse_axe_a, ellipse_axe_b = ellipse_data['axes']
-                ellipse_angle = ellipse_data['angle']
-                ellipse_center_x, ellipse_center_y = ellipse_data['center']
+            bids_gaze = np.array(bids_gaze_list)
 
-                bids_gaze_list.append([
-                    gaze_timestamp, gaze_x, gaze_y, gaze_conf, 
-                    pupil_x, pupil_y, pupil_diameter, 
-                    ellipse_axe_a, ellipse_axe_b, ellipse_angle, 
-                    ellipse_center_x, ellipse_center_y,
-                ]) 
-                if export_plots:
-                    gaze_2plot_list.append(np.array(
-                        [gaze_x, gaze_y, gaze_timestamp, gaze_conf])
-                    )
+            # Save timeseries and their metadata
+            pd.DataFrame(bids_gaze).to_csv(
+                f'{bids_path}.tsv.gz', sep='\t', header=False, index=False,
+            )
 
-        bids_gaze = np.array(bids_gaze_list)
+            with open(f'{bids_path}.json', 'w') as metadata_file:
+                json.dump(
+                    get_metadata(bids_gaze_list[0][0]), metadata_file, indent=4,
+                )
 
-        # Save timeseries
-        pd.DataFrame(bids_gaze).to_csv(
-            f'{bids_path}.tsv.gz', sep='\t', header=False, index=False,
-        )
-
-        # Save metadata
-        col_names = [
-                    'timestamp', 'x_coordinate', 'y_coordinate', 'confidence', 
-                    'pupil_x_coordinate', 'pupil_y_coordinate', 'pupil_diameter',
-                    'pupil_ellipse_axe_a', 'pupil_ellipse_axe_b', 'pupil_ellipse_angle',
-                    'pupil_ellipse_center_x', 'pupil_ellipse_center_y'
-                ]
-
-        metadata = {
-            "StartTime": bids_gaze_list[0][0],
-            "Columns": col_names,
-            "SamplingFrequency": 250.0
-        }
-
-        with open(f'{bids_path}.json', 'w') as metadata_file:
-            json.dump(metadata, metadata_file, indent=4)
-
-        if export_plots:
-            return bids_gaze, np.stack(gaze_2plot_list, axis=0)
-        else:
-            return bids_gaze, np.array([])
+            if export_plots:
+                return bids_gaze, np.stack(gaze_2plot_list, axis=0)
+            else:
+                return bids_gaze, np.array([])
 
