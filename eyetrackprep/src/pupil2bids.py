@@ -44,7 +44,7 @@ def parse_ev_dset(
             A list of tuples: (pupil_data_directory_path, metadata_tuple)
             for all runs with a 'pupil.pldata' file.
     """
-    has_run_num = False if task_root in ['retino', 'floc', 'langloc'] else True
+    has_run_num = False if task_root in ['retino', 'floc', 'langloc', 'friends_fix', 'movie10fix'] else True
 
     pupil_file_paths = []
 
@@ -320,7 +320,7 @@ def export_bids(
 
     task_root = in_path.split('/')[-2]
     # early mario3 runs accidentally labelled task-mariostars...
-    pseudo_task = 'task-mario3' if task_root == 'mario3' else task
+    pseudo_task = 'task-mario3' if task_root == 'mario3' else task.replace("-fixations", "").replace("-friends", "")
 
     """
     TODO: write a clean-up script that will scrub 'fnum' from the final file names
@@ -339,7 +339,7 @@ def export_bids(
         print(sub, ses, run, pseudo_task, len(seri_gaze))
 
         # Get run onset time
-        if task_root in ['floc', 'retino', 'langloc', 'ood']:
+        if task_root in ['floc', 'retino', 'langloc', 'ood', 'friends_fix', 'movie10fix']:
             tname = task
         elif task_root == 'friends':
             tname = task.replace("task-", "task-friends-")
@@ -361,11 +361,6 @@ def export_bids(
         gaze_2plot_list = []
 
         for gaze in seri_gaze:
-            # TODO: add metrics to .json sidecar
-            #['timestamp', 'x_coordinate', 'y_coordinate', 'confidence',
-            #'pupil.xcoordinate', 'pupil.ycoordinate', 'pupil_diameter', 
-            #'pupil.elipse_axe_a', 'pupil.elipse_axe_b', 
-            # 'pupil.ellipse_angle', 'pupil.ellipse_center_x', 'pupil.ellipse_center_y']
             gaze_timestamp = gaze['timestamp'] - onset_time
             if gaze_timestamp > 0.0:
                 gaze_x, gaze_y = gaze['norm_pos']
