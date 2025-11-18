@@ -1,4 +1,5 @@
 import os, glob, sys, json
+import datetime
 from pathlib import Path
 from typing import Union
 
@@ -292,7 +293,12 @@ def compile_rawfile_list(
         f"{out_path.root}/code/QC_gaze/{task_root}_QCflist.tsv",
         sep='\t', header=True, index=False,
     )
-    Path(f"{out_path.root}/code/QC_gaze/qc_report_{task_root}.txt").touch()
+
+    qc_path = f"{out_path.root}/code/QC_gaze/qc_report_{task_root}.txt"
+    if Path(qc_path).exists():
+        log_qc(f"\n---------------------------\n{datetime.datetime.now()}\n", qc_path)
+    else:
+        Path(qc_path).touch()
 
     return pupil_file_paths
 
