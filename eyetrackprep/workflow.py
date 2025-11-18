@@ -2,6 +2,7 @@ from pathlib import Path
 import click
 from src import pupil2bids
 from bids import BIDSLayout
+from joblib import Parallel, delayed
 
 
 @click.command()
@@ -25,10 +26,33 @@ from bids import BIDSLayout
     "--drift_corr",
     is_flag=True,
 )
+def call_main(
+    raw_et_dir,
+    out_dir,
+    deriv_dir,
+    export_plots=False,
+    drift_corr=False,
+):
+    out_dir_layout = BIDSLayout(out_dir)
+    list_sub = out_dir_layout.get_subjects()
+
+    Parallel(n_jobs=3, prefer="threads")(
+        delayed(main)(
+            raw_et_dir,
+            out_dir_layout,
+            deriv_dir,
+            sub,
+            export_plots,
+            drift_corr
+        ) for sub in list_sub
+    )
+
+
 def main(
     raw_et_dir,
     out_dir,
     deriv_dir,
+    subject,
     export_plots=False,
     drift_corr=False,
 ):
@@ -77,10 +101,9 @@ def main(
     Exports a .tsv listing all files to support manual QCing
     Returns a list of directories with eye-tracking data to process
     """
-    out_dir_layout = BIDSLayout(out_dir)
 
     pupil_file_paths = pupil2bids.compile_rawfile_list(
-        raw_et_dir, out_dir_layout)
+        raw_et_dir, out_dir, subject)
     
     """
     Processes, exports and returns pupil and gaze metrics in BIDS format.
@@ -101,4 +124,4 @@ def main(
 
 
 if __name__ == "__main__":
-    main()
+    call_main()

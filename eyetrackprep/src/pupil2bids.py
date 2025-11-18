@@ -229,6 +229,7 @@ def parse_noev_dset(
 def compile_rawfile_list(
     in_path: str,
     out_path: BIDSLayout,
+    subject: str,
 ) -> tuple[pd.DataFrame, list[tuple]]:
     """
     Compiles an overview of all available eye-tracking files
@@ -259,10 +260,10 @@ def compile_rawfile_list(
     # Find all the fMRI session directories with numeric session numbers for all subjects
     # e.g., (on elm, in_path = '/unf/eyetracker/neuromod/triplets/sourcedata')
     sub_list = [f'sub-{sub_id}' for sub_id in out_path.get_subjects()]
-    
+
     ses_list = [
         x for x in sorted(glob.glob(
-            f'{in_path}/sub-*/ses-*')
+            f'{in_path}/sub-{subject}/ses-*')
         ) if x.split('-')[-1].isnumeric()
     ]
 
@@ -339,16 +340,16 @@ def export_bids(
     task_root = in_path.split('/')[-2]
     # early mario3 runs accidentally labelled task-mariostars...
     pseudo_task = 'task-mario3' if task_root == 'mario3' else task.replace("-fixations", "").replace("-friends", "")
-    qc_path = f"{out_path}/code/QC_gaze/qc_report_{task_root}.txt"
+    qc_path = f"{out_path.root}/code/QC_gaze/{sub}_qc_report_{task_root}.txt"
     
     """
     TODO: write a clean-up script that will scrub 'fnum' from the final file names
     AFTER the entire dset has been Qced (fnum crucial to tell appart repeated runs...)
     """
     if run is None:
-        bids_path = f'{out_path}/{sub}/{ses}/func/{sub}_{ses}_{pseudo_task}_{fnum}_recording-eye0_physio'
+        bids_path = f'{out_path.root}/{sub}/{ses}/func/{sub}_{ses}_{pseudo_task}_{fnum}_recording-eye0_physio'
     else:
-        bids_path = f'{out_path}/{sub}/{ses}/func/{sub}_{ses}_{pseudo_task}_{run}_{fnum}_recording-eye0_physio'
+        bids_path = f'{out_path.root}/{sub}/{ses}/func/{sub}_{ses}_{pseudo_task}_{run}_{fnum}_recording-eye0_physio'
 
     if Path(f'{bids_path}.tsv.gz').exists():
         return np.array([]), np.array([])
