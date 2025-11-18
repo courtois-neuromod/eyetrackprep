@@ -261,6 +261,7 @@ def load_pldata_file(directory, topic):
     Deserialize pldata
     """
     msgpack_file = os.path.join(directory, topic + ".pldata")
+    is_deserialized = True
 
     try:
         data = collections.deque()
@@ -285,5 +286,6 @@ def load_pldata_file(directory, topic):
     except FileNotFoundError as err:
         print(f"Couldn't read or unpack: {err}")
         data = []
+        is_deserialized = False
 
-    return data
+    return data, is_deserialized
