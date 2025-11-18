@@ -1,7 +1,6 @@
 import os, glob, sys, json
 import datetime
 from pathlib import Path
-from typing import Union
 
 import numpy as np
 import pandas as pd
@@ -308,12 +307,13 @@ def export_bids(
     in_path: str,
     out_path: str,
     export_plots: bool,
-) -> Union[np.array, None]:
+) -> tuple[np.array]:
     '''
     Function extracts a single run's gaze and pupil metrics from .pldata (Pupil's) format,
     and exports them to BIDS (BEP20, .tsv.gz). 
     
-    Returns timestamped gaze position with detection confidence scores to plot (for manual QCing)
+    Returns bids-compatible gaze & pupil data, and timestamped gaze position with detection 
+    confidence scores to plot (for manual QCing)
 
     Parameters
     ----------
@@ -328,7 +328,11 @@ def export_bids(
 
     Returns
     -------
-    Numpy array : run's gaze position in x and y over time, with confidence scores
+    tuple [np.array, np.array] : 
+        1st array has the run's gaze and pupil data exported to bids, to support drift correction
+
+        2nd array has the run's gaze position in x and y and confidence scores to produce
+        plots to support QCing
     '''
     sub, ses, run, task, fnum = pupil_path[1]
 
