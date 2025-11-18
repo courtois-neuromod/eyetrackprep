@@ -181,9 +181,9 @@ def extract_gaze(
                 ellipse_center_x, ellipse_center_y,
             ]) 
             if export_plots:
-                gaze_2plot_list.append(np.array(
-                    [gaze_x, gaze_y, gaze_timestamp, gaze_conf])
-                )
+                gaze_2plot_list.append([
+                    gaze_x, gaze_y, gaze_timestamp, gaze_conf,
+                ])
                 
     return bids_gaze_list, gaze_2plot_list
 

@@ -340,7 +340,7 @@ def export_bids(
     else:
         bids_path = f'{out_path}/{sub}/{ses}/func/{sub}_{ses}_{pseudo_task}_{run}_{fnum}_recording-eye_physio'
 
-    if not os.path.exists(bids_path):
+    if not Path(bids_path).exists():
         Path(os.path.dirname(bids_path)).mkdir(parents=True, exist_ok=True)
 
         # gaze data includes pupil metrics from which each gaze was derived
@@ -373,21 +373,20 @@ def export_bids(
             # Extract gaze from dict to arrays 
             bids_gaze_list, gaze_2plot_list = extract_gaze(
                 seri_gaze, onset_time, export_plots)
-
+            
             bids_gaze = np.array(bids_gaze_list)
-
-            # Save timeseries and their metadata
-            pd.DataFrame(bids_gaze).to_csv(
-                f'{bids_path}.tsv.gz', sep='\t', header=False, index=False,
-            )
-
-            with open(f'{bids_path}.json', 'w') as metadata_file:
-                json.dump(
-                    get_metadata(bids_gaze_list[0][0]), metadata_file, indent=4,
+            
+            if len(bids_gaze_list) > 0:
+                # Save timeseries and their metadata
+                pd.DataFrame(bids_gaze).to_csv(
+                    f'{bids_path}.tsv.gz', sep='\t', header=False, index=False,
                 )
 
-            if export_plots:
-                return bids_gaze, np.stack(gaze_2plot_list, axis=0)
+                with open(f'{bids_path}.json', 'w') as metadata_file:
+                    json.dump(
+                        get_metadata(bids_gaze_list[0][0]), metadata_file, indent=4,
+                    )
             else:
-                return bids_gaze, np.array([])
+                log_qc(f"Run fail: no pupils timestamped after run onset for {fnum}", qc_path)
 
+            return bids_gaze, np.array(gaze_2plot_list)
