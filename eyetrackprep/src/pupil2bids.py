@@ -336,9 +336,9 @@ def export_bids(
     AFTER the entire dset has been Qced (fnum crucial to tell appart repeated runs...)
     """
     if run is None:
-        bids_path = f'{out_path}/{sub}/{ses}/func/{sub}_{ses}_{pseudo_task}_{fnum}_recording-eye_physio'
+        bids_path = f'{out_path}/{sub}/{ses}/func/{sub}_{ses}_{pseudo_task}_{fnum}_recording-eye0_physio'
     else:
-        bids_path = f'{out_path}/{sub}/{ses}/func/{sub}_{ses}_{pseudo_task}_{run}_{fnum}_recording-eye_physio'
+        bids_path = f'{out_path}/{sub}/{ses}/func/{sub}_{ses}_{pseudo_task}_{run}_{fnum}_recording-eye0_physio'
 
     if not Path(bids_path).exists():
         Path(os.path.dirname(bids_path)).mkdir(parents=True, exist_ok=True)
