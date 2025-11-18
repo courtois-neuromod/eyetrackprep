@@ -350,7 +350,7 @@ def export_bids(
     else:
         bids_path = f'{out_path}/{sub}/{ses}/func/{sub}_{ses}_{pseudo_task}_{run}_{fnum}_recording-eye0_physio'
 
-    if not Path(bids_path).exists():
+    if not Path(f'{bids_path}.tsv.gz').exists():
         Path(os.path.dirname(bids_path)).mkdir(parents=True, exist_ok=True)
 
         # gaze data includes pupil metrics from which each gaze was derived
