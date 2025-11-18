@@ -354,8 +354,11 @@ def export_bids(
         Path(os.path.dirname(bids_path)).mkdir(parents=True, exist_ok=True)
 
         # gaze data includes pupil metrics from which each gaze was derived
-        seri_gaze = load_pldata_file(pupil_path[0], 'gaze')
-        log_qc(f"\n{sub} {ses} {run} {pseudo_task} {task} {len(seri_gaze)}", qc_path)
+        seri_gaze, is_deserialized = load_pldata_file(pupil_path[0], 'gaze')
+        if is_deserialized:
+            log_qc(f"\n{sub} {ses} {run} {pseudo_task} {task} {len(seri_gaze)}", qc_path)
+        else:
+            log_qc(f"\nDeserialization of .pldata failed for {sub} {ses} {run} {pseudo_task} {task}", qc_path)
 
         if len(seri_gaze) < 13:
             log_qc(f"Run fail: {len(seri_gaze)} pupils found for {fnum}", qc_path)
