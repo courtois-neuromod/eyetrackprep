@@ -28,6 +28,7 @@ from bids import BIDSLayout
 def main(
     raw_et_dir,
     out_dir,
+    deriv_dir,
     export_plots=False,
     drift_corr=False,
 ):
@@ -87,11 +88,10 @@ def main(
     to plot for manual QCing.
     """
     for pupil_path in pupil_file_paths:
-        try:
-            bids_gaze, raw_gaze_2plot = pupil2bids.export_bids(
-                pupil_path, raw_et_dir, out_dir, export_plots)
-        except:
-            print(f"Cannot process {pupil_path[1]}")
+
+        bids_gaze, raw_gaze_2plot = pupil2bids.export_bids(
+            pupil_path, raw_et_dir, out_dir, export_plots)
+
 
     """
     TODO: implement gaze drift correction for tasks w known fixations

@@ -10,12 +10,23 @@ import msgpack
 import collections
 
 
+def log_qc(
+    log_message,
+    qc_path
+) -> None:
+    """."""
+    print(log_message)    
+    with open(qc_path, 'a') as qc_report:
+        qc_report.write(f"{log_message}\n")    
+        
+
 def get_onset_time(
     log_path: str,
     task_name: str,
     fnum: str,
     ip_path: str,
     gz_ts: float,
+    qc_path: str,
 ) -> float:
     """
     Returns run onset time on the same clock as the gaze timestamps, 
@@ -34,6 +45,8 @@ def get_onset_time(
         Path to the run's info.player.json file
     gz_ts : float
         Timestamp of a run's 10th recorded gaze
+    qc_path: str
+        Path to qc_report_{task}.txt report to log parsing issues
 
     Returns
     -------
@@ -43,7 +56,7 @@ def get_onset_time(
     
     onset_time_dict = {}
     TTL_0 = -1
-    has_lines = True
+    has_logs = True
     """
     Parse through a session's log file to build a dict of TTL 0 (run trigger) times
     assigned to each run in the log file.
@@ -52,12 +65,14 @@ def get_onset_time(
     a run's logs shares the run's identifying number ('YYYYMMDD-HHMMSS')
     """
     if not Path(log_path).exists():
-        has_lines = False
+        log_qc(f"Warning: no .log file found for {fnum}", qc_path)
+        has_logs = False
     else:
         with open(log_path) as f:
             lines = f.readlines()
             if len(lines) == 0:
-                has_lines = False
+                log_qc(f"Warning: empty .log file for {fnum}", qc_path)
+                has_logs = False
             for line in lines:
                 if "fMRI TTL 0" in line:
                     TTL_0 = line.split('\t')[0]
@@ -84,13 +99,21 @@ def get_onset_time(
                     run_id = line.split(': ')[-2]
                     onset_time_dict[run_id] = float(TTL_0)
 
+    if task_name not in onset_time_dict:
+        log_qc(f"Run name not found during .log text parsing for {fnum}", qc_path)
+        has_logs = False
+
+    if not Path(ip_path).exists():
+        log_qc(f"No info.player.json file found for {fnum}", qc_path)
+        has_logs = False
+
     """
-    In cases where the log file is not empty, verify if the 
+    In cases where the log file was parsed successfully, verify if the 
     logged TTL_0 time is on the same clock as the gaze timestamps. 
 
     If not, convert TTL_0 to the same clock as the gaze
     """
-    if has_lines and Path(ip_path).exists():
+    if has_logs:
         # get run's logged TTL 0 time
         o_time = onset_time_dict[task_name]
 
@@ -115,16 +138,72 @@ def get_onset_time(
                 # convert TTL 0 from system to synced clock                
                 o_time += (sync_ts - syst_ts)
     
+        return o_time
+    
     else:
         """
-        If the log file is empty, estimate the trigger time based on the run's
-        10th gaze timestamp (estimated based on observed lags between eye-tracker
-        and task logs)
+        If the log file cannot be parsed, estimate the scanner onset time 
+        from the run's 12th gaze timestamp (estimated from differences between 
+        gaze timestamps and logged TTL 0 for 14 CNeuroMod tasks with eye-tracking data)
         """        
-        print('empty log file, onset time estimated from gaze timestamp')
-        o_time = gz_ts
+        log_qc(f"Warning: failed log parsing, onset time estimated from gaze timestamp for {fnum}", qc_path)
+        return gz_ts
 
-    return o_time
+
+def extract_gaze(
+    seri_gaze,
+    onset_time,
+    export_plots,
+) -> tuple[list]:
+    """
+    Convert nested gaze dictionary to two lists of arrays (one for BIDS, one for plotting)
+    """
+    bids_gaze_list = []
+    gaze_2plot_list = []
+
+    for gaze in seri_gaze:
+        gaze_timestamp = gaze['timestamp'] - onset_time
+        if gaze_timestamp > 0.0:
+            gaze_x, gaze_y = gaze['norm_pos']
+            gaze_conf = gaze['confidence']
+            pupil_data = gaze['base_data'][0]
+            pupil_x, pupil_y = pupil_data['norm_pos']
+            pupil_diameter = pupil_data['diameter']
+            ellipse_data = pupil_data['ellipse']
+            ellipse_axe_a, ellipse_axe_b = ellipse_data['axes']
+            ellipse_angle = ellipse_data['angle']
+            ellipse_center_x, ellipse_center_y = ellipse_data['center']
+
+            bids_gaze_list.append([
+                gaze_timestamp, gaze_x, gaze_y, gaze_conf, 
+                pupil_x, pupil_y, pupil_diameter, 
+                ellipse_axe_a, ellipse_axe_b, ellipse_angle, 
+                ellipse_center_x, ellipse_center_y,
+            ]) 
+            if export_plots:
+                gaze_2plot_list.append([
+                    gaze_x, gaze_y, gaze_timestamp, gaze_conf,
+                ])
+                
+    return bids_gaze_list, gaze_2plot_list
+
+
+def get_metadata(
+    start_time: float,
+) -> dict :
+    """."""
+    col_names = [
+        'timestamp', 'x_coordinate', 'y_coordinate', 'confidence', 
+        'pupil_x_coordinate', 'pupil_y_coordinate', 'pupil_diameter',
+        'pupil_ellipse_axe_a', 'pupil_ellipse_axe_b', 'pupil_ellipse_angle',
+        'pupil_ellipse_center_x', 'pupil_ellipse_center_y'
+    ]
+
+    return {
+        "StartTime": start_time,
+        "Columns": col_names,
+        "SamplingFrequency": 250.0,
+    }
 
 
 def parse_task_name(
@@ -182,6 +261,7 @@ def load_pldata_file(directory, topic):
     Deserialize pldata
     """
     msgpack_file = os.path.join(directory, topic + ".pldata")
+    is_deserialized = True
 
     try:
         data = collections.deque()
@@ -206,5 +286,6 @@ def load_pldata_file(directory, topic):
     except FileNotFoundError as err:
         print(f"Couldn't read or unpack: {err}")
         data = []
+        is_deserialized = False
 
-    return data
+    return data, is_deserialized
