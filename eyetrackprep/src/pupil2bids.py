@@ -355,13 +355,13 @@ def export_bids(
 
         # gaze data includes pupil metrics from which each gaze was derived
         seri_gaze, is_deserialized = load_pldata_file(pupil_path[0], 'gaze')
-        if is_deserialized:
-            log_qc(f"\n{sub} {ses} {run} {pseudo_task} {task} {len(seri_gaze)}", qc_path)
-        else:
-            log_qc(f"\nDeserialization of .pldata failed for {sub} {ses} {run} {pseudo_task} {task}", qc_path)
+        log_qc(f"\n{sub} {ses} {run} {pseudo_task} {task} {len(seri_gaze)}", qc_path)
 
         if len(seri_gaze) < 13:
-            log_qc(f"Run fail: {len(seri_gaze)} pupils found for {fnum}", qc_path)
+            if not is_deserialized:
+                log_qc(f"\nRun fail: unsuccessful deserialization of .pldata for {fnum}", qc_path)
+            else:
+                log_qc(f"\nRun fail: {len(seri_gaze)} pupils found for {fnum}", qc_path)
 
             return np.array([]), np.array([])        
         else:
