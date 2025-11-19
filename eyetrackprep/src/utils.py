@@ -10,6 +10,57 @@ import msgpack
 import collections
 
 
+def unpacking_object_hook(obj):
+    if isinstance(obj, dict):
+        return types.MappingProxyType(obj)
+    return obj
+
+def unpacking_ext_hook(code, data):
+    if code == MSGPACK_EXT_CODE:
+        return msgpack.unpackb(
+            data,
+            use_list=False,
+            object_hook=unpacking_object_hook,
+            ext_hook=unpacking_ext_hook,
+            strict_map_key=False,
+        )
+    return msgpack.ExtType(code, data)
+
+def load_pldata_file(directory, topic):
+    """
+    Deserialize pldata
+    """
+    msgpack_file = os.path.join(directory, topic + ".pldata")
+    is_deserialized = True
+
+    try:
+        data = collections.deque()
+
+        with open(msgpack_file, "rb") as stream:
+            unpacker = msgpack.Unpacker(
+                stream,
+                use_list=False,
+                strict_map_key=False
+            )
+
+            for _, to_unpack in unpacker:
+                unpacked = msgpack.unpackb(
+                    to_unpack, 
+                    use_list=False, 
+                    object_hook=unpacking_object_hook, 
+                    ext_hook=unpacking_ext_hook, 
+                    strict_map_key=False
+                )
+                data.append(unpacked)
+
+    except FileNotFoundError as err:
+        print(f"Couldn't read or unpack: {err}")
+        data = []
+        is_deserialized = False
+
+    return data, is_deserialized
+
+
 def log_qc(
     log_message,
     qc_path
@@ -153,13 +204,11 @@ def get_onset_time(
 def extract_gaze(
     seri_gaze,
     onset_time,
-    export_plots,
-) -> tuple[list]:
+) -> list:
     """
     Convert nested gaze dictionary to two lists of arrays (one for BIDS, one for plotting)
     """
     bids_gaze_list = []
-    gaze_2plot_list = []
 
     for gaze in seri_gaze:
         gaze_timestamp = gaze['timestamp'] - onset_time
@@ -180,25 +229,15 @@ def extract_gaze(
                 ellipse_axe_a, ellipse_axe_b, ellipse_angle, 
                 ellipse_center_x, ellipse_center_y,
             ]) 
-            if export_plots:
-                gaze_2plot_list.append([
-                    gaze_x, gaze_y, gaze_timestamp, gaze_conf,
-                ])
                 
-    return bids_gaze_list, gaze_2plot_list
+    return bids_gaze_list
 
 
 def get_metadata(
     start_time: float,
+    col_names: list[str],
 ) -> dict :
     """."""
-    col_names = [
-        'timestamp', 'x_coordinate', 'y_coordinate', 'confidence', 
-        'pupil_x_coordinate', 'pupil_y_coordinate', 'pupil_diameter',
-        'pupil_ellipse_axe_a', 'pupil_ellipse_axe_b', 'pupil_ellipse_angle',
-        'pupil_ellipse_center_x', 'pupil_ellipse_center_y'
-    ]
-
     return {
         "StartTime": start_time,
         "Columns": col_names,
@@ -224,68 +263,22 @@ def parse_task_name(
     return sub, ses, fnum, task_type
 
 
-def create_event_path(row, file_path, log=False):
+def get_event_path(
+    pupil_path: str,
+) -> str:
     '''
-    for each run, create path to events.tsv or PsychoPy log file
+    Parses gaze.pldata parent directory's path, 
+    returns path to corresponding run's events.tsv file.
+
+    Works for tasks with events.tsv files: 
+        emotionsvideos, floc, friends_fix, langloc, mario, 
+        mariostars, mario3, movie10_fix, multfs, mutemusic, 
+        narratives (recency sub-task only), retino, things, 
+        and triplets
     '''
-    s = row['subject']
-    ses = row['session']
-    if log:
-        return f'{file_path}/{s}/{ses}/{s}_{ses}_{row["file_number"]}.log'
-    else:
-        if row['task'] in ['task-bar', 'task-rings', 'task-wedges', 'task-flocdef', 'task-flocalt']:
-            return f'{file_path}/{s}/{ses}/{s}_{ses}_{row["file_number"]}_{row["task"]}_events.tsv'
-        else:
-            return f'{file_path}/{s}/{ses}/{s}_{ses}_{row["file_number"]}_{row["task"]}_{row["run"]}_events.tsv'
+    parent_path = str(Path(pupil_path).parents[2])
+    pupil_str, task_str = pupil_path.split('/')[-3:-1]
+    
+    return f"{parent_path}/{pupil_str.split('.')[0]}_{task_str}_events.tsv"
 
 
-
-def unpacking_object_hook(obj):
-    if isinstance(obj, dict):
-        return types.MappingProxyType(obj)
-    return obj
-
-def unpacking_ext_hook(code, data):
-    if code == MSGPACK_EXT_CODE:
-        return msgpack.unpackb(
-            data,
-            use_list=False,
-            object_hook=unpacking_object_hook,
-            ext_hook=unpacking_ext_hook,
-            strict_map_key=False,
-        )
-    return msgpack.ExtType(code, data)
-
-def load_pldata_file(directory, topic):
-    """
-    Deserialize pldata
-    """
-    msgpack_file = os.path.join(directory, topic + ".pldata")
-    is_deserialized = True
-
-    try:
-        data = collections.deque()
-
-        with open(msgpack_file, "rb") as stream:
-            unpacker = msgpack.Unpacker(
-                stream,
-                use_list=False,
-                strict_map_key=False
-            )
-
-            for _, to_unpack in unpacker:
-                unpacked = msgpack.unpackb(
-                    to_unpack, 
-                    use_list=False, 
-                    object_hook=unpacking_object_hook, 
-                    ext_hook=unpacking_ext_hook, 
-                    strict_map_key=False
-                )
-                data.append(unpacked)
-
-    except FileNotFoundError as err:
-        print(f"Couldn't read or unpack: {err}")
-        data = []
-        is_deserialized = False
-
-    return data, is_deserialized

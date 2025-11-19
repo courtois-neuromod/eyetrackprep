@@ -1,7 +1,9 @@
-from pathlib import Path
 import click
-from src import pupil2bids
+from pathlib import Path
 from bids import BIDSLayout
+
+from src import pupil2bids, driftcorr, qc_plots
+from src.driftcorr import log_drift_correction
 
 
 @click.command()
@@ -22,7 +24,7 @@ from bids import BIDSLayout
     is_flag=True,
 )
 @click.option(
-    "--drift_corr",
+    "--correct_drift",
     is_flag=True,
 )
 def main(
@@ -30,7 +32,7 @@ def main(
     out_dir,
     deriv_dir,
     export_plots=False,
-    drift_corr=False,
+    correct_drift=False,
 ):
     """Eyetrackprep workflow.
 
@@ -64,7 +66,7 @@ def main(
 
         If specified, exports plots to support QCing of the dataset's runs.
 
-    drift_corr : bool, optional
+    correct_drift : bool, optional
 
         If specified, exports a dataset of drift-corrected gaze as derivatives.
 
@@ -75,27 +77,40 @@ def main(
     and eye0.mp4 exported by pupil, PsychoPy log file).
 
     Exports a .tsv listing all files to support manual QCing
-    Returns a list of directories with eye-tracking data to process
+    Returns a list of directories that contain raw eye-tracking data to process
     """
     out_dir_layout = BIDSLayout(out_dir)
 
-    pupil_file_paths = pupil2bids.compile_rawfile_list(
+    pupil_file_paths, task_root = pupil2bids.compile_rawfile_list(
         raw_et_dir, out_dir_layout)
     
     """
     Processes, exports and returns pupil and gaze metrics in BIDS format.
-    If export_plots is True, also returns raw (uncorrected) gaze coordinates 
-    to plot for manual QCing.
     """
+    if correct_drift:
+        log_drift_correction(deriv_dir, task_root)
+
     for pupil_path in pupil_file_paths:
+        
+        bids_gaze = pupil2bids.export_bids(
+            pupil_path, raw_et_dir, out_dir)
 
-        bids_gaze, raw_gaze_2plot = pupil2bids.export_bids(
-            pupil_path, raw_et_dir, out_dir, export_plots)
+        if correct_drift:
+            driftcorr_gaze = driftcorr.driftcorr_run(
+                bids_gaze, task_root, pupil_path, 
+                out_dir, deriv_dir,
+            )
+        
+        if export_plots:
+            # TODO: implement plotting function w and w/o dc gaze
+            qc_plots.make_qc_plot(
+                bids_gaze, driftcorr_gaze, 
+                pupil_path, deriv_dir,
+            )
 
 
     """
-    TODO: implement gaze drift correction for tasks w known fixations
-    TODO: import Pupil library
+    TODO: implement gaze drift correction for tasks w/o known fixations
     TODO: generate multi-pannel plot for manual QCing
     """
 
