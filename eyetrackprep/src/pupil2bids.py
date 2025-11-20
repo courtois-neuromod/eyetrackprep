@@ -398,7 +398,7 @@ def export_bids(
             if len(bids_gaze_list) > 0:
                 # Save timeseries and their metadata
                 pd.DataFrame(bids_gaze).to_csv(
-                    f'{bids_path}.tsv.gz', sep='\t', header=False, index=False,
+                    f'{bids_path}.tsv.gz', sep='\t', header=False, index=False, compression='gzip',
                 )
 
                 with open(f'{bids_path}.json', 'w') as metadata_file:

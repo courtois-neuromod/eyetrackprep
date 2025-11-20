@@ -1,11 +1,11 @@
-import os
-import datetime
+import os, json
 from pathlib import Path
+from typing import Union
 
 import numpy as np
 import pandas as pd
 
-from src.utils import log_qc, get_event_path
+from src.utils import log_qc, get_event_path, get_metadata
 from src.pupil2bids import BIDS_COL_NAMES
 
 
@@ -16,19 +16,6 @@ DERIV_COL_NAMES = [
     'pupil_ellipse_axe_a', 'pupil_ellipse_axe_b', 'pupil_ellipse_angle',
     'pupil_ellipse_center_x', 'pupil_ellipse_center_y'
 ]
-
-def log_drift_correction(
-    deriv_dir: str,
-    task_root: str,
-) -> None: 
-    """."""
-    dcqc_path = f"{deriv_dir}/code/QC_gaze/qc_report_{task_root}.txt"
-    if Path(dcqc_path).exists():
-        log_qc(f"\n---------------------------\n{datetime.datetime.now()}\n", dcqc_path)
-    else:
-        Path(f"{deriv_dir}/code/QC_gaze").mkdir(parents=True, exist_ok=True)
-        Path(dcqc_path).touch()
-
 
 def filter_gaze(
     bids_gaze: np.array,
@@ -146,6 +133,7 @@ def get_fixations(
                 gaze_arr[:, 0] < (fix_offset - 0.1),  # drop last 0.1s of fix
             )]
             if trial_gaze.shape[0] > 0:
+                # TODO: consider setting a min number of gaze >1 to estimate fixation
                 good_fix += 1
                 trial_gaze[:, 0] = trial_gaze[0, 0]
                 fix_data.append(np.median(trial_gaze[:, :3], axis=0))
@@ -168,18 +156,15 @@ def driftcorr_fromlast(
     Subtract the difference between 
     by subtracting the difference between 
     """
-    x_aligned = []
-    y_aligned = []
+    gaze_aligned = []
     j = 0
 
     for i in range(len(bids_gaze)):
         while j < len(fix_data)-1 and bids_gaze[i, 0] > fix_data[j+1, 0]:
             j += 1
-        #gaze_aligned.append(bids_gaze[i, 1:3] - fix_data[j, 1:3]) # TODO: try this?
-        x_aligned.append(bids_gaze[i, 1] - fix_data[j, 1])
-        y_aligned.append(bids_gaze[i, 2] - fix_data[j, 2])
+        gaze_aligned.append(bids_gaze[i, 1:3] - fix_data[j, 1:3])
 
-    return np.stack([x_aligned, y_aligned], axis=1)
+    return np.array(gaze_aligned)
 
 
 def export_dcgaze(
@@ -195,7 +180,7 @@ def export_dcgaze(
     deriv_gaze_df = deriv_gaze_df[DERIV_COL_NAMES]
     
     deriv_gaze_df.to_csv(
-        f'{deriv_path}.tsv.gz', sep='\t', header=False, index=False,
+        f'{deriv_path}.tsv.gz', sep='\t', header=False, index=False, compression='gzip',
     )
 
     with open(f'{deriv_path}.json', 'w') as metadata_file:
@@ -213,7 +198,7 @@ def dc_knownfix(
     events_path: str, 
     deriv_path: str,
     qc_path: str,
-) -> np.array:
+) -> tuple[np.array, Union[np.array, None], Union[np.array, None]]:
     """
     Tasks with known periods of central fixation
     Gaze drift corrected based on the latest period of central fixation between trials, levels, videos, etc.
@@ -221,8 +206,8 @@ def dc_knownfix(
     Each run has one event.tsv file with logged fixation onset and duration in bids_dir
     """
     if not Path(events_path).exists():
-        log_qc(f"\Drift correction fail: no events.tsv file found for {fnum}", qc_path)
-        return bids_gaze
+        log_qc(f"Drift correction fail: no events.tsv file found for {fnum}", qc_path)
+        return bids_gaze, None, None
     else:
         run_event = pd.read_csv(events_path, sep = '\t', header=0)
     
@@ -233,11 +218,11 @@ def dc_knownfix(
         # TODO: add argument to specify conf thresholds per subject or (better) per run...
         gaze_threshold = 0.85  # Note: used 0.75 for sub-01 for THINGS task, 0.9 for other subjects...
         clean_gaze = filter_gaze(bids_gaze, gaze_threshold, distance=True)
-        log_qc(f"\{len(clean_gaze)} out of {len(bids_gaze)} ({(100*len(clean_gaze))/len(bids_gaze)}%) of gaze above {gaze_threshold} confidence for {fnum}", qc_path)
+        log_qc(f"{len(clean_gaze)} out of {len(bids_gaze)} ({(100*len(clean_gaze))/len(bids_gaze):.2f}%) of gaze above {gaze_threshold} confidence for {fnum}", qc_path)
 
         if len(clean_gaze) == 0:
-            log_qc(f"\Drift correction fail: no gaze found above confidence threshold for {fnum}", qc_path)
-            return bids_gaze
+            log_qc(f"Drift correction fail: no gaze found above confidence threshold for {fnum}", qc_path)
+            return bids_gaze, None, None
         else:
             """
             Computes median position in x and y for known periods of central fixation;
@@ -248,11 +233,11 @@ def dc_knownfix(
                 task_root,
                 clean_gaze,
             )
-            log_qc(f"\{valid_fix} out of {total_fix} fixations valid for {fnum}", qc_path)
+            log_qc(f"{valid_fix} out of {total_fix} fixations valid for {fnum}", qc_path)
 
             if valid_fix == 0:
-                log_qc(f"\Drift correction fail: no fixation periods with high-confidence gaze for {fnum}", qc_path)
-                return bids_gaze
+                log_qc(f"Drift correction fail: no fixation periods with high-confidence gaze for {fnum}", qc_path)
+                return bids_gaze, None, None
 
             else:
                 """
@@ -266,16 +251,15 @@ def dc_knownfix(
 
                 return export_dcgaze(
                     bids_gaze, driftcorr_gaze, deriv_path,
-                )
+                ), clean_gaze, fix_data
 
 
 def driftcorr_run(
     bids_gaze: np.array,
     task_root: str,
     meta_data: tuple[str, tuple], 
-    bids_dir: str,
     deriv_dir: str,   
-) -> np.array:
+) -> tuple[np.array, Union[np.array, None], Union[np.array, None]]:
     """
     Assigns gaze to proper drift-correction strategy based on task
     """
@@ -290,11 +274,11 @@ def driftcorr_run(
     if Path(f'{deriv_path}.tsv.gz').exists():
         return np.loadtxt(
             f'{deriv_path}.tsv.gz', delimiter='\t',
-        )
+        ), None, None
     else:
         Path(os.path.dirname(deriv_path)).mkdir(parents=True, exist_ok=True)
         dcqc_path = f"{deriv_dir}/code/QC_gaze/qc_report_{task_root}.txt"
-        log_qc(f"\n{sub} {ses} {run} {task} {fnum}", qc_path)
+        log_qc(f"\n{sub} {ses} {run} {task} {fnum}", dcqc_path)
 
         if task_root in ['emotionsvideos', 'langloc', 'mariostars', 'mario3', 'multfs', 'mutemusic', 'triplets']:
             """
@@ -313,7 +297,7 @@ def driftcorr_run(
             Gaze drift corrected based on arbitrarily defined periods of fixation before the run / sequence onset.
             """        
             # TODO: implement dc_stablefix
-            return bids_gaze
+            return bids_gaze, None, None
 
         elif task_root in ['friends', 'ood']:
             """
@@ -321,10 +305,10 @@ def driftcorr_run(
             Gaze drift corrected based on distribution of gaze prediction from deepgaze
             """        
             # TODO: implement dc_deepgaze
-            return bids_gaze
+            return bids_gaze, None, None
 
         elif task_root in ['friends_fix', 'movie10_fix', 'mario', 'narratives']:
             """
             Tasks for which there is no current approach to drift correction
             """        
-            return bids_gaze        
+            return bids_gaze, None, None   

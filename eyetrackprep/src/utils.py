@@ -1,4 +1,5 @@
 import os, json
+import datetime
 from pathlib import Path
 from typing import Union
 
@@ -15,6 +16,7 @@ def unpacking_object_hook(obj):
         return types.MappingProxyType(obj)
     return obj
 
+
 def unpacking_ext_hook(code, data):
     if code == MSGPACK_EXT_CODE:
         return msgpack.unpackb(
@@ -25,6 +27,7 @@ def unpacking_ext_hook(code, data):
             strict_map_key=False,
         )
     return msgpack.ExtType(code, data)
+
 
 def load_pldata_file(directory, topic):
     """
@@ -59,6 +62,20 @@ def load_pldata_file(directory, topic):
         is_deserialized = False
 
     return data, is_deserialized
+
+
+def init_log(
+    log_dir: str,
+    task_root: str,
+    job_tag: str,
+) -> None: 
+    """."""
+    log_path = f"{log_dir}/code/QC_gaze/{job_tag}_report_{task_root}.txt"
+    if Path(log_path).exists():
+        log_qc(f"\n---------------------------\n{datetime.datetime.now()}\n", log_path)
+    else:
+        Path(f"{log_dir}/code/QC_gaze").mkdir(parents=True, exist_ok=True)
+        Path(log_path).touch()
 
 
 def log_qc(
@@ -206,7 +223,7 @@ def extract_gaze(
     onset_time,
 ) -> list:
     """
-    Convert nested gaze dictionary to two lists of arrays (one for BIDS, one for plotting)
+    Converts nested gaze dictionary to two lists of arrays (one for BIDS, one for plotting)
     """
     bids_gaze_list = []
 

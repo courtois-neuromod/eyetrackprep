@@ -2,8 +2,7 @@ import click
 from pathlib import Path
 from bids import BIDSLayout
 
-from src import pupil2bids, driftcorr, qc_plots
-from src.driftcorr import log_drift_correction
+from src import pupil2bids, driftcorr, qc_plots, utils
 
 
 @click.command()
@@ -86,34 +85,42 @@ def main(
     
     """
     Processes, exports and returns pupil and gaze metrics in BIDS format.
+    
+    If correct_drift == True, also exports drift corrected gaze as derivatives    
     """
     if correct_drift:
-        log_drift_correction(deriv_dir, task_root)
+        utils.init_log(deriv_dir, task_root, 'qc')
 
     for pupil_path in pupil_file_paths:
         
+        """ exports raw pupils to bids """
         bids_gaze = pupil2bids.export_bids(
             pupil_path, raw_et_dir, out_dir)
 
+        """ corrects gaze for drift and exports as derivatives """
         if correct_drift:
-            driftcorr_gaze = driftcorr.driftcorr_run(
-                bids_gaze, task_root, pupil_path, 
-                out_dir, deriv_dir,
-            )
-        
-        if export_plots:
-            # TODO: implement plotting function w and w/o dc gaze
-            qc_plots.make_qc_plot(
-                bids_gaze, driftcorr_gaze, 
+            dc_gaze, f_gaze, fix_data = driftcorr.driftcorr_run(
+                bids_gaze, task_root, 
                 pupil_path, deriv_dir,
             )
 
+        """ generates raw and/or re-aligned gaze plots for QCing """        
+        if export_plots:
+            if correct_drift:
+                utils.init_log(deriv_dir, task_root, 'plot')
+                qc_plots.plot_dc_gaze(
+                    dc_gaze, pupil_path, task_root, 
+                    deriv_dir, f_gaze, fix_data,
+                )
+            else:
+                utils.init_log(out_dir, task_root, 'plot')
+                qc_plots.plot_raw_gaze(
+                    bids_gaze, pupil_path, task_root, out_dir,                
+                )
 
     """
     TODO: implement gaze drift correction for tasks w/o known fixations
-    TODO: generate multi-pannel plot for manual QCing
     """
-
 
 if __name__ == "__main__":
     main()
