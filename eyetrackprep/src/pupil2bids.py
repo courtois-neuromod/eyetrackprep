@@ -354,7 +354,7 @@ def export_bids(
         bids_path = f'{out_path}/{sub}/{ses}/func/{sub}_{ses}_{pseudo_task}_{run}_{fnum}_recording-eye0_physio'
 
     if Path(f'{bids_path}.tsv.gz').exists():
-        return = np.loadtxt(
+        return np.loadtxt(
             f'{bids_path}.tsv.gz', 
             delimiter='\t',
         )

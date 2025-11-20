@@ -15,7 +15,7 @@ from src.driftcorr import log_drift_correction
     "out_dir",
     type=click.Path(),
 )
-@click.argument(
+@click.option(
     "deriv_dir",
     type=click.Path(),
 )

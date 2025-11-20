@@ -272,7 +272,7 @@ def dc_knownfix(
 def driftcorr_run(
     bids_gaze: np.array,
     task_root: str,
-    meta_data: tuple(str, tuple), 
+    meta_data: tuple[str, tuple], 
     bids_dir: str,
     deriv_dir: str,   
 ) -> np.array:
@@ -288,7 +288,7 @@ def driftcorr_run(
         deriv_path = f'{deriv_dir}/{sub}/{ses}/func/{sub}_{ses}_{task}_{run}_{fnum}_recording-eye0_desc-driftcorr_physio'
 
     if Path(f'{deriv_path}.tsv.gz').exists():
-        return = np.loadtxt(
+        return np.loadtxt(
             f'{deriv_path}.tsv.gz', delimiter='\t',
         )
     else:
