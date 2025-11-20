@@ -55,7 +55,7 @@ def main(
         and QC figures and reports (optional).
         e.g., on elm: /data/neuromod/projects/eyetracking_bids/bids_repos/emotion-videos
 
-    deriv_dir : str or pathlib.Path
+    deriv_dir : str or pathlib.Path, optional
 
         Absolute path to the derivative repository where to export drift-corrected
         gaze data, events data (e.g., fixation metrics per trial), etc.
@@ -82,15 +82,19 @@ def main(
 
     pupil_file_paths, task_root = pupil2bids.compile_rawfile_list(
         raw_et_dir, out_dir_layout)
-    
+
+    """
+    Initializes process logs
+    """
+    utils.init_logs(
+        task_root, correct_drift, export_plots, out_dir, deriv_dir
+    )
+
     """
     Processes, exports and returns pupil and gaze metrics in BIDS format.
     
     If correct_drift == True, also exports drift corrected gaze as derivatives    
     """
-    if correct_drift:
-        utils.init_log(deriv_dir, task_root, 'qc')
-
     for pupil_path in pupil_file_paths:
         
         """ exports raw pupils to bids """
@@ -99,24 +103,20 @@ def main(
 
         """ corrects gaze for drift and exports as derivatives """
         if correct_drift:
-            dc_gaze, f_gaze, fix_data = driftcorr.driftcorr_run(
+            dc_gaze, filter_gaze, fix_data = driftcorr.driftcorr_run(
                 bids_gaze, task_root, 
                 pupil_path, deriv_dir,
             )
-
-        """ generates raw and/or re-aligned gaze plots for QCing """        
-        if export_plots:
-            if correct_drift:
-                utils.init_log(deriv_dir, task_root, 'plot')
+            if export_plots:
                 qc_plots.plot_dc_gaze(
                     dc_gaze, pupil_path, task_root, 
-                    deriv_dir, f_gaze, fix_data,
+                    deriv_dir, filter_gaze, fix_data,
                 )
-            else:
-                utils.init_log(out_dir, task_root, 'plot')
-                qc_plots.plot_raw_gaze(
-                    bids_gaze, pupil_path, task_root, out_dir,                
-                )
+
+        elif export_plots:
+            qc_plots.plot_raw_gaze(
+                bids_gaze, pupil_path, task_root, out_dir,                
+            )
 
     """
     TODO: implement gaze drift correction for tasks w/o known fixations

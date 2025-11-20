@@ -64,6 +64,16 @@ def load_pldata_file(directory, topic):
     return data, is_deserialized
 
 
+def log_qc(
+    log_message,
+    qc_path
+) -> None:
+    """."""
+    print(log_message)    
+    with open(qc_path, 'a') as qc_report:
+        qc_report.write(f"{log_message}\n")    
+
+
 def init_log(
     log_dir: str,
     task_root: str,
@@ -78,14 +88,21 @@ def init_log(
         Path(log_path).touch()
 
 
-def log_qc(
-    log_message,
-    qc_path
-) -> None:
+def init_logs(
+    task_root: str,
+    correct_drift: bool,
+    export_plots: bool,
+    out_dir: str,
+    deriv_dir: Union[str, None],
+) -> None: 
     """."""
-    print(log_message)    
-    with open(qc_path, 'a') as qc_report:
-        qc_report.write(f"{log_message}\n")    
+    init_log(out_dir, task_root, 'qc')
+    if correct_drift:
+        init_log(deriv_dir, task_root, 'qc')
+        if export_plots:
+            init_log(deriv_dir, task_root, 'plot')
+    elif export_plots:
+        init_log(out_dir, task_root, 'plot')
         
 
 def get_onset_time(
