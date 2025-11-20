@@ -132,8 +132,8 @@ def get_fixations(
                 gaze_arr[:, 0] > (fix_onset + 0.8),   # + capture from 0.8s (800ms) after fixation onset to account for saccade
                 gaze_arr[:, 0] < (fix_offset - 0.1),  # drop last 0.1s of fix
             )]
-            if trial_gaze.shape[0] > 0:
-                # TODO: consider setting a min number of gaze >1 to estimate fixation
+            if trial_gaze.shape[0] > 5:
+                # TODO: consider setting a min number of gaze > ?? to estimate fixation
                 good_fix += 1
                 trial_gaze[:, 0] = trial_gaze[0, 0]
                 fix_data.append(np.median(trial_gaze[:, :3], axis=0))
