@@ -15,7 +15,7 @@ from src import pupil2bids, driftcorr, qc_plots, utils
     type=click.Path(),
 )
 @click.option(
-    "deriv_dir",
+    "--deriv_dir",
     type=click.Path(),
 )
 @click.option(
@@ -29,7 +29,7 @@ from src import pupil2bids, driftcorr, qc_plots, utils
 def main(
     raw_et_dir,
     out_dir,
-    deriv_dir,
+    deriv_dir=None,
     export_plots=False,
     correct_drift=False,
 ):
