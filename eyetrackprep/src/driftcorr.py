@@ -64,7 +64,7 @@ def get_fixations(
     median position. 
 
     Filters gaze within windows of fixation defined by task structure events.tsv files, 
-    (applying a +0.8s start  buffer and -0.1s end buffer), and computes the median 
+    (applying a +0.7s start  buffer), and computes the median 
     gaze coordinates in x and y. The timestamp assigned to each fixation corresponds 
     to the first gaze reccorded within a fixation window.
 
@@ -127,12 +127,13 @@ def get_fixations(
             """
             Select gaze from pre-trial fixation period
             """
+            fix_min = int(250*(fix_offset - (0.7 + fix_onset))*0.2)  # 20% of pupils expected to be captured during fix period
             total_fix += 1
             trial_gaze = gaze_arr[np.logical_and(
-                gaze_arr[:, 0] > (fix_onset + 0.8),   # + capture from 0.8s (800ms) after fixation onset to account for saccade
-                gaze_arr[:, 0] < (fix_offset - 0.1),  # drop last 0.1s of fix
+                gaze_arr[:, 0] > (fix_onset + 0.7),   # + capture from 0.7s (700ms) after fixation onset to account for saccade
+                gaze_arr[:, 0] < fix_offset,  # gaze_arr[:, 0] < (fix_offset - 0.1),  # drop last 0.1s of fix
             )]
-            if trial_gaze.shape[0] > 5:
+            if trial_gaze.shape[0] > fix_min:
                 # TODO: consider setting a min number of gaze > ?? to estimate fixation
                 good_fix += 1
                 trial_gaze[:, 0] = trial_gaze[0, 0]
@@ -216,7 +217,7 @@ def dc_knownfix(
         Returns normalized distance to central fixation point
         """
         # TODO: add argument to specify conf thresholds per subject or (better) per run...
-        gaze_threshold = 0.85  # Note: used 0.75 for sub-01 for THINGS task, 0.9 for other subjects...
+        gaze_threshold = 0.9  # Note: used 0.75 for sub-01 for THINGS task, 0.9 for other subjects...
         clean_gaze = filter_gaze(bids_gaze, gaze_threshold, distance=True)
         log_qc(f"{len(clean_gaze)} out of {len(bids_gaze)} ({(100*len(clean_gaze))/len(bids_gaze):.2f}%) of gaze above {gaze_threshold} confidence for {fnum}", qc_path)
 
@@ -280,7 +281,11 @@ def driftcorr_run(
         dcqc_path = f"{deriv_dir}/code/QC_gaze/qc_report_{task_root}.txt"
         log_qc(f"\n{sub} {ses} {run} {task} {fnum}", dcqc_path)
 
-        if task_root in ['emotionsvideos', 'langloc', 'mariostars', 'mario3', 'multfs', 'mutemusic', 'triplets']:
+        if bids_gaze.shape[0] == 0:
+            log_qc(f"Drift correction fail: no gaze found for {fnum}", dcqc_path)
+            return bids_gaze, None, None
+
+        elif task_root in ['emotionsvideos', 'langloc', 'mariostars', 'mario3', 'multfs', 'mutemusic', 'triplets']:
             """
             Tasks with known periods of central fixation
             Gaze drift corrected based on the latest period of central fixation between trials, levels, videos, etc.
