@@ -16,6 +16,13 @@ from src.utils import (
 )
 
 
+BIDS_COL_NAMES = [
+    'timestamp', 'x_coordinate', 'y_coordinate', 'confidence', 
+    'pupil_x_coordinate', 'pupil_y_coordinate', 'pupil_diameter',
+    'pupil_ellipse_axe_a', 'pupil_ellipse_axe_b', 'pupil_ellipse_angle',
+    'pupil_ellipse_center_x', 'pupil_ellipse_center_y'
+]
+
 def parse_ev_dset(
     df_files: pd.DataFrame,
     task_root: str,
@@ -255,6 +262,8 @@ def compile_rawfile_list(
         - pupil_file_paths : list of tuple
             A list of tuples: (pupil_data_directory_path, metadata_tuple)
             for all runs that contain a 'pupil.pldata' file.
+    task_root: str
+        dset task name
     """
     # Find all the fMRI session directories with numeric session numbers for all subjects
     # e.g., (on elm, in_path = '/unf/eyetracker/neuromod/triplets/sourcedata')
@@ -293,21 +302,14 @@ def compile_rawfile_list(
         sep='\t', header=True, index=False,
     )
 
-    qc_path = f"{out_path.root}/code/QC_gaze/qc_report_{task_root}.txt"
-    if Path(qc_path).exists():
-        log_qc(f"\n---------------------------\n{datetime.datetime.now()}\n", qc_path)
-    else:
-        Path(qc_path).touch()
-
-    return pupil_file_paths
+    return pupil_file_paths, task_root
 
 
 def export_bids(    
     pupil_path: tuple,
     in_path: str,
     out_path: str,
-    export_plots: bool,
-) -> tuple[np.array]:
+) -> np.array:
     '''
     Function extracts a single run's gaze and pupil metrics from .pldata (Pupil's) format,
     and exports them to BIDS (BEP20, .tsv.gz). 
@@ -323,16 +325,11 @@ def export_bids(
         The root directory of the dataset (e.g., '.../neuromod/retino/sourcedata').
     out_path : str
         The output directory where the BIDS & QC files will be saved.
-    export_plots : bool
-        If True, returns metrics to plot gaze confidence and position over time
 
     Returns
     -------
-    tuple [np.array, np.array] : 
-        1st array has the run's gaze and pupil data exported to bids, to support drift correction
-
-        2nd array has the run's gaze position in x and y and confidence scores to produce
-        plots to support QCing
+    Numpy array : the run's gaze and pupil data exported to bids, to support drift correction and 
+        produce plots to support QCing
     '''
     sub, ses, run, task, fnum = pupil_path[1]
 
@@ -351,13 +348,16 @@ def export_bids(
         bids_path = f'{out_path}/{sub}/{ses}/func/{sub}_{ses}_{pseudo_task}_{run}_{fnum}_recording-eye0_physio'
 
     if Path(f'{bids_path}.tsv.gz').exists():
-        return np.array([]), np.array([])
+        return np.loadtxt(
+            f'{bids_path}.tsv.gz', 
+            delimiter='\t',
+        )
     else:
         Path(os.path.dirname(bids_path)).mkdir(parents=True, exist_ok=True)
 
         # gaze data includes pupil metrics from which each gaze was derived
         seri_gaze, is_deserialized = load_pldata_file(pupil_path[0], 'gaze')
-        log_qc(f"\n{sub} {ses} {run} {pseudo_task} {task} {len(seri_gaze)}", qc_path)
+        log_qc(f"\n{sub} {ses} {run} {pseudo_task} {task} {fnum} {len(seri_gaze)}", qc_path)
 
         if len(seri_gaze) < 13:
             if not is_deserialized:
@@ -365,7 +365,7 @@ def export_bids(
             else:
                 log_qc(f"\nRun fail: {len(seri_gaze)} pupils found for {fnum}", qc_path)
 
-            return np.array([]), np.array([])        
+            return np.array([])       
         else:
             # Get run onset time
             if task_root in ['floc', 'retino', 'langloc', 'ood', 'friends_fix', 'movie10fix']:
@@ -386,22 +386,20 @@ def export_bids(
             )
 
             # Extract gaze from dict to arrays 
-            bids_gaze_list, gaze_2plot_list = extract_gaze(
-                seri_gaze, onset_time, export_plots)
-            
+            bids_gaze_list = extract_gaze(seri_gaze, onset_time)
             bids_gaze = np.array(bids_gaze_list)
             
             if len(bids_gaze_list) > 0:
                 # Save timeseries and their metadata
                 pd.DataFrame(bids_gaze).to_csv(
-                    f'{bids_path}.tsv.gz', sep='\t', header=False, index=False,
+                    f'{bids_path}.tsv.gz', sep='\t', header=False, index=False, compression='gzip',
                 )
 
                 with open(f'{bids_path}.json', 'w') as metadata_file:
                     json.dump(
-                        get_metadata(bids_gaze_list[0][0]), metadata_file, indent=4,
+                        get_metadata(bids_gaze_list[0][0], BIDS_COL_NAMES), metadata_file, indent=4,
                     )
             else:
                 log_qc(f"Run fail: no pupils timestamped after run onset for {fnum}", qc_path)
 
-            return bids_gaze, np.array(gaze_2plot_list)
+            return bids_gaze
