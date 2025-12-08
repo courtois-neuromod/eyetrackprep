@@ -5,7 +5,7 @@ from typing import Union
 import numpy as np
 import pandas as pd
 
-from src.utils import log_qc, get_event_path, get_metadata
+from src.utils import log_qc, get_event_path, get_conf_thresh, get_metadata
 from src.pupil2bids import BIDS_COL_NAMES
 
 
@@ -216,8 +216,11 @@ def dc_knownfix(
         Filter-out gaze from pupils detected below confidence threshold
         Returns normalized distance to central fixation point
         """
-        # TODO: add argument to specify conf thresholds per subject or (better) per run...
-        gaze_threshold = 0.9  # Note: used 0.75 for sub-01 for THINGS task, 0.9 for other subjects...
+        # TODO: add gaze_threshold to run's meta data file
+        gaze_threshold = get_conf_thresh(
+            task_root,
+            os.path.basename(events_path),
+        )
         clean_gaze = filter_gaze(bids_gaze, gaze_threshold, distance=True)
         log_qc(f"{len(clean_gaze)} out of {len(bids_gaze)} ({(100*len(clean_gaze))/len(bids_gaze):.2f}%) of gaze above {gaze_threshold} confidence for {fnum}", qc_path)
 
