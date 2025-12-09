@@ -11,6 +11,7 @@ from src.utils import (
     parse_task_name, 
     load_pldata_file, 
     extract_gaze,
+    detect_freezes,
     get_metadata, 
     log_qc,
 )
@@ -377,11 +378,12 @@ def export_bids(
             else:
                 tname = f'{task}_{run}'     
             
-            onset_time = get_onset_time(
+            onset_time, offset_time = get_onset_time(
                 f'{in_path}/{sub}/{ses}/{sub}_{ses}_{fnum}.log',
                 tname, fnum,
                 f'{in_path}/{sub}/{ses}/{sub}_{ses}_{fnum}.pupil/{tname}/000/info.player.json',
                 seri_gaze[12]['timestamp'],  # updated from 10th to 12th gaze, most precise estimation in dset
+                seri_gaze[-1]['timestamp'],
                 qc_path,
             )
 
@@ -394,11 +396,12 @@ def export_bids(
                 pd.DataFrame(bids_gaze).to_csv(
                     f'{bids_path}.tsv.gz', sep='\t', header=False, index=False, compression='gzip',
                 )
-
                 with open(f'{bids_path}.json', 'w') as metadata_file:
                     json.dump(
                         get_metadata(bids_gaze_list[0][0], BIDS_COL_NAMES), metadata_file, indent=4,
                     )
+                # Save camera freeze events (onset and duration)
+                detect_freezes(bids_gaze, bids_path, offset_time-onset_time)
             else:
                 log_qc(f"Run fail: no pupils timestamped after run onset for {fnum}", qc_path)
 

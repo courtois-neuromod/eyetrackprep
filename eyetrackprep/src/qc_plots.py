@@ -156,7 +156,7 @@ def plot_dc_gaze(
                     axes[2][i].scatter(
                         fix_data[:, 0],             # timestamp (col 0)  
                         fix_data[:, i+1],           # dist to center x (col 1) or dist to center y (col 2)  
-                        color='xkcd:orange', 
+                        color='xkcd:orange',        # TODO: cmap=YlOrRd, c=fix confidence metric
                         s=20, alpha=1.0,
                     )
                     if i == 0:

@@ -110,11 +110,12 @@ def get_onset_time(
     task_name: str,
     fnum: str,
     ip_path: str,
-    gz_ts: float,
+    gz0_ts: float,
+    gzn_ts: float,
     qc_path: str,
-) -> float:
+) -> tuple[float, float]:
     """
-    Returns run onset time on the same clock as the gaze timestamps, 
+    Returns run onset and offset time on the same clock as the gaze timestamps, 
     to reset gaze timestamps to 0 at the start of the run.
 
     Parameters
@@ -128,19 +129,22 @@ def get_onset_time(
         Automated output numerical identifier based on date and time of acquisition. At least one per session (more if task interruptions)
     ip_path : str
         Path to the run's info.player.json file
-    gz_ts : float
-        Timestamp of a run's 10th recorded gaze
+    gz0_ts : float
+        Timestamp of a run's 12th recorded gaze
+    gzn_ts : float
+        Timestamp of a run's last recorded gaze
     qc_path: str
         Path to qc_report_{task}.txt report to log parsing issues
 
     Returns
     -------
-    o_time: float
-        Run's onset time on the same clock as the gaze timestamps
+    (on_time, off_time) : tuple[float, float]
+        Run's onset and offset time on the same clock as the gaze timestamps
     """
     
     onset_time_dict = {}
     TTL_0 = -1
+    stop_et  = -1
     has_logs = True
     """
     Parse through a session's log file to build a dict of TTL 0 (run trigger) times
@@ -161,28 +165,30 @@ def get_onset_time(
             for line in lines:
                 if "fMRI TTL 0" in line:
                     TTL_0 = line.split('\t')[0]
+                elif "stopping eyetracking recording" in line:
+                    stop_et = line.split('\t')[0]
                 #elif "saved wide-format data to /scratch/neuromod/data" in line:
                 elif "saved wide-format data to /scratch/neur" in line:  # catches typos at console
                     run_id = line.split('\t')[-1].split(f'{fnum}_')[-1].split('_events.tsv')[0]
-                    onset_time_dict[run_id] = float(TTL_0)
+                    onset_time_dict[run_id] = (float(TTL_0), float(stop_et))
                 elif "class 'src.tasks.localizers.FLoc'" in line:
                     run_id = line.split(': ')[-2]
-                    onset_time_dict[run_id] = float(TTL_0)
+                    onset_time_dict[run_id] = (float(TTL_0), float(stop_et))
                 elif "class 'src.tasks.retinotopy.Retinotopy'" in line:
                     run_id = line.split(': ')[-2]
-                    onset_time_dict[run_id] = float(TTL_0)
+                    onset_time_dict[run_id] = (float(TTL_0), float(stop_et))
                 elif "class 'src.tasks.mutemusic.Playlist'" in line:
                     run_id = line.split(': ')[-2]
-                    onset_time_dict[run_id] = float(TTL_0)
+                    onset_time_dict[run_id] = (float(TTL_0), float(stop_et))
                 elif "class 'src.tasks.videogame.VideoGameMultiLevel'" in line:
                     run_id = line.split(': ')[-2]
-                    onset_time_dict[run_id] = float(TTL_0)
+                    onset_time_dict[run_id] = (float(TTL_0), float(stop_et))
                 elif "class 'src.tasks.video.SingleVideo'" in line:
                     run_id = line.split(': ')[-2]
-                    onset_time_dict[run_id] = float(TTL_0)
+                    onset_time_dict[run_id] = (float(TTL_0), float(stop_et))
                 elif "class 'src.tasks.narratives" in line:
                     run_id = line.split(': ')[-2]
-                    onset_time_dict[run_id] = float(TTL_0)
+                    onset_time_dict[run_id] = (float(TTL_0), float(stop_et))
 
     if task_name not in onset_time_dict:
         log_qc(f"Run name not found during .log text parsing for {fnum}", qc_path)
@@ -200,7 +206,7 @@ def get_onset_time(
     """
     if has_logs:
         # get run's logged TTL 0 time
-        o_time = onset_time_dict[task_name]
+        on_time, off_time = onset_time_dict[task_name]
 
         # for each run, the info.player.json file contains the same
         # start time logged on two different clocks: synced and system  
@@ -210,20 +216,22 @@ def get_onset_time(
         syst_ts = iplayer['start_time_system_s']
 
         # check if gaze timestamp is on synced time
-        is_sync_gz = (gz_ts-sync_ts)**2 < (gz_ts-syst_ts)**2
+        is_sync_gz = (gz0_ts-sync_ts)**2 < (gz0_ts-syst_ts)**2
         # check if TTL 0 is on synced time
-        is_sync_ot = (o_time-sync_ts)**2 < (o_time-syst_ts)**2
+        is_sync_ot = (on_time-sync_ts)**2 < (on_time-syst_ts)**2
         # If gaze and TTL 0 are on different clocks, 
         # convert TTL 0 to the same clock as the gaze timestamps
         if is_sync_gz != is_sync_ot:
             if is_sync_ot:
                 # convert TTL 0 from synced to system clock
-                o_time += (syst_ts - sync_ts)
+                on_time += (syst_ts - sync_ts)
+                off_time += (syst_ts - sync_ts)
             else:
                 # convert TTL 0 from system to synced clock                
-                o_time += (sync_ts - syst_ts)
+                on_time += (sync_ts - syst_ts)
+                off_time += (sync_ts - syst_ts)
     
-        return o_time
+        return on_time, off_time
     
     else:
         """
@@ -231,8 +239,8 @@ def get_onset_time(
         from the run's 12th gaze timestamp (estimated from differences between 
         gaze timestamps and logged TTL 0 for 14 CNeuroMod tasks with eye-tracking data)
         """        
-        log_qc(f"Warning: failed log parsing, onset time estimated from gaze timestamp for {fnum}", qc_path)
-        return gz_ts
+        log_qc(f"Warning: failed log parsing, run onset and offset time estimated from gaze timestamps for {fnum}", qc_path)
+        return gz0_ts, gzn_ts
 
 
 def extract_gaze(
@@ -265,6 +273,46 @@ def extract_gaze(
             ]) 
                 
     return bids_gaze_list
+
+
+def detect_freezes(
+    gaze: np.array,
+    out_path: str,
+    run_duration: float,
+) -> None:
+    """
+    Eye-tracking sampling rate is 250Hz, so the time difference 
+    between two consecutive gaze should be ~0.004s
+    """
+    ts_arr = np.stack((
+            gaze[:-1, 0], gaze[1:, 0] - gaze[:-1, 0],
+        ), axis=1,
+    )
+    ts_arr = ts_arr[ts_arr[:, 1] > 0.005]
+
+    if gaze[0, 0] > 0.04:  # ~ 10 skipped frames
+        ts_arr = np.concat([
+            np.array([[0.0, gaze[0, 0]]]),
+            ts_arr,
+        ], axis=0)
+        
+    if run_duration - gaze[-1, 0] > 0.04:  # ~ 10 skipped frames
+        ts_arr = np.concat([
+            ts_arr,
+            np.array([[gaze[-1, 0], run_duration-gaze[-1, 0]]]),
+        ], axis=0)
+        
+    if ts_arr.shape[0] > 0:
+        pd.DataFrame(ts_arr).to_csv(
+            f'{out_path}events.tsv.gz', sep='\t', header=False, index=False, compression='gzip',
+        )
+        with open(f'{out_path}events.json', 'w') as metadata_file:
+            json.dump({
+                    "Columns": ['onset', 'duration'],
+                    "Description": "Eye-tracking camera freezes.",
+                    "OnsetSource": "timestamp",
+                }, metadata_file, indent=4,
+            )
 
 
 def get_metadata(
