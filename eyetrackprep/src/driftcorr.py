@@ -76,6 +76,7 @@ def get_fixations(
     df_ev: pd.DataFrame,
     task: str,
     gaze_arr: np.array,
+    gaze_ratio: float,
 ) -> tuple[np.array, int, int]:
     """
     Identifies gaze data corresponding to fixation periods and calculates their 
@@ -145,7 +146,7 @@ def get_fixations(
             """
             Select gaze from pre-trial fixation period
             """
-            fix_min = int(250*(fix_offset - (0.7 + fix_onset))*0.2)  # 20% of pupils expected to be captured during fix period
+            fix_min = int(250*(fix_offset - (0.7 + fix_onset))*gaze_ratio)  # default : 0.2. 20% of pupils expected to be captured during fix period
             total_fix += 1
             trial_gaze = gaze_arr[np.logical_and(
                 gaze_arr[:, 0] > (fix_onset + 0.7),   # + capture from 0.7s (700ms) after fixation onset to account for saccade
@@ -235,7 +236,7 @@ def dc_knownfix(
         Returns normalized distance to central fixation point
         """
         # TODO: add gaze_threshold to run's meta data file
-        gaze_threshold = get_conf_thresh(
+        gaze_threshold, gaze_ratio = get_conf_thresh(
             task_root,
             os.path.basename(events_path),
         )
@@ -254,6 +255,7 @@ def dc_knownfix(
                 run_event,
                 task_root,
                 clean_gaze,
+                gaze_ratio,
             )
             log_qc(f"{valid_fix} out of {total_fix} fixations valid for {fnum}", qc_path)
 
