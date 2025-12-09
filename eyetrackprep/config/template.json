@@ -1,0 +1,23 @@
+{
+    "sub-01": {
+        "default": 0.9,
+        "ses-001": {
+            "20250101-XXXXXX": {
+                "taskname_run-01": 0.9,
+                "taskname_run-02": 0.9
+            }
+        }
+    },
+    "sub-02": {
+        "default": 0.9
+    },
+    "sub-03": {
+        "default": 0.9
+    },
+    "sub-05": {
+        "default": 0.9
+    },
+    "sub-06": {
+        "default": 0.9
+    }    
+}
