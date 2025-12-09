@@ -103,18 +103,6 @@ def init_logs(
             init_log(deriv_dir, task_root, 'plot')
     elif export_plots:
         init_log(out_dir, task_root, 'plot')
-        
-
-def get_metadata(
-    start_time: float,
-    col_names: list[str],
-) -> dict :
-    """."""
-    return {
-        "StartTime": start_time,
-        "Columns": col_names,
-        "SamplingFrequency": 250.0,
-    }
 
 
 def parse_task_name(
@@ -152,3 +140,15 @@ def get_event_path(
     pupil_str, task_str = pupil_path.split('/')[-3:-1]
     
     return f"{parent_path}/{pupil_str.split('.')[0]}_{task_str}_events.tsv"
+
+
+def get_device_name(
+    log_path : str,
+) -> str:
+    """."""
+    with open(log_path) as f:
+        lines = f.readlines()
+    for line in lines:
+        if "HighSpeed-MR_CAM_HS_" in line:
+            return [x for x in line.split() if "HighSpeed-MR_CAM_HS_" in x][0].replace("'", "")
+    return "HighSpeed-MR_CAM_HS_00XX"

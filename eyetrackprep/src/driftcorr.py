@@ -5,7 +5,7 @@ from typing import Union
 import numpy as np
 import pandas as pd
 
-from src.utils import log_qc, get_event_path, get_metadata
+from src.utils import log_qc, get_event_path
 from src.pupil2bids import BIDS_COL_NAMES
 
 
@@ -185,6 +185,18 @@ def driftcorr_fromlast(
         gaze_aligned.append(bids_gaze[i, 1:3] - fix_data[j, 1:3])
 
     return np.array(gaze_aligned)
+
+
+def get_metadata(
+    start_time: float,
+    col_names: list[str],
+) -> dict :
+    """."""
+    return {
+        "StartTime": start_time,
+        "Columns": col_names,
+        "SamplingFrequency": 250.0,
+    }
 
 
 def export_dcgaze(
