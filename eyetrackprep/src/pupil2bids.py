@@ -499,15 +499,16 @@ def detect_freezes(
             gaze[:-1, 0], gaze[1:, 0] - gaze[:-1, 0],
         ), axis=1,
     )
-    ts_arr = ts_arr[ts_arr[:, 1] > 0.005]
+    #ts_arr = ts_arr[ts_arr[:, 1] > 0.005]  # too sensitive: detects any skipped frame...
+    ts_arr = ts_arr[ts_arr[:, 1] > 0.5]  # > 0.5s freezes only
 
-    if gaze[0, 0] > 0.04:  # ~ 10 skipped frames
+    if gaze[0, 0] > 1.0:  
         ts_arr = np.concat([
             np.array([[0.0, gaze[0, 0]]]),
             ts_arr,
         ], axis=0)
         
-    if run_duration - gaze[-1, 0] > 0.04:  # ~ 10 skipped frames
+    if run_duration - gaze[-1, 0] > 2.0:
         ts_arr = np.concat([
             ts_arr,
             np.array([[gaze[-1, 0], run_duration-gaze[-1, 0]]]),
