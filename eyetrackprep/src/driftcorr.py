@@ -5,7 +5,7 @@ from typing import Union
 import numpy as np
 import pandas as pd
 
-from src.utils import log_qc, get_event_path, get_conf_thresh, get_metadata
+from src.utils import log_qc, get_event_path, get_metadata
 from src.pupil2bids import BIDS_COL_NAMES
 
 
@@ -16,6 +16,24 @@ DERIV_COL_NAMES = [
     'pupil_ellipse_axe_a', 'pupil_ellipse_axe_b', 'pupil_ellipse_angle',
     'pupil_ellipse_center_x', 'pupil_ellipse_center_y'
 ]
+
+
+def get_conf_thresh(
+    task_root: str,
+    ev_path: str,
+) -> float:
+    '''
+    Return pupil detection confidence threshold for a given run or subject, 
+    per task.
+    '''
+    with open(f'./config/{task_root}.json', 'r') as conf_file:
+        conf_dict = json.load(conf_file)
+
+    sub, ses, fnum = ev_path.split('_')[:3]
+    run = ev_path.split('task-')[-1].replace('_events.tsv', '')
+
+    return conf_dict.get(sub, {}).get(ses, {}).get(fnum, {}).get(run, conf_dict[sub]['default'])
+
 
 def filter_gaze(
     bids_gaze: np.array,

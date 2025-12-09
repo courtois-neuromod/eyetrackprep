@@ -7,11 +7,8 @@ import pandas as pd
 from bids import BIDSLayout
 
 from src.utils import (
-    get_onset_time, 
     parse_task_name, 
     load_pldata_file, 
-    extract_gaze,
-    detect_freezes,
     get_metadata, 
     log_qc,
 )
@@ -304,6 +301,229 @@ def compile_rawfile_list(
     )
 
     return pupil_file_paths, task_root
+
+
+def get_onset_time(
+    log_path: str,
+    task_name: str,
+    fnum: str,
+    ip_path: str,
+    gz0_ts: float,
+    gzn_ts: float,
+    qc_path: str,
+) -> tuple[float, float]:
+    """
+    Returns run onset and offset time on the same clock as the gaze timestamps, 
+    to reset gaze timestamps to 0 at the start of the run.
+
+    Parameters
+    ----------
+    log_path : str
+        Path to the session's log file that matches a run's identifying number ('YYYYMMDD-HHMMSS')
+    task_name : str
+        Task tag used to label a distinct run in the raw output (e.g., task-friends-s7e18a, 
+        task-thingsmemory_run-1). 
+    fnum: str
+        Automated output numerical identifier based on date and time of acquisition. At least one per session (more if task interruptions)
+    ip_path : str
+        Path to the run's info.player.json file
+    gz0_ts : float
+        Timestamp of a run's 12th recorded gaze
+    gzn_ts : float
+        Timestamp of a run's last recorded gaze
+    qc_path: str
+        Path to qc_report_{task}.txt report to log parsing issues
+
+    Returns
+    -------
+    (on_time, off_time) : tuple[float, float]
+        Run's onset and offset time on the same clock as the gaze timestamps
+    """
+    
+    onset_time_dict = {}
+    TTL_0 = -1
+    stop_et  = -1
+    has_logs = True
+    """
+    Parse through a session's log file to build a dict of TTL 0 (run trigger) times
+    assigned to each run in the log file.
+
+    Note: interrupted sessions have multiple log files, but the file that contains
+    a run's logs shares the run's identifying number ('YYYYMMDD-HHMMSS')
+    """
+    if not Path(log_path).exists():
+        log_qc(f"Warning: no .log file found for {fnum}", qc_path)
+        has_logs = False
+    else:
+        with open(log_path) as f:
+            lines = f.readlines()
+            if len(lines) == 0:
+                log_qc(f"Warning: empty .log file for {fnum}", qc_path)
+                has_logs = False
+            for line in lines:
+                if "fMRI TTL 0" in line:
+                    TTL_0 = line.split('\t')[0]
+                elif "stopping eyetracking recording" in line:
+                    stop_et = line.split('\t')[0]
+                #elif "saved wide-format data to /scratch/neuromod/data" in line:
+                elif "saved wide-format data to /scratch/neur" in line:  # catches typos at console
+                    run_id = line.split('\t')[-1].split(f'{fnum}_')[-1].split('_events.tsv')[0]
+                    onset_time_dict[run_id] = (float(TTL_0), float(stop_et))
+                elif "class 'src.tasks.localizers.FLoc'" in line:
+                    run_id = line.split(': ')[-2]
+                    onset_time_dict[run_id] = (float(TTL_0), float(stop_et))
+                elif "class 'src.tasks.retinotopy.Retinotopy'" in line:
+                    run_id = line.split(': ')[-2]
+                    onset_time_dict[run_id] = (float(TTL_0), float(stop_et))
+                elif "class 'src.tasks.mutemusic.Playlist'" in line:
+                    run_id = line.split(': ')[-2]
+                    onset_time_dict[run_id] = (float(TTL_0), float(stop_et))
+                elif "class 'src.tasks.videogame.VideoGameMultiLevel'" in line:
+                    run_id = line.split(': ')[-2]
+                    onset_time_dict[run_id] = (float(TTL_0), float(stop_et))
+                elif "class 'src.tasks.video.SingleVideo'" in line:
+                    run_id = line.split(': ')[-2]
+                    onset_time_dict[run_id] = (float(TTL_0), float(stop_et))
+                elif "class 'src.tasks.narratives" in line:
+                    run_id = line.split(': ')[-2]
+                    onset_time_dict[run_id] = (float(TTL_0), float(stop_et))
+
+    if task_name not in onset_time_dict:
+        log_qc(f"Run name not found during .log text parsing for {fnum}", qc_path)
+        has_logs = False
+
+    if not Path(ip_path).exists():
+        log_qc(f"No info.player.json file found for {fnum}", qc_path)
+        has_logs = False
+
+    """
+    In cases where the log file was parsed successfully, verify if the 
+    logged TTL_0 time is on the same clock as the gaze timestamps. 
+
+    If not, convert TTL_0 to the same clock as the gaze
+    """
+    if has_logs:
+        # get run's logged TTL 0 time
+        on_time, off_time = onset_time_dict[task_name]
+
+        # for each run, the info.player.json file contains the same
+        # start time logged on two different clocks: synced and system  
+        with open(ip_path, 'r') as f:
+            iplayer = json.load(f)
+        sync_ts = iplayer['start_time_synced_s']
+        syst_ts = iplayer['start_time_system_s']
+
+        # check if gaze timestamp is on synced time
+        is_sync_gz = (gz0_ts-sync_ts)**2 < (gz0_ts-syst_ts)**2
+        # check if TTL 0 is on synced time
+        is_sync_ot = (on_time-sync_ts)**2 < (on_time-syst_ts)**2
+        # If gaze and TTL 0 are on different clocks, 
+        # convert TTL 0 to the same clock as the gaze timestamps
+        if is_sync_gz != is_sync_ot:
+            if is_sync_ot:
+                # convert TTL 0 from synced to system clock
+                on_time += (syst_ts - sync_ts)
+                off_time += (syst_ts - sync_ts)
+            else:
+                # convert TTL 0 from system to synced clock                
+                on_time += (sync_ts - syst_ts)
+                off_time += (sync_ts - syst_ts)
+    
+        return on_time, off_time
+    
+    else:
+        """
+        If the log file cannot be parsed, estimate the scanner onset time 
+        from the run's 12th gaze timestamp (estimated from differences between 
+        gaze timestamps and logged TTL 0 for 14 CNeuroMod tasks with eye-tracking data)
+        """        
+        log_qc(f"Warning: failed log parsing, run onset and offset time estimated from gaze timestamps for {fnum}", qc_path)
+        return gz0_ts, gzn_ts
+
+
+def extract_gaze(
+    seri_gaze,
+    onset_time,
+) -> list:
+    """
+    Converts nested gaze dictionary to two lists of arrays (one for BIDS, one for plotting)
+    """
+    bids_gaze_list = []
+
+    for gaze in seri_gaze:
+        gaze_timestamp = gaze['timestamp'] - onset_time
+        if gaze_timestamp > 0.0:
+            gaze_x, gaze_y = gaze['norm_pos']
+            gaze_conf = gaze['confidence']
+            pupil_data = gaze['base_data'][0]
+            pupil_x, pupil_y = pupil_data['norm_pos']
+            pupil_diameter = pupil_data['diameter']
+            ellipse_data = pupil_data['ellipse']
+            ellipse_axe_a, ellipse_axe_b = ellipse_data['axes']
+            ellipse_angle = ellipse_data['angle']
+            ellipse_center_x, ellipse_center_y = ellipse_data['center']
+
+            bids_gaze_list.append([
+                gaze_timestamp, gaze_x, gaze_y, gaze_conf, 
+                pupil_x, pupil_y, pupil_diameter, 
+                ellipse_axe_a, ellipse_axe_b, ellipse_angle, 
+                ellipse_center_x, ellipse_center_y,
+            ]) 
+                
+    return bids_gaze_list
+
+
+def detect_freezes(
+    gaze: np.array,
+    out_file: str,
+    run_duration: float,
+) -> None:
+    """
+    Identifies temporal gaps in eye-tracking data due to camera freezes, 
+    and exports them as physioevents.tsv file.
+
+    Detects instances of inter-sample interval > 0.005s (indicating a dropped frame 
+    or camera freeze, based on a 250Hz pupil sampling rate). 
+
+    Args:
+        gaze (np.array): A 2D array of gaze data with timestamps in col 0 (in s). 
+        out_file (str): The output file name for a particular run.
+        run_duration (float): The estimated run duration (in s).
+
+    If camera freezes are detected, two files are exported:
+    - `physioevents.tsv.gz`: A compressed tab-separated file with 'onset' and 
+        'duration' for the identified camera freezes.
+    - `events.json`: A metadata file describing the columns in the TSV.
+    """
+    ts_arr = np.stack((
+            gaze[:-1, 0], gaze[1:, 0] - gaze[:-1, 0],
+        ), axis=1,
+    )
+    ts_arr = ts_arr[ts_arr[:, 1] > 0.005]
+
+    if gaze[0, 0] > 0.04:  # ~ 10 skipped frames
+        ts_arr = np.concat([
+            np.array([[0.0, gaze[0, 0]]]),
+            ts_arr,
+        ], axis=0)
+        
+    if run_duration - gaze[-1, 0] > 0.04:  # ~ 10 skipped frames
+        ts_arr = np.concat([
+            ts_arr,
+            np.array([[gaze[-1, 0], run_duration-gaze[-1, 0]]]),
+        ], axis=0)
+        
+    if ts_arr.shape[0] > 0:
+        pd.DataFrame(ts_arr).to_csv(
+            f'{out_file}events.tsv.gz', sep='\t', header=False, index=False, compression='gzip',
+        )
+        with open(f'{out_file}events.json', 'w') as metadata_file:
+            json.dump({
+                    "Columns": ['onset', 'duration'],
+                    "Description": "Eye-tracking camera freezes.",
+                    "OnsetSource": "timestamp",
+                }, metadata_file, indent=4,
+            )
 
 
 def export_bids(    
