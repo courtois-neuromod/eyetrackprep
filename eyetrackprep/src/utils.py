@@ -316,3 +316,18 @@ def get_event_path(
     return f"{parent_path}/{pupil_str.split('.')[0]}_{task_str}_events.tsv"
 
 
+def get_conf_thresh(
+    task_root: str,
+    ev_path: str,
+) -> float:
+    '''
+    Return pupil detection confidence threshold for a given run or subject, 
+    per task.
+    '''
+    with open(f'./config/{task_root}.json', 'r') as conf_file:
+        conf_dict = json.load(conf_file)
+
+    sub, ses, fnum = ev_path.split('_')[:3]
+    run = ev_path.split('task-')[-1].replace('_events.tsv', '')
+
+    return conf_dict.get(sub, {}).get(ses, {}).get(fnum, {}).get(run, conf_dict[sub]['default'])

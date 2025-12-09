@@ -45,7 +45,7 @@ def plot_raw_gaze(
             log_qc(f"Plotting fail: unexpected number of columns in gaze data file for {sub} {ses} {run} {task} {fnum}", qc_path)
 
         else:
-            fig, axes = plt.subplots(2, 1, figsize=(21, 7))
+            fig, axes = plt.subplots(1, 2, figsize=(21, 7))
             plot_labels = ['gaze_x', 'gaze_y']
             run_dur = gaze_data[-1][0] + 15
 
