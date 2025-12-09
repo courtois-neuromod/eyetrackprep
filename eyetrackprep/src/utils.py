@@ -277,12 +277,28 @@ def extract_gaze(
 
 def detect_freezes(
     gaze: np.array,
-    out_path: str,
+    out_file: str,
     run_duration: float,
 ) -> None:
     """
-    Eye-tracking sampling rate is 250Hz, so the time difference 
-    between two consecutive gaze should be ~0.004s
+    Identifies temporal gaps in eye-tracking data due to camera freezes, 
+    and exports them as physioevents.tsv file.
+
+    Detects instances of inter-sample interval > 0.005s (indicating a dropped frame 
+    or camera freeze, based on a 250Hz pupil sampling rate). 
+
+    Args:
+        gaze (np.array): A 2D array of gaze data with timestamps in col 0 (in s). 
+        out_file (str): The output file name for a particular run.
+        run_duration (float): The estimated run duration (in s).
+
+    Returns:
+        None
+
+    If camera freezes are detected, two files are exported:
+    - `physioevents.tsv.gz`: A compressed tab-separated file with 'onset' and 
+        'duration' for the identified camera freezes.
+    - `events.json`: A metadata file describing the columns in the TSV.
     """
     ts_arr = np.stack((
             gaze[:-1, 0], gaze[1:, 0] - gaze[:-1, 0],
@@ -304,9 +320,9 @@ def detect_freezes(
         
     if ts_arr.shape[0] > 0:
         pd.DataFrame(ts_arr).to_csv(
-            f'{out_path}events.tsv.gz', sep='\t', header=False, index=False, compression='gzip',
+            f'{out_file}events.tsv.gz', sep='\t', header=False, index=False, compression='gzip',
         )
-        with open(f'{out_path}events.json', 'w') as metadata_file:
+        with open(f'{out_file}events.json', 'w') as metadata_file:
             json.dump({
                     "Columns": ['onset', 'duration'],
                     "Description": "Eye-tracking camera freezes.",
