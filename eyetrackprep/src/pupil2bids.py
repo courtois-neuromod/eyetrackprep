@@ -568,7 +568,7 @@ def format_metadata(
         "EyeCameraSettings": {
             "exposure_time": 4000,
             "global_gain": 1,
-        }
+        },
         "EyeTrackerDistance": 0.1,
         "EyeTrackingMethod": "pupil-labs/pupil-detectors:2d",
         "StartTime": start_time,
