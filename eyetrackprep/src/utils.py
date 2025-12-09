@@ -292,9 +292,6 @@ def detect_freezes(
         out_file (str): The output file name for a particular run.
         run_duration (float): The estimated run duration (in s).
 
-    Returns:
-        None
-
     If camera freezes are detected, two files are exported:
     - `physioevents.tsv.gz`: A compressed tab-separated file with 'onset' and 
         'duration' for the identified camera freezes.
