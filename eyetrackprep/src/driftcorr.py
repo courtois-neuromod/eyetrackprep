@@ -185,11 +185,11 @@ def driftcorr_fromlast(
     for i in range(len(bids_gaze)):
         while j < len(fix_data)-1 and bids_gaze[i, 0] > fix_data[j+1, 0]:
             j += 1
-        gaze_aligned.append(
+        gaze_aligned.append([
             bids_gaze[i, 1] - fix_data[j, 1],  # driftcorr gaze x_coord 
             bids_gaze[i, 2] - fix_data[j, 2],  # driftcorr gaze y_coord
             j,   # ref fixation index
-        )
+        ])
 
     return np.array(gaze_aligned)
 
