@@ -102,14 +102,14 @@ def get_fixations(
             the pupil detection confidence.
 
     Returns:
-        np.array(fix_data): A (N, 5) array containing the following columns
-            [onset, median gaze x, median gaze y, duration, pupil_counts] 
-            for each period of fixation with reccorded gaze. Returns an empty array if 
-            no fixations are found.
+        np.array(fix_data): A (N, 7) array containing the following columns
+            for each period of fixation with reccorded gaze: [onset, median gaze x, 
+            median gaze y, duration, pupil_counts,  stdev gaze x, stdev gaze y]. 
+            Returns an empty array if no high-confidence fixations are identified.
         total_fix (int): 
-            Total number of fixation periods in the run's task
+            Total number of fixation periods in the run.
     """
-    fix_data = []  # [onset, x, y, duration, count]
+    fix_data = []  # [onset, x, y, duration, count, stdev x, stdev y]
     total_fix = 0
 
     for i in range(df_ev.shape[0]):
