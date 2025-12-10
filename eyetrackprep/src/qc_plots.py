@@ -12,7 +12,6 @@ import matplotlib.pyplot as plt
 from src.utils import log_qc, get_event_path
 
 
-
 def plot_raw_gaze(
     gaze_data: np.array,
     run_metadata: tuple,
@@ -97,7 +96,7 @@ def plot_dc_gaze(
 
             plot_raw_gaze(gaze_data, run_metadata, task_root, plot_dir)
 
-        elif gaze_data.shape[1] != 14:
+        elif gaze_data.shape[1] != 15:
             log_qc(f"Plotting fail: unexpected number of columns in gaze data file for {sub} {ses} {run} {task} {fnum}", qc_path)
 
         else:
@@ -113,8 +112,8 @@ def plot_dc_gaze(
                 """ plot raw gaze """            
                 axes[0][i].scatter(
                     gaze_data[:, 0],      # timestamp (col 0)
-                    gaze_data[:, i+4],    # raw x (col 4) or raw y (col 5)
-                    c=gaze_data[:, 3],    # confidence (col 3)
+                    gaze_data[:, i+5],    # raw x (col 5) or raw y (col 6)
+                    c=gaze_data[:, 4],    # confidence (col 4)
                     s=10,
                     cmap='terrain_r',
                     alpha=0.2,
@@ -128,15 +127,15 @@ def plot_dc_gaze(
                 """ plot raw vs corrected gaze """            
                 axes[1][i].scatter(
                     gaze_data[:, 0],          # timestamp (col 0)
-                    gaze_data[:, i+4],        # raw x (col 4) or raw y (col 5)
+                    gaze_data[:, i+5],        # raw x (col 5) or raw y (col 6)
                     s=10, 
                     color='xkcd:light grey', 
-                    alpha=gaze_data[:, 3],    # confidence (col 3)
+                    alpha=gaze_data[:, 4],    # confidence (col 4)
                 )
                 axes[1][i].scatter(
                     gaze_data[:, 0],          # timestamp (col 0) 
                     gaze_data[:, i+1],        # re-aligned x (col 1) or re-aligned y (col 2) 
-                    c=gaze_data[:, 3],        # confidence (col 3)
+                    c=gaze_data[:, 4],        # confidence (col 4)
                     s=10, 
                     cmap='terrain_r', 
                     alpha=0.2,
@@ -156,7 +155,9 @@ def plot_dc_gaze(
                     axes[2][i].scatter(
                         fix_data[:, 0],             # timestamp (col 0)  
                         fix_data[:, i+1],           # dist to center x (col 1) or dist to center y (col 2)  
-                        color='xkcd:orange',        # TODO: cmap=YlOrRd, c=fix confidence metric
+                        #color='xkcd:orange',       
+                        c=fix_data[:, 4],           # c = num above-threshold high-conf pupils during fix
+                        cmap='YlOrRd',              # color-coded fixations based on confidence (yellow=low, red = high)
                         s=20, alpha=1.0,
                     )
                     if i == 0:
