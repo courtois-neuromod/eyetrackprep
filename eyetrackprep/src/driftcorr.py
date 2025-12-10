@@ -264,7 +264,7 @@ def format_metadata(
         "DriftCorrectionMethod": "Latest Fixation",
         "PupilConfidenceThreshold": gaze_threshold,
         "MinProportionGazePerFix": gaze_ratio,
-        "HighConfidenceGazeCount": cgaze_count,
+        "HighConfidenceGazeCount": hcgaze_count,
         "TotalGazeCount": gaze_count,
         "HighConfidenceFixationCount": hcfix_count,
         "TotalFixationCount": fix_count,
