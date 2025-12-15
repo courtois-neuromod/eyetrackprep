@@ -46,7 +46,7 @@ def plot_raw_gaze(
         else:
             fig, axes = plt.subplots(1, 2, figsize=(21, 5))
             plot_labels = ['gaze_x', 'gaze_y']
-            run_dur = gaze_data[-1][0] + 15
+            run_dur = gaze_data[-1][0] + 15  # 15s after offset to space out x-axis
 
             for i in range(2):
                 axes[i].scatter(
@@ -91,17 +91,22 @@ def plot_dc_gaze(
             log_qc(f"Plotting fail: no gaze data for {sub} {ses} {run} {task} {fnum}", qc_path)
 
         elif gaze_data.shape[1] == 12:
-            """."""
+            """
+            Expects 12 columns in gaze_data array for bids eyetracking export
+            """
             log_qc(f"Plotting raw data only: drift correction failed for {sub} {ses} {run} {task} {fnum}", qc_path)
 
             plot_raw_gaze(gaze_data, run_metadata, task_root, plot_dir)
 
         elif gaze_data.shape[1] != 15:
+            """
+            Expects 15 columns in gaze_data array for derivative eyetracking export            
+            """
             log_qc(f"Plotting fail: unexpected number of columns in gaze data file for {sub} {ses} {run} {task} {fnum}", qc_path)
 
         else:
             fig, axes = plt.subplots(3, 2, figsize=(21, 14))
-            run_dur = gaze_data[-1][0] + 15
+            run_dur = gaze_data[-1][0] + 15  # 15s after offset to space out x-axis
             plot_labels = [
                 ['raw gaze_x', 'raw gaze_y'], 
                 ['re-aligned gaze_x', 're-aligned gaze_y'],

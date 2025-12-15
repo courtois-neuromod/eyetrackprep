@@ -484,8 +484,8 @@ def detect_freezes(
     Identifies temporal gaps in eye-tracking data due to camera freezes, 
     and exports them as physioevents.tsv file.
 
-    Detects instances of inter-sample interval > 0.005s (indicating a dropped frame 
-    or camera freeze, based on a 250Hz pupil sampling rate). 
+    Detects instances of inter-sample interval > 0.25s (indicating a  
+    camera freeze, based on a 250Hz pupil sampling rate). 
 
     Args:
         gaze (np.array): A 2D array of gaze data with timestamps in col 0 (in s). 
@@ -505,15 +505,23 @@ def detect_freezes(
         ), axis=1,
     )
     #ts_arr = ts_arr[ts_arr[:, 1] > 0.005]  # too sensitive: detects any skipped frame...
-    ts_arr = ts_arr[ts_arr[:, 1] > 0.5]  # > 0.5s freezes only
+    ts_arr = ts_arr[ts_arr[:, 1] > 0.25]  # > 0.5s freezes only
 
     if gaze[0, 0] > 1.0:  
+        """
+        1s buffer between the first captured gaze and the logged
+        run onset time (TTL 0), to account for potential delays
+        """
         ts_arr = np.concat([
             np.array([[0.0, gaze[0, 0]]]),
             ts_arr,
         ], axis=0)
         
-    if run_duration - gaze[-1, 0] > 2.0:
+    if run_duration - gaze[-1, 0] > 2.0:  
+        """
+        2s buffer between the last captured gaze and the logged
+        eyetracker offset time to account for potential logging delay
+        """
         ts_arr = np.concat([
             ts_arr,
             np.array([[gaze[-1, 0], run_duration-gaze[-1, 0]]]),

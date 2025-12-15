@@ -204,7 +204,7 @@ def export_fixations(
     )
     with open(f'{deriv_path}events.json', 'w') as metadata_file:
         json.dump({
-                "Columns": ['onset', 'median_distance_x', 'median_distance_y', 'duration', 'pupil_count'],
+                "Columns": ['onset', 'median_distance_x', 'median_distance_y', 'duration', 'pupil_count', 'stdev_distance_x', 'stdev_distance_y'],
                 "Description": "Known periods of fixations used to correct drift in gaze mapping.",
                 "OnsetSource": "timestamp",
                 "onset": {
