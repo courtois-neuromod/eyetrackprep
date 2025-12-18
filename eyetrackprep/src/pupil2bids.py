@@ -7,12 +7,10 @@ import pandas as pd
 from bids import BIDSLayout
 
 from src.utils import (
-    get_onset_time, 
     parse_task_name, 
     load_pldata_file, 
-    extract_gaze,
-    get_metadata, 
     log_qc,
+    get_device_name,
 )
 
 
@@ -305,6 +303,341 @@ def compile_rawfile_list(
     return pupil_file_paths, task_root
 
 
+def get_onset_time(
+    log_path: str,
+    task_name: str,
+    fnum: str,
+    ip_path: str,
+    gz0_ts: float,
+    gzn_ts: float,
+    qc_path: str,
+) -> tuple[float, float, str]:
+    """
+    Returns run onset and offset time on the same clock as the gaze timestamps, 
+    to reset gaze timestamps to 0 at the start of the run.
+
+    Parameters
+    ----------
+    log_path : str
+        Path to the session's log file that matches a run's identifying number ('YYYYMMDD-HHMMSS')
+    task_name : str
+        Task tag used to label a distinct run in the raw output (e.g., task-friends-s7e18a, 
+        task-thingsmemory_run-1). 
+    fnum: str
+        Automated output numerical identifier based on date and time of acquisition. At least one per session (more if task interruptions)
+    ip_path : str
+        Path to the run's info.player.json file
+    gz0_ts : float
+        Timestamp of a run's 12th recorded gaze
+    gzn_ts : float
+        Timestamp of a run's last recorded gaze
+    qc_path: str
+        Path to qc_report_{task}.txt report to log parsing issues
+
+    Returns
+    -------
+    (on_time, off_time, rsv) : tuple[float, float, str]
+        Run's onset and offset time on the same clock as the gaze timestamps, 
+        and Pupil Core software version 
+    """
+    
+    onset_time_dict = {}
+    TTL_0 = -1
+    stop_et  = -1
+    has_logs = True
+    """
+    Parse through a session's log file to build a dict of TTL 0 (run trigger) times
+    assigned to each run in the log file.
+
+    Note: interrupted sessions have multiple log files, but the file that contains
+    a run's logs shares the run's identifying number ('YYYYMMDD-HHMMSS')
+    """
+    if not Path(log_path).exists():
+        log_qc(f"Warning: no .log file found for {fnum}", qc_path)
+        has_logs = False
+    else:
+        with open(log_path) as f:
+            lines = f.readlines()
+            if len(lines) == 0:
+                log_qc(f"Warning: empty .log file for {fnum}", qc_path)
+                has_logs = False
+            for line in lines:
+                if "fMRI TTL 0" in line:
+                    TTL_0 = line.split('\t')[0]
+                elif "stopping eyetracking recording" in line:
+                    stop_et = line.split('\t')[0]
+                #elif "saved wide-format data to /scratch/neuromod/data" in line:
+                elif "saved wide-format data to /scratch/neur" in line:  # catches typos at console
+                    run_id = line.split('\t')[-1].split(f'{fnum}_')[-1].split('_events.tsv')[0]
+                    onset_time_dict[run_id] = (float(TTL_0), float(stop_et))
+                elif "class 'src.tasks.localizers.FLoc'" in line:
+                    run_id = line.split(': ')[-2]
+                    onset_time_dict[run_id] = (float(TTL_0), float(stop_et))
+                elif "class 'src.tasks.retinotopy.Retinotopy'" in line:
+                    run_id = line.split(': ')[-2]
+                    onset_time_dict[run_id] = (float(TTL_0), float(stop_et))
+                elif "class 'src.tasks.mutemusic.Playlist'" in line:
+                    run_id = line.split(': ')[-2]
+                    onset_time_dict[run_id] = (float(TTL_0), float(stop_et))
+                elif "class 'src.tasks.videogame.VideoGameMultiLevel'" in line:
+                    run_id = line.split(': ')[-2]
+                    onset_time_dict[run_id] = (float(TTL_0), float(stop_et))
+                elif "class 'src.tasks.video.SingleVideo'" in line:
+                    run_id = line.split(': ')[-2]
+                    onset_time_dict[run_id] = (float(TTL_0), float(stop_et))
+                elif "class 'src.tasks.narratives" in line:
+                    run_id = line.split(': ')[-2]
+                    onset_time_dict[run_id] = (float(TTL_0), float(stop_et))
+
+    if task_name not in onset_time_dict:
+        log_qc(f"Run name not found during .log text parsing for {fnum}", qc_path)
+        has_logs = False
+
+    if not Path(ip_path).exists():
+        log_qc(f"No info.player.json file found for {fnum}", qc_path)
+        has_logs = False
+
+    """
+    In cases where the log file was parsed successfully, verify if the 
+    logged TTL_0 time is on the same clock as the gaze timestamps. 
+
+    If not, convert TTL_0 to the same clock as the gaze
+    """
+    if has_logs:
+        # get run's logged TTL 0 time
+        on_time, off_time = onset_time_dict[task_name]
+
+        # for each run, the info.player.json file contains the same
+        # start time logged on two different clocks: synced and system  
+        with open(ip_path, 'r') as f:
+            iplayer = json.load(f)
+        sync_ts = iplayer['start_time_synced_s']
+        syst_ts = iplayer['start_time_system_s']
+        rsv = f"Pupil Capture version {iplayer['recording_software_version']}"
+
+        # check if gaze timestamp is on synced time
+        is_sync_gz = (gz0_ts-sync_ts)**2 < (gz0_ts-syst_ts)**2
+        # check if TTL 0 is on synced time
+        is_sync_ot = (on_time-sync_ts)**2 < (on_time-syst_ts)**2
+        # If gaze and TTL 0 are on different clocks, 
+        # convert TTL 0 to the same clock as the gaze timestamps
+        if is_sync_gz != is_sync_ot:
+            if is_sync_ot:
+                # convert TTL 0 from synced to system clock
+                on_time += (syst_ts - sync_ts)
+                off_time += (syst_ts - sync_ts)
+            else:
+                # convert TTL 0 from system to synced clock                
+                on_time += (sync_ts - syst_ts)
+                off_time += (sync_ts - syst_ts)
+    
+        return on_time, off_time, rsv
+    
+    else:
+        """
+        If the log file cannot be parsed, estimate the scanner onset time 
+        from the run's 12th gaze timestamp (estimated from differences between 
+        gaze timestamps and logged TTL 0 for 14 CNeuroMod tasks with eye-tracking data)
+        """        
+        log_qc(f"Warning: failed log parsing, run onset and offset time estimated from gaze timestamps for {fnum}", qc_path)
+        return gz0_ts, gzn_ts, "n/a"
+
+
+def extract_gaze(
+    seri_gaze,
+    onset_time,
+) -> list:
+    """
+    Converts nested gaze dictionary to two lists of arrays (one for BIDS, one for plotting)
+    """
+    bids_gaze_list = []
+
+    for gaze in seri_gaze:
+        gaze_timestamp = gaze['timestamp'] - onset_time
+        if gaze_timestamp > 0.0:
+            gaze_x, gaze_y = gaze['norm_pos']
+            gaze_conf = gaze['confidence']
+            pupil_data = gaze['base_data'][0]
+            pupil_x, pupil_y = pupil_data['norm_pos']
+            pupil_diameter = pupil_data['diameter']
+            ellipse_data = pupil_data['ellipse']
+            ellipse_axe_a, ellipse_axe_b = ellipse_data['axes']
+            ellipse_angle = ellipse_data['angle']
+            ellipse_center_x, ellipse_center_y = ellipse_data['center']
+
+            bids_gaze_list.append([
+                gaze_timestamp, gaze_x, gaze_y, gaze_conf, 
+                pupil_x, pupil_y, pupil_diameter, 
+                ellipse_axe_a, ellipse_axe_b, ellipse_angle, 
+                ellipse_center_x, ellipse_center_y,
+            ]) 
+                
+    return bids_gaze_list
+
+
+def detect_freezes(
+    gaze: np.array,
+    out_file: str,
+    run_duration: float,
+) -> float:
+    """
+    Identifies temporal gaps in eye-tracking data due to camera freezes, 
+    and exports them as physioevents.tsv file.
+
+    Detects instances of inter-sample interval > 0.25s (indicating a  
+    camera freeze, based on a 250Hz pupil sampling rate). 
+
+    Args:
+        gaze (np.array): A 2D array of gaze data with timestamps in col 0 (in s). 
+        out_file (str): The output file name for a particular run.
+        run_duration (float): The estimated run duration (in s).
+
+    Returns:
+        int: number of camera freezes
+
+    If camera freezes are detected, two files are exported:
+    - `physioevents.tsv.gz`: A compressed tab-separated file with 'onset' and 
+        'duration' for the identified camera freezes.
+    - `events.json`: A metadata file describing the columns in the TSV.
+    """
+    ts_arr = np.stack((
+            gaze[:-1, 0], gaze[1:, 0] - gaze[:-1, 0],
+        ), axis=1,
+    )
+    #ts_arr = ts_arr[ts_arr[:, 1] > 0.005]  # too sensitive: detects any skipped frame...
+    ts_arr = ts_arr[ts_arr[:, 1] > 0.25]  # > 0.5s freezes only
+
+    if gaze[0, 0] > 1.0:  
+        """
+        1s buffer between the first captured gaze and the logged
+        run onset time (TTL 0), to account for potential delays
+        """
+        ts_arr = np.concat([
+            np.array([[0.0, gaze[0, 0]]]),
+            ts_arr,
+        ], axis=0)
+        
+    if run_duration - gaze[-1, 0] > 2.0:  
+        """
+        2s buffer between the last captured gaze and the logged
+        eyetracker offset time to account for potential logging delay
+        """
+        ts_arr = np.concat([
+            ts_arr,
+            np.array([[gaze[-1, 0], run_duration-gaze[-1, 0]]]),
+        ], axis=0)
+        
+    if ts_arr.shape[0] > 0:
+        pd.DataFrame(ts_arr).to_csv(
+            f'{out_file}events.tsv.gz', sep='\t', header=False, index=False, compression='gzip',
+        )
+        with open(f'{out_file}events.json', 'w') as metadata_file:
+            json.dump({
+                    "Columns": ['onset', 'duration'],
+                    "Description": "Eye-tracking camera freezes.",
+                    "OnsetSource": "timestamp",
+                    "onset": {
+                        "Description": "Onset of the camera freeze event.",
+                        "Units": "seconds",
+                    },
+                    "duration": {
+                        "Description": "Duration of the camera freeze event.",
+                        "Units": "seconds",
+                    }
+                }, metadata_file, indent=4,
+            )
+
+    return ts_arr.shape[0]
+
+
+def format_metadata(
+    start_time: float,
+    duration: float,
+    col_names: list[str],
+    freeze_count: int,
+    pupil_version: str,
+    device_name: str,
+) -> dict :
+    """."""
+    return {
+        "DeviceSerialNumber": device_name,
+        "Columns": col_names,
+        "Manufacturer": "MRC",
+        "ManufacturersModelName": "MRC-HighSpeed",
+        "PhysioType": "eyetrack",
+        "RecordedEye": "right",
+        "SamplingFrequency": 250.0,
+        "SampleCoordinateSystem": "gaze-on-screen",
+        "SoftwareVersion": pupil_version,
+        "PupilFitMethod": "ellipse",
+        "CalibrationType": "HV9",
+        "CalibrationPosition": [[100, 100], [100, 512], [100, 924], [640, 100], [640, 512], [640, 924], [1180, 100], [1180, 512], [1180, 924]],
+        "CalibrationUnit": "pixel",
+        "EyeCameraSettings": {
+            "exposure_time": 4000,
+            "global_gain": 1,
+        },
+        "EyeTrackerDistance": 0.1,
+        "EyeTrackingMethod": "pupil-labs/pupil-detectors:2d",
+        "StartTime": start_time,
+        "Duration": duration,
+        "CameraFreezeCount": freeze_count,
+        "timestamp": {
+            "Description": "A continuously increasing identifier of the sampling time registered by the device",
+            "Units": "seconds",
+            "Origin": "run trigger onset",
+        },
+        "x_coordinate": {
+            "LongName": "Gaze position (x)",
+            "Description": "Gaze position x-coordinate of the recorded eye, normalized as a proportion of the screen width. Bound = [0, 1], where 0 = left.",
+            "Units": "arbitrary",
+        },
+        "y_coordinate": {
+            "LongName": "Gaze position (y)",
+            "Description": "Gaze position y-coordinate of the recorded eye, normalized as a proportion of the screen height. Bound = [0, 1], where 0 = bottom.",
+            "Units": "arbitrary",
+        },
+        "confidence": {
+            "Description": "Quality assessment of the pupil detection ranging from 0 to 1. A value of 0 indicates that the pupil could not be detected, whereas a value of 1 indicates a very high pupil detection certainty.",
+            "Units": "ratio",
+        },
+        "pupil_x_coordinate": {
+            "LongName": "Pupil position (x)",
+            "Description": "Pupil position x-coordinate normalized as a proportion of the width of the eye video frame. A value of 0 indicates the left of the frame.",
+            "Units": "pixel",
+        },
+        "pupil_y_coordinate": {
+            "LongName": "Pupil position (y)",
+            "Description": "Pupil position y-coordinate normalized as a proportion of the height of the eye video frame. Values are ranging from 0 to 1. A value of 0 indicates the bottom of the frame.",
+            "Units": "pixel",
+        },
+        "pupil_diameter": {
+            "Description": "Diameter of the pupil as observed in the eye image frame (not corrected for perspective).",
+            "Units": "pixel", 
+        },
+        "pupil_ellipse_axe_a": {
+            "Description": "Length of the first axis of the 2D fitted ellipse used to model of the pupil.",
+            "Units": "pixel",
+        },
+        "pupil_ellipse_axe_b": {
+            "Description": "Length of the second axis of the 2D fitted ellipse used to model of the pupil.",
+            "Units": "pixel",
+        },
+        "pupil_ellipse_angle": {
+            "Description": "Orientation of the 2D fitted ellipse used to model the pupil.",
+            "Units": "degrees",
+        },
+        "pupil_ellipse_center_x": {
+            "Description": "x-coordinate of the center of the 2D fitted ellipse used to model the pupil.",
+            "Units": "pixel",
+        },
+        "pupil_ellipse_center_y": {
+            "Description": "y-coordinate of the center of the 2D fitted ellipse used to model the pupil",
+            "Units": "pixel",
+        }
+    }
+
+
 def export_bids(    
     pupil_path: tuple,
     in_path: str,
@@ -377,11 +710,12 @@ def export_bids(
             else:
                 tname = f'{task}_{run}'     
             
-            onset_time = get_onset_time(
+            onset_time, offset_time, pupil_version = get_onset_time(
                 f'{in_path}/{sub}/{ses}/{sub}_{ses}_{fnum}.log',
                 tname, fnum,
                 f'{in_path}/{sub}/{ses}/{sub}_{ses}_{fnum}.pupil/{tname}/000/info.player.json',
                 seri_gaze[12]['timestamp'],  # updated from 10th to 12th gaze, most precise estimation in dset
+                seri_gaze[-1]['timestamp'],
                 qc_path,
             )
 
@@ -390,14 +724,27 @@ def export_bids(
             bids_gaze = np.array(bids_gaze_list)
             
             if len(bids_gaze_list) > 0:
+                # Save camera freeze events (onset and duration)
+                freeze_count = detect_freezes(bids_gaze, bids_path, offset_time-onset_time)
+
+                device_name = get_device_name(
+                    f'{in_path}/{sub}/{ses}/{sub}_{ses}_{fnum}.pupil/pupil.log',
+                )
+
                 # Save timeseries and their metadata
                 pd.DataFrame(bids_gaze).to_csv(
                     f'{bids_path}.tsv.gz', sep='\t', header=False, index=False, compression='gzip',
                 )
-
                 with open(f'{bids_path}.json', 'w') as metadata_file:
                     json.dump(
-                        get_metadata(bids_gaze_list[0][0], BIDS_COL_NAMES), metadata_file, indent=4,
+                        format_metadata(
+                            bids_gaze_list[0][0], 
+                            bids_gaze_list[-1][0] - bids_gaze_list[0][0], 
+                            BIDS_COL_NAMES,
+                            freeze_count, 
+                            pupil_version,
+                            device_name,
+                        ), metadata_file, indent=4,
                     )
             else:
                 log_qc(f"Run fail: no pupils timestamped after run onset for {fnum}", qc_path)

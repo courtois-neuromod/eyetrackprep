@@ -5,17 +5,35 @@ from typing import Union
 import numpy as np
 import pandas as pd
 
-from src.utils import log_qc, get_event_path, get_conf_thresh, get_metadata
+from src.utils import log_qc, get_event_path
 from src.pupil2bids import BIDS_COL_NAMES
 
 
 DERIV_COL_NAMES = [
     'timestamp', 'driftcorr_x_coordinate', 'driftcorr_y_coordinate', 
-    'confidence', 'x_coordinate', 'y_coordinate', 
+    'reference_fixation_idx', 'confidence', 'x_coordinate', 'y_coordinate', 
     'pupil_x_coordinate', 'pupil_y_coordinate', 'pupil_diameter',
     'pupil_ellipse_axe_a', 'pupil_ellipse_axe_b', 'pupil_ellipse_angle',
     'pupil_ellipse_center_x', 'pupil_ellipse_center_y'
 ]
+
+
+def get_conf_thresh(
+    task_root: str,
+    ev_path: str,
+) -> float:
+    '''
+    Return pupil detection confidence threshold for a given run or subject, 
+    per task.
+    '''
+    with open(f'./config/{task_root}.json', 'r') as conf_file:
+        conf_dict = json.load(conf_file)
+
+    sub, ses, fnum = ev_path.split('_')[:3]
+    run = ev_path.split('task-')[-1].replace('_events.tsv', '')
+
+    return conf_dict.get(sub, {}).get(ses, {}).get(fnum, {}).get(run, conf_dict[sub]['default'])
+
 
 def filter_gaze(
     bids_gaze: np.array,
@@ -58,14 +76,15 @@ def get_fixations(
     df_ev: pd.DataFrame,
     task: str,
     gaze_arr: np.array,
-) -> tuple[np.array, int, int]:
+    gaze_ratio: float,
+) -> tuple[np.array, int]:
     """
     Identifies gaze data corresponding to fixation periods and calculates their 
-    median position. 
+    median position and timing. 
 
     Filters gaze within windows of fixation defined by task structure events.tsv files, 
     (applying a +0.7s start  buffer), and computes the median 
-    gaze coordinates in x and y. The timestamp assigned to each fixation corresponds 
+    gaze coordinates in x and y. The onset time assigned to each fixation corresponds 
     to the first gaze reccorded within a fixation window.
 
     Args:
@@ -80,21 +99,18 @@ def get_fixations(
             (Note: 'multfs' and 'mutemusic' are planned but not implemented).
         gaze_arr (np.array): A numpy array where column 0 is the timestamp, 
             columns 1 and 2 are the X and Y coordinates, and column 4 is 
-            the pupil detection confidence (dropped in output).
+            the pupil detection confidence.
 
     Returns:
-        np.array(fix_data): A (N, 3) array containing the [onset_time, median gaze x, median gaze y] 
-            for each period of fixation with reccorded gaze. Returns an empty array if 
-            no fixations are found.
+        np.array(fix_data): A (N, 7) array containing the following columns
+            for each period of fixation with reccorded gaze: [onset, median gaze x, 
+            median gaze y, duration, pupil_counts,  stdev gaze x, stdev gaze y]. 
+            Returns an empty array if no high-confidence fixations are identified.
         total_fix (int): 
-            Total number of fixation periods in the run's task
-        good_fix (int): 
-            Total number of fixation periods with recorded high-confidence gaze 
-
+            Total number of fixation periods in the run.
     """
-    fix_data = []  # [time, x, y]
+    fix_data = []  # [onset, x, y, duration, count, stdev x, stdev y]
     total_fix = 0
-    good_fix = 0
 
     for i in range(df_ev.shape[0]):
         row_has_fix = True
@@ -127,19 +143,24 @@ def get_fixations(
             """
             Select gaze from pre-trial fixation period
             """
-            fix_min = int(250*(fix_offset - (0.7 + fix_onset))*0.2)  # 20% of pupils expected to be captured during fix period
+            fix_min = int(250*(fix_offset - (0.7 + fix_onset))*gaze_ratio)  # default : 0.2. 20% of pupils expected to be captured during fix period
             total_fix += 1
             trial_gaze = gaze_arr[np.logical_and(
                 gaze_arr[:, 0] > (fix_onset + 0.7),   # + capture from 0.7s (700ms) after fixation onset to account for saccade
                 gaze_arr[:, 0] < fix_offset,  # gaze_arr[:, 0] < (fix_offset - 0.1),  # drop last 0.1s of fix
             )]
             if trial_gaze.shape[0] > fix_min:
-                # TODO: consider setting a min number of gaze > ?? to estimate fixation
-                good_fix += 1
-                trial_gaze[:, 0] = trial_gaze[0, 0]
-                fix_data.append(np.median(trial_gaze[:, :3], axis=0))
+                fix_data.append([
+                    trial_gaze[0, 0],
+                    np.median(trial_gaze[:, 1]),
+                    np.median(trial_gaze[:, 2]),                    
+                    trial_gaze[-1, 0] - trial_gaze[0, 0],
+                    trial_gaze.shape[0],
+                    np.std(trial_gaze[:, 1]),
+                    np.std(trial_gaze[:, 2]),                    
+                ])
 
-    return np.array(fix_data), total_fix, good_fix
+    return np.array(fix_data), total_fix
 
 
 def driftcorr_fromlast(
@@ -154,8 +175,9 @@ def driftcorr_fromlast(
     precedes the trial, with some robustness built in for periods of missing
     or low quality gaze).
 
-    Subtract the difference between 
-    by subtracting the difference between 
+    Subtract the distance between the fixation coordinates and the screen center 
+    (drift estimation) from the mapped gaze position in x and y. 
+    Also returns the reference fixation index.
     """
     gaze_aligned = []
     j = 0
@@ -163,9 +185,157 @@ def driftcorr_fromlast(
     for i in range(len(bids_gaze)):
         while j < len(fix_data)-1 and bids_gaze[i, 0] > fix_data[j+1, 0]:
             j += 1
-        gaze_aligned.append(bids_gaze[i, 1:3] - fix_data[j, 1:3])
+        gaze_aligned.append([
+            bids_gaze[i, 1] - fix_data[j, 1],  # driftcorr gaze x_coord 
+            bids_gaze[i, 2] - fix_data[j, 2],  # driftcorr gaze y_coord
+            j,   # ref fixation index
+        ])
 
     return np.array(gaze_aligned)
+
+
+def export_fixations(
+    fix_data: np.array,
+    deriv_path: str,
+) -> None:
+    """."""
+    pd.DataFrame(fix_data).to_csv(
+        f'{deriv_path}events.tsv.gz', sep='\t', header=False, index=False, compression='gzip',
+    )
+    with open(f'{deriv_path}events.json', 'w') as metadata_file:
+        json.dump({
+                "Columns": ['onset', 'median_distance_x', 'median_distance_y', 'duration', 'pupil_count', 'stdev_distance_x', 'stdev_distance_y'],
+                "Description": "Known periods of fixations used to correct drift in gaze mapping.",
+                "OnsetSource": "timestamp",
+                "onset": {
+                    "Description": "Onset of the reference fixation period.",
+                    "Units": "seconds",
+                },
+                "median_distance_x": {
+                    "LongName": "Median distance to center (x)",
+                    "Description": "Median gaze distance in x to the central fixation marker during the reference fixation period, normalized as a proportion of the screen width. Bound = [-0.5, 0.5], where -0.5 = left edge of the screen.",
+                    "Units": "arbitrary",
+                },
+                "median_distance_y": {
+                    "LongName": "Median distance to center (y)",
+                    "Description": "Median gaze distance in y to the central fixation marker during the reference fixation period, normalized as a proportion of the screen height. Bound = [-0.5, 0.5], where -0.5 = bottom edge of the screen.",
+                    "Units": "arbitrary",
+                },
+                "duration": {
+                    "Description": "Difference between the timestamps of the last and the first high confidence gaze sampled during the reference fixation period.",
+                    "Units": "seconds",
+                },
+                "pupil_count": {
+                    "Description": "Number of gaze points derived from pupils detected with above-threshold confidence used to calculate median gaze coordinates during the reference fixation period.",
+                    "Units": "count",
+                },
+                "stdev_distance_x": {
+                    "LongName": "Standard deviation of distance to center (x)",
+                    "Description": "Standard deviation of gaze distance in x to the central fixation marker during the reference fixation period, normalized as a proportion of the screen width. Bound = [-0.5, 0.5], where -0.5 = left edge of the screen.",
+                    "Units": "arbitrary",
+                },
+                "stdev_distance_y": {
+                    "LongName": "Standard deviation of distance to center (y)",
+                    "Description": "Standard deviation of gaze distance in y to the central fixation marker during the reference fixation period, normalized as a proportion of the screen height. Bound = [-0.5, 0.5], where -0.5 = bottom edge of the screen.",
+                    "Units": "arbitrary",
+                }
+            }, metadata_file, indent=4,
+        )
+
+
+def format_metadata(
+    start_time: float,
+    col_names: list[str],
+    gaze_threshold: float,
+    gaze_ratio: float,
+    hcgaze_count: int,
+    gaze_count: int,
+    hcfix_count: int,
+    fix_count: int,
+) -> None :
+    """."""
+    return {
+        "StartTime": start_time,
+        "Columns": col_names,
+        "PhysioType": "eyetrack",
+        "RecordedEye": "right",
+        "SamplingFrequency": 250.0,
+        "SampleCoordinateSystem": "gaze-on-screen",
+        "DriftCorrectionMethod": "Latest Fixation",
+        "PupilConfidenceThreshold": gaze_threshold,
+        "MinProportionGazePerFix": gaze_ratio,
+        "HighConfidenceGazeCount": hcgaze_count,
+        "TotalGazeCount": gaze_count,
+        "HighConfidenceFixationCount": hcfix_count,
+        "TotalFixationCount": fix_count,
+        "timestamp": {
+            "Description": "A continuously increasing identifier of the sampling time registered by the device",
+            "Units": "seconds",
+            "Origin": "run trigger onset",
+        },
+        "driftcorr_x_coordinate": {
+            "LongName": "Drift-corrected gaze position (x)",
+            "Description": "Gaze position x-coordinate of the recorded eye, normalized as a proportion of the screen width and corrected for drift based on the lastest period of central fixation. Bound = [0, 1], where 0 = left.",
+            "Units": "arbitrary",
+        },
+        "driftcorr_y_coordinate": {
+            "LongName": "Drift-corrected gaze position (y)",
+            "Description": "Gaze position y-coordinate of the recorded eye, normalized as a proportion of the screen height and corrected for drift based on the lastest period of central fixation. Bound = [0, 1], where 0 = bottom.",
+            "Units": "arbitrary",
+        },
+        "reference_fixation_idx": {
+            "Description": "Row index in the run's physioevents.tsv.gz file corresponding to the fixation period used to drift correct gaze x and y coordinates.",
+            "Units": "row number",
+        },
+        "confidence": {
+            "Description": "Quality assessment of the pupil detection ranging from 0 to 1. A value of 0 indicates that the pupil could not be detected, whereas a value of 1 indicates a very high pupil detection certainty.",
+            "Units": "ratio",
+        },
+        "x_coordinate": {
+            "LongName": "Gaze position (x)",
+            "Description": "Gaze position x-coordinate of the recorded eye, normalized as a proportion of the screen width. Bound = [0, 1], where 0 = left.",
+            "Units": "arbitrary",
+        },
+        "y_coordinate": {
+            "LongName": "Gaze position (y)",
+            "Description": "Gaze position y-coordinate of the recorded eye, normalized as a proportion of the screen height. Bound = [0, 1], where 0 = bottom.",
+            "Units": "arbitrary",
+        },
+        "pupil_x_coordinate": {
+            "LongName": "Pupil position (x)",
+            "Description": "Pupil position x-coordinate normalized as a proportion of the width of the eye video frame. A value of 0 indicates the left of the frame.",
+            "Units": "pixel",
+        },
+        "pupil_y_coordinate": {
+            "LongName": "Pupil position (y)",
+            "Description": "Pupil position y-coordinate normalized as a proportion of the height of the eye video frame. Values are ranging from 0 to 1. A value of 0 indicates the bottom of the frame.",
+            "Units": "pixel",
+        },
+        "pupil_diameter": {
+            "Description": "Diameter of the pupil as observed in the eye image frame (not corrected for perspective).",
+            "Units": "pixel", 
+        },
+        "pupil_ellipse_axe_a": {
+            "Description": "Length of the first axis of the 2D fitted ellipse used to model of the pupil.",
+            "Units": "pixel",
+        },
+        "pupil_ellipse_axe_b": {
+            "Description": "Length of the second axis of the 2D fitted ellipse used to model of the pupil.",
+            "Units": "pixel",
+        },
+        "pupil_ellipse_angle": {
+            "Description": "Orientation of the 2D fitted ellipse used to model the pupil.",
+            "Units": "degrees",
+        },
+        "pupil_ellipse_center_x": {
+            "Description": "x-coordinate of the center of the 2D fitted ellipse used to model the pupil.",
+            "Units": "pixel",
+        },
+        "pupil_ellipse_center_y": {
+            "Description": "y-coordinate of the center of the 2D fitted ellipse used to model the pupil",
+            "Units": "pixel",
+        }
+    }
 
 
 def export_dcgaze(
@@ -178,16 +348,12 @@ def export_dcgaze(
     deriv_gaze_df = pd.DataFrame(bids_gaze, columns=BIDS_COL_NAMES)
     deriv_gaze_df.insert(loc=1, column='driftcorr_x_coordinate', value=driftcorr_gaze[:, 0])
     deriv_gaze_df.insert(loc=2, column='driftcorr_y_coordinate', value=driftcorr_gaze[:, 1])
+    deriv_gaze_df.insert(loc=3, column='reference_fixation_idx', value=driftcorr_gaze[:, 2])
     deriv_gaze_df = deriv_gaze_df[DERIV_COL_NAMES]
     
     deriv_gaze_df.to_csv(
         f'{deriv_path}.tsv.gz', sep='\t', header=False, index=False, compression='gzip',
     )
-
-    with open(f'{deriv_path}.json', 'w') as metadata_file:
-        json.dump(
-            get_metadata(bids_gaze[0, 0], DERIV_COL_NAMES), metadata_file, indent=4,
-        )
 
     return deriv_gaze_df.to_numpy()
 
@@ -216,8 +382,7 @@ def dc_knownfix(
         Filter-out gaze from pupils detected below confidence threshold
         Returns normalized distance to central fixation point
         """
-        # TODO: add gaze_threshold to run's meta data file
-        gaze_threshold = get_conf_thresh(
+        gaze_threshold, gaze_ratio = get_conf_thresh(
             task_root,
             os.path.basename(events_path),
         )
@@ -232,14 +397,15 @@ def dc_knownfix(
             Computes median position in x and y for known periods of central fixation;
             fix_data columns = [timestamp, median gaze x, median gaze y]
             """
-            fix_data, total_fix, valid_fix = get_fixations(
+            fix_data, total_fix = get_fixations(
                 run_event,
                 task_root,
                 clean_gaze,
+                gaze_ratio,
             )
-            log_qc(f"{valid_fix} out of {total_fix} fixations valid for {fnum}", qc_path)
+            log_qc(f"{fix_data.shape[0]} out of {total_fix} fixations valid for {fnum}", qc_path)
 
-            if valid_fix == 0:
+            if fix_data.shape[0] == 0:
                 log_qc(f"Drift correction fail: no fixation periods with high-confidence gaze for {fnum}", qc_path)
                 return bids_gaze, None, None
 
@@ -252,6 +418,18 @@ def dc_knownfix(
                     fix_data,
                     bids_gaze,
                 )
+                """
+                Export gaze metadata and fixation metrics
+                """
+                with open(f'{deriv_path}.json', 'w') as metadata_file:
+                    json.dump(format_metadata(
+                        bids_gaze[0, 0], DERIV_COL_NAMES, 
+                        gaze_threshold, gaze_ratio,
+                        len(clean_gaze), len(bids_gaze),
+                        fix_data.shape[0], total_fix,                          
+                    ), metadata_file, indent=4)
+                
+                export_fixations(fix_data, deriv_path)
 
                 return export_dcgaze(
                     bids_gaze, driftcorr_gaze, deriv_path,
