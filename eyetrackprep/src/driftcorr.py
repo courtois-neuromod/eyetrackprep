@@ -227,7 +227,7 @@ def export_fixations(
                 },
                 "pupil_count": {
                     "Description": "Number of gaze points derived from pupils detected with above-threshold confidence used to calculate median gaze coordinates during the reference fixation period.",
-                    "Units": "seconds",
+                    "Units": "count",
                 },
                 "stdev_distance_x": {
                     "LongName": "Standard deviation of distance to center (x)",
@@ -289,7 +289,7 @@ def format_metadata(
         },
         "confidence": {
             "Description": "Quality assessment of the pupil detection ranging from 0 to 1. A value of 0 indicates that the pupil could not be detected, whereas a value of 1 indicates a very high pupil detection certainty.",
-            "Units": "N/A",
+            "Units": "ratio",
         },
         "x_coordinate": {
             "LongName": "Gaze position (x)",
@@ -325,7 +325,7 @@ def format_metadata(
         },
         "pupil_ellipse_angle": {
             "Description": "Orientation of the 2D fitted ellipse used to model the pupil.",
-            "Units": "Degrees",
+            "Units": "degrees",
         },
         "pupil_ellipse_center_x": {
             "Description": "x-coordinate of the center of the 2D fitted ellipse used to model the pupil.",

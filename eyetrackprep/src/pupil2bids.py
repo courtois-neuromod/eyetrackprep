@@ -599,7 +599,7 @@ def format_metadata(
         },
         "confidence": {
             "Description": "Quality assessment of the pupil detection ranging from 0 to 1. A value of 0 indicates that the pupil could not be detected, whereas a value of 1 indicates a very high pupil detection certainty.",
-            "Units": "N/A",
+            "Units": "ratio",
         },
         "pupil_x_coordinate": {
             "LongName": "Pupil position (x)",
@@ -625,7 +625,7 @@ def format_metadata(
         },
         "pupil_ellipse_angle": {
             "Description": "Orientation of the 2D fitted ellipse used to model the pupil.",
-            "Units": "Degrees",
+            "Units": "degrees",
         },
         "pupil_ellipse_center_x": {
             "Description": "x-coordinate of the center of the 2D fitted ellipse used to model the pupil.",
