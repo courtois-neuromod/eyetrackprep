@@ -23,8 +23,15 @@ def get_conf_thresh(
     ev_path: str,
 ) -> float:
     '''
-    Return pupil detection confidence threshold for a given run or subject, 
-    per task.
+    Return fixation threshold metrics for a given run or subject, 
+    specified in task-specific config file.
+    
+    Returns:
+        [float, float, float]: [
+            pupil detection confidence threshold,
+            minimum ratio of above-threshold gaze recorded over fixation period,
+            maximal variation in gaze position throughout fixation (derived from stdev in x and y),
+        ] 
     '''
     with open(f'./config/{task_root}.json', 'r') as conf_file:
         conf_dict = json.load(conf_file)
@@ -61,7 +68,7 @@ def filter_gaze(
     Numpy array
         Array of high-confidence timestamped gaze coordinates (or distances to 
         central fixation) and their confidence score. 
-        Columns 0-3 are [gaze_timestamp, gaze_x, gaze_y, gaze_conf] 
+        Columns 0-3 are [gaze_timestamp, gaze_dist-x, gaze_dist-y, gaze_conf] 
 
     """    
     filtered_gaze = bids_gaze[bids_gaze[:, 3] > gaze_threshold][:, :4]
@@ -77,15 +84,16 @@ def get_fixations(
     task: str,
     gaze_arr: np.array,
     gaze_ratio: float,
+    dist_cutoff: float,
 ) -> tuple[np.array, int]:
     """
     Identifies gaze data corresponding to fixation periods and calculates their 
-    median position and timing. 
+    timing and median distance to the central fixation marker, in x and y. 
 
     Filters gaze within windows of fixation defined by task structure events.tsv files, 
     (applying a +0.7s start  buffer), and computes the median 
-    gaze coordinates in x and y. The onset time assigned to each fixation corresponds 
-    to the first gaze reccorded within a fixation window.
+    gaze distance to center in x and y. The onset time assigned to each fixation 
+    corresponds to the first gaze reccorded within a fixation window.
 
     Args:
         df_ev (pd.DataFrame): Run's event.tsv dataframe with timing and trial info. 
@@ -96,18 +104,25 @@ def get_fixations(
             - 'triplets': 'onset', 'duration'
         task (str): The experimental task name. Supported tasks: 'emotionsvideos', 
             'langloc', 'mariostars', 'mario3', 'triplets'. 
-            (Note: 'multfs' and 'mutemusic' are planned but not implemented).
+            (Note: 'multfs' and 'mutemusic' are planned but not implemented yet).
         gaze_arr (np.array): A numpy array where column 0 is the timestamp, 
-            columns 1 and 2 are the X and Y coordinates, and column 4 is 
+            columns 1 and 2 are the distance to center in X and Y, and column 4 is 
             the pupil detection confidence.
+        gaze_ratio : float
+            Minimal ratio of above-threshold gaze (out of total expected gaze points)
+            recorded over fixation period. To filter out unreliable fixations.
+        dist_cutoff : float
+            Maximal variability in position between gaze captured throughout fixation. 
+            Composite metric estimated from stdev in x and y. Used to filter out 
+            unreliable fixations.
 
     Returns:
         np.array(fix_data): A (N, 7) array containing the following columns
-            for each period of fixation with reccorded gaze: [onset, median gaze x, 
-            median gaze y, duration, pupil_counts,  stdev gaze x, stdev gaze y]. 
+            for each period of fixation with reccorded gaze: [onset, median gaze dist-x, 
+            median gaze dist-y, duration, pupil_counts,  stdev gaze x, stdev gaze y]. 
             Returns an empty array if no high-confidence fixations are identified.
         total_fix (int): 
-            Total number of fixation periods in the run.
+            Total number of fixation periods in the run (with or without high-confidence gaze points).
     """
     fix_data = []  # [onset, x, y, duration, count, stdev x, stdev y]
     total_fix = 0
@@ -150,15 +165,16 @@ def get_fixations(
                 gaze_arr[:, 0] < fix_offset,  # gaze_arr[:, 0] < (fix_offset - 0.1),  # drop last 0.1s of fix
             )]
             if trial_gaze.shape[0] > fix_min:
-                fix_data.append([
-                    trial_gaze[0, 0],
-                    np.median(trial_gaze[:, 1]),
-                    np.median(trial_gaze[:, 2]),                    
-                    trial_gaze[-1, 0] - trial_gaze[0, 0],
-                    trial_gaze.shape[0],
-                    np.std(trial_gaze[:, 1]),
-                    np.std(trial_gaze[:, 2]),                    
-                ])
+                if np.sqrt(np.std(trial_gaze[:, 1])**2 + np.std(trial_gaze[:, 2])**2) < dist_cutoff:
+                    fix_data.append([
+                        trial_gaze[0, 0],
+                        np.median(trial_gaze[:, 1]),
+                        np.median(trial_gaze[:, 2]),                    
+                        trial_gaze[-1, 0] - trial_gaze[0, 0],
+                        trial_gaze.shape[0],
+                        np.std(trial_gaze[:, 1]),
+                        np.std(trial_gaze[:, 2]),                    
+                    ])
 
     return np.array(fix_data), total_fix
 
@@ -170,7 +186,7 @@ def driftcorr_fromlast(
     """
     Corrects for gaze drift from last period of known central fixation. 
 
-    For each gaze, correct drift based on the median gaze position for a 
+    For each gaze, correct drift based on the median gaze distance to center for a 
     reference period of central fixation (ideally the latest fixation that 
     precedes the trial, with some robustness built in for periods of missing
     or low quality gaze).
@@ -248,6 +264,7 @@ def format_metadata(
     col_names: list[str],
     gaze_threshold: float,
     gaze_ratio: float,
+    dist_cutoff: float,
     hcgaze_count: int,
     gaze_count: int,
     hcfix_count: int,
@@ -264,6 +281,7 @@ def format_metadata(
         "DriftCorrectionMethod": "Latest Fixation",
         "PupilConfidenceThreshold": gaze_threshold,
         "MinProportionGazePerFix": gaze_ratio,
+        "MaxGazeFixVariability": dist_cutoff,
         "HighConfidenceGazeCount": hcgaze_count,
         "TotalGazeCount": gaze_count,
         "HighConfidenceFixationCount": hcfix_count,
@@ -382,7 +400,7 @@ def dc_knownfix(
         Filter-out gaze from pupils detected below confidence threshold
         Returns normalized distance to central fixation point
         """
-        gaze_threshold, gaze_ratio = get_conf_thresh(
+        gaze_threshold, gaze_ratio, dist_cutoff = get_conf_thresh(
             task_root,
             os.path.basename(events_path),
         )
@@ -394,14 +412,16 @@ def dc_knownfix(
             return bids_gaze, None, None
         else:
             """
-            Computes median position in x and y for known periods of central fixation;
-            fix_data columns = [timestamp, median gaze x, median gaze y]
+            Computes median distance to center in x and y for known periods of central fixation;
+            fix_data columns = [timestamp, median gaze dist-x, median gaze dist-y,
+                                duration, pupil_counts,  stdev gaze x, stdev gaze y]
             """
             fix_data, total_fix = get_fixations(
                 run_event,
                 task_root,
                 clean_gaze,
                 gaze_ratio,
+                dist_cutoff,
             )
             log_qc(f"{fix_data.shape[0]} out of {total_fix} fixations valid for {fnum}", qc_path)
 
@@ -411,8 +431,9 @@ def dc_knownfix(
 
             else:
                 """
-                Use median gaze position from latest period of central fixation with 
-                gaze to drift-correct every gaze in the run. 
+                Use median gaze distance to center from latest period of 
+                central fixation (with enough high-confidence gaze points) 
+                to drift-correct every gaze in the run. 
                 """
                 driftcorr_gaze = driftcorr_fromlast(
                     fix_data,
@@ -424,7 +445,7 @@ def dc_knownfix(
                 with open(f'{deriv_path}.json', 'w') as metadata_file:
                     json.dump(format_metadata(
                         bids_gaze[0, 0], DERIV_COL_NAMES, 
-                        gaze_threshold, gaze_ratio,
+                        gaze_threshold, gaze_ratio, dist_cutoff,
                         len(clean_gaze), len(bids_gaze),
                         fix_data.shape[0], total_fix,                          
                     ), metadata_file, indent=4)

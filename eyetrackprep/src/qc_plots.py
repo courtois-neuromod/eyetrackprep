@@ -161,8 +161,9 @@ def plot_dc_gaze(
                         fix_data[:, 0],             # timestamp (col 0)  
                         fix_data[:, i+1],           # dist to center x (col 1) or dist to center y (col 2)  
                         #color='xkcd:orange',       
-                        c=fix_data[:, 4],           # c = num above-threshold high-conf pupils during fix
-                        cmap='YlOrRd',              # color-coded fixations based on confidence (yellow=low, red = high)
+                        #c=fix_data[:, 4],           # c = num above-threshold high-conf pupils during fix
+                        c=np.sqrt(fix_data[:, 5]**2 + fix_data[:, 6]**2),   # c = stdev in x and y converted to avg distance to fix middle
+                        cmap='magma',              # color-coded fixations based on confidence (yellow=low, red = high)
                         s=20, alpha=1.0,
                     )
                     if i == 0:
