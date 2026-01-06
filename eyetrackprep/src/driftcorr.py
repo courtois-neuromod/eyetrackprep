@@ -103,8 +103,7 @@ def get_fixations(
             - 'mario*': 'trial_type', 'onset', 'duration'
             - 'triplets': 'onset', 'duration'
         task (str): The experimental task name. Supported tasks: 'emotionsvideos', 
-            'langloc', 'mariostars', 'mario3', 'triplets'. 
-            (Note: 'multfs' and 'mutemusic' are planned but not implemented yet).
+            'langloc', 'mariostars', 'mario3', 'multfs', 'mutemusic', 'triplets'. 
         gaze_arr (np.array): A numpy array where column 0 is the timestamp, 
             columns 1 and 2 are the distance to center in X and Y, and column 4 is 
             the pupil detection confidence.
@@ -152,7 +151,13 @@ def get_fixations(
             fix_onset = df_ev['onset'][i] - 3.0 if i == 0 else df_ev['onset'][i-1] + df_ev['duration'][i-1]
             fix_offset = df_ev['onset'][i]
 
-        # TODO: add fix onset and offset for multfs and mutemusic, drive from task_stimuli library and events.tsv files
+        elif task == 'mutemusic':
+            fix_offset = df_ev['onset'][i]
+            fix_onset = fix_offset - 6.0 if i == 0 else fix_offset - 2.0
+
+        elif task == 'multfs':
+            fix_offset = df_ev['stimulus_0_onset'][i]
+            fix_onset = fix_offset - 6.0 if i == 0 else fix_offset - 3.98
 
         if row_has_fix:
             """
