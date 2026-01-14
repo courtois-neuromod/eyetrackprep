@@ -669,7 +669,7 @@ def format_dset_metadata(
         "ScreenSizeUnits": "meters",
         "ScreenOrigin": ["bottom", "left"],
         "ScreenResolution": [1280, 1024],
-        "ScreenResolutionUnits": pixels,
+        "ScreenResolutionUnits": "pixels",
     }
     with open(f'{out_dir}/task-{dset_name}_events.json', 'w') as metadata_file:
         json.dump(events_data, metadata_file, indent=4)
