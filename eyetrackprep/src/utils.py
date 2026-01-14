@@ -146,7 +146,7 @@ def get_device_name(
     log_path : str,
 ) -> str:
     """."""
-    if Path.exists(log_path):
+    if Path(log_path).exists():
         with open(log_path) as f:
             lines = f.readlines()
         for line in lines:
