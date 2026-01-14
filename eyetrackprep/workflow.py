@@ -76,11 +76,12 @@ def main(
     and eye0.mp4 exported by pupil, PsychoPy log file).
 
     Exports a .tsv listing all files to support manual QCing
-    Returns a list of directories that contain raw eye-tracking data to process
+    Returns a list of directories that contain raw eye-tracking data to process, 
+    and a dictionary of calibration marker coordinates
     """
     out_dir_layout = BIDSLayout(out_dir)
 
-    pupil_file_paths, task_root = pupil2bids.compile_rawfile_list(
+    pupil_file_paths, task_root, calib_coordinates = pupil2bids.compile_rawfile_list(
         raw_et_dir, out_dir_layout)
 
     """
@@ -99,7 +100,7 @@ def main(
         
         """ exports raw pupils to bids """
         bids_gaze = pupil2bids.export_bids(
-            pupil_path, raw_et_dir, out_dir)
+            pupil_path, raw_et_dir, calib_coordinates, out_dir)
 
         """ corrects gaze for drift and exports as derivatives """
         if correct_drift:

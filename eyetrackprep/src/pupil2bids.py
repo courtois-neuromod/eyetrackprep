@@ -1,4 +1,4 @@
-import os, glob, sys, json
+import os, glob, sys, json, re
 import datetime
 from pathlib import Path
 
@@ -20,6 +20,100 @@ BIDS_COL_NAMES = [
     'pupil_ellipse_axe_a', 'pupil_ellipse_axe_b', 'pupil_ellipse_angle',
     'pupil_ellipse_center_x', 'pupil_ellipse_center_y'
 ]
+
+
+def sort_tasks(
+    pup_dir: str, 
+    task_root: str,
+    fnum: str,
+) -> tuple[list[str], bool]:
+    """."""
+    # parse log file corresponding to fnum.pupil output dir to get run temporal order
+    try:
+        task_list = []
+        with open(pup_dir.replace(".pupil", ".log")) as f:
+            lines = f.readlines()
+            for line in lines:
+                if "saved wide-format data to /scratch/neur" in line:
+                    task_list.append(
+                        line.split('\t')[-1].split(f'{fnum}_')[-1].split('_events.tsv')[0]
+                    )
+                elif "class 'src.tasks.localizers.FLoc'" in line:
+                    task_list.append(line.split(': ')[-2])
+                elif "class 'src.tasks.retinotopy.Retinotopy'" in line:
+                    task_list.append(line.split(': ')[-2])
+                elif "class 'src.tasks.mutemusic.Playlist'" in line:
+                    task_list.append(line.split(': ')[-2])
+                elif "class 'src.tasks.videogame.VideoGameMultiLevel'" in line:
+                    task_list.append(line.split(': ')[-2])
+                elif "class 'src.tasks.video.SingleVideo'" in line:
+                    task_list.append(line.split(': ')[-2])
+                elif "class 'src.tasks.narratives" in line:
+                    task_name = line.split(': ')[-2]
+                    if task_name != task_list[-1]:
+                        task_list.append(task_name)
+    except:
+        task_list = []
+        
+    if len(task_list) > 0:
+        return [f"{pup_dir}/{t}" for t in task_list], True 
+    elif task_root in ['emotionsvideos', 'friends', 'friends_fix', 'mario', 'mario3', 'mariostars', 'things', 'triplets']:
+        return sorted(glob.glob(f"{pup_dir}/*task-*")), True
+    elif task_root == 'mutemusic':
+        return [re.sub(r'(run-)(\d+)', lambda m: f"{m.group(1)}{int(m.group(2))}", tsk_pad) for tsk_pad in sorted(
+            [re.sub(r'(run-)(\d+)', lambda m: f"{m.group(1)}{m.group(2).zfill(3)}", tsk) for tsk in glob.glob(
+                f"{pup_dir}/*task-*")])], True
+    else:
+        return glob.glob(f"{pup_dir}/*task-*"), False
+
+
+def build_calibration_dict(
+    task_root: str,
+    in_path: str,
+) -> dict:
+    """
+    Returns a nested dictionary of eye-tracking calibration coordinates, per run
+    """
+    calib_dict = {}
+    for pup_dir in sorted(glob.glob(f"{in_path}/sub-*/ses*/*.pupil")):
+        sub, ses, fnum = os.path.basename(pup_dir).split("_")[:3]
+        fnum = fnum.split(".")[0]
+        if sub not in calib_dict:
+            calib_dict[sub] = {}
+        if ses not in calib_dict[sub]:
+            calib_dict[sub][ses] = {}
+        if fnum not in calib_dict[sub][ses]:
+            calib_dict[sub][ses][fnum] = {}
+            if task_root == 'mario':
+                cal_list = [re.sub(r'(calibration-)(\d+)', lambda m: f"{m.group(1)}{int(m.group(2))}", cal_pad) for cal_pad in sorted(
+                    [re.sub(r'(calibration-)(\d+)', lambda m: f"{m.group(1)}{m.group(2).zfill(3)}", cal) for cal in glob.glob(
+                        f"{in_path}/{sub}/{ses}/*{fnum}*alibration*events*.tsv")]
+                )]
+            else:
+                cal_list = sorted(glob.glob(f"{in_path}/{sub}/{ses}/*{fnum}*alibration*events*.tsv"))
+            task_list, task_is_sorted = sort_tasks(pup_dir, task_root, fnum)
+            for i, task in enumerate(task_list):
+                if Path(f"{task}/000/pupil.pldata").exists():
+                    tname = os.path.basename(task)
+                    try:
+                        if task_is_sorted:
+                            cal_df = pd.read_csv(cal_list[i], sep="\t")
+                            calib_dict[sub][ses][fnum][tname] = {
+                                'hv': f"HV{str(cal_df.shape[0])}",
+                                'coord': [[int(cal_df.iloc[j, 0] + 1280/2), int(cal_df.iloc[j, 1] + 1024/2)] for j in range(cal_df.shape[0])],
+                            }
+                        else:
+                            cal_df = pd.read_csv(cal_list[0], sep="\t")
+                            calib_dict[sub][ses][fnum][tname] = {
+                                'hv': f"HV{str(cal_df.shape[0])}",
+                                'coord': [],
+                            }
+                            print(f"cannot sort calibration coordinates for {sub}, {ses}, {fnum} {tname}")
+                    except:
+                        print(f"no calibration coordinates found for {sub}, {ses}, {fnum} {tname}")
+    
+    return calib_dict
+
 
 def parse_ev_dset(
     df_files: pd.DataFrame,
@@ -234,7 +328,7 @@ def parse_noev_dset(
 def compile_rawfile_list(
     in_path: str,
     out_path: BIDSLayout,
-) -> tuple[pd.DataFrame, list[tuple]]:
+) -> tuple[tuple[pd.DataFrame, list[tuple]], str, dict]:
     """
     Compiles an overview of all available eye-tracking files
     for a given CNeuroMod dataset and exports it as a .tsv file 
@@ -262,6 +356,9 @@ def compile_rawfile_list(
             for all runs that contain a 'pupil.pldata' file.
     task_root: str
         dset task name
+    calib_coordinates: dict
+        dictionary with calibration marker configuration (hv9 or hv10), per run, 
+        and list of  fixation marker coordiates in their temporal order of appearance
     """
     # Find all the fMRI session directories with numeric session numbers for all subjects
     # e.g., (on elm, in_path = '/unf/eyetracker/neuromod/triplets/sourcedata')
@@ -292,6 +389,9 @@ def compile_rawfile_list(
             df_files, task_root, sub_list, ses_list
         )
 
+    # Extract calibration coordinates 
+    calib_coordinates = build_calibration_dict(task_root, in_path)
+
     # Export file list spreadsheet to support QCing
     Path(f"{out_path.root}/code/QC_gaze").mkdir(parents=True, exist_ok=True)
 
@@ -300,7 +400,7 @@ def compile_rawfile_list(
         sep='\t', header=True, index=False,
     )
 
-    return pupil_file_paths, task_root
+    return pupil_file_paths, task_root, calib_coordinates
 
 
 def get_onset_time(
@@ -557,6 +657,7 @@ def format_metadata(
     freeze_count: int,
     pupil_version: str,
     device_name: str,
+    calib_vals: dict,
 ) -> dict :
     """."""
     return {
@@ -570,8 +671,8 @@ def format_metadata(
         "SampleCoordinateSystem": "gaze-on-screen",
         "SoftwareVersion": pupil_version,
         "PupilFitMethod": "ellipse",
-        "CalibrationType": "HV9",
-        "CalibrationPosition": [[100, 100], [100, 512], [100, 924], [640, 100], [640, 512], [640, 924], [1180, 100], [1180, 512], [1180, 924]],
+        "CalibrationType": calib_vals['hv'],
+        "CalibrationPosition": calib_vals['coord'],
         "CalibrationUnit": "pixel",
         "EyeCameraSettings": {
             "exposure_time": 4000,
@@ -638,9 +739,26 @@ def format_metadata(
     }
 
 
+def get_calib_vals(
+    p_path: str, 
+    calib_dict: dict,
+) -> dict:
+    """."""
+    sub, ses, pup_dir, task = p_path.split("/")[-5:-1]
+    fnum = pup_dir.split("_")[2].split(".")[0]
+
+    run_dict = calib_dict.get(sub, {}).get(ses, {}).get(fnum, {}).get(task, None)
+
+    if run_dict is None or run_dict['hv'] not in ['HV9', 'HV10']:
+        return {'hv': 'N/A', 'coord': []}
+    else:
+        return run_dict
+
+
 def export_bids(    
     pupil_path: tuple,
     in_path: str,
+    calib_coordinates: dict,
     out_path: str,
 ) -> np.array:
     '''
@@ -656,6 +774,8 @@ def export_bids(
         Path to the directory that contains one functional runs' eye-tracking data files
     in_path : str
         The root directory of the dataset (e.g., '.../neuromod/retino/sourcedata').
+    calib_coordinates : dict
+        Nested dictionary of marker coordinates for gaze calibration, per run 
     out_path : str
         The output directory where the BIDS & QC files will be saved.
 
@@ -730,6 +850,7 @@ def export_bids(
                 device_name = get_device_name(
                     f'{in_path}/{sub}/{ses}/{sub}_{ses}_{fnum}.pupil/pupil.log',
                 )
+                calib_vals = get_calib_vals(pupil_path[0], calib_coordinates)
 
                 # Save timeseries and their metadata
                 pd.DataFrame(bids_gaze).to_csv(
@@ -744,6 +865,7 @@ def export_bids(
                             freeze_count, 
                             pupil_version,
                             device_name,
+                            calib_vals,
                         ), metadata_file, indent=4,
                     )
             else:
