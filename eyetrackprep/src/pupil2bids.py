@@ -631,26 +631,51 @@ def detect_freezes(
         pd.DataFrame(ts_arr).to_csv(
             f'{out_file}events.tsv.gz', sep='\t', header=False, index=False, compression='gzip',
         )
-        with open(f'{out_file}events.json', 'w') as metadata_file:
-            json.dump({
-                    "Columns": ['onset', 'duration'],
-                    "Description": "Eye-tracking camera freezes.",
-                    "OnsetSource": "timestamp",
-                    "onset": {
-                        "Description": "Onset of the camera freeze event.",
-                        "Units": "seconds",
-                    },
-                    "duration": {
-                        "Description": "Duration of the camera freeze event.",
-                        "Units": "seconds",
-                    }
-                }, metadata_file, indent=4,
-            )
 
     return ts_arr.shape[0]
 
 
-def format_metadata(
+def format_dset_metadata(
+    out_dir: str,
+)-> None:
+    """."""
+    dset_name = os.path.basename(out_dir)
+    with open(f'{out_path}/task-{dset_name}_recording-eye0_physioevents.json', 'w') as metadata_file:
+        json.dump({
+                "Columns": ['onset', 'duration'],
+                "Description": "Eye-tracking camera freezes.",
+                "OnsetSource": "timestamp",
+                "onset": {
+                    "Description": "Onset of the camera freeze event.",
+                    "Units": "seconds",
+                },
+                "duration": {
+                    "Description": "Duration of the camera freeze event.",
+                    "Units": "seconds",
+                }
+            }, metadata_file, indent=4,
+        )
+
+    if Path(f'{out_path}/task-{dset_name}_events.json').exists():
+        with open(f'{out_path}/task-{dset_name}_events.json', 'r') as metadata_file:
+            events_data = json.load(metadata_file)
+    else:
+        events_data = {}
+        
+    events_data["StimulusPresentation"] = {
+        "ScreenDistance": 1.8,
+        "ScreenDistanceUnits": "m",
+        "ScreenSize": [0.55, 0.44],
+        "ScreenSizeUnits": "m",
+        "ScreenOrigin": [“bottom”, “left”],
+        "ScreenResolution": [1280, 1024],
+        "ScreenResolutionUnits": pixels,
+    }
+    with open(f'{out_path}/task-{dset_name}_events.json', 'w') as metadata_file:
+        json.dump(events_data, metadata_file, indent=4)
+
+
+def format_runwise_metadata(
     start_time: float,
     duration: float,
     col_names: list[str],
@@ -858,7 +883,7 @@ def export_bids(
                 )
                 with open(f'{bids_path}.json', 'w') as metadata_file:
                     json.dump(
-                        format_metadata(
+                        format_runwise_metadata(
                             bids_gaze_list[0][0], 
                             bids_gaze_list[-1][0] - bids_gaze_list[0][0], 
                             BIDS_COL_NAMES,

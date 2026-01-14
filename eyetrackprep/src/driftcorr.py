@@ -215,15 +215,12 @@ def driftcorr_fromlast(
     return np.array(gaze_aligned)
 
 
-def export_fixations(
-    fix_data: np.array,
-    deriv_path: str,
-) -> None:
+def format_dset_metadata(
+    deriv_dir: str,
+)-> None:
     """."""
-    pd.DataFrame(fix_data).to_csv(
-        f'{deriv_path}events.tsv.gz', sep='\t', header=False, index=False, compression='gzip',
-    )
-    with open(f'{deriv_path}events.json', 'w') as metadata_file:
+    dset_name = os.path.basename(deriv_dir).split(".")[0]
+    with open(f'{deriv_dir}/task-{dset_name}_recording-eye0_physioevents.json', 'w') as metadata_file:
         json.dump({
                 "Columns": ['onset', 'median_distance_x', 'median_distance_y', 'duration', 'pupil_count', 'stdev_distance_x', 'stdev_distance_y'],
                 "Description": "Known periods of fixations used to correct drift in gaze mapping.",
@@ -264,7 +261,7 @@ def export_fixations(
         )
 
 
-def format_metadata(
+def format_runwise_metadata(
     start_time: float,
     col_names: list[str],
     gaze_threshold: float,
@@ -436,27 +433,36 @@ def dc_knownfix(
 
             else:
                 """
+                Export fixation metrics
+                """
+                pd.DataFrame(fix_data).to_csv(
+                    f'{deriv_path}events.tsv.gz', sep='\t', 
+                    header=False, index=False, compression='gzip',
+                )
+
+                """
                 Use median gaze distance to center from latest period of 
                 central fixation (with enough high-confidence gaze points) 
                 to drift-correct every gaze in the run. 
                 """
                 driftcorr_gaze = driftcorr_fromlast(
-                    fix_data,
-                    bids_gaze,
+                    fix_data, bids_gaze,
                 )
+                
                 """
-                Export gaze metadata and fixation metrics
+                Export gaze metadata 
                 """
                 with open(f'{deriv_path}.json', 'w') as metadata_file:
-                    json.dump(format_metadata(
+                    json.dump(format_runwise_metadata(
                         bids_gaze[0, 0], DERIV_COL_NAMES, 
                         gaze_threshold, gaze_ratio, dist_cutoff,
                         len(clean_gaze), len(bids_gaze),
                         fix_data.shape[0], total_fix,                          
                     ), metadata_file, indent=4)
-                
-                export_fixations(fix_data, deriv_path)
 
+                """
+                Export and return corrected gaze 
+                """
                 return export_dcgaze(
                     bids_gaze, driftcorr_gaze, deriv_path,
                 ), clean_gaze, fix_data
