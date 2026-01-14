@@ -661,13 +661,13 @@ def format_dset_metadata(
             events_data = json.load(metadata_file)
     else:
         events_data = {}
-        
+
     events_data["StimulusPresentation"] = {
         "ScreenDistance": 1.8,
-        "ScreenDistanceUnits": "m",
+        "ScreenDistanceUnits": "meters",
         "ScreenSize": [0.55, 0.44],
-        "ScreenSizeUnits": "m",
-        "ScreenOrigin": [“bottom”, “left”],
+        "ScreenSizeUnits": "meters",
+        "ScreenOrigin": ["bottom", "left"],
         "ScreenResolution": [1280, 1024],
         "ScreenResolutionUnits": pixels,
     }
