@@ -640,7 +640,7 @@ def format_dset_metadata(
 )-> None:
     """."""
     dset_name = os.path.basename(out_dir)
-    with open(f'{out_path}/task-{dset_name}_recording-eye0_physioevents.json', 'w') as metadata_file:
+    with open(f'{out_dir}/task-{dset_name}_recording-eye0_physioevents.json', 'w') as metadata_file:
         json.dump({
                 "Columns": ['onset', 'duration'],
                 "Description": "Eye-tracking camera freezes.",
@@ -656,8 +656,8 @@ def format_dset_metadata(
             }, metadata_file, indent=4,
         )
 
-    if Path(f'{out_path}/task-{dset_name}_events.json').exists():
-        with open(f'{out_path}/task-{dset_name}_events.json', 'r') as metadata_file:
+    if Path(f'{out_dir}/task-{dset_name}_events.json').exists():
+        with open(f'{out_dir}/task-{dset_name}_events.json', 'r') as metadata_file:
             events_data = json.load(metadata_file)
     else:
         events_data = {}
@@ -671,7 +671,7 @@ def format_dset_metadata(
         "ScreenResolution": [1280, 1024],
         "ScreenResolutionUnits": pixels,
     }
-    with open(f'{out_path}/task-{dset_name}_events.json', 'w') as metadata_file:
+    with open(f'{out_dir}/task-{dset_name}_events.json', 'w') as metadata_file:
         json.dump(events_data, metadata_file, indent=4)
 
 
