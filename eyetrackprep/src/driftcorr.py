@@ -43,16 +43,16 @@ def get_conf_thresh(
 
 
 def filter_gaze(
-    bids_gaze: np.array,
+    bids_gaze: np.ndarray,
     gaze_threshold: float,
     distance: bool=True,
-) -> np.array:
+) -> np.ndarray:
     """
     Filters a run's gaze above specified pupil detection confidence threshold. 
 
     Parameters
     ----------
-    bids_gaze : np.array
+    bids_gaze : np.ndarray
         Array of gaze and pupil data to export to/import from bids-compliant dataset.
         bids_gaze columns 0-3 are [gaze_timestamp, gaze_x, gaze_y, gaze_conf] 
     gaze_threshold : float
@@ -82,10 +82,10 @@ def filter_gaze(
 def get_fixations(
     df_ev: pd.DataFrame,
     task: str,
-    gaze_arr: np.array,
+    gaze_arr: np.ndarray,
     gaze_ratio: float,
     dist_cutoff: float,
-) -> tuple[np.array, int]:
+) -> tuple[np.ndarray, int]:
     """
     Identifies gaze data corresponding to fixation periods and calculates their 
     timing and median distance to the central fixation marker, in x and y. 
@@ -104,7 +104,7 @@ def get_fixations(
             - 'triplets': 'onset', 'duration'
         task (str): The experimental task name. Supported tasks: 'emotionsvideos', 
             'langloc', 'mariostars', 'mario3', 'multfs', 'mutemusic', 'triplets'. 
-        gaze_arr (np.array): A numpy array where column 0 is the timestamp, 
+        gaze_arr (np.ndarray): A numpy array where column 0 is the timestamp, 
             columns 1 and 2 are the distance to center in X and Y, and column 4 is 
             the pupil detection confidence.
         gaze_ratio : float
@@ -116,7 +116,7 @@ def get_fixations(
             unreliable fixations.
 
     Returns:
-        np.array(fix_data): A (N, 7) array containing the following columns
+        np.ndarray(fix_data): A (N, 7) array containing the following columns
             for each period of fixation with reccorded gaze: [onset, median gaze dist-x, 
             median gaze dist-y, duration, pupil_counts,  stdev gaze x, stdev gaze y]. 
             Returns an empty array if no high-confidence fixations are identified.
@@ -148,14 +148,34 @@ def get_fixations(
                 fix_offset = fix_onset + df_ev['duration'][i]
 
         elif task == 'triplets':
-            fix_onset = df_ev['onset'][i] - 3.0 if i == 0 else df_ev['onset'][i-1] + df_ev['duration'][i-1]
+            """
+            First trial: 
+                Preceding fix bound by run onset (0s) and first trial onset (6s for triplets, 9s for word fam); 
+                Just use last 6s of fix in both cases for simplicity.
+            Other trials: 
+                Preceding ISI fix bound by previous trial offset (i-1 onset + i-1 duration) 
+                and current trial (i) onset
+            """
+            fix_onset = df_ev['onset'][i] - 6.0 if i == 0 else df_ev['onset'][i-1] + df_ev['duration'][i-1]
             fix_offset = df_ev['onset'][i]
 
         elif task == 'mutemusic':
+            """
+            First trial: 
+                Preceding fix bound by run onset (0s) and first trial onset (6s)
+            Other trials: 
+                Preceding fix during 2s ISI ending with current trial onset
+            """
             fix_offset = df_ev['onset'][i]
             fix_onset = fix_offset - 6.0 if i == 0 else fix_offset - 2.0
 
         elif task == 'multfs':
+            """
+            First trial: 
+                Preceding fix bound by run onset (0s) and first stimulus onset (6s)
+            Other trials: 
+                Preceding fix during 3.98s ISI (2 TRs) ending with current trial onset
+            """
             fix_offset = df_ev['stimulus_0_onset'][i]
             fix_onset = fix_offset - 6.0 if i == 0 else fix_offset - 3.98
 
@@ -163,12 +183,19 @@ def get_fixations(
             """
             Select gaze from pre-trial fixation period
             """
-            fix_min = int(250*(fix_offset - (0.7 + fix_onset))*gaze_ratio)  # default : 0.2. 20% of pupils expected to be captured during fix period
             total_fix += 1
             trial_gaze = gaze_arr[np.logical_and(
                 gaze_arr[:, 0] > (fix_onset + 0.7),   # + capture from 0.7s (700ms) after fixation onset to account for saccade
-                gaze_arr[:, 0] < fix_offset,  # gaze_arr[:, 0] < (fix_offset - 0.1),  # drop last 0.1s of fix
+                gaze_arr[:, 0] < fix_offset,  
             )]
+            """
+            Save fix metrics (i.e., use this fixation to drift correct) only IF:
+                - the number of high-confidence gaze captured during the fixation 
+                  period is above the specified minimum (fix_min)
+                - the gaze position variability during fixation is below the 
+                  specified cutoff (dist_cutoff)
+            """
+            fix_min = int(250*(fix_offset - (0.7 + fix_onset))*gaze_ratio)  # gaze_ratio default : 0.2. 20% of pupils expected to be captured at 250 fps during fix period
             if trial_gaze.shape[0] > fix_min:
                 if np.sqrt(np.std(trial_gaze[:, 1])**2 + np.std(trial_gaze[:, 2])**2) < dist_cutoff:
                     fix_data.append([
@@ -185,9 +212,9 @@ def get_fixations(
 
 
 def driftcorr_fromlast(
-    fix_data: np.array,
-    bids_gaze: np.array,
-) -> np.array:
+    fix_data: np.ndarray,
+    bids_gaze: np.ndarray,
+) -> np.ndarray:
     """
     Corrects for gaze drift from last period of known central fixation. 
 
@@ -295,12 +322,12 @@ def format_runwise_metadata(
         },
         "driftcorr_x_coordinate": {
             "LongName": "Drift-corrected gaze position (x)",
-            "Description": "Gaze position x-coordinate of the recorded eye, normalized as a proportion of the screen width and corrected for drift based on the lastest period of central fixation. Bound = [0, 1], where 0 = left.",
+            "Description": "Gaze position x-coordinate of the recorded eye, normalized as a proportion of the screen width and corrected for drift based on the lastest period of central fixation. Bound = [0, 1], where 0 = left. Coordinates outside the [0, 1] range indicate offscreen gaze position (< 0 left of screen, > 1 right of screen).",
             "Units": "arbitrary",
         },
         "driftcorr_y_coordinate": {
             "LongName": "Drift-corrected gaze position (y)",
-            "Description": "Gaze position y-coordinate of the recorded eye, normalized as a proportion of the screen height and corrected for drift based on the lastest period of central fixation. Bound = [0, 1], where 0 = bottom.",
+            "Description": "Gaze position y-coordinate of the recorded eye, normalized as a proportion of the screen height and corrected for drift based on the lastest period of central fixation. Bound = [0, 1], where 0 = bottom. Coordinates outside the [0, 1] range indicate offscreen gaze position (< 0 below screen, > 1 above screen).",
             "Units": "arbitrary",
         },
         "reference_fixation_idx": {
@@ -313,12 +340,12 @@ def format_runwise_metadata(
         },
         "x_coordinate": {
             "LongName": "Gaze position (x)",
-            "Description": "Gaze position x-coordinate of the recorded eye, normalized as a proportion of the screen width. Bound = [0, 1], where 0 = left.",
+            "Description": "Gaze position x-coordinate of the recorded eye, normalized as a proportion of the screen width. Bound = [0, 1], where 0 = left. Coordinates outside the [0, 1] range indicate offscreen gaze position (< 0 left of screen, > 1 right of screen).",
             "Units": "arbitrary",
         },
         "y_coordinate": {
             "LongName": "Gaze position (y)",
-            "Description": "Gaze position y-coordinate of the recorded eye, normalized as a proportion of the screen height. Bound = [0, 1], where 0 = bottom.",
+            "Description": "Gaze position y-coordinate of the recorded eye, normalized as a proportion of the screen height. Bound = [0, 1], where 0 = bottom. Coordinates outside the [0, 1] range indicate offscreen gaze position (< 0 below screen, > 1 above screen).",
             "Units": "arbitrary",
         },
         "pupil_x_coordinate": {
@@ -359,10 +386,10 @@ def format_runwise_metadata(
 
 
 def export_dcgaze(
-    bids_gaze: np.array,
-    driftcorr_gaze: np.array,
+    bids_gaze: np.ndarray,
+    driftcorr_gaze: np.ndarray,
     deriv_path: str,
-) -> np.array:
+) -> np.ndarray:
     """."""
 
     deriv_gaze_df = pd.DataFrame(bids_gaze, columns=BIDS_COL_NAMES)
@@ -379,13 +406,13 @@ def export_dcgaze(
 
 
 def dc_knownfix(
-    bids_gaze: np.array,
+    bids_gaze: np.ndarray,
     task_root: str,
     fnum: str,
     events_path: str, 
     deriv_path: str,
     qc_path: str,
-) -> tuple[np.array, Union[np.array, None], Union[np.array, None]]:
+) -> tuple[np.ndarray, Union[np.ndarray, None], Union[np.ndarray, None]]:
     """
     Tasks with known periods of central fixation
     Gaze drift corrected based on the latest period of central fixation between trials, levels, videos, etc.
@@ -469,11 +496,11 @@ def dc_knownfix(
 
 
 def driftcorr_run(
-    bids_gaze: np.array,
+    bids_gaze: np.ndarray,
     task_root: str,
     meta_data: tuple[str, tuple], 
     deriv_dir: str,   
-) -> tuple[np.array, Union[np.array, None], Union[np.array, None]]:
+) -> tuple[np.ndarray, Union[np.ndarray, None], Union[np.ndarray, None]]:
     """
     Assigns gaze to proper drift-correction strategy based on task
     """

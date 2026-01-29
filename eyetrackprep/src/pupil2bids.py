@@ -576,7 +576,7 @@ def extract_gaze(
 
 
 def detect_freezes(
-    gaze: np.array,
+    gaze: np.ndarray,
     out_file: str,
     run_duration: float,
 ) -> float:
@@ -588,7 +588,7 @@ def detect_freezes(
     camera freeze, based on a 250Hz pupil sampling rate). 
 
     Args:
-        gaze (np.array): A 2D array of gaze data with timestamps in col 0 (in s). 
+        gaze (np.ndarray): A 2D array of gaze data with timestamps in col 0 (in s). 
         out_file (str): The output file name for a particular run.
         run_duration (float): The estimated run duration (in s).
 
@@ -715,12 +715,12 @@ def format_runwise_metadata(
         },
         "x_coordinate": {
             "LongName": "Gaze position (x)",
-            "Description": "Gaze position x-coordinate of the recorded eye, normalized as a proportion of the screen width. Bound = [0, 1], where 0 = left.",
+            "Description": "Gaze position x-coordinate of the recorded eye, normalized as a proportion of the screen width. Bound = [0, 1], where 0 = left. Coordinates outside the [0, 1] range indicate offscreen gaze position (< 0 left of screen, > 1 right of screen).",
             "Units": "arbitrary",
         },
         "y_coordinate": {
             "LongName": "Gaze position (y)",
-            "Description": "Gaze position y-coordinate of the recorded eye, normalized as a proportion of the screen height. Bound = [0, 1], where 0 = bottom.",
+            "Description": "Gaze position y-coordinate of the recorded eye, normalized as a proportion of the screen height. Bound = [0, 1], where 0 = bottom. Coordinates outside the [0, 1] range indicate offscreen gaze position (< 0 below screen, > 1 above screen).",
             "Units": "arbitrary",
         },
         "confidence": {
@@ -785,7 +785,7 @@ def export_bids(
     in_path: str,
     calib_coordinates: dict,
     out_path: str,
-) -> np.array:
+) -> np.ndarray:
     '''
     Function extracts a single run's gaze and pupil metrics from .pldata (Pupil's) format,
     and exports them to BIDS (BEP20, .tsv.gz). 
