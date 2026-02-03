@@ -146,9 +146,10 @@ def get_device_name(
     log_path : str,
 ) -> str:
     """."""
-    with open(log_path) as f:
-        lines = f.readlines()
-    for line in lines:
-        if "HighSpeed-MR_CAM_HS_" in line:
-            return [x for x in line.split() if "HighSpeed-MR_CAM_HS_" in x][0].replace("'", "")
+    if Path(log_path).exists():
+        with open(log_path) as f:
+            lines = f.readlines()
+        for line in lines:
+            if "HighSpeed-MR_CAM_HS_" in line:
+                return [x for x in line.split() if "HighSpeed-MR_CAM_HS_" in x][0].replace("'", "")
     return "HighSpeed-MR_CAM_HS_00XX"

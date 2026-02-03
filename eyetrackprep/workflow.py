@@ -59,7 +59,7 @@ def main(
 
         Absolute path to the derivative repository where to export drift-corrected
         gaze data, events data (e.g., fixation metrics per trial), etc.
-        e.g., on elm: /data/neuromod/projects/eyetracking_bids/deriv_repos/emotion-videos
+        e.g., on elm: /data/neuromod/projects/eyetracking_bids/deriv_repos/emotion-videos.eyetrackprep
 
     export_plots : bool, optional
 
@@ -76,11 +76,12 @@ def main(
     and eye0.mp4 exported by pupil, PsychoPy log file).
 
     Exports a .tsv listing all files to support manual QCing
-    Returns a list of directories that contain raw eye-tracking data to process
+    Returns a list of directories that contain raw eye-tracking data to process, 
+    and a dictionary of calibration marker coordinates
     """
     out_dir_layout = BIDSLayout(out_dir)
 
-    pupil_file_paths, task_root = pupil2bids.compile_rawfile_list(
+    pupil_file_paths, task_root, calib_coordinates = pupil2bids.compile_rawfile_list(
         raw_et_dir, out_dir_layout)
 
     """
@@ -89,6 +90,13 @@ def main(
     utils.init_logs(
         task_root, correct_drift, export_plots, out_dir, deriv_dir
     )
+    """
+    Export dset-wise metadata (for bids and derivative repos)
+    """
+    pupil2bids.format_dset_metadata(out_dir)
+    
+    if correct_drift:
+        driftcorr.format_dset_metadata(deriv_dir)
 
     """
     Processes, exports and returns pupil and gaze metrics in BIDS format.
@@ -99,7 +107,7 @@ def main(
         
         """ exports raw pupils to bids """
         bids_gaze = pupil2bids.export_bids(
-            pupil_path, raw_et_dir, out_dir)
+            pupil_path, raw_et_dir, calib_coordinates, out_dir)
 
         """ corrects gaze for drift and exports as derivatives """
         if correct_drift:

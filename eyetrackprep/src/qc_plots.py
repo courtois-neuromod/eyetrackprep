@@ -13,10 +13,11 @@ from src.utils import log_qc, get_event_path
 
 
 def plot_raw_gaze(
-    gaze_data: np.array,
+    gaze_data: np.ndarray,
     run_metadata: tuple,
     task_root: str,
     plot_dir: str,
+    failed_dc: bool=False,
 ) -> None:
     """
     Plots raw gaze only (no drift corrected gaze)
@@ -30,11 +31,14 @@ def plot_raw_gaze(
     sub, ses, run, task, fnum = run_metadata[1]  # == pupil_path[1]
     # early mario3 runs accidentally labelled task-mariostars...
     task = 'task-mario3' if task_root == 'mario3' else task.replace("-fixations", "").replace("-friends", "")
+    
+    Path(f'{plot_dir}/{sub}/{ses}/figures').mkdir(parents=True, exist_ok=True)
+    fdc = "_desc-driftcorrfail" if failed_dc else ""
     if run is None:
-        fig_path = f'{plot_dir}/code/QC_gaze/{sub}_{ses}_{fnum}_{task}_qcplot.png'
+        fig_path = f'{plot_dir}/{sub}/{ses}/figures/{sub}_{ses}_{fnum}_{task}{fdc}_qcplot.png'
         run = ""
     else:
-        fig_path = f'{plot_dir}/code/QC_gaze/{sub}_{ses}_{fnum}_{task}_{run}_qcplot.png'
+        fig_path = f'{plot_dir}/{sub}/{ses}/figures/{sub}_{ses}_{fnum}_{task}_{run}{fdc}_qcplot.png'
 
     if not Path(fig_path).exists():
         if gaze_data.shape[0] == 0:
@@ -66,12 +70,12 @@ def plot_raw_gaze(
 
 
 def plot_dc_gaze(
-    gaze_data: np.array,
+    gaze_data: np.ndarray,
     run_metadata: tuple,
     task_root: str,
     plot_dir: str,
-    clean_data: Union[np.array, None],
-    fix_data: Union[np.array, None],
+    clean_data: Union[np.ndarray, None],
+    fix_data: Union[np.ndarray, None],
 ) -> None:
     """
     Plots raw and drift corrected gaze
@@ -80,11 +84,13 @@ def plot_dc_gaze(
     sub, ses, run, task, fnum = run_metadata[1]  # == pupil_path[1]
     # early mario3 runs accidentally labelled task-mariostars...
     task = 'task-mario3' if task_root == 'mario3' else task.replace("-fixations", "").replace("-friends", "")
+
+    Path(f'{plot_dir}/{sub}/{ses}/figures').mkdir(parents=True, exist_ok=True)
     if run is None:
-        fig_path = f'{plot_dir}/code/QC_gaze/{sub}_{ses}_{fnum}_{task}_desc-driftcorr_qcplot.png'
+        fig_path = f'{plot_dir}/{sub}/{ses}/figures/{sub}_{ses}_{fnum}_{task}_desc-driftcorr_qcplot.png'
         run = ""
     else:
-        fig_path = f'{plot_dir}/code/QC_gaze/{sub}_{ses}_{fnum}_{task}_{run}_desc-driftcorr_qcplot.png'
+        fig_path = f'{plot_dir}/{sub}/{ses}/figures/{sub}_{ses}_{fnum}_{task}_{run}_desc-driftcorr_qcplot.png'
 
     if not Path(fig_path).exists():
         if gaze_data.shape[0] == 0:
@@ -96,7 +102,7 @@ def plot_dc_gaze(
             """
             log_qc(f"Plotting raw data only: drift correction failed for {sub} {ses} {run} {task} {fnum}", qc_path)
 
-            plot_raw_gaze(gaze_data, run_metadata, task_root, plot_dir)
+            plot_raw_gaze(gaze_data, run_metadata, task_root, plot_dir, failed_dc=True)
 
         elif gaze_data.shape[1] != 15:
             """
@@ -161,8 +167,9 @@ def plot_dc_gaze(
                         fix_data[:, 0],             # timestamp (col 0)  
                         fix_data[:, i+1],           # dist to center x (col 1) or dist to center y (col 2)  
                         #color='xkcd:orange',       
-                        c=fix_data[:, 4],           # c = num above-threshold high-conf pupils during fix
-                        cmap='YlOrRd',              # color-coded fixations based on confidence (yellow=low, red = high)
+                        #c=fix_data[:, 4],           # c = num above-threshold high-conf pupils during fix
+                        c=np.sqrt(fix_data[:, 5]**2 + fix_data[:, 6]**2),   # c = stdev in x and y converted to avg distance to fix middle
+                        cmap='magma',              # color-coded fixations based on confidence (yellow=low, red = high)
                         s=20, alpha=1.0,
                     )
                     if i == 0:
