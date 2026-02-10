@@ -32,13 +32,13 @@ def plot_raw_gaze(
     # early mario3 runs accidentally labelled task-mariostars...
     task = 'task-mario3' if task_root == 'mario3' else task.replace("-fixations", "").replace("-friends", "")
     
-    Path(f'{plot_dir}/{sub}/{ses}/figures').mkdir(parents=True, exist_ok=True)
+    Path(f'{plot_dir}/{sub}/figures').mkdir(parents=True, exist_ok=True)
     fdc = "_desc-driftcorrfail" if failed_dc else ""
     if run is None:
-        fig_path = f'{plot_dir}/{sub}/{ses}/figures/{sub}_{ses}_{fnum}_{task}{fdc}_qcplot.png'
+        fig_path = f'{plot_dir}/{sub}/figures/{sub}_{ses}_{fnum}_{task}{fdc}_qcplot.png'
         run = ""
     else:
-        fig_path = f'{plot_dir}/{sub}/{ses}/figures/{sub}_{ses}_{fnum}_{task}_{run}{fdc}_qcplot.png'
+        fig_path = f'{plot_dir}/{sub}/figures/{sub}_{ses}_{fnum}_{task}_{run}{fdc}_qcplot.png'
 
     if not Path(fig_path).exists():
         if gaze_data.shape[0] == 0:
@@ -87,10 +87,10 @@ def plot_dc_gaze(
 
     Path(f'{plot_dir}/{sub}/{ses}/figures').mkdir(parents=True, exist_ok=True)
     if run is None:
-        fig_path = f'{plot_dir}/{sub}/{ses}/figures/{sub}_{ses}_{fnum}_{task}_desc-driftcorr_qcplot.png'
+        fig_path = f'{plot_dir}/{sub}/figures/{sub}_{ses}_{fnum}_{task}_desc-driftcorr_qcplot.png'
         run = ""
     else:
-        fig_path = f'{plot_dir}/{sub}/{ses}/figures/{sub}_{ses}_{fnum}_{task}_{run}_desc-driftcorr_qcplot.png'
+        fig_path = f'{plot_dir}/{sub}/figures/{sub}_{ses}_{fnum}_{task}_{run}_desc-driftcorr_qcplot.png'
 
     if not Path(fig_path).exists():
         if gaze_data.shape[0] == 0:

@@ -24,13 +24,6 @@ https://github.com/courtois-neuromod/things.behaviour/blob/b84bf6d5c18e53e78c627
 notebook: gaze density plot
 https://github.com/courtois-neuromod/cneuromod-things/blob/main/datapaper/notebooks/fixation_compliance.ipynb
 
-function: export gaze during trial, skip ISI period (used as reference)
-
-params: plot per subject, plot per run (one subject), plot per trial (one run)...
-how much to downsample? 
-
-
-Compile tsv of concat data per subject and save (use caching...?)
 """
 
 
@@ -224,12 +217,14 @@ def compile_gaze_df(
                     trial_onset, trial_offset = get_trial_times(df_ev, ev_path, i)
 
                     # TODO: skip trials with no behav response (button press)?
-
-                    # filter trial's gaze and downsample (one every "sampling" gaze points)
+                    """
+                    Filter trial's gaze and downsample.
+                    Sample gaze 1 every x; e.g., if sampling==5, sample 1 every 5 gaze.
+                    """
                     df_trial = df_et[np.logical_and(
                         df_et.iloc[:, 0].to_numpy() > trial_onset,  # col_0 = timestamp
                         df_et.iloc[:, 0].to_numpy() < trial_offset  # col_0 = timestamp
-                    )][::sampling]  # sample 1 every x; if sampling==5, sample 1 every 5 gaze
+                    )][::sampling]
 
                     trial_count += 1
                     trial_num = df_ev['TrialNumber'][i] if 'TrialNumber' in df_ev.columns() else trial_count
@@ -241,6 +236,153 @@ def compile_gaze_df(
                     gaze_df = pd.concat((gaze_df, df_2_concat), ignore_index=True)
 
     return gaze_df
+
+
+def gaussian(x, sx, y=None, sy=None):
+    """
+    Gaussian function from PyGazeAnalyser's gazeplotter.py script
+    source:
+    https://github.com/esdalmaijer/PyGazeAnalyser/blob/de44913fb60876134c5b942690d586e5dab40476/pygazeanalyser/gazeplotter.py#L423
+    
+    Returns an array of numpy arrays (a matrix) containing values between
+    1 and 0 in a 2D Gaussian distribution
+    
+    arguments
+    x : width in pixels
+    sx: width standard deviation
+    
+    keyword arguments
+    y: height in pixels (default = x)
+    sx: heigh standard deviation (default = sx)
+    """
+    
+    # square Gaussian if only x values are passed
+    if y == None:
+        y = x  
+    if sy == None:
+        sy = sx
+        
+    # centers
+    xo = x/2
+    yo = y/2
+    # matrix of zeros
+    M = np.zeros([y,x],dtype=float)
+    # gaussian matrix
+    for i in range(x):
+        for j in range(y):
+            
+            M[j,i] = np.exp(-1.0 * (((float(i)-xo)**2/(2*sx*sx)) + ((float(j)-yo)**2/(2*sy*sy)) ) )
+    
+    return M
+
+            'subject_id','session_id', 'run_id', 'trial_id', 
+            'timestamp', 'x_norm', 'y_norm', 'x_deg', 'y_deg', 
+            'confidence',
+
+def plot_gaze(
+    df_gaze: pd.DataFrame,
+    fig_path: str,
+    contour: bool,
+) -> None:
+    """
+    Generate gaze density plot(s)
+    """
+
+    """
+    Filter gaze outside the screen (1280, 1024)
+    """
+    df_fig = df_gaze[np.logical_and(
+        df_et["x_norm"].to_numpy() > 0,
+        df_et["x_norm"].to_numpy() < 1
+    )]
+    df_fig = df_fig[np.logical_and(
+        df_fig["y_norm"].to_numpy() > 0,
+        df_fig["y_norm"].to_numpy() < 1
+    )]
+
+    """
+    Convert gaze coordinates to pixels
+    """
+    x_pix = 1280*df_fig["x_norm"].to_numpy().astype(int)
+    y_pix = 1024*df_fig["y_norm"].to_numpy().astype(int)
+    screen_dim = (1280, 1024)  # (int(1280*(10.0/17.5)), int(1024*(10.0/14.0)))
+
+    """
+    Create gaze density heatmap
+    """
+    gwh = 50
+    gsdwh = gwh/6
+    gaus = gaussian(gwh,gsdwh)
+    strt = int(gwh/2)
+
+    heatmapsize = int(screen_dim[1] + 2*strt), int(screen_dim[0] + 2*strt)
+    heatmap = np.zeros(heatmapsize, dtype=float)
+
+    """
+    Add Gaussian to the current heatmap
+    """
+    for i in range(len(x_pix)):
+        x = int(x_pix[i])
+        y = int(y_pix[i])
+        heatmap[y:y+gwh,x:x+gwh] += gaus
+
+    """
+    Resize heatmap (trim added padding)
+    """
+    heatmap = heatmap[strt:screen_dim[1]+strt,strt:screen_dim[0]+strt]
+    
+    """
+    Normalize heatmap values to between 0 and 1
+    """
+    min_val = np.min(heatmap)
+    heatmap -= min_val
+    max_val = np.max(heatmap)
+    heatmap = heatmap/max_val    
+    
+    """
+    Plot heatmap
+    """
+    plt.figure(figsize=(6,6))
+    plt.imshow(heatmap, cmap='turbo', alpha=1.0)
+    
+    """
+    Add contours to heatmap
+    """
+    if add_contour:
+        # make dataframe of gaze in pixels for seaborn
+        gazepix_df = pd.DataFrame({
+            "x": x_pix,
+            "y": y_pix,
+        })
+        
+        sns.kdeplot(
+            data=gazepix_df,
+            x="x",
+            y="y",
+            color="xkcd:white",
+            bw_adjust=2,
+            levels=[0.25, 0.5, 0.75]
+        )
+
+    """
+    Make ticks. screen dim (1280, 1024) = (17.5, 14.0) deg visual angle
+    146 pixels ~ 2 deg visual angles [1280 * (2/17.5), or 1024 * (2/14.0)].
+    Make tick mark every 2 deg visual of angle from screen center. 
+    """
+    plt.xticks(np.arange(56, 1279, 146), ["", "", "", "", "", "", "", "", ""])
+    plt.yticks(np.arange(74, 1023, 146), ["", "", "", "", "", "", ""])
+    #plt.xticks(np.arange(56, 1279, 146), [-8, -6, -4, -2, 0, 2, 4, 6, 8])  # deg visual angle from center
+    #plt.xticks(np.arange(74, 1023, 146), [-6, -4, -2, 0, 2, 4, 6])
+
+    plt.xlim([0, 1280])
+    plt.ylim([0, 1024])
+
+    ax = plt.gca()
+    ax.tick_params(width=3, size=8)
+
+    plt.savefig(f'{fig_path}gazedensity.jpg', dpi=300) 
+
+    plt.close()
 
 
 @click.command()
@@ -266,9 +408,14 @@ def compile_gaze_df(
     help='If True, plot gaze density per run',
 )
 @click.option(
+    '--session',
+    help='If a session identifier is specified, plot gaze density '
+    'for just that session (unless run and/or trial are also specified).',
+)
+@click.option(
     '--run',
     help='If a run identifier is specified, plot gaze density '
-    'for just that run.',
+    'for just that run (unless trial is also specified).',
 )
 @click.option(
     '--trial',
@@ -290,6 +437,12 @@ def compile_gaze_df(
     "Value between 0.0 and 1.0, inclusive."
 )
 @click.option(
+    "--contour",
+    is_flag=True,
+    help='If True, adds contour lines that represent 25, 50 and 75 percent'
+    ' of the gaze density to the gaze density plots.',
+)
+@click.option(
     "--use_cache",
     is_flag=True,
     help='If True, use cached tsv to generate the plot (if exists), '
@@ -300,10 +453,12 @@ def main(
     subject,
     bids_dir,
     per_run,
+    session,
     run,
     trial,
     sampling,
     conf_thresh,
+    contour,
     use_cache,
 ):
     """Gaze density plotting.
@@ -336,13 +491,22 @@ def main(
 
         If specified, gaze density is plotted per run rather than across runs for the specified subject
 
+    session : str, optional
+
+        If a session identifier is passed as an argument, gaze density is ploted only for that session, 
+        unless run and/or trial are also specified, in which case gaze is plotted per run or trial (whichever
+        is most specific).
+
     run : str, optional
 
-        If a run identifier is passed as an argument, gaze density is ploted only for that run.
+        If a run identifier is passed as an argument, gaze density is ploted only for that run, unless trial
+        is also specified (in which case gaze is only plotted for that run's trial). Note that the session 
+        number also needs to be specified.
 
     trial : int, optional
 
-        If a trial number is passed as an argument, gaze density is plotted only for that trial.
+        If a trial number is passed as an argument, gaze density is plotted only for that trial. The session and
+        run numbers also need to be specified.
 
     sampling: int, optional
 
@@ -354,6 +518,11 @@ def main(
 
         Determines the pupil detection confidence threshold to exclude gaze estimated from pupils 
         captured with low confidence.
+
+    contour: bool, optional
+
+        If True, adds contour lines that represent 25, 50 and 75 percent of the gaze density to 
+        the gaze density plots.
 
     use_cache: bool, optional
 
@@ -367,7 +536,7 @@ def main(
     Compile a single file with data from every run for 
     the specified subject.
     """
-    gaze_df_path = f'{gaze_dir}/sub-{subject}/cache/sub-{subject}_recording-eye0_physio.tsv.gz'  # TODO: add task name?
+    gaze_df_path = f'{gaze_dir}/cache/sub-{subject}_recording-eye0_physio.tsv.gz'  # TODO: add task name?
     
     if Path(gaze_df_path).exists() and use_cache:
         gaze_df = pd.read_csv(gaze_df_path, sep= '\t')
@@ -375,7 +544,7 @@ def main(
     else: 
         gaze_df = compile_gaze_df(
             gaze_dir,
-            sub_num,
+            subject,
             sampling,
             conf_thresh,
             bids_dir,
@@ -388,8 +557,48 @@ def main(
     """
     Step 2. Generate gaze density figure(s) 
     """
-    # TODO
+    plot_path = f'{gaze_dir}/sub-{subject}/figures/sub-{subject}_task-{os.path.basename(gaze_dir).split(".")[0]}_'
+    if session is not None:
+        if f'ses-{session}' not in gaze_df['session_id']:
+            print(f'No session {session} was found for sub-{subject}')
+            plot_path = None
+        else:
+            gaze_df = gaze_df[gaze_df['session_id'] == f'ses-{session}']
+            plot_path += f'ses-{session}_'
+            if run is not None:
+                if run not in gaze_df['run_id']:
+                    print(f'No run {run.split('_')[-1].split('-')[-1]} was found in session {session} for sub-{subject}')
+                    plot_path = None
+                else:
+                    gaze_df = gaze_df[gaze_df['run_id'] == run]
+                    plot_path += f'{run.split('_')[-1]}_'
+                    if trial is not None:
+                        if bids_dir is None:
+                            print("This task has no distinct trials")
+                            plot_path = None
+                        elif trial not in gaze_df['trial_id']:
+                            print(f'No trial {trial} was found in run {run.split('_')[-1].split('-')[-1]}, session {session} for sub-{subject}')
+                            plot_path = None
+                        else:
+                            gaze_df = gaze_df[gaze_df['trial_id'] == trial]
+                            plot_path += f'trial-{trial}_'
+            elif trial is not None:
+                print("Please make sure to specify a run identifier")
+                plot_path = None
+        
+        if plot_path is not None:
+            plot_gaze(gaze_df, plot_path, contour)
 
+    elif run is not None or trial is not None: 
+        print("Please make sure to specify a session number")
+    elif per_run:
+        for session in np.unique(gaze_df['session_id']):
+            ses_df = gaze_df[gaze_df['session_id' == session]]
+            for run in np.unique(ses_df['run_id']):
+                run_df = ses_df[ses_df['session_id'] == run]
+                plot_gaze(run_df, f'{plot_path}{session}_{run}_', contour)
+    else:
+        plot_gaze(gaze_df, plot_path, contour)
 
 
 if __name__ == "__main__":
