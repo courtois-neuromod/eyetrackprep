@@ -180,7 +180,7 @@ def compile_gaze_df(
         """
         for et_path in et_file_list:
 
-            df_et = pd.read_csv(et_path, sep= '\t')
+            df_et = pd.read_csv(et_path, sep= '\t')[::sampling]
             eb = parse_file_name(os.path.basename(et_path))
 
             df_2_concat = format_gaze_data(
@@ -341,10 +341,10 @@ def plot_gaze(
     
     """
     Plot heatmap
+    origin='lower' -> array index 0, 0 plotted in bottom left corner 
     """
     plt.figure(figsize=(6,6))
     plt.imshow(heatmap, cmap='turbo', alpha=1.0, origin='lower')
-    # TODO: run sanity test to make sure up and up and left is left...  
 
     """
     Add contours to heatmap
@@ -355,7 +355,6 @@ def plot_gaze(
             "x": x_pix,
             "y": y_pix,
         })
-        
         sns.kdeplot(
             data=gazepix_df,
             x="x",
@@ -366,7 +365,7 @@ def plot_gaze(
         )
 
     """
-    Make ticks. screen dim (1280, 1024) = (17.5, 14.0) deg visual angle
+    Make ticks. screen dim (1280, 1024) = (17.5, 14.0) deg of visual angle.
     146 pixels ~ 2 deg visual angles [1280 * (2/17.5), or 1024 * (2/14.0)].
     Make tick mark every 2 deg visual of angle from screen center. 
     """
