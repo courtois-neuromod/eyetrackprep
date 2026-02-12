@@ -387,11 +387,11 @@ def plot_gaze(
 
 @click.command()
 @click.argument(
-    "--gaze_dir",
+    "gaze_dir",
     type=click.Path(),
 )
 @click.argument(
-    '--subject', 
+    'subject', 
 )
 @click.option(
     "--raw_dir",
