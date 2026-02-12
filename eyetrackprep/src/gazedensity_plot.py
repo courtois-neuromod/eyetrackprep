@@ -239,7 +239,7 @@ def compile_gaze_df(
 
                     trial_count += 1
                     trial_num = df_ev['TrialNumber'][i] if 'TrialNumber' in df_ev.columns else trial_count
-                    print(f'trial {trial_num}, onset {trial_onset}, offset {trial_offset}')
+                    #print(f'trial {trial_num}, onset {trial_onset}, offset {trial_offset}')
 
                     df_2_concat = format_gaze_data(
                         df_trial, eb, conf_thresh, trial_num=trial_num,
