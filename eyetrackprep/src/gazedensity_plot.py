@@ -572,7 +572,7 @@ def main(
             plot_path += f'ses-{session}_'
             if run is not None:
                 if run not in gaze_df['run_id']:
-                    print(f'No run {run.split('_')[-1].split('-')[-1]} was found in session {session} for sub-{subject}')
+                    print(f'No run {run.split("_")[-1].split("-")[-1]} was found in session {session} for sub-{subject}')
                     plot_path = None
                 else:
                     gaze_df = gaze_df[gaze_df['run_id'] == run]
