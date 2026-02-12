@@ -417,20 +417,22 @@ def plot_gaze(
 )
 @click.option(
     '--session',
-    help='If a session identifier is specified, plot gaze density '
-    'for just that session (unless run and/or trial are also specified).',
+    help='fMRI session number, e.g., "006". If a session is specified, plot gaze '
+    'density for just that session (unless run and/or trial are also specified).',
 )
 @click.option(
     '--run',
-    help='If a run identifier is specified, plot gaze density '
-    'for just that run (unless trial is also specified). The session '
-    'argument needs to be specified.',
+    help='Run identifier, e.g., "task-emotionvideos_run-26", "task-thingsmemory_run-2", '
+    '"task-bar", "task-reading", "task-friends-s7e7a". If a run identifier is specified, '
+    'plot gaze density for just that run (unless trial is also specified). The session '
+    'argument also needs to be specified.',
 )
 @click.option(
     '--trial',
-    help='If a trial number is specified, plot gaze density '
-    'for just that trial. The raw_dir, session and run arguments '
-    'must be specified.',
+    type=int,
+    help='Trial number, e.g., "3" (without padding). If a trial number is specified, '
+    'plot gaze density for just that trial. The raw_dir, session and run arguments '
+    'must also be specified.',
 )
 @click.option(
     '--sampling',
@@ -489,7 +491,7 @@ def main(
 
     subject : str
 
-        The CNeuroMod participant identifier. E.g., 01 for sub-01.
+        The CNeuroMod participant identifier. E.g., "01" for sub-01.
 
     raw_dir : str or pathlib.Path
 
@@ -503,20 +505,21 @@ def main(
 
     session : str, optional
 
-        If a session identifier is passed as an argument, gaze density is ploted only for that session, 
-        unless run and/or trial are also specified, in which case gaze is plotted per run or trial (whichever
-        is most specific).
+        Session number, e.g., "006". If a session number is passed as an argument, gaze density is ploted only for 
+        that session, unless run and/or trial are also specified, in which case gaze is plotted per run or trial 
+        (whichever is most specific).
 
     run : str, optional
 
-        If a run identifier is passed as an argument, gaze density is ploted only for that run, unless trial
-        is also specified (in which case gaze is only plotted for that run's trial). Note that the session 
+        Run identifier, e.g., "task-emotionvideos_run-26", "task-thingsmemory_run-2", "task-bar", "task-reading", 
+        "task-friends-s7e7a". If a run identifier is passed as an argument, gaze density is ploted only for that run, 
+        unless trial is also specified (in which case gaze is only plotted for that run's trial). Note that the session 
         number also needs to be specified.
 
     trial : int, optional
 
-        If a trial number is passed as an argument, gaze density is plotted only for that trial. The raw_dir, 
-        session and run numbers also need to be specified.
+        Trial number, e.g., "2" (no padding. If a trial number is passed as an argument, gaze density is 
+        plotted only for that trial. The raw_dir, session and run numbers also need to be specified.
 
     sampling: int, optional
 
@@ -570,24 +573,24 @@ def main(
     plot_path = f'{gaze_dir}/sub-{subject}/figures/sub-{subject}_task-{os.path.basename(gaze_dir).split(".")[0]}_'
     Path(os.path.dirname(plot_path)).mkdir(parents=True, exist_ok=True)
     if session is not None:
-        if f'ses-{session}' not in gaze_df['session_id']:
+        if f'ses-{session}' not in gaze_df['session_id'].to_numpy():
             print(f'No session {session} was found for sub-{subject}')
             plot_path = None
         else:
             gaze_df = gaze_df[gaze_df['session_id'] == f'ses-{session}']
             plot_path += f'ses-{session}_'
             if run is not None:
-                if run not in gaze_df['run_id']:
+                if run not in gaze_df['run_id'].to_numpy():
                     print(f'No run {run.split("_")[-1].split("-")[-1]} was found in session {session} for sub-{subject}')
                     plot_path = None
                 else:
                     gaze_df = gaze_df[gaze_df['run_id'] == run]
-                    plot_path += f'{run.split("_")[-1]}_'
+                    plot_path += f'run-{run.split("_")[-1].split("-")[-1]}_'
                     if trial is not None:
                         if raw_dir is None:
                             print("This task has no distinct trials")
                             plot_path = None
-                        elif trial not in gaze_df['trial_id']:
+                        elif trial not in gaze_df['trial_id'].to_numpy():
                             print(f'No trial {trial} was found in run {run.split("_")[-1].split("-")[-1]}, session {session} for sub-{subject}')
                             plot_path = None
                         else:
@@ -604,10 +607,10 @@ def main(
         print("Please make sure to specify a session number")
     elif per_run:
         for session in np.unique(gaze_df['session_id']):
-            ses_df = gaze_df[gaze_df['session_id' == session]]
+            ses_df = gaze_df[gaze_df['session_id'] == session]
             for run in np.unique(ses_df['run_id']):
-                run_df = ses_df[ses_df['session_id'] == run]
-                plot_gaze(run_df, f'{plot_path}{session}_{run}_', contour)
+                run_df = ses_df[ses_df['run_id'] == run]
+                plot_gaze(run_df, f'{plot_path}{session}_run-{run.split("_")[-1].split("-")[-1]}_', contour)
     else:
         plot_gaze(gaze_df, plot_path, contour)
 
