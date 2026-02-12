@@ -168,6 +168,7 @@ def compile_gaze_df(
         """
         Without events files (no trials). 
         """
+        print("Using full runs' gaze")
         gaze_df = pd.DataFrame(columns=[
             'subject_id','session_id', 'run_id', 'timestamp', 
             #'x_norm', 'y_norm', 'x_deg', 'y_deg', 'confidence',
@@ -196,6 +197,7 @@ def compile_gaze_df(
         """
         With events files (has trials)
         """
+        print("Extracting runs' trial gaze")
         gaze_df = pd.DataFrame(columns=[
             'subject_id','session_id', 'run_id', 'trial_id', 
             #'timestamp', 'x_norm', 'y_norm', 'x_deg', 'y_deg', 
@@ -237,6 +239,7 @@ def compile_gaze_df(
 
                     trial_count += 1
                     trial_num = df_ev['TrialNumber'][i] if 'TrialNumber' in df_ev.columns else trial_count
+                    print(f'trial {trial_num}, onset {trial_onset}, offset {trial_offset}')
 
                     df_2_concat = format_gaze_data(
                         df_trial, eb, conf_thresh, trial_num=trial_num,
