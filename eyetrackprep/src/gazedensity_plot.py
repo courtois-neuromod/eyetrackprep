@@ -11,22 +11,6 @@ from scipy.spatial.distance import pdist
 
 from utils import parse_file_name
 
-"""
-
-THINGS: analyze fixations
-https://github.com/courtois-neuromod/things.behaviour/blob/b84bf6d5c18e53e78c6278bfcb5d4e0e6afff214/code/analyze_fixations.py
-
-notebook: gaze density plot
-https://github.com/courtois-neuromod/cneuromod-things/blob/main/datapaper/notebooks/fixation_compliance.ipynb
-
-numpy version:  1.24.4
-pandas version:  1.3.5
-matplotlib version:  3.7.5
-seaborn version:  0.11.2
-
-
-"""
-
 
 def get_event_path(
     et_path: str,
@@ -609,6 +593,7 @@ def main(
         for session in np.unique(gaze_df['session_id']):
             ses_df = gaze_df[gaze_df['session_id'] == session]
             for run in np.unique(ses_df['run_id']):
+                print(f'making plot for sub-{subject}, {session}, {run.split("_")[-1]}')
                 run_df = ses_df[ses_df['run_id'] == run]
                 plot_gaze(run_df, f'{plot_path}{session}_run-{run.split("_")[-1].split("-")[-1]}_', contour)
     else:
