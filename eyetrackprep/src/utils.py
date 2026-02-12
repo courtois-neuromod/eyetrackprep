@@ -153,3 +153,20 @@ def get_device_name(
             if "HighSpeed-MR_CAM_HS_" in line:
                 return [x for x in line.split() if "HighSpeed-MR_CAM_HS_" in x][0].replace("'", "")
     return "HighSpeed-MR_CAM_HS_00XX"
+
+
+def parse_file_name(
+    file_name: str,
+)-> dict:
+    """."""
+    file_bits = file_name.split("_")
+    
+    fb_dict = {}
+    for fb in file_bits:
+        fb_bits = fb.split("-")
+        if len(fb_bits) == 2:
+            if fb_bits[0].isdigit():
+                fb_dict["fnum"] = fb
+            else:
+                fb_dict[fb_bits[0]] = fb_bits[1]
+    return fb_dict
