@@ -9,7 +9,7 @@ import seaborn as sns
 
 from scipy.spatial.distance import pdist
 
-from src.utils import parse_file_name
+from utils import parse_file_name
 
 """
 
