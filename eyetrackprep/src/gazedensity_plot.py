@@ -183,6 +183,9 @@ def compile_gaze_df(
             df_et = pd.read_csv(et_path, sep= '\t')[::sampling]
             eb = parse_file_name(os.path.basename(et_path))
 
+            run_val = f'task-{eb["task"]}' if 'run' not in eb else f'task-{eb["task"]}_run-{eb["run"]}'
+            print(f'sub-{eb["sub"]}_ses-{eb["ses"]}_{run_val}')
+
             df_2_concat = format_gaze_data(
                 df_et, eb, conf_thresh, trial_num=None,
             )
@@ -207,7 +210,10 @@ def compile_gaze_df(
 
             df_et = pd.read_csv(et_path, sep= '\t', header=None)
             eb = parse_file_name(os.path.basename(et_path))
-        
+
+            run_val = f'task-{eb["task"]}' if 'run' not in eb else f'task-{eb["task"]}_run-{eb["run"]}'
+            print(f'sub-{eb["sub"]}_ses-{eb["ses"]}_{run_val}')
+
             ev_path = get_event_path(et_path, raw_dir, eb)
             if ev_path is not None:
                 df_ev = pd.read_csv(ev_path, sep= '\t')
@@ -282,7 +288,7 @@ def gaussian(x, sx, y=None, sy=None):
 def plot_gaze(
     df_gaze: pd.DataFrame,
     fig_path: str,
-    contour: bool,
+    add_contour: bool,
 ) -> None:
     """
     Generate gaze density plot(s)
