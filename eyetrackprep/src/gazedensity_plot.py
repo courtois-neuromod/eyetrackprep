@@ -576,13 +576,13 @@ def main(
                     plot_path = None
                 else:
                     gaze_df = gaze_df[gaze_df['run_id'] == run]
-                    plot_path += f'{run.split('_')[-1]}_'
+                    plot_path += f'{run.split("_")[-1]}_'
                     if trial is not None:
                         if raw_dir is None:
                             print("This task has no distinct trials")
                             plot_path = None
                         elif trial not in gaze_df['trial_id']:
-                            print(f'No trial {trial} was found in run {run.split('_')[-1].split('-')[-1]}, session {session} for sub-{subject}')
+                            print(f'No trial {trial} was found in run {run.split("_")[-1].split("-")[-1]}, session {session} for sub-{subject}')
                             plot_path = None
                         else:
                             gaze_df = gaze_df[gaze_df['trial_id'] == trial]
