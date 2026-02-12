@@ -389,11 +389,9 @@ def plot_gaze(
 @click.argument(
     "--gaze_dir",
     type=click.Path(),
-    help='path to dset repo with drift corrected gaze'    
 )
 @click.argument(
     '--subject', 
-    help='The participant number. E.g., 01.',
 )
 @click.option(
     "--raw_dir",
@@ -476,8 +474,7 @@ def main(
 
     gaze_dir : str or pathlib.Path
 
-        Absolute path to the derivative repository with drift-corrected gaze data, 
-        events data (e.g., fixation metrics per trial), etc. 
+        Absolute path to the derivative repository with drift-corrected gaze data. 
         Figures and cached files are saved in this repository.
         e.g., on elm: /data/neuromod/projects/eyetracking_bids/deriv_repos/emotion-videos.eyetrackprep
 
