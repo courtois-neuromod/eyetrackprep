@@ -38,9 +38,9 @@ def parse_file_name(
 def get_video_specs(
     video_path: str,
 )-> dict:
-    """"
+    """
     use ffmpeg to extract video specs
-    """"
+    """
     probe = ffmpeg.probe(video_path)
     video_specs = next(
         (stream for stream in probe['streams'] if stream['codec_type'] == 'video'
