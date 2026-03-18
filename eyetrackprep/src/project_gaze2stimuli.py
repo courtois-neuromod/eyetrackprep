@@ -155,7 +155,7 @@ def drawgaze(clip,fx,fy,r_zone):
 
         orig = im[y1:y2, x1:x2]
         circled = cv2.circle(orig, (r_zone, r_zone), r_zone, (155, 0, 155), -1,
-                             lineType=cv2.CV_AA)
+                             lineType=cv2.LINE_AA)
 
         im[y1:y2, x1:x2] = circled
         
