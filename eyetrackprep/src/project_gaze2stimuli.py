@@ -37,7 +37,7 @@ def parse_file_name(
 
 def get_video_specs(
     video_path: str,
-) -> dict:
+)-> dict:
     """"
     use ffmpeg to extract video specs
     """"
