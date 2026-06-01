@@ -40,20 +40,35 @@ def get_event_path(
 
 def get_degrees(x, y):
     '''
-    converts normalized coordinates x and y into degrees of visual angle, 
-    and calculate gaze distance from central fixation point
+    Converts normalized gaze coordinates x and y into degrees of visual angle, 
+    and calculate distance between gaze and central fixation point (also in 
+    degrees of visual angle).
+
+    dist_in_pix = 4164 is the estimated distance, in pixels, between the screen and the 
+    subject's eyes. It is estimated based on the screen dimensions:
+    - in pixels : 1280 width, 1024 height
+    - in degrees of visual angle: 17.5 deg width, 14.0 deg height
     '''
     assert len(x) == len(y)
 
+    # Calculate central fixation marker 3d coordinates,
+    # in pixels. dim = (width, height, depth)
     dist_in_pix = 4164 # in pixels
     m_vecpos = np.array([0., 0., dist_in_pix])
 
+    # Calculate gaze on-screen 2D coordinates in deg of vis angle
+    # dim = (width, height). (0, 0) is screen center
     all_pos = np.stack((x, y), axis=1)
     gaze_in_deg = (all_pos - 0.5)*(17.5, 14.0)
 
+    # Calculate gaze 3d coordinates, in pixels. 
+    # dim = (width, height, depth). (0, 0) is screen center
     gaze = (all_pos - 0.5)*(1280, 1024)
     gaze_vecpos = np.concatenate((gaze, np.repeat(dist_in_pix, len(gaze)).reshape((-1, 1))), axis=1)
 
+    # For each gaze point (3D in pixels), use the arc cos to 
+    # calculate the distance from the central fixation marker, 
+    # in degrees of visual angle
     all_distances = []
     for gz_vec in gaze_vecpos:
         vectors = np.stack((m_vecpos, gz_vec), axis=0)
@@ -104,19 +119,11 @@ def format_gaze_data(
     # filter out gaze below confidence threshold; # col_4 = timestamp
     df = df[df.iloc[:, 4].to_numpy() > conf_thresh]
 
-    # convert gaze positions to degrees of visual angle (dist from center screen)
-    #x_deg, y_deg, dist_deg = get_degrees(
-    #    df.iloc[:, 1].tolist(),  # col_1 = driftcorr_x_coordinate
-    #    df.iloc[:, 2].tolist(),  # col_2 = driftcorr_y_coordinate
-    #)
-
     df_2_concat = pd.DataFrame(
         {
             "timestamp": df.iloc[:, 0],
             "x_norm": df.iloc[:, 1],
             "y_norm": df.iloc[:, 2],
-            #"x_deg": x_deg,
-            #"y_deg": y_deg,
             "confidence": df.iloc[:, 4],
         }
     )
@@ -155,7 +162,6 @@ def compile_gaze_df(
         print("Using full runs' gaze")
         gaze_df = pd.DataFrame(columns=[
             'subject_id','session_id', 'run_id', 'timestamp', 
-            #'x_norm', 'y_norm', 'x_deg', 'y_deg', 'confidence',
             'x_norm', 'y_norm', 'confidence',
         ])
 
@@ -184,8 +190,6 @@ def compile_gaze_df(
         print("Extracting runs' trial gaze")
         gaze_df = pd.DataFrame(columns=[
             'subject_id','session_id', 'run_id', 'trial_id', 
-            #'timestamp', 'x_norm', 'y_norm', 'x_deg', 'y_deg', 
-            #'confidence',
             'timestamp', 'x_norm', 'y_norm', 'confidence',
         ])
         """
@@ -296,9 +300,9 @@ def plot_gaze(
     """
     Convert gaze coordinates to pixels
     """
+    screen_dim = (1280, 1024)
     x_pix = (1280*df_fig["x_norm"].to_numpy()).astype(int)
     y_pix = (1024*df_fig["y_norm"].to_numpy()).astype(int)
-    screen_dim = (1280, 1024)  # (int(1280*(10.0/17.5)), int(1024*(10.0/14.0)))
 
     """
     Create gaze density heatmap
@@ -362,8 +366,6 @@ def plot_gaze(
     146 pixels ~ 2 deg visual angles [1280 * (2/17.5), or 1024 * (2/14.0)].
     Make tick mark every 2 deg visual of angle from screen center. 
     """
-    #plt.xticks(np.arange(56, 1279, 146), ["", "", "", "", "", "", "", "", ""])
-    #plt.yticks(np.arange(74, 1023, 146), ["", "", "", "", "", "", ""])
     plt.xticks(np.arange(56, 1279, 146), [-8, -6, -4, -2, 0, 2, 4, 6, 8])  # deg visual angle from center
     plt.yticks(np.arange(74, 1023, 146), [-6, -4, -2, 0, 2, 4, 6])
 
