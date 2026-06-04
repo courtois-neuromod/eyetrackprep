@@ -127,3 +127,21 @@ dmypy.json
 
 # Pyre type checker
 .pyre/
+
+# Config files with identifiers
+eyetrackprep/config/emotionsvideos.json
+eyetrackprep/config/floc.json
+eyetrackprep/config/friends.json
+eyetrackprep/config/friends_fix.json
+eyetrackprep/config/langloc.json
+eyetrackprep/config/mario.json
+eyetrackprep/config/mario3.json
+eyetrackprep/config/mariostars.json
+eyetrackprep/config/movie10fix.json
+eyetrackprep/config/multfs.json
+eyetrackprep/config/mutemusic.json
+eyetrackprep/config/narratives.json
+eyetrackprep/config/ood.json
+eyetrackprep/config/retino.json
+eyetrackprep/config/things.json
+eyetrackprep/config/triplets.json
