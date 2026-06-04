@@ -85,7 +85,7 @@ def plot_dc_gaze(
     # early mario3 runs accidentally labelled task-mariostars...
     task = 'task-mario3' if task_root == 'mario3' else task.replace("-fixations", "").replace("-friends", "")
 
-    Path(f'{plot_dir}/{sub}/{ses}/figures').mkdir(parents=True, exist_ok=True)
+    Path(f'{plot_dir}/{sub}/figures').mkdir(parents=True, exist_ok=True)
     if run is None:
         fig_path = f'{plot_dir}/{sub}/figures/{sub}_{ses}_{fnum}_{task}_desc-driftcorr_qcplot.png'
         run = ""
