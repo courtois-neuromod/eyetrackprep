@@ -145,3 +145,6 @@ eyetrackprep/config/ood.json
 eyetrackprep/config/retino.json
 eyetrackprep/config/things.json
 eyetrackprep/config/triplets.json
+
+# Clean up lists with identifiers
+eyetrackprep/scripts/cleanup_scripts/*_relabelruns.tsv

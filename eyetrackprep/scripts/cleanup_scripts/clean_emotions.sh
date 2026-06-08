@@ -2,6 +2,6 @@
 
 BIDS_DIR="/data/neuromod/projects/eyetracking_bids/bids_repos/emotion-videos"
 DERIV_DIR="/data/neuromod/projects/eyetracking_bids/deriv_repos/emotion-videos.eyetrackprep"
+FILE_PATH="${DERIV_DIR}/code/eyetrackprep/eyetrackprep/scripts/cleanup_scripts/emotionsvideos_relabelruns.tsv"
 
-# TODO: implement steps to rename the output files (figures, .json, .tsv.gz) 
-# to remove timestamps, reset run numbers and change the task name in the final files
+python clean_emotionvideos.py "${BIDS_DIR}" "${DERIV_DIR}" "${FILE_PATH}" 
