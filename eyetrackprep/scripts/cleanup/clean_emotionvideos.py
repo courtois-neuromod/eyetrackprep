@@ -68,7 +68,7 @@ def main(
     """."""
     df = pd.read_csv(label_file, sep="\t")
 
-    for i in df.shape[0]:
+    for i in range(df.shape[0]):
         # Get run metrics
         df_run = df.iloc[i]
         sub, ses, run, new_run, fnum = _get_vals(df_run)
