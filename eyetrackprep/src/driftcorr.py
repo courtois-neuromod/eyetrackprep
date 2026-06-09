@@ -288,6 +288,35 @@ def format_dset_metadata(
         )
 
 
+def format_dset_description(
+    deriv_dir: str,
+)-> None:
+    """."""
+    dset_name = os.path.basename(deriv_dir).split(".")[0]
+    with open(f'{deriv_dir}/dataset_description.json', 'w') as descript_file:
+        json.dump({
+                "Name": f"Eyetracking sub-dataset for the {dset_name} task of the Courtois-Neuromod project, processed with the cneuromod.eyetrackprep gaze processing workflow.",
+                "BIDSVersion": "1.11.1",
+                "DatasetType": "derivative",
+                "SourceDatasets": {
+                    "name": f"Cneuromod {dset_name} dataset (sensitive raw data with restricted access)."
+                },
+                "License": "CC0",
+                "ReferencesAndLinks": ["https://docs.cneuromod.ca/"],
+                "Authors": [
+                    "Lune Bellec",
+                    "Julie Boyle",
+                    "Basile Pinsard",
+                    "Marie St-Laurent",
+                    "Marie-Eve Picard"
+                ],
+                "Funding": [
+                    "Courtois Foundation"
+                ]
+            }, descript_file, indent=4,
+        )        
+
+
 def format_runwise_metadata(
     start_time: float,
     col_names: list[str],
