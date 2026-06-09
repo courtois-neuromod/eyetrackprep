@@ -17,15 +17,16 @@ def _get_vals(df_run):
 
 
 def _update_metadata(jpath, qc_check):
-with open(jpath, 'r') as metadata_file:
-    mdata_old = json.load(metadata_file)
+    with open(jpath, 'r') as metadata_file:
+        mdata_old = json.load(metadata_file)
 
-    mdata_new = {"DriftCorrection_QualityCheck": qc_check}
+    if "DriftCorrection_QualityCheck" not in mdata_old:
+        mdata_new = {"DriftCorrection_QualityCheck": qc_check}
 
-    m_data = {**mdata_new, **mdata_old}
+        m_data = {**mdata_new, **mdata_old}
 
-    with open(jpath, 'w') as metadata_file:
-        json.dump(m_data, metadata_file, indent=4)
+        with open(jpath, 'w') as metadata_file:
+            json.dump(m_data, metadata_file, indent=4)
 
 
 def _rename_run_files(
