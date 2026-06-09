@@ -21,7 +21,10 @@ def _update_metadata(jpath, qc_check):
         mdata_old = json.load(metadata_file)
 
     if "DriftCorrection_QualityCheck" not in mdata_old:
-        mdata_new = {"DriftCorrection_QualityCheck": qc_check}
+        mdata_new = {"DriftCorrection_QualityCheck": {
+            "Value": qc_check,
+            "Description": "Whether drift-corrected gaze passed manual inspection (pass/fail).",
+        }}
 
         m_data = {**mdata_new, **mdata_old}
 

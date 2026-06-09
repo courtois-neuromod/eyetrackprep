@@ -423,35 +423,35 @@ def format_runwise_metadata(
             "Description": "First sampled pupil's time stamp from run onset."
         },
         "DriftCorrectionMethod": {
-            "value": dc_method,
+            "Value": dc_method,
             "Description": "Method used to correct run gaze drift.",
         },
         "PupilConfidenceThreshold": {
-            "value": gaze_threshold,
+            "Value": gaze_threshold,
             "Description": "Pupil detection confidence threshold used to filter out unreliable gaze captured throughout fixation.",
         },
         "MinProportionGazePerFix": {
-            "value": gaze_ratio,
+            "Value": gaze_ratio,
             "Description": "Minimum proportion of high-confidence gaze captured throughout fixation, used as a cut-off to filter out unreliable fixations.",
         },
         "MaxGazeFixVariability": {
-            "value": dist_cutoff,
+            "Value": dist_cutoff,
             "Description": "Maximal variability in position between gaze captured throughout fixation. Composite metric estimated from stdev in x and y used as a cut-off to filter out unreliable fixations.",
         },
         "HighConfidenceGazeCount": {
-            "value": hcgaze_count,
+            "Value": hcgaze_count,
             "Description": "Total number of gaze derived from pupils captured above the PupilConfidenceThreshold throughout the entire run.",
         },
         "TotalGazeCount": {
-            "value": gaze_count,
+            "Value": gaze_count,
             "Description": "Total number of gaze points captured throughout the entire run.",
         },
         "HighConfidenceFixationCount": {
-            "value": hcfix_count,
+            "Value": hcfix_count,
             "Description": "Total number of reliable fixations used to correct drift throughout the run. Reliable fixations met a minimum number of high-confidence gaze (MinProportionGazePerFix) and a maximal amount of variability in gaze position (MaxGazeFixVariability).",
         },
         "TotalFixationCount": {
-            "value": fix_count,
+            "Value": fix_count,
             "Description": "Total number of fixation periods throughout the run.",
         }
     }
