@@ -147,4 +147,4 @@ eyetrackprep/config/things.json
 eyetrackprep/config/triplets.json
 
 # Clean up lists with identifiers
-eyetrackprep/scripts/cleanup/*/*_relabelruns.tsv
+eyetrackprep/scripts/cleanup/*_relabelruns.tsv
