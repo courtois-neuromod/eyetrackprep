@@ -79,7 +79,7 @@ def main(
 
         # Add Drift Correction Quality Check to run metadata
         jpath = (
-            f"{str(deriv_dir)}/{old_root}_desc-driftcorr_physio.json"
+            f"{str(deriv_dir)}/{old_root}_desc-QCmetrics_physio.json"
         )
         if Path(jpath).exists():
             qc_check = "Pass" if not df_run['exclude'] else "Fail"

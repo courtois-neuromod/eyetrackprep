@@ -97,7 +97,6 @@ def main(
     
     if correct_drift:
         driftcorr.format_dset_metadata(deriv_dir)
-        driftcorr.format_dset_description(deriv_dir)
 
     """
     Processes, exports and returns pupil and gaze metrics in BIDS format.
