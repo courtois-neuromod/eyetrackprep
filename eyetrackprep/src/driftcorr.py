@@ -268,13 +268,66 @@ def dset_description(
     }
 
 
-def dset_metadata(
-    dset_name: str,
+def dsetevents_metadata()-> dict:
+    """."""
+    return {
+        "Columns": ['onset', 'median_distance_x', 'median_distance_y', 'duration', 'pupil_count', 'stdev_distance_x', 'stdev_distance_y'],
+        "Description": "Known periods of fixations used to correct drift in gaze mapping.",
+        "OnsetSource": "timestamp",
+        "onset": {
+            "Description": "Onset of the reference fixation period.",
+            "Units": "seconds",
+        },
+        "median_distance_x": {
+            "LongName": "Median distance to center (x)",
+            "Description": "Median gaze distance in x to the central fixation marker during the reference fixation period, normalized as a proportion of the screen width. Bound = [-0.5, 0.5], where -0.5 = left edge of the screen.",
+            "Units": "arbitrary",
+        },
+        "median_distance_y": {
+            "LongName": "Median distance to center (y)",
+            "Description": "Median gaze distance in y to the central fixation marker during the reference fixation period, normalized as a proportion of the screen height. Bound = [-0.5, 0.5], where -0.5 = bottom edge of the screen.",
+            "Units": "arbitrary",
+        },
+        "duration": {
+            "Description": "Difference between the timestamps of the last and the first high confidence gaze sampled during the reference fixation period.",
+            "Units": "seconds",
+        },
+        "pupil_count": {
+            "Description": "Number of gaze points derived from pupils detected with above-threshold confidence used to calculate median gaze coordinates during the reference fixation period.",
+            "Units": "count",
+        },
+        "stdev_distance_x": {
+            "LongName": "Standard deviation of distance to center (x)",
+            "Description": "Standard deviation of gaze distance in x to the central fixation marker during the reference fixation period, normalized as a proportion of the screen width. Bound = [-0.5, 0.5], where -0.5 = left edge of the screen.",
+            "Units": "arbitrary",
+        },
+        "stdev_distance_y": {
+            "LongName": "Standard deviation of distance to center (y)",
+            "Description": "Standard deviation of gaze distance in y to the central fixation marker during the reference fixation period, normalized as a proportion of the screen height. Bound = [-0.5, 0.5], where -0.5 = bottom edge of the screen.",
+            "Units": "arbitrary",
+        }
+    }
+
+
+def format_dset_metadata(
+    deriv_dir: str,
+)-> None:
+    """."""
+    dset_name = os.path.basename(deriv_dir).split(".")[0]
+    with open(f'{deriv_dir}/dataset_description.json', 'w') as descript_file:
+        json.dump(dset_description(dset_name), descript_file, indent=4)        
+
+    with open(f'{deriv_dir}/task-{dset_name}_recording-eye0_physioevents.json', 'w') as metadata_eventfile:
+        json.dump(dsetevents_metadata(), metadata_eventfile, indent=4)
+
+
+def format_runwise_metadata(
+    start_time: float,
 )-> dict:
     """."""
     return {
+        "StartTime": start_time,
         "Columns": DERIV_COL_NAMES,
-        "Description": f"Drift-corrected gaze and pupil metrics for the CNeuroMod {dset_name} dataset.",
         "PhysioType": "eyetrack",
         "RecordedEye": "right",
         "SamplingFrequency": 250.0,
@@ -349,64 +402,7 @@ def dset_metadata(
     }
 
 
-def dsetevents_metadata()-> dict:
-    """."""
-    return {
-        "Columns": ['onset', 'median_distance_x', 'median_distance_y', 'duration', 'pupil_count', 'stdev_distance_x', 'stdev_distance_y'],
-        "Description": "Known periods of fixations used to correct drift in gaze mapping.",
-        "OnsetSource": "timestamp",
-        "onset": {
-            "Description": "Onset of the reference fixation period.",
-            "Units": "seconds",
-        },
-        "median_distance_x": {
-            "LongName": "Median distance to center (x)",
-            "Description": "Median gaze distance in x to the central fixation marker during the reference fixation period, normalized as a proportion of the screen width. Bound = [-0.5, 0.5], where -0.5 = left edge of the screen.",
-            "Units": "arbitrary",
-        },
-        "median_distance_y": {
-            "LongName": "Median distance to center (y)",
-            "Description": "Median gaze distance in y to the central fixation marker during the reference fixation period, normalized as a proportion of the screen height. Bound = [-0.5, 0.5], where -0.5 = bottom edge of the screen.",
-            "Units": "arbitrary",
-        },
-        "duration": {
-            "Description": "Difference between the timestamps of the last and the first high confidence gaze sampled during the reference fixation period.",
-            "Units": "seconds",
-        },
-        "pupil_count": {
-            "Description": "Number of gaze points derived from pupils detected with above-threshold confidence used to calculate median gaze coordinates during the reference fixation period.",
-            "Units": "count",
-        },
-        "stdev_distance_x": {
-            "LongName": "Standard deviation of distance to center (x)",
-            "Description": "Standard deviation of gaze distance in x to the central fixation marker during the reference fixation period, normalized as a proportion of the screen width. Bound = [-0.5, 0.5], where -0.5 = left edge of the screen.",
-            "Units": "arbitrary",
-        },
-        "stdev_distance_y": {
-            "LongName": "Standard deviation of distance to center (y)",
-            "Description": "Standard deviation of gaze distance in y to the central fixation marker during the reference fixation period, normalized as a proportion of the screen height. Bound = [-0.5, 0.5], where -0.5 = bottom edge of the screen.",
-            "Units": "arbitrary",
-        }
-    }
-
-
-def format_dset_metadata(
-    deriv_dir: str,
-)-> None:
-    """."""
-    dset_name = os.path.basename(deriv_dir).split(".")[0]
-    with open(f'{deriv_dir}/dataset_description.json', 'w') as descript_file:
-        json.dump(dset_description(dset_name), descript_file, indent=4)        
-
-    with open(f'{deriv_dir}/task-{dset_name}_recording-eye0_physio.json', 'w') as metadata_file:
-        json.dump(dset_metadata(dset_name), metadata_file, indent=4)
-
-    with open(f'{deriv_dir}/task-{dset_name}_recording-eye0_physioevents.json', 'w') as metadata_eventfile:
-        json.dump(dsetevents_metadata(), metadata_eventfile, indent=4)
-
-
-def format_runwise_metadata(
-    start_time: float,
+def format_runwise_qcdata(
     dc_method: str,
     gaze_threshold: float,
     gaze_ratio: float,
@@ -418,10 +414,6 @@ def format_runwise_metadata(
 ) -> None :
     """."""
     return {
-        "StartTime": {
-            "Value": start_time,
-            "Description": "First sampled pupil's time stamp from run onset."
-        },
         "DriftCorrectionMethod": {
             "Value": dc_method,
             "Description": "Method used to correct run gaze drift.",
@@ -549,13 +541,20 @@ def dc_knownfix(
                 )
                 
                 """
-                Export gaze metadata 
+                Export gaze metadata
                 """
-                with open(f'{deriv_path}.json'.replace('driftcorr', 'QCmetrics'), 'w') as metadata_file:
+                with open(f'{deriv_path}.json', 'w') as metadata_file:
                     json.dump(format_runwise_metadata(
-                        bids_gaze[0, 0], "Latest Fixation",
-                        gaze_threshold, gaze_ratio, dist_cutoff,
-                        len(clean_gaze), len(bids_gaze),
+                        bids_gaze[0, 0],                   
+                    ), metadata_file, indent=4)
+
+                """
+                Export gaze QC metrics
+                """
+                with open(f'{deriv_path}.json'.replace('physio', 'qcmetrics'), 'w') as metadata_file:
+                    json.dump(format_runwise_qcdata(
+                        "Latest Fixation", gaze_threshold, gaze_ratio,
+                        dist_cutoff, len(clean_gaze), len(bids_gaze),
                         fix_data.shape[0], total_fix,                          
                     ), metadata_file, indent=4)
 
