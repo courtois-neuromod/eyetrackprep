@@ -348,7 +348,7 @@ def format_runwise_metadata(
             "Units": "arbitrary",
         },
         "reference_fixation_idx": {
-            "Description": "Row index in the run's physioevents.tsv.gz file corresponding to the fixation period used to drift correct gaze x and y coordinates.",
+            "Description": "Row index in the run's physioevents.tsv.gz file corresponding to the fixation period used to drift correct gaze x and y coordinates. Indexed from 0.",
             "Units": "row number",
         },
         "confidence": {
