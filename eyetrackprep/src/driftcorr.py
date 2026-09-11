@@ -177,7 +177,10 @@ def get_fixations(
                 Preceding fix during 3.98s ISI (2 TRs) ending with current trial onset
             """
             fix_offset = df_ev['stimulus_0_onset'][i]
-            fix_onset = fix_offset - 6.0 if i == 0 else fix_offset - 3.98
+            if isinstance(fix_offset, float):
+                fix_onset = fix_offset - 6.0 if i == 0 else fix_offset - 3.98
+            else:
+                row_has_fix = False
 
         if row_has_fix:
             """
