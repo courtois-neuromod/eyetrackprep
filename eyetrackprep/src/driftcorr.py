@@ -490,8 +490,11 @@ def dc_knownfix(
         log_qc(f"Drift correction fail: no events.tsv file found for {fnum}", qc_path)
         return bids_gaze, None, None
     else:
-        run_event = pd.read_csv(events_path, sep = '\t', header=0)
-    
+        try:
+            run_event = pd.read_csv(events_path, sep = '\t', header=0)
+        except:
+            log_qc(f"Drift correction fail: cannot open events.tsv file for {fnum}", qc_path)
+            return bids_gaze, None, None
         """
         Filter-out gaze from pupils detected below confidence threshold
         Returns normalized distance to central fixation point
