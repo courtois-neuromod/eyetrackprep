@@ -7,30 +7,26 @@ import numpy as np
 import pandas as pd
 import seaborn as sns
 
+from bids import BIDSLayout
+
 from scipy.spatial.distance import pdist
 
 from utils import parse_file_name
 
 
 def get_event_path(
-    et_path: str,
-    raw_dir: str,
+    layout_bids: str,
     eb: dict,
 ) -> str:
     """
     Find eyetracking file's corresponding events file.
     """
     # TODO: add robustness to ses and run number padding... possibly task name variations too...
-    if 'run' in eb:
-        ev_paths = glob.glob(
-            f'{raw_dir}/sub-{eb["sub"]}/ses-{eb["ses"]}/sub-{eb["sub"]}_ses-{eb["ses"]}_'
-            f'{eb["fnum"]}_task-{eb["task"]}_run-{eb["run"]}_events.tsv',
-        )
-    else:
-        ev_paths = glob.glob(
-            f'{raw_dir}/sub-{eb["sub"]}/ses-{eb["ses"]}/sub-{eb["sub"]}_ses-{eb["ses"]}_'
-            f'{eb["fnum"]}_task-{eb["task"]}_events.tsv',
-        )
+    entities = ['subject', 'session', 'task', 'run']
+    query_entities = {
+        key: eb[key] for key in entities if key in eb and eb[key]
+    }
+    ev_paths = layout_bids.get(suffix='events', extension='tsv', **query_entities)
 
     if len(ev_paths) == 1:
         return ev_paths[0]
@@ -87,10 +83,10 @@ def get_trial_times(
     Retrieve trial onset and offset times (from run onset) from run's events.tsv file
     """
 
-    if 'emotionvideos' in ev_path:
+    if 'emotionvideos' in ev_path.path:
         trial_onset = df_ev['onset_video_flip'][i] 
         trial_offset = trial_onset + df_ev['total_duration'][i]
-    elif 'multfs' in ev_path:
+    elif 'multfs' in ev_path.path:
         trial_onset = df_ev['stimulus_0_onset'][i] 
         trial_offset = df_ev[sorted([
             x for x in df_ev.columns if '_offset' in x
@@ -98,9 +94,9 @@ def get_trial_times(
     else:
         # THINGS, langloc, things, triplets... # not yet fLoc, retino
         trial_onset = df_ev['onset'][i]
-        if 'mario' in ev_path:
+        if 'mario' in ev_path.path:
             trial_offset = df_ev['onset'][i + 1]
-        elif 'mutemusic' in ev_path:
+        elif 'mutemusic' in ev_path.path:
             trial_offset = trial_onset + df_ev['total_duration'][i]
         else:
             trial_offset = trial_onset + df_ev['duration'][i]
@@ -128,8 +124,8 @@ def format_gaze_data(
         }
     )
 
-    df_2_concat.insert(loc=0, column="subject_id", value=f'sub-{eb["sub"]}', allow_duplicates=True)
-    df_2_concat.insert(loc=1, column="session_id", value=f'ses-{eb["ses"]}', allow_duplicates=True)
+    df_2_concat.insert(loc=0, column="subject_id", value=f'sub-{eb["subject"]}', allow_duplicates=True)
+    df_2_concat.insert(loc=1, column="session_id", value=f'ses-{eb["session"]}', allow_duplicates=True)
     
     run_val = f'task-{eb["task"]}' if 'run' not in eb else f'task-{eb["task"]}_run-{eb["run"]}'
     df_2_concat.insert(loc=2, column="run_id", value=run_val, allow_duplicates=True)
@@ -141,21 +137,24 @@ def format_gaze_data(
 
 
 def compile_gaze_df(
-    gaze_dir: str,
+    layout_gaze: BIDSLayout,
     sub_num: str,
     sampling: int,
     conf_thresh: float,
-    raw_dir=None,
+    layout_bids=None,
 ) -> pd.DataFrame:
     """
     Concatenate gaze data across a subject's runs into one dataframe
     """
-    et_file_list = sorted(glob.glob(
-        f'{gaze_dir}/sub-{sub_num}/ses-*/func/sub-{sub_num}*'
-        '_recording-eye0_desc-driftcorr_physio.tsv.gz',
-    ))
+    et_file_list= layout_gaze.get(
+        subject=sub_num,
+        recording='eye0',
+        desc='driftcorr',
+        suffix='physio', 
+        extension='tsv.gz'
+    )
 
-    if raw_dir is None:
+    if layout_bids is None:
         """
         Without events files (no trials). 
         """
@@ -172,10 +171,10 @@ def compile_gaze_df(
         for et_path in et_file_list:
 
             df_et = pd.read_csv(et_path, sep= '\t')[::sampling]
-            eb = parse_file_name(os.path.basename(et_path))
+            eb = et_path.get_entities()
 
             run_val = f'task-{eb["task"]}' if 'run' not in eb else f'task-{eb["task"]}_run-{eb["run"]}'
-            print(f'sub-{eb["sub"]}_ses-{eb["ses"]}_{run_val}')
+            print(f'sub-{eb["subject"]}_ses-{eb["session"]}_{run_val}')
 
             df_2_concat = format_gaze_data(
                 df_et, eb, conf_thresh, trial_num=None,
@@ -199,12 +198,12 @@ def compile_gaze_df(
         for et_path in et_file_list:
 
             df_et = pd.read_csv(et_path, sep= '\t', header=None)
-            eb = parse_file_name(os.path.basename(et_path))
+            eb = et_path.get_entities()
 
             run_val = f'task-{eb["task"]}' if 'run' not in eb else f'task-{eb["task"]}_run-{eb["run"]}'
-            print(f'sub-{eb["sub"]}_ses-{eb["ses"]}_{run_val}')
+            print(f'sub-{eb["subject"]}_ses-{eb["session"]}_{run_val}')
 
-            ev_path = get_event_path(et_path, raw_dir, eb)
+            ev_path = get_event_path(layout_bids, eb)
             if ev_path is not None:
                 df_ev = pd.read_csv(ev_path, sep= '\t')
 
@@ -227,7 +226,6 @@ def compile_gaze_df(
 
                     trial_count += 1
                     trial_num = df_ev['TrialNumber'][i] if 'TrialNumber' in df_ev.columns else trial_count
-                    #print(f'trial {trial_num}, onset {trial_onset}, offset {trial_offset}')
 
                     df_2_concat = format_gaze_data(
                         df_trial, eb, conf_thresh, trial_num=trial_num,
@@ -389,9 +387,9 @@ def plot_gaze(
     'subject', 
 )
 @click.option(
-    "--raw_dir",
+    "--bids_dir",
     type=click.Path(),
-    help='Path to raw dset repo with events.tsv files. '
+    help='Path to bids dset repo with events.tsv files. '
     'E.g., /unf/eyetracker/neuromod/emotionsvideos/sourcedata. '
     'Specify only for tasks with trials to exclude gaze captured during ISI.'    
 )
@@ -417,7 +415,7 @@ def plot_gaze(
     '--trial',
     type=int,
     help='Trial number, e.g., "3" (without padding). If a trial number is specified, '
-    'plot gaze density for just that trial. The raw_dir, session and run arguments '
+    'plot gaze density for just that trial. The bids_dir, session and run arguments '
     'must also be specified.',
 )
 @click.option(
@@ -446,10 +444,16 @@ def plot_gaze(
     help='If True, use cached tsv to generate the plot (if exists), '
     'else overwrite any cached file.',
 )
+@click.option(
+    "--out_dir",
+    default=None,
+    help='Absolute path to the directory in which to generate the outputs. If not'
+    ' specified, the outputs will be generated in `gaze_dir`'
+)
 def main(
     gaze_dir,
     subject,
-    raw_dir,
+    bids_dir,
     per_run,
     session,
     run,
@@ -458,6 +462,7 @@ def main(
     conf_thresh,
     contour,
     use_cache,
+    out_dir
 ):
     """Gaze density plotting.
 
@@ -479,7 +484,7 @@ def main(
 
         The CNeuroMod participant identifier. E.g., "01" for sub-01.
 
-    raw_dir : str or pathlib.Path
+    bids_dir : str or pathlib.Path
 
         Absolute path to the raw files repository with events.tsv files per run.
         e.g., on elm: /unf/eyetracker/neuromod/emotionsvideos/sourcedata
@@ -505,7 +510,7 @@ def main(
     trial : int, optional
 
         Trial number, e.g., "2" (no padding. If a trial number is passed as an argument, gaze density is 
-        plotted only for that trial. The raw_dir, session and run numbers also need to be specified.
+        plotted only for that trial. The bids_dir, session and run numbers also need to be specified.
 
     sampling: int, optional
 
@@ -527,6 +532,11 @@ def main(
 
         If True, generate plots from a cached .tsv file with gaze concatenated across runs,
         as long as the file exists. If False (default), overwrite any cached file.
+    
+    out_dir : str or pathlib.Path
+
+        Absolute path to the directory in which to generate the outputs. If not specified, 
+        the outputs will be generated in `gaze_dir`
     """
 
 
@@ -535,18 +545,24 @@ def main(
     Compile a single file with data from every run for 
     the specified subject.
     """
-    gaze_df_path = f'{gaze_dir}/cache/sub-{subject}_recording-eye0_physio.tsv.gz'  # TODO: add task name?
+    layout_bids = BIDSLayout(bids_dir, validate=False, is_derivative=False)
+
+    if out_dir is None:
+        out_dir = gaze_dir
+    
+    gaze_df_path = f'{out_dir}/cache/sub-{subject}_recording-eye0_physio.tsv.gz'  # TODO: add task name?
     
     if Path(gaze_df_path).exists() and use_cache:
         gaze_df = pd.read_csv(gaze_df_path, sep= '\t')
 
     else: 
+        layout_gaze = BIDSLayout(gaze_dir, validate=False, is_derivative=True)
         gaze_df = compile_gaze_df(
-            gaze_dir,
+            layout_gaze,
             subject,
             sampling,
             conf_thresh,
-            raw_dir,
+            layout_bids,
         )
         Path(os.path.dirname(gaze_df_path)).mkdir(parents=True, exist_ok=True)
         gaze_df.to_csv(
@@ -556,7 +572,7 @@ def main(
     """
     Step 2. Generate gaze density figure(s) 
     """
-    plot_path = f'{gaze_dir}/sub-{subject}/figures/sub-{subject}_task-{os.path.basename(gaze_dir).split(".")[0]}_'
+    plot_path = f'{out_dir}/sub-{subject}/figures/sub-{subject}_task-{os.path.basename(gaze_dir).split(".")[0]}_'
     Path(os.path.dirname(plot_path)).mkdir(parents=True, exist_ok=True)
     if session is not None:
         if f'ses-{session}' not in gaze_df['session_id'].to_numpy():
@@ -573,7 +589,7 @@ def main(
                     gaze_df = gaze_df[gaze_df['run_id'] == run]
                     plot_path += f'run-{run.split("_")[-1].split("-")[-1]}_'
                     if trial is not None:
-                        if raw_dir is None:
+                        if bids_dir is None:
                             print("This task has no distinct trials")
                             plot_path = None
                         elif trial not in gaze_df['trial_id'].to_numpy():
