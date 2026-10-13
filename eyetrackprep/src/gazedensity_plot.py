@@ -124,8 +124,8 @@ def format_gaze_data(
         }
     )
 
-    df_2_concat.insert(loc=0, column="subject_id", value=f'sub-{eb["subject"]}', allow_duplicates=True)
-    df_2_concat.insert(loc=1, column="session_id", value=f'ses-{eb["session"]}', allow_duplicates=True)
+    df_2_concat.insert(loc=0, column="subject_id", value=str(eb["subject"]), allow_duplicates=True)
+    df_2_concat.insert(loc=1, column="session_id", value=str(eb["session"]), allow_duplicates=True)
     
     run_val = f'task-{eb["task"]}' if 'run' not in eb else f'task-{eb["task"]}_run-{eb["run"]}'
     df_2_concat.insert(loc=2, column="run_id", value=run_val, allow_duplicates=True)
@@ -405,8 +405,8 @@ def plot_gaze(
     'density for just that session (unless run and/or trial are also specified).',
 )
 @click.option(
-    '--run',
-    help='Run identifier, e.g., "task-emotionvideos_run-26", "task-thingsmemory_run-2", '
+    '--run_id',
+    help='Run identifier, e.g., "task-emotionvideos_run-01", "task-thingsmemory_run-2", '
     '"task-bar", "task-reading", "task-friends-s7e7a". If a run identifier is specified, '
     'plot gaze density for just that run (unless trial is also specified). The session '
     'argument also needs to be specified.',
@@ -456,7 +456,7 @@ def main(
     bids_dir,
     per_run,
     session,
-    run,
+    run_id,
     trial,
     sampling,
     conf_thresh,
@@ -500,7 +500,7 @@ def main(
         that session, unless run and/or trial are also specified, in which case gaze is plotted per run or trial 
         (whichever is most specific).
 
-    run : str, optional
+    run_id : str, optional
 
         Run identifier, e.g., "task-emotionvideos_run-26", "task-thingsmemory_run-2", "task-bar", "task-reading", 
         "task-friends-s7e7a". If a run identifier is passed as an argument, gaze density is ploted only for that run, 
@@ -546,6 +546,9 @@ def main(
     the specified subject.
     """
     layout_bids = BIDSLayout(bids_dir, validate=False, is_derivative=False)
+    
+    if subject not in layout_bids.get_subjects():
+        raise ValueError(f'No subject {subject} found in {layout_bids.root}')
 
     if out_dir is None:
         out_dir = gaze_dir
@@ -553,7 +556,10 @@ def main(
     gaze_df_path = f'{out_dir}/cache/sub-{subject}_recording-eye0_physio.tsv.gz'  # TODO: add task name?
     
     if Path(gaze_df_path).exists() and use_cache:
-        gaze_df = pd.read_csv(gaze_df_path, sep= '\t')
+        gaze_df = pd.read_csv(
+            gaze_df_path, sep= '\t',
+            dtype={'subject_id': str, 'session_id': str, 'run_id': str}
+        )
 
     else: 
         layout_gaze = BIDSLayout(gaze_dir, validate=False, is_derivative=True)
@@ -566,35 +572,32 @@ def main(
         )
         Path(os.path.dirname(gaze_df_path)).mkdir(parents=True, exist_ok=True)
         gaze_df.to_csv(
-            gaze_df_path, sep='\t', header=True, index=False, compression='gzip',
+            gaze_df_path, sep='\t', header=True, index=False, compression='gzip'
         )
 
     """
     Step 2. Generate gaze density figure(s) 
     """
-    plot_path = f'{out_dir}/sub-{subject}/figures/sub-{subject}_task-{os.path.basename(gaze_dir).split(".")[0]}_'
+    plot_path = f'{out_dir}/sub-{subject}/figures/'
     Path(os.path.dirname(plot_path)).mkdir(parents=True, exist_ok=True)
     if session is not None:
-        if f'ses-{session}' not in gaze_df['session_id'].to_numpy():
-            print(f'No session {session} was found for sub-{subject}')
-            plot_path = None
+        if session not in gaze_df['session_id'].to_numpy():
+            raise ValueError(f'No session {session} was found for sub-{subject}')
         else:
-            gaze_df = gaze_df[gaze_df['session_id'] == f'ses-{session}']
-            plot_path += f'ses-{session}_'
-            if run is not None:
-                if run not in gaze_df['run_id'].to_numpy():
-                    print(f'No run {run.split("_")[-1].split("-")[-1]} was found in session {session} for sub-{subject}')
-                    plot_path = None
+            gaze_df = gaze_df[gaze_df['session_id'] == session]
+            plot_path = os.path.join(plot_path, f'sub-{subject}_ses-{session}_task-{os.path.basename(gaze_dir).split(".")[0]}_')
+            if run_id is not None:
+                if run_id not in gaze_df['run_id'].to_numpy():
+                    raise ValueError(f'No run {run_id.split("_")[-1].split("-")[-1]} was found in session {session} for sub-{subject}')
                 else:
-                    gaze_df = gaze_df[gaze_df['run_id'] == run]
-                    plot_path += f'run-{run.split("_")[-1].split("-")[-1]}_'
+                    gaze_df = gaze_df[gaze_df['run_id'] == run_id]
+                    plot_path += f'run-{run_id.split("_")[-1].split("-")[-1]}_'
                     if trial is not None:
                         if bids_dir is None:
                             print("This task has no distinct trials")
                             plot_path = None
                         elif trial not in gaze_df['trial_id'].to_numpy():
-                            print(f'No trial {trial} was found in run {run.split("_")[-1].split("-")[-1]}, session {session} for sub-{subject}')
-                            plot_path = None
+                            raise ValueError(f'No trial {trial} was found in run {run_id.split("_")[-1].split("-")[-1]}, session {session} for sub-{subject}')
                         else:
                             gaze_df = gaze_df[gaze_df['trial_id'] == trial]
                             plot_path += f'trial-{trial}_'
@@ -605,17 +608,24 @@ def main(
         if plot_path is not None:
             plot_gaze(gaze_df, plot_path, contour)
 
-    elif run is not None or trial is not None: 
+    elif run_id is not None or trial is not None: 
         print("Please make sure to specify a session number")
     elif per_run:
         for session in np.unique(gaze_df['session_id']):
             ses_df = gaze_df[gaze_df['session_id'] == session]
-            for run in np.unique(ses_df['run_id']):
-                print(f'making plot for sub-{subject}, {session}, {run.split("_")[-1]}')
-                run_df = ses_df[ses_df['run_id'] == run]
-                plot_gaze(run_df, f'{plot_path}{session}_run-{run.split("_")[-1].split("-")[-1]}_', contour)
+            for run_id in np.unique(ses_df['run_id']):
+                print(f'making plot for sub-{subject}, ses-{session}, {run_id.split("_")[-1]}')
+                run_df = ses_df[ses_df['run_id'] == run_id]
+                plot_gaze(
+                    run_df,
+                    os.path.join(
+                        plot_path,
+                        f'sub-{subject}_ses-{session}_task-{os.path.basename(gaze_dir).split(".")[0]}_run-{run_id.split("_")[-1].split("-")[-1]}_'
+                    ),
+                    contour
+                )
     else:
-        plot_gaze(gaze_df, plot_path, contour)
+        plot_gaze(gaze_df, os.path.join(plot_path, f'sub-{subject}_task-{os.path.basename(gaze_dir).split(".")[0]}_'), contour)
 
 
 if __name__ == "__main__":
