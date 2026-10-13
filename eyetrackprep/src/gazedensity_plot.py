@@ -397,7 +397,7 @@ def plot_gaze(
     "--per_run",
     is_flag=True,
     help='If True, plot gaze density per run. This flag is ignored if session '
-    '(with/without run or trial) is specified.',
+    'with run or trial is specified.',
 )
 @click.option(
     '--session',
@@ -580,7 +580,7 @@ def main(
     """
     plot_path = f'{out_dir}/sub-{subject}/figures/'
     Path(os.path.dirname(plot_path)).mkdir(parents=True, exist_ok=True)
-    if session is not None:
+    if session is not None and per_run is False:
         if session not in gaze_df['session_id'].to_numpy():
             raise ValueError(f'No session {session} was found for sub-{subject}')
         else:
@@ -611,7 +611,11 @@ def main(
     elif run_id is not None or trial is not None: 
         print("Please make sure to specify a session number")
     elif per_run:
-        for session in np.unique(gaze_df['session_id']):
+        if session is not None:
+            sessions = [session]
+        else:
+            sessions = np.unique(gaze_df['session_id'])
+        for session in sessions:
             ses_df = gaze_df[gaze_df['session_id'] == session]
             for run_id in np.unique(ses_df['run_id']):
                 print(f'making plot for sub-{subject}, ses-{session}, {run_id.split("_")[-1]}')
