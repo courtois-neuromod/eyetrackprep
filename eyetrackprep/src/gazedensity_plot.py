@@ -600,7 +600,7 @@ def main(
                     gaze_df = gaze_df[gaze_df['run_id'] == run_id]
                     plot_path += f'run-{run_id.split("_")[-1].split("-")[-1]}_'
                     
-                    if trial:
+                    if trial is not None:
                         if bids_dir is None:
                             print("bids_dir must be specified to define trial events")
                             plot_path = None
@@ -610,7 +610,7 @@ def main(
                             gaze_df = gaze_df[gaze_df['trial_id'] == trial]
                             plot_path += f'trial-{trial}_'
             
-            elif trial:
+            elif trial is not None:
                 print(f'Please make sure to specify a run identifier for trial {trial}')
                 plot_path = None
             
