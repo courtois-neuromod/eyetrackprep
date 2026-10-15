@@ -396,6 +396,12 @@ def plot_gaze(
     'Specify only for tasks with trials to exclude gaze captured during ISI.'    
 )
 @click.option(
+    "--out_dir",
+    default=None,
+    help='Absolute path to the directory in which to generate the outputs. If not'
+    ' specified, the outputs will be generated in `gaze_dir`'
+)
+@click.option(
     "--per_run",
     is_flag=True,
     help='If True, plot gaze density per run. This flag is ignored if session '
@@ -446,16 +452,11 @@ def plot_gaze(
     help='If True, use cached tsv to generate the plot (if exists), '
     'else overwrite any cached file.',
 )
-@click.option(
-    "--out_dir",
-    default=None,
-    help='Absolute path to the directory in which to generate the outputs. If not'
-    ' specified, the outputs will be generated in `gaze_dir`'
-)
 def main(
     gaze_dir,
     subject,
     bids_dir,
+    out_dir,
     per_run,
     session,
     run_id,
@@ -463,8 +464,7 @@ def main(
     sampling,
     conf_thresh,
     contour,
-    use_cache,
-    out_dir
+    use_cache
 ):
     """Gaze density plotting.
 
@@ -491,6 +491,11 @@ def main(
         Absolute path to the bids repository with events.tsv files per run. 
         e.g., on elm: /data/neuromod/projects/eyetracking_bids/bids_repos/emotion-videos
         Specify only for tasks with distinct trials to exclude gaze captured during the ISI.
+    
+    out_dir : str or pathlib.Path
+
+        Absolute path to the directory in which to generate the outputs. If not specified, 
+        the outputs will be generated in `gaze_dir`
 
     per_run : bool, optional
 
@@ -535,11 +540,6 @@ def main(
 
         If True, generate plots from a cached .tsv file with gaze concatenated across runs,
         as long as the file exists. If False (default), overwrite any cached file.
-    
-    out_dir : str or pathlib.Path
-
-        Absolute path to the directory in which to generate the outputs. If not specified, 
-        the outputs will be generated in `gaze_dir`
     """
 
 
