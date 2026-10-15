@@ -585,42 +585,53 @@ def main(
     """
     plot_path = f'{out_dir}/sub-{subject}/figures/'
     Path(os.path.dirname(plot_path)).mkdir(parents=True, exist_ok=True)
-    if session is not None and per_run is False:
+    
+    if session:
         if session not in gaze_df['session_id'].to_numpy():
             raise ValueError(f'No session {session} was found for sub-{subject}')
         else:
             gaze_df = gaze_df[gaze_df['session_id'] == session]
             plot_path = os.path.join(plot_path, f'sub-{subject}_ses-{session}_task-{os.path.basename(gaze_dir).split(".")[0]}_')
-            if run_id is not None:
+            
+            if run_id:
                 if run_id not in gaze_df['run_id'].to_numpy():
                     raise ValueError(f'No run {run_id.split("_")[-1].split("-")[-1]} was found in session {session} for sub-{subject}')
                 else:
                     gaze_df = gaze_df[gaze_df['run_id'] == run_id]
                     plot_path += f'run-{run_id.split("_")[-1].split("-")[-1]}_'
-                    if trial is not None:
+                    
+                    if trial:
                         if bids_dir is None:
-                            print("This task has no distinct trials")
+                            print("bids_dir must be specified to define trial events")
                             plot_path = None
                         elif trial not in gaze_df['trial_id'].to_numpy():
                             raise ValueError(f'No trial {trial} was found in run {run_id.split("_")[-1].split("-")[-1]}, session {session} for sub-{subject}')
                         else:
                             gaze_df = gaze_df[gaze_df['trial_id'] == trial]
                             plot_path += f'trial-{trial}_'
-            elif trial is not None:
-                print("Please make sure to specify a run identifier")
+            
+            elif trial:
+                print(f'Please make sure to specify a run identifier for trial {trial}')
+                plot_path = None
+            
+            elif per_run:
+                for run_id in np.unique(gaze_df['run_id']):
+                    run_df = gaze_df[gaze_df['run_id'] == run_id]
+                    plot_gaze(
+                        run_df,
+                        plot_path + f'run-{run_id.split("_")[-1].split("-")[-1]}_',
+                        contour
+                    )
                 plot_path = None
         
         if plot_path is not None:
             plot_gaze(gaze_df, plot_path, contour)
 
     elif run_id is not None or trial is not None: 
-        print("Please make sure to specify a session number")
+        print('Please make sure to specify a session number')
+        
     elif per_run:
-        if session is not None:
-            sessions = [session]
-        else:
-            sessions = np.unique(gaze_df['session_id'])
-        for session in sessions:
+        for session in np.unique(gaze_df['session_id']):
             ses_df = gaze_df[gaze_df['session_id'] == session]
             for run_id in np.unique(ses_df['run_id']):
                 print(f'making plot for sub-{subject}, ses-{session}, {run_id.split("_")[-1]}')
