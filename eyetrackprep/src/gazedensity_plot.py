@@ -404,8 +404,8 @@ def plot_gaze(
 @click.option(
     "--per_run",
     is_flag=True,
-    help='If True, plot gaze density per run. This flag is ignored if session '
-    'with run or trial is specified.',
+    help='If True, plot gaze density per run. This flag is ignored if the '
+    'run_id or trial argument is specified.',
 )
 @click.option(
     '--session',
@@ -414,7 +414,7 @@ def plot_gaze(
 )
 @click.option(
     '--run_id',
-    help='Run identifier, e.g., "task-emotionvideos_run-01", "task-thingsmemory_run-2", '
+    help='Run identifier, e.g., "task-emotion_run-01", "task-thingsmemory_run-2", '
     '"task-bar", "task-reading", "task-friends-s7e7a". If a run identifier is specified, '
     'plot gaze density for just that run (unless trial is also specified). The session '
     'argument also needs to be specified.',
@@ -424,7 +424,7 @@ def plot_gaze(
     type=int,
     help='Trial number, e.g., "3" (without padding). If a trial number is specified, '
     'plot gaze density for just that trial. The bids_dir, session and run arguments '
-    'must also be specified.',
+    'must also be specified. Trials are indexed from 1 (not 0) in events.tsv files.',
 )
 @click.option(
     '--sampling',
@@ -500,7 +500,7 @@ def main(
     per_run : bool, optional
 
         If specified, gaze density is plotted per run rather than across runs for the specified subject. 
-        This flag is ignored if session (with/without run or trial) is specified.
+        This flag is ignored if the run_id or trial argument is specified.
 
     session : str, optional
 
@@ -510,15 +510,16 @@ def main(
 
     run_id : str, optional
 
-        Run identifier, e.g., "task-emotionvideos_run-26", "task-thingsmemory_run-2", "task-bar", "task-reading", 
+        Run identifier, e.g., "task-emotion_run-02", "task-thingsmemory_run-2", "task-bar", "task-reading", 
         "task-friends-s7e7a". If a run identifier is passed as an argument, gaze density is ploted only for that run, 
         unless trial is also specified (in which case gaze is only plotted for that run's trial). Note that the session 
         number also needs to be specified.
 
     trial : int, optional
 
-        Trial number, e.g., "2" (no padding. If a trial number is passed as an argument, gaze density is 
+        Trial number, e.g., "2" (no padding). If a trial number is passed as an argument, gaze density is 
         plotted only for that trial. The bids_dir, session and run numbers also need to be specified.
+        Note that trials are indexed from 1 (not 0) in events.tsv files.
 
     sampling: int, optional
 
