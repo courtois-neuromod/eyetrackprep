@@ -8,6 +8,7 @@ import pandas as pd
 import seaborn as sns
 
 from bids import BIDSLayout
+from tqdm import tqdm
 
 from scipy.spatial.distance import pdist
 
@@ -21,7 +22,8 @@ def get_event_path(
     """
     Find eyetracking file's corresponding events file.
     """
-    # TODO: add robustness to ses and run number padding... possibly task name variations too...
+    # TODO: add robustness to ses and run number padding... (e.g., some dsets use 
+    # different number padding between bids and fmriprep / eyetrackprep
     entities = ['subject', 'session', 'task', 'run']
     query_entities = {
         key: eb[key] for key in entities if key in eb and eb[key]
@@ -168,7 +170,7 @@ def compile_gaze_df(
         Extract gaze from each run (no trials).
         Include all run's gaze.
         """
-        for et_path in et_file_list:
+        for et_path in tqdm(et_file_list):
 
             df_et = pd.read_csv(et_path, sep= '\t')[::sampling]
             eb = et_path.get_entities()
@@ -195,7 +197,7 @@ def compile_gaze_df(
         Extract gaze from each run. 
         Include trial gaze, exclude ISI gaze
         """
-        for et_path in et_file_list:
+        for et_path in tqdm(et_file_list):
 
             df_et = pd.read_csv(et_path, sep= '\t', header=None)
             eb = et_path.get_entities()
@@ -316,7 +318,7 @@ def plot_gaze(
     """
     Add Gaussian to the current heatmap
     """
-    for i in range(len(x_pix)):
+    for i in tqdm(range(len(x_pix))):
         x = int(x_pix[i])
         y = int(y_pix[i])
         heatmap[y:y+gwh,x:x+gwh] += gaus
@@ -390,7 +392,7 @@ def plot_gaze(
     "--bids_dir",
     type=click.Path(),
     help='Path to bids dset repo with events.tsv files. '
-    'E.g., /unf/eyetracker/neuromod/emotionsvideos/sourcedata. '
+    'E.g., /data/neuromod/projects/eyetracking_bids/bids_repos/emotion-videos '
     'Specify only for tasks with trials to exclude gaze captured during ISI.'    
 )
 @click.option(
@@ -486,8 +488,9 @@ def main(
 
     bids_dir : str or pathlib.Path
 
-        Absolute path to the raw files repository with events.tsv files per run.
-        e.g., on elm: /unf/eyetracker/neuromod/emotionsvideos/sourcedata
+        Absolute path to the bids repository with events.tsv files per run. 
+        e.g., on elm: /data/neuromod/projects/eyetracking_bids/bids_repos/emotion-videos
+        Specify only for tasks with distinct trials to exclude gaze captured during the ISI.
 
     per_run : bool, optional
 
@@ -545,11 +548,6 @@ def main(
     Compile a single file with data from every run for 
     the specified subject.
     """
-    layout_bids = BIDSLayout(bids_dir, validate=False, is_derivative=False)
-    
-    if subject not in layout_bids.get_subjects():
-        raise ValueError(f'No subject {subject} found in {layout_bids.root}')
-
     if out_dir is None:
         out_dir = gaze_dir
     
@@ -563,6 +561,12 @@ def main(
 
     else: 
         layout_gaze = BIDSLayout(gaze_dir, validate=False, is_derivative=True)
+
+        if subject not in layout_gaze.get_subjects():
+            raise ValueError(f'No subject {subject} found in {layout_gaze.root}')
+        
+        layout_bids = None if bids_dir is None else BIDSLayout(bids_dir, validate=False, is_derivative=False)
+        
         gaze_df = compile_gaze_df(
             layout_gaze,
             subject,
