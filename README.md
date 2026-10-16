@@ -7,11 +7,11 @@
 ```text
 Raw pupil and gaze files (restricted due to sensitive content)
       ↓
-Dataset overview (QC report)
+Dataset overview → QC report
       ↓
-BIDS formatting and metadata (Open-access BIDS repository)
+BIDS formatting and metadata → Open-access BIDS repository
       ↓
-(Optional) Gaze drift correction (Open-access derivative repository)
+(Optional) Gaze drift correction → Open-access derivatives repository
       ↓
 Plots to support offline quality assessments
 ```
