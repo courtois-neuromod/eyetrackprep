@@ -1,5 +1,9 @@
 # eyetrackprep workflow
 
+[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.23423991.svg)](https://doi.org/10.5281/zenodo.23423991)
+[![Static Badge](https://img.shields.io/badge/Apache--2.0-license?style=flat&label=license&color=green)](https://github.com/courtois-neuromod/eyetrackprep/blob/main/LICENSE)
+
+
 ## Description
 
 `eyetrackprep` is a library to format and process pupil and gaze data acquired with eye-tracking alongside fMRI and physiological data for the Courtois project on Neural Modelling (CNeuroMod).
@@ -45,3 +49,19 @@ pip install -r requirements.txt
 </table>
 
 ## Acknowlegments
+
+Please cite `eyetrackprep` using the zenodo DOI:
+
+```bibtex
+@software{eyetrackprep,
+    author = {Marie St-Laurent, Marie-Eve Picard},
+    license = {Apache-2.0},
+    title = {{eyetrackprep}},
+    url = {https://github.com/courtois-neuromod/eyetrackprep/},
+    doi = {https://doi.org/10.5281/zenodo.23423991}
+}
+```
+
+
+
+
