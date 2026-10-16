@@ -679,6 +679,7 @@ def format_runwise_metadata(
     start_time: float,
     duration: float,
     col_names: list[str],
+    gaze_count: int,
     freeze_count: int,
     pupil_version: str,
     device_name: str,
@@ -707,6 +708,7 @@ def format_runwise_metadata(
         "EyeTrackingMethod": "pupil-labs/pupil-detectors:2d",
         "StartTime": start_time,
         "Duration": duration,
+        "TotalGazeCount": gaze_count,
         "CameraFreezeCount": freeze_count,
         "timestamp": {
             "Description": "A continuously increasing identifier of the sampling time registered by the device",
@@ -887,6 +889,7 @@ def export_bids(
                             bids_gaze_list[0][0], 
                             bids_gaze_list[-1][0] - bids_gaze_list[0][0], 
                             BIDS_COL_NAMES,
+                            bids_gaze.shape[0],
                             freeze_count, 
                             pupil_version,
                             device_name,
