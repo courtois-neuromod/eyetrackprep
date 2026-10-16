@@ -2,6 +2,22 @@
 
 ## Description
 
+`eyetrackprep` is a library to format and processe pupil and gaze data acquired with eye-tracking alongside fMRI and physiological data for the Courtois project on Neural Modelling (CNeuroMod).
+
+```text
+Raw pupil and gaze files (restricted due to sensitive content)
+      ↓
+Dataset overview (QC report)
+      ↓
+BIDS formatting and metadata (Open-access BIDS repository)
+      ↓
+(Optional) Gaze drift correction (Open-access derivative repository)
+      ↓
+Plots to support offline quality assessments
+```
+
+Additional scripts that remove sensitive information (e.g., scan dates) and perform data visualisation (gaze density plots per subject, session, run or trial; gaze projection onto video stimuli) are also included. 
+
 ## Quick start
 
 ```
