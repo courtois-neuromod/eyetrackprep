@@ -9,30 +9,10 @@ import pandas as pd
 from moviepy import VideoFileClip
 from scipy.interpolate import interp1d
 
-#from utils import parse_file_name
+from utils import parse_file_name
 
 FULL_SCREEN_SIZE = (1280, 1024)  # pix
 SCALING_EMOTION_VIDEOS = 900  # pix
-
-"""
-TODO: once merged to main, import parse_file_name from utils (on visu branch)
-and delete local function below
-"""
-def parse_file_name(
-    file_name: str,
-)-> dict:
-    """."""
-    file_bits = file_name.split("_")
-    
-    fb_dict = {}
-    for fb in file_bits:
-        fb_bits = fb.split("-")
-        if len(fb_bits) == 2:
-            if fb_bits[0].isdigit():
-                fb_dict["fnum"] = fb
-            else:
-                fb_dict[fb_bits[0]] = fb_bits[1]
-    return fb_dict
 
 
 def get_video_specs(
