@@ -9,11 +9,11 @@ Raw pupil and gaze files (restricted due to sensitive content)
       ↓
 Dataset overview → QC report
       ↓
-BIDS formatting and metadata → Open-access BIDS repository
+BIDS formatting and metadata → Open-access BIDS repository (<dataset>)
       ↓
-(Optional) Gaze drift correction → Open-access derivatives repository
+(Optional) Gaze drift correction → Open-access derivatives repository (<dataset>.eyetrackprep)
       ↓
-Plots to support offline quality assessments
+(Optional) Plots to support offline quality assessments
 ```
 
 Additional scripts that remove sensitive information (e.g., scan dates) and perform data visualisation (gaze density plots per subject, session, run or trial; gaze projection onto video stimuli) are also included. 
