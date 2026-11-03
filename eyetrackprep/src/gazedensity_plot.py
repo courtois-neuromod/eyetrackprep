@@ -86,8 +86,9 @@ def get_trial_times(
     """
 
     if 'emotionvideos' in ev_path.path:
-        trial_onset = df_ev['onset_video_flip'][i] 
-        trial_offset = trial_onset + df_ev['total_duration'][i]
+        tmp_stim = df_ev[df_ev['trial_type']=='stimulus'].reset_index(drop=True)
+        trial_onset = tmp_stim['onset'][i]
+        trial_offset = trial_onset + tmp_stim['duration'][i]
     elif 'multfs' in ev_path.path:
         trial_onset = df_ev['stimulus_0_onset'][i] 
         trial_offset = df_ev[sorted([
@@ -211,7 +212,7 @@ def compile_gaze_df(
 
                 trial_count = 0
                 for i in range(df_ev.shape[0]):
-                    if 'trial_type' in df_ev.columns and df_ev['trial_type'][i] in ['fix', 'fixation_dot']:
+                    if 'trial_type' in df_ev.columns and df_ev['trial_type'][i] in ['fix', 'fixation', 'fixation_dot']:
                         continue
 
                     trial_onset, trial_offset = get_trial_times(df_ev, ev_path, i)
